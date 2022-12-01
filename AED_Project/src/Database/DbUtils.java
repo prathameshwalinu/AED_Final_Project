@@ -4,8 +4,10 @@
  */
 package Database;
 
+import Model.Admin;
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
+import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
 
 /**
@@ -33,6 +35,31 @@ public class DbUtils {
 
         ObjectContainer db = Db4oEmbedded.openFile(config, "database/aed_project_db");
         return db;
+    }
+    
+        public synchronized void storeSystem(Admin system) {
+        ObjectContainer conn = createConnection();
+        conn.store(system);
+        conn.commit();
+        conn.close();
+    }
+
+    public Admin retrieveSystem() {
+        try {
+            ObjectContainer conn = createConnection();
+            ObjectSet<Admin> systems = conn.query(Admin.class); // Change to the object you want to save
+            Admin system;
+            if (systems.isEmpty()) {
+                system = Admin.createSystemAdmin();
+            } else {
+                system = systems.get(systems.size() - 1);
+            }
+            conn.close();
+            return system;
+        } catch (Exception ex) {
+            System.out.print(ex);
+        }
+        return null;
     }
 
 }
