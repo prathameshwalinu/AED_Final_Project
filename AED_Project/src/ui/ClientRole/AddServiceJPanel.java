@@ -1,0 +1,160 @@
+package ui.ClientRole;
+
+import Model.Admin;
+import java.util.function.Consumer;
+
+
+public class AddServiceJPanel extends javax.swing.JPanel {
+
+    private Admin systems;
+    private Runnable backButton4;
+    private String username;
+    private String hotelName;
+
+
+    public AddServiceJPanel() {
+        initComponents();
+        this.systems = systems;
+        this.username = username;
+        setBackground(new java.awt.Color(255, 208, 56));
+        backBtn.setBackground(new java.awt.Color(0, 102, 102));
+        backBtn.setOpaque(true);
+        btnEvent.setBackground(new java.awt.Color(0, 102, 102));
+        btnEvent.setOpaque(true);
+        btnCatering.setBackground(new java.awt.Color(0, 102, 102));
+        btnCatering.setOpaque(true);
+        btnEntertainment.setBackground(new java.awt.Color(0, 102, 102));
+        btnEntertainment.setOpaque(true);
+        btnOthers.setBackground(new java.awt.Color(0, 102, 102));
+        btnOthers.setOpaque(true);
+    }
+
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        jLabel1 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
+        btnEvent = new javax.swing.JButton();
+        btnCatering = new javax.swing.JButton();
+        btnEntertainment = new javax.swing.JButton();
+        btnOthers = new javax.swing.JButton();
+
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        jLabel1.setText("VIEW SERVICES DETAILS");
+
+        backBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        backBtn.setText("< BACK");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
+        btnEvent.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnEvent.setText("EVENT");
+        btnEvent.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEventActionPerformed(evt);
+            }
+        });
+
+        btnCatering.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnCatering.setText("CATERING");
+        btnCatering.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCateringActionPerformed(evt);
+            }
+        });
+
+        btnEntertainment.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnEntertainment.setText("ENTERTAINMENT");
+        btnEntertainment.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEntertainmentActionPerformed(evt);
+            }
+        });
+
+        btnOthers.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnOthers.setText("OTHERS");
+        btnOthers.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnOthersActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
+        this.setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(backBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(132, 132, 132)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnEntertainment, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnOthers, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnCatering, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGap(35, 35, 35)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(24, 24, 24)))))
+                .addContainerGap(142, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
+                .addComponent(jLabel1)
+                .addGap(46, 46, 46)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCatering, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnEntertainment, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOthers, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(413, Short.MAX_VALUE))
+        );
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void btnEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEventActionPerformed
+
+    }//GEN-LAST:event_btnEventActionPerformed
+
+    private void btnCateringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCateringActionPerformed
+
+    }//GEN-LAST:event_btnCateringActionPerformed
+
+    private void btnEntertainmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntertainmentActionPerformed
+
+    }//GEN-LAST:event_btnEntertainmentActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        backButton4.run();
+    }//GEN-LAST:event_backBtnActionPerformed
+
+    private void btnOthersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOthersActionPerformed
+
+    }//GEN-LAST:event_btnOthersActionPerformed
+
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
+    private javax.swing.JButton btnCatering;
+    private javax.swing.JButton btnEntertainment;
+    private javax.swing.JButton btnEvent;
+    private javax.swing.JButton btnOthers;
+    private javax.swing.JLabel jLabel1;
+    // End of variables declaration//GEN-END:variables
+}

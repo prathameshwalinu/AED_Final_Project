@@ -20,7 +20,7 @@ public class MainJFrame extends javax.swing.JFrame {
         logoutBtn.setEnabled(false);
         ControlPanel.setBackground(new java.awt.Color(0, 102, 102));
         WorkArea.setBackground(new java.awt.Color(255, 208, 56));
-//        setExtendedState(MainJFrame.MAXIMIZED_BOTH);
+        setExtendedState(MainJFrame.MAXIMIZED_BOTH);
     }
 
     @SuppressWarnings("unchecked")
@@ -152,6 +152,7 @@ public class MainJFrame extends javax.swing.JFrame {
         if (Admin.validateUserNamePassword(userName, password)) {
             String type = Admin.findUserType(userName);
 
+            
             usernameField.setText("");
             passwordField.setText("");
             loginBtn.setEnabled(false);
