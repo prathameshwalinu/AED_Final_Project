@@ -3,11 +3,12 @@ package Model;
 public class ServiceLocation {
 
     private String name;
-    private RS_BusinessCatalogueDirectory BusinessCatalogueDirectory;
+
+    private BusinessCatalogueDirectory BusinessCatalogueDirectory;
 
     public ServiceLocation(String name) {
         this.name = name;
-        BusinessCatalogueDirectory = new RS_BusinessCatalogueDirectory();
+        BusinessCatalogueDirectory = new BusinessCatalogueDirectory();
     }
 
     public String getName() {
@@ -18,11 +19,12 @@ public class ServiceLocation {
         this.name = name;
     }
 
-    public RS_BusinessCatalogueDirectory getBusinessCatalogueDirectory() {
+    public BusinessCatalogueDirectory getBusinessCatalogueDirectory() {
         return BusinessCatalogueDirectory;
     }
 
-    public void setBusinessCatalogueDirectory(RS_BusinessCatalogueDirectory BusinessCatalogueDirectory) {
+    public void setBusinessCatalogueDirectory(BusinessCatalogueDirectory BusinessCatalogueDirectory) {
+    
         this.BusinessCatalogueDirectory = BusinessCatalogueDirectory;
     }
    
