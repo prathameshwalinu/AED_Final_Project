@@ -1,6 +1,8 @@
 package ui.ClientRole;
 
 import Model.Admin;
+import Model.HallBooking;
+import RS_Model.services.EventService;
 import java.util.Date;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
@@ -11,15 +13,21 @@ import ui.main.DateUtils;
 public class ServiceBookEventJPanel extends javax.swing.JPanel {
 
     private Admin systems;
+    private Consumer<HallBooking> callOnCreateMethod1;
+    private String username;
+    private HallBooking booking;
 
-
-    public ServiceBookEventJPanel(Admin systems) {
+    public ServiceBookEventJPanel(Admin systems, Consumer<HallBooking> callOnCreateMethod1, String username, HallBooking booking) {
         initComponents();
         this.systems = systems;
-
+        this.callOnCreateMethod1 = callOnCreateMethod1;
+        this.username = username;
+        this.booking = booking;
 
         orgComboBox.addItem(null);
-
+        for (RS_BC_Events eventOrg : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfEvents()) {
+            orgComboBox.addItem(eventOrg);
+        }
         setBackground(new java.awt.Color(255, 208, 56));
         backBtn.setBackground(new java.awt.Color(0, 102, 102));
         backBtn.setOpaque(true);
@@ -229,11 +237,65 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void radioWeddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioWeddingActionPerformed
-
+        if (radioWedding.isSelected()) {
+            cmbWedding.removeAllItems();
+            for (WeddingType wed : WeddingType.values()) {
+                cmbWedding.addItem(wed);
+            }
+        }
     }//GEN-LAST:event_radioWeddingActionPerformed
 
     private void bookEventBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookEventBtnActionPerformed
+        RS_BC_Events businessEvent = (RS_BC_Events) orgComboBox.getSelectedItem();
 
+        if (businessEvent == null) {
+            JOptionPane.showMessageDialog(this, "Please select a Business Event organization from the dropdown.");
+            return;
+        }
+
+        Date date = DateUtils.formatDate(dateField.getDate());
+        Date checkin = booking.getCheckin();
+        Date checkout = booking.getCheckout();
+        if (date.compareTo(checkin) < 0 || date.compareTo(checkout) > 0) {
+            JOptionPane.showMessageDialog(this, "Selected date should be within check-in date (" + checkin
+                    + ") and checkout date (" + checkout + ")");
+            return;
+        }
+
+        boolean weddingRadioBtnSelected = radioWedding.isSelected();
+        boolean MeetingRadioBtnSelected = radioMeeting.isSelected();
+        boolean birthdayPartyRadioBtnSelected = radioBirthdayParty.isSelected();
+
+        if (!weddingRadioBtnSelected && !MeetingRadioBtnSelected && !birthdayPartyRadioBtnSelected) {
+            JOptionPane.showMessageDialog(this, "Please select at least one service for Business Event.");
+            return;
+        }
+
+        int price = 0;
+        EventService service = new EventService(businessEvent, date);
+        if (weddingRadioBtnSelected) {
+            WeddingType weddin = (WeddingType) cmbWedding.getSelectedItem();
+            service.addService(EventService.EventServiceType.WEDDING, weddin.getRate());
+            price += weddin.getRate();
+        }
+
+        if (MeetingRadioBtnSelected) {
+            MeetingsType meet = (MeetingsType) cmbMeeting.getSelectedItem();
+            service.addService(EventService.EventServiceType.MEETINGS, meet.getRate());
+            price += meet.getRate();
+        }
+
+        if (birthdayPartyRadioBtnSelected) {
+            BirthdayPartyType birthdayParty = (BirthdayPartyType) cmbBirthdayParty.getSelectedItem();
+            service.addService(EventService.EventServiceType.BIRTHDAYPARTY, birthdayParty.getRate());
+            price += birthdayParty.getRate();
+        }
+
+        priceField.setText(String.valueOf(price));
+        booking.addService(service);
+
+        JOptionPane.showMessageDialog(this, "Business event service added successfully.");
+        callOnCreateMethod1.accept(booking);
       
     }//GEN-LAST:event_bookEventBtnActionPerformed
 
@@ -242,20 +304,62 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbBirthdayPartyActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-  
+        callOnCreateMethod1.accept(booking);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void radioBirthdayPartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBirthdayPartyActionPerformed
+        if (radioBirthdayParty.isSelected()) {
+            cmbBirthdayParty.removeAllItems();
+            for (BirthdayPartyType catering : BirthdayPartyType.values()) {
+                cmbBirthdayParty.addItem(catering);
+            }
 
+        }
     }//GEN-LAST:event_radioBirthdayPartyActionPerformed
 
     private void radioMeetingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMeetingActionPerformed
-
+         if (radioMeeting.isSelected()) {
+            cmbMeeting.removeAllItems();
+            for (MeetingsType meet : MeetingsType.values()) {
+                cmbMeeting.addItem(meet);
+            }
+        }
     }//GEN-LAST:event_radioMeetingActionPerformed
 
     private void totalPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalPriceActionPerformed
 
-        
+                   RS_BC_Events businessEvent = (RS_BC_Events) orgComboBox.getSelectedItem();
+
+        if (businessEvent == null) {
+            JOptionPane.showMessageDialog(this, "Please select a Business Event organization from the dropdown.");
+            return;
+        }
+        boolean photoRadioBtnSelected = radioWedding.isSelected();
+        boolean decorRadioBtnSelected = radioMeeting.isSelected();
+        boolean cateringRadioBtnSelected = radioBirthdayParty.isSelected();
+        Date date = DateUtils.formatDate(dateField.getDate());
+
+        int price = 0;
+        EventService service = new EventService(businessEvent, date);
+        if (photoRadioBtnSelected) {
+            WeddingType photography = (WeddingType) cmbWedding.getSelectedItem();
+            service.addService(EventService.EventServiceType.WEDDING, photography.getRate());
+            price += photography.getRate();
+        }
+
+        if (decorRadioBtnSelected) {
+            MeetingsType decor = (MeetingsType) cmbMeeting.getSelectedItem();
+            service.addService(EventService.EventServiceType.MEETINGS, decor.getRate());
+            price += decor.getRate();
+        }
+
+        if (cateringRadioBtnSelected) {
+            BirthdayPartyType catering = (BirthdayPartyType) cmbBirthdayParty.getSelectedItem();
+            service.addService(EventService.EventServiceType.BIRTHDAYPARTY, catering.getRate());
+            price += catering.getRate();
+        }
+
+        priceField.setText(String.valueOf(price));
     }//GEN-LAST:event_totalPriceActionPerformed
 
 

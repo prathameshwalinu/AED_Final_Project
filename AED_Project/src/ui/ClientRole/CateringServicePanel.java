@@ -1,19 +1,29 @@
 package ui.ClientRole;
 
+import Model.Admin;
+import Model.HallBooking;
 import java.util.Date;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
-
 import ui.main.DateUtils;
 
 public class CateringServicePanel extends javax.swing.JPanel {
-
-
+    
+    private Admin systems;
+    private Consumer<HallBooking> callOnCreateMethod1;
+    private String username;
+    private HallBooking booking;
 
     public CateringServicePanel() {
-        initComponents();
+initComponents();
+        this.systems = systems;
+        this.callOnCreateMethod1 = callOnCreateMethod1;
+        this.username = username;
+        this.booking = booking;
 
-
+        for (RS_BC_Catering cat : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfCatering()) {
+            cmbCatering.addItem(cat);
+        }
         setBackground(new java.awt.Color(255, 208, 56));
         backBtn.setBackground(new java.awt.Color(0, 102, 102));
         backBtn.setOpaque(true);
@@ -122,11 +132,17 @@ public class CateringServicePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-
+        callOnCreateMethod1.accept(booking);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void cmbCateringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCateringActionPerformed
         menuItem.removeAllItems();
+        RS_BC_Catering catering = (RS_BC_Catering) cmbCatering.getSelectedItem();
+        if (catering != null) {
+            for (RS_Catering_Menu item : catering.getListOfMenuItem()) {
+                menuItem.addItem(item);
+            }
+        }
     }//GEN-LAST:event_cmbCateringActionPerformed
 
     private void menuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemActionPerformed
@@ -134,8 +150,15 @@ public class CateringServicePanel extends javax.swing.JPanel {
     }//GEN-LAST:event_menuItemActionPerformed
 
     private void placeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderActionPerformed
-       
+       Date date = DateUtils.formatDate(new Date());
+        RS_Catering_Menu item = (RS_Catering_Menu) menuItem.getSelectedItem();
+        RS_BC_Catering catering = (RS_BC_Catering) cmbCatering.getSelectedItem();
 
+        RS_BC_CateringService service = new RS_BC_CateringService(catering, date, item.getDetails(), item.getPrice());
+        booking.addService(service);
+        JOptionPane.showMessageDialog(this, "Order placed successfully");
+
+        callOnCreateMethod1.accept(booking);
     }//GEN-LAST:event_placeOrderActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

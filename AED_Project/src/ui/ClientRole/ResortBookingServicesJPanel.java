@@ -1,6 +1,9 @@
 package ui.ClientRole;
 
 import Model.Admin;
+import Model.Client;
+import Model.HallBooking;
+import Model.ServiceLocation;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -18,7 +21,12 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
         this.systems = systems;
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.username = username;
-
+        for (ServiceLocation location : systems.getListOfServiceLocation()) {
+            cityCombo.addItem(location.getName());
+        }
+        for (RoomType type : RoomType.values()) {
+            roomtypeComboBox.addItem(type);
+        }
         setBackground(new java.awt.Color(255, 208, 56));
         backBtn.setBackground(new java.awt.Color(0, 102, 102));
         backBtn.setOpaque(true);
@@ -231,11 +239,11 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookRoomBtnActionPerformed
-        Date checkinDate = DCcheckin.getDate();
+                Date checkinDate = DCcheckin.getDate();
         Date checkoutdate = DCcheckout.getDate();
         String city = cityCombo.getSelectedItem().toString();
         int roomCount = Integer.parseInt(roomField.getText());
-
+        RoomType roomType = (RoomType) roomtypeComboBox.getSelectedItem();
 
         if (checkinDate.compareTo(DateUtils.now()) < 0 || checkoutdate.compareTo(DateUtils.now()) < 0) {
             JOptionPane.showMessageDialog(this, "Checkin and checkout dates cannot be in the past.");
@@ -247,11 +255,38 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
             return;
         }
 
+        ServiceLocation location = systems.findServiceLocation(city);
+
+        RS_BC_Resort hotel = location.getBusinessCatalogueDirectory().findResort(cmbResort.getSelectedItem().toString());
+        List<RS_HallType> availableRooms = hotel.availableRooms(checkinDate, checkoutdate, roomType);
+        if (availableRooms.size() < roomCount) {
+            JOptionPane.showMessageDialog(this, "Rooms not available for the specified date.");
+            return;
+        }
+
+        hotel.bookRooms(checkinDate, checkoutdate, roomCount, roomType);
+        Client customer = systems.getClientDirectory().findClientUsername(username);
+        HallBooking booking = customer.addBooking(hotel, location);  //add bookings in customer class
+        booking.getResortService().getHallroomlist().createHallRoom(roomType);     // add rooms in booking class 
+        booking.setCheckin(checkinDate);
+        booking.setCheckout(checkoutdate);
+        booking.setStatus("Booked");
+        booking.setCost(roomType.getRate());
+
+        JOptionPane.showMessageDialog(this, "Room booked successfully. The total cost for your booking is "
+                + (roomCount * roomType.getRate()) + "$");
         callOnCreateMethod1.run();
     }//GEN-LAST:event_bookRoomBtnActionPerformed
 
     private void cityComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityComboActionPerformed
-
+        String city = cityCombo.getSelectedItem().toString();
+        ServiceLocation location = systems.findServiceLocation(city);
+        cmbResort.removeAllItems();
+        if (location != null) {
+            for (RS_BC_Resort resort : location.getBusinessCatalogueDirectory().getListOfResort()) {  //populate all resort in that city
+                cmbResort.addItem(resort.getName());
+            }
+        }
     }//GEN-LAST:event_cityComboActionPerformed
 
     private void roomtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomtypeActionPerformed
@@ -263,7 +298,14 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void priceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_priceBtnActionPerformed
- 
+        final String roomNum = roomField.getText();
+        if (roomNum != null && !roomNum.isEmpty()) {
+            int roomCount = Integer.parseInt(roomNum);
+            RoomType selectType = (RoomType) roomtypeComboBox.getSelectedItem();
+            priceField.setText(selectType.getRate() * roomCount + "$");
+        } else {
+            JOptionPane.showMessageDialog(this, "Please provide number of rooms to calculate price.");
+        }
     }//GEN-LAST:event_priceBtnActionPerformed
 
 
