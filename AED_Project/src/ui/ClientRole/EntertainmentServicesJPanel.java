@@ -1,5 +1,7 @@
 package ui.ClientRole;
 
+import Model.Admin;
+import Model.HallBooking;
 import java.util.Date;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
@@ -7,10 +9,21 @@ import ui.main.DateUtils;
 
 public class EntertainmentServicesJPanel extends javax.swing.JPanel {
 
-
+    private Admin systems;
+    private Consumer<HallBooking> callOnCreateMethod1;
+    private String username;
+    private HallBooking booking;
+    
     public EntertainmentServicesJPanel() {
         initComponents();
+        this.systems = systems;
+        this.callOnCreateMethod1 = callOnCreateMethod1;
+        this.username = username;
+        this.booking = booking;
 
+        for (RS_BC_Entertainment entertain : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfEntertainment()) {
+            cmbEntertainment.addItem(entertain);
+        }
         setBackground(new java.awt.Color(255, 208, 56));
         backBtn.setBackground(new java.awt.Color(0, 102, 102));
         backBtn.setOpaque(true);
@@ -173,11 +186,50 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnShowActionPerformed
 
     private void addServiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addServiceBtnActionPerformed
+        RS_BC_Entertainment entertain = (RS_BC_Entertainment) cmbEntertainment.getSelectedItem();
+        if (entertain == null) {
+            JOptionPane.showMessageDialog(this, "Please select a Entertainment menu from the dropdown.");
+            return;
+        }
+        Date date = DateUtils.formatDate(dateField.getDate());
+        Date checkin = booking.getCheckin();
+        Date checkout = booking.getCheckout();
 
+        if (date.compareTo(checkin) < 0 || date.compareTo(checkout) > 0) {
+            JOptionPane.showMessageDialog(this, "Selected date should be within check-in date (" + checkin
+                    + ") and checkout date (" + checkout + ")");
+            return;
+        }
+
+        boolean danceBtnSelected = btnDance.isSelected();
+        boolean musicRadioBtnSelected = btnMusic.isSelected();
+        boolean showRadioBtnSelected = btnShow.isSelected();
+
+        if (!danceBtnSelected && !musicRadioBtnSelected && !showRadioBtnSelected) {
+            JOptionPane.showMessageDialog(this, "Please select at least one service for Health Club.");
+            return;
+        }
+
+        RS_BC_EntertainmentService entertainmentService = new RS_BC_EntertainmentService(entertain, date);
+        if (danceBtnSelected) {
+            entertainmentService.addService(RS_BC_EntertainmentService.EntertainmentServiceType.CHOREOGRAPHY);
+        }
+
+        if (musicRadioBtnSelected) {
+            entertainmentService.addService(RS_BC_EntertainmentService.EntertainmentServiceType.SINGER);
+        }
+
+        if (showRadioBtnSelected) {
+            entertainmentService.addService(RS_BC_EntertainmentService.EntertainmentServiceType.MAGICIAN);
+        }
+
+        booking.addService(entertainmentService);
+        JOptionPane.showMessageDialog(this, "Your Entertainment appointment is booked for " + date);
+        callOnCreateMethod1.accept(booking);
     }//GEN-LAST:event_addServiceBtnActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-
+        callOnCreateMethod1.accept(booking);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void btnDanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDanceActionPerformed

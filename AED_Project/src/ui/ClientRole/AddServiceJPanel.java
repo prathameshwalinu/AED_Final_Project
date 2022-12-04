@@ -1,21 +1,35 @@
 package ui.ClientRole;
 
 import Model.Admin;
+import Model.HallBooking;
 import java.util.function.Consumer;
 
 
 public class AddServiceJPanel extends javax.swing.JPanel {
-
+    
     private Admin systems;
+    private Consumer<HallBooking> callOnEventBooking;
+    private Consumer<HallBooking> callOnCateringBooking;
+    private Consumer<HallBooking> callOnEntertainmentBooking;
+    private Consumer<HallBooking> callOnResortServiceBooking;
     private Runnable backButton4;
     private String username;
     private String hotelName;
+    private HallBooking booking;
 
 
-    public AddServiceJPanel() {
+    public AddServiceJPanel(Admin systems, Consumer<HallBooking> callOnEventBooking, Consumer<HallBooking> callOnOrderBooking,
+            Consumer<HallBooking> callOnEntertainmentBooking, Consumer<HallBooking> callOnResortServiceBooking, Runnable backButton, String username, HallBooking booking) {
+        
         initComponents();
         this.systems = systems;
+        this.callOnEventBooking = callOnEventBooking;
+        this.callOnCateringBooking = callOnOrderBooking;
+        this.callOnEntertainmentBooking = callOnEntertainmentBooking;
+        this.callOnResortServiceBooking = callOnResortServiceBooking;
+        this.backButton4 = backButton;
         this.username = username;
+        this.booking = booking;
         setBackground(new java.awt.Color(255, 208, 56));
         backBtn.setBackground(new java.awt.Color(0, 102, 102));
         backBtn.setOpaque(true);
@@ -29,6 +43,7 @@ public class AddServiceJPanel extends javax.swing.JPanel {
         btnOthers.setOpaque(true);
     }
 
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -129,15 +144,15 @@ public class AddServiceJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEventActionPerformed
-
+        callOnEventBooking.accept(booking);
     }//GEN-LAST:event_btnEventActionPerformed
 
     private void btnCateringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCateringActionPerformed
-
+        callOnCateringBooking.accept(booking);
     }//GEN-LAST:event_btnCateringActionPerformed
 
     private void btnEntertainmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntertainmentActionPerformed
-
+        callOnEntertainmentBooking.accept(booking);
     }//GEN-LAST:event_btnEntertainmentActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -145,7 +160,7 @@ public class AddServiceJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void btnOthersActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOthersActionPerformed
-
+        callOnResortServiceBooking.accept(booking);
     }//GEN-LAST:event_btnOthersActionPerformed
 
 

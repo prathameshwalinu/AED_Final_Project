@@ -1,16 +1,24 @@
 package ui.ClientRole;
 
+import Model.Admin;
+import Model.HallBooking;
 import java.util.Date;
 import java.util.function.Consumer;
 
 public class ReportServiceDetailsPanel extends javax.swing.JPanel {
+    
+    private Admin systems;
+    private Runnable callOnCreateMethod1;
+    private String username;
+    private HallBooking booking;
 
-
-
-
-    public ReportServiceDetailsPanel() {
+    public ReportServiceDetailsPanel(Admin systems, Runnable callOnCreateMethod1, String username, HallBooking booking) {
         initComponents();
-
+        this.systems = systems;
+        this.callOnCreateMethod1 = callOnCreateMethod1;
+        this.username = username;
+        this.booking = booking;
+        populatePanel();
         setBackground(new java.awt.Color(255, 208, 56));
         backBtn.setBackground(new java.awt.Color(0, 102, 102));
         backBtn.setOpaque(true);
@@ -112,7 +120,7 @@ public class ReportServiceDetailsPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-
+        callOnCreateMethod1.run();
     }//GEN-LAST:event_backBtnActionPerformed
 
 
@@ -127,4 +135,9 @@ public class ReportServiceDetailsPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 
+    private void populatePanel() {
+        checkin.setText(booking.getCheckin().toString());
+        checkout.setText(booking.getCheckout().toString());
+        bookingDetails.setText(booking.prettyPrint());
+    }
 }

@@ -1,5 +1,9 @@
 package ui.ClientRole;
 
+import Model.Admin;
+import Model.Client;
+import Model.ClientDirectory;
+import Model.HallBooking;
 import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
@@ -7,13 +11,19 @@ import javax.swing.table.DefaultTableModel;
 
 public class ManageBooking extends javax.swing.JPanel {
 
-
+    private Admin EPAdmin;
     private Runnable callOnCreateMethod1;
-
+    private Consumer<HallBooking> callOnAddServiceMethod;
+    private Consumer<HallBooking> callOnViewServiceMethod;
     private String username;
 
-    public ManageBooking() {
+    public ManageBooking(Admin EPAdmin, Runnable callOnCreateMethod1, Consumer<HallBooking> callOnCreateMethod2, Consumer<HallBooking> callOnViewServiceMethod, String username) {
         initComponents();
+        this.EPAdmin = EPAdmin;
+        this.callOnCreateMethod1 = callOnCreateMethod1;
+        this.callOnAddServiceMethod = callOnCreateMethod2;
+        this.callOnViewServiceMethod = callOnViewServiceMethod;
+        this.username = username;
 
         populateTable();
         setBackground(new java.awt.Color(255, 208, 56));
@@ -133,6 +143,16 @@ public class ManageBooking extends javax.swing.JPanel {
 
         System.out.println(bookingId + " is selected");
 
+        ClientDirectory clientDirectory = EPAdmin.getClientDirectory();
+        Client client = clientDirectory.findClientUsername(username);
+
+        List<HallBooking> list = client.getHallbookingList();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId().equals(bookingId)) {
+                callOnAddServiceMethod.accept(list.get(i));
+                return;
+            }
+        }
     }//GEN-LAST:event_addServiceBtnActionPerformed
 
     private void viewOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewOrderActionPerformed

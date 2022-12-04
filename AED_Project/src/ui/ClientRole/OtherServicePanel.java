@@ -1,5 +1,8 @@
 package ui.ClientRole;
 
+import Model.Admin;
+import Model.HallBooking;
+import Model.services.ResortService;
 import java.util.Date;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
@@ -8,11 +11,17 @@ import ui.main.DateUtils;
 
 public class OtherServicePanel extends javax.swing.JPanel {
 
+    private Admin systems;
+    private Consumer<HallBooking> callOnCreateMethod1;
+    private String username;
+    private HallBooking booking;
 
-
-    public OtherServicePanel() {
+    public OtherServicePanel(Admin systems, Consumer<HallBooking> callOnCreateMethod1, String username, HallBooking booking) {
         initComponents();
-
+        this.systems = systems;
+        this.callOnCreateMethod1 = callOnCreateMethod1;
+        this.username = username;
+        this.booking = booking;
         setBackground(new java.awt.Color(255, 208, 56));
         backBtn.setBackground(new java.awt.Color(0, 102, 102));
         backBtn.setOpaque(true);
@@ -113,14 +122,32 @@ public class OtherServicePanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-
+        callOnCreateMethod1.accept(booking);
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void placeRequestActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeRequestActionPerformed
+        boolean tourGuideBtnSelected = RbtnTourGuide.isSelected();
+        boolean carServiceBtnSelected = RBtnCarService.isSelected();
+        Date date = DateUtils.formatDate(dateField.getDate());
+        Date checkin = booking.getCheckin();
+        Date checkout = booking.getCheckout();
+        if (date.compareTo(checkin) < 0 || date.compareTo(checkout) > 0) {
+            JOptionPane.showMessageDialog(this, "Selected date should be within check-in date (" + checkin
+                    + ") and checkout date (" + checkout + ")");
+            return;
+        }
 
+        ResortService resortService = booking.getResortService();
+        if (tourGuideBtnSelected) {
+            resortService.addService(ResortService.ResortServiceType.TOURGUIDE);
+        }
+        if (carServiceBtnSelected) {
+            resortService.addService(ResortService.ResortServiceType.CARSERVICE);
+        }
 
+        resortService.setDate(date);
         JOptionPane.showMessageDialog(this, "Your hotel services are been added.");
-
+        callOnCreateMethod1.accept(booking);
     }//GEN-LAST:event_placeRequestActionPerformed
 
     private void RbtnTourGuideActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RbtnTourGuideActionPerformed
