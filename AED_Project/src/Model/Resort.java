@@ -3,7 +3,7 @@ package Model;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import model.HallType.RoomType;
+import Model.HallType.RoomType;
 
 public class Resort extends BusinessCatalogue {
 
