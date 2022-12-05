@@ -1,7 +1,9 @@
 package ui.ClientRole;
 
 import Model.Admin;
+import Model.Entertainment;
 import Model.HallBooking;
+import Model.services.EntertainmentService;
 import java.util.Date;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
@@ -21,7 +23,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
         this.username = username;
         this.booking = booking;
 
-        for (RS_BC_Entertainment entertain : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfEntertainment()) {
+        for (Entertainment entertain : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfEntertainment()) {
             cmbEntertainment.addItem(entertain);
         }
         setBackground(new java.awt.Color(255, 208, 56));
@@ -47,6 +49,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         cmbEntertainment = new javax.swing.JComboBox();
+        dateField = new com.toedter.calendar.JDateChooser();
 
         lblbookservices.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblbookservices.setText("ENTERTAINMENT SERVICES");
@@ -128,7 +131,9 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
                                     .addComponent(jLabel7)
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(60, 60, 60)
-                                .addComponent(cmbEntertainment, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(cmbEntertainment, 0, 231, Short.MAX_VALUE)
+                                    .addComponent(dateField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(addServiceBtn)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,12 +158,13 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
+                        .addComponent(jLabel7))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(0, 97, Short.MAX_VALUE)
                         .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)))
-                .addComponent(jLabel7)
+                        .addGap(48, 48, 48)
+                        .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -186,7 +192,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnShowActionPerformed
 
     private void addServiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addServiceBtnActionPerformed
-        RS_BC_Entertainment entertain = (RS_BC_Entertainment) cmbEntertainment.getSelectedItem();
+        Entertainment entertain = (Entertainment) cmbEntertainment.getSelectedItem();
         if (entertain == null) {
             JOptionPane.showMessageDialog(this, "Please select a Entertainment menu from the dropdown.");
             return;
@@ -210,17 +216,17 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
             return;
         }
 
-        RS_BC_EntertainmentService entertainmentService = new RS_BC_EntertainmentService(entertain, date);
+        EntertainmentService entertainmentService = new EntertainmentService(entertain, date);
         if (danceBtnSelected) {
-            entertainmentService.addService(RS_BC_EntertainmentService.EntertainmentServiceType.CHOREOGRAPHY);
+            entertainmentService.addService(EntertainmentService.EntertainmentServiceType.CHOREOGRAPHY);
         }
 
         if (musicRadioBtnSelected) {
-            entertainmentService.addService(RS_BC_EntertainmentService.EntertainmentServiceType.SINGER);
+            entertainmentService.addService(EntertainmentService.EntertainmentServiceType.SINGER);
         }
 
         if (showRadioBtnSelected) {
-            entertainmentService.addService(RS_BC_EntertainmentService.EntertainmentServiceType.MAGICIAN);
+            entertainmentService.addService(EntertainmentService.EntertainmentServiceType.MAGICIAN);
         }
 
         booking.addService(entertainmentService);
@@ -248,6 +254,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox btnMusic;
     private javax.swing.JCheckBox btnShow;
     private javax.swing.JComboBox cmbEntertainment;
+    private com.toedter.calendar.JDateChooser dateField;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

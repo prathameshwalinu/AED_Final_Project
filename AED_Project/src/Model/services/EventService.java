@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package RS_Model.services;
+package Model.services;
 
 /**
  *
@@ -12,12 +12,13 @@ package RS_Model.services;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import model.RS_HallBooking;
-import model.RS_BC_Events;
+import Model.HallBooking;
+import Model.Events;
+import Model.services.EService;
 
-public class EventService extends RS_Service {
+public class EventService extends EService {
 
-    private RS_HallBooking id;
+    private HallBooking id;
 
     public static enum EventServiceType {
         WEDDING,
@@ -27,7 +28,7 @@ public class EventService extends RS_Service {
 
     private Map<EventServiceType, Integer> EventServiceTypes;
 
-    public EventService(RS_BC_Events business, Date eventDate) {
+    public EventService(Events business, Date eventDate) {
         super(business, ServiceType.EVENT, eventDate);
         this.EventServiceTypes = new HashMap<>();
     }

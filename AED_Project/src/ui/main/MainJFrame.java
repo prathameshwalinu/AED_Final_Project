@@ -4,6 +4,11 @@ import Database.DbUtils;
 import Model.Admin;
 import java.util.List;
 import javax.swing.JOptionPane;
+import ui.EventPlannerAdminRole.BusinessCatalogueJPanel;
+import ui.EventPlannerAdminRole.BusinessCatalogueSupervisorJPanel;
+import ui.EventPlannerAdminRole.EventsPlannerAdminJPanel;
+import ui.EventPlannerAdminRole.ManageClientJPanel;
+import ui.EventPlannerAdminRole.ServiceLocationsJPanel;
 
 
 
@@ -16,11 +21,11 @@ public class MainJFrame extends javax.swing.JFrame {
 
     public MainJFrame() {
         initComponents();
+        setExtendedState(MainJFrame.MAXIMIZED_BOTH);
         this.Admin = DbUtils.getInstance().retrieveSystem();
         logoutBtn.setEnabled(false);
         ControlPanel.setBackground(new java.awt.Color(0, 102, 102));
         WorkArea.setBackground(new java.awt.Color(255, 208, 56));
-        setExtendedState(MainJFrame.MAXIMIZED_BOTH);
     }
 
     @SuppressWarnings("unchecked")
@@ -108,7 +113,6 @@ public class MainJFrame extends javax.swing.JFrame {
 
         jSplitPane.setLeftComponent(ControlPanel);
 
-        WorkArea.setBackground(new java.awt.Color(153, 255, 255));
         WorkArea.setLayout(null);
 
         jLabel7.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
@@ -146,13 +150,13 @@ public class MainJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-        this.userName = usernameField.getText();
+               this.userName = usernameField.getText();
         this.password = passwordField.getText();
 
         if (Admin.validateUserNamePassword(userName, password)) {
             String type = Admin.findUserType(userName);
 
-            
+             
             usernameField.setText("");
             passwordField.setText("");
             loginBtn.setEnabled(false);
@@ -174,7 +178,7 @@ public class MainJFrame extends javax.swing.JFrame {
             }
         });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel ControlPanel;
     private javax.swing.JPanel WorkArea;

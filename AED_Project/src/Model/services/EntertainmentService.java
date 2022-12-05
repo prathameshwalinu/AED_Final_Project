@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package RS_Model.services;
+package Model.services;
 
 /**
  *
@@ -11,9 +11,9 @@ package RS_Model.services;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import model.RS_BC_Entertainment;
+import Model.Entertainment;
 
-public class EntertainmentService extends RS_Service {
+public class EntertainmentService extends EService {
 
     public static enum EntertainmentServiceType {
         MAGICIAN(60),
@@ -34,8 +34,8 @@ public class EntertainmentService extends RS_Service {
 
     private List<EntertainmentServiceType> EntertainmentServices;
 
-    public EntertainmentService(RS_BC_Entertainment entertainment, Date date) {
-        super(entertainment, RS_Service.ServiceType.ENTERTAINMENT, date);
+    public EntertainmentService(Entertainment entertainment, Date date) {
+        super(entertainment, EService.ServiceType.ENTERTAINMENT, date);
         this.EntertainmentServices = new ArrayList<>();
     }
 

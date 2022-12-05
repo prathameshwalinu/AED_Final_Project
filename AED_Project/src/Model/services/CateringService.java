@@ -9,14 +9,14 @@ package Model.services;
  * @author prathamesh
  */
 import java.util.Date;
-import model.RS_BC_Catering;
+import Model.Catering;
 
 public class CateringService extends EService {
 
     private String menuItem;
 
-    public CateringService(RS_BC_Catering res, Date eventDate, String menuItem, int cost) {
-        super(res, RS_Service.ServiceType.CATERING, eventDate);
+    public CateringService(Catering res, Date eventDate, String menuItem, int cost) {
+        super(res, EService.ServiceType.CATERING, eventDate);
         this.menuItem = menuItem;
         super.totalCost = cost;
     }

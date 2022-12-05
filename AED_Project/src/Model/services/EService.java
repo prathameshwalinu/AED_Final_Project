@@ -11,8 +11,8 @@ package Model.services;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import model.RS_BusinessCatalogue;
-import model.RS_Organization;
+import Model.BusinessCatalogue;
+import Model.Organization;
 import ui.main.DateUtils;
 
 public abstract class EService {
@@ -33,12 +33,12 @@ public abstract class EService {
     private ServiceType serviceType;
     private int cost;
     private Date date;
-    protected RS_BusinessCatalogue businessCatalogue;
+    protected BusinessCatalogue businessCatalogue;
     private Status status;
     protected int totalCost;
-    private List<RS_Organization> listOfOrganization;
+    private List<Organization> listOfOrganization;
 
-    RS_Service(RS_BusinessCatalogue businessCatalogue, ServiceType serviceType, Date date) {
+    EService(BusinessCatalogue businessCatalogue, ServiceType serviceType, Date date) {
         this.businessCatalogue = businessCatalogue;
         this.serviceType = serviceType;
         this.date = (date == null) ? null : DateUtils.formatDate(date);
@@ -54,11 +54,11 @@ public abstract class EService {
         this.cost = cost;
     }
 
-    public RS_BusinessCatalogue getBusinessCatalogue() {
+    public BusinessCatalogue getBusinessCatalogue() {
         return businessCatalogue;
     }
 
-    public void setBusinessCatalogue(RS_BusinessCatalogue businessCatalogue) {
+    public void setBusinessCatalogue(BusinessCatalogue businessCatalogue) {
         this.businessCatalogue = businessCatalogue;
     }
 
@@ -94,15 +94,15 @@ public abstract class EService {
         this.status = status;
     }
 
-    public void addOrganization(RS_Organization org) {
+    public void addOrganization(Organization org) {
         listOfOrganization.add(org);
     }
 
-    public List<RS_Organization> getListOfOrganization() {
+    public List<Organization> getListOfOrganization() {
         return listOfOrganization;
     }
 
-    public void setListOfOrganization(List<RS_Organization> listOfOrganization) {
+    public void setListOfOrganization(List<Organization> listOfOrganization) {
         this.listOfOrganization = listOfOrganization;
     }
 

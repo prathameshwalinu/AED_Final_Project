@@ -1,7 +1,10 @@
 package ui.ClientRole;
 
 import Model.Admin;
+import Model.Catering;
+import Model.Catering_Menu;
 import Model.HallBooking;
+import Model.services.CateringService;
 import java.util.Date;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
@@ -21,7 +24,7 @@ initComponents();
         this.username = username;
         this.booking = booking;
 
-        for (RS_BC_Catering cat : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfCatering()) {
+        for (Catering cat : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfCatering()) {
             cmbCatering.addItem(cat);
         }
         setBackground(new java.awt.Color(255, 208, 56));
@@ -137,9 +140,9 @@ initComponents();
 
     private void cmbCateringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCateringActionPerformed
         menuItem.removeAllItems();
-        RS_BC_Catering catering = (RS_BC_Catering) cmbCatering.getSelectedItem();
+        Catering catering = (Catering) cmbCatering.getSelectedItem();
         if (catering != null) {
-            for (RS_Catering_Menu item : catering.getListOfMenuItem()) {
+            for (Catering_Menu item : catering.getListOfMenuItem()) {
                 menuItem.addItem(item);
             }
         }
@@ -151,10 +154,10 @@ initComponents();
 
     private void placeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderActionPerformed
        Date date = DateUtils.formatDate(new Date());
-        RS_Catering_Menu item = (RS_Catering_Menu) menuItem.getSelectedItem();
-        RS_BC_Catering catering = (RS_BC_Catering) cmbCatering.getSelectedItem();
+        Catering_Menu item = (Catering_Menu) menuItem.getSelectedItem();
+        Catering catering = (Catering) cmbCatering.getSelectedItem();
 
-        RS_BC_CateringService service = new RS_BC_CateringService(catering, date, item.getDetails(), item.getPrice());
+        CateringService service = new CateringService(catering, date, item.getDetails(), item.getPrice());
         booking.addService(service);
         JOptionPane.showMessageDialog(this, "Order placed successfully");
 

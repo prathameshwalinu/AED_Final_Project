@@ -1,8 +1,12 @@
 package ui.ClientRole;
 
 import Model.Admin;
+import Model.Event_BirthdayParty.BirthdayPartyType;
+import Model.Event_Meetings.MeetingsType;
+import Model.Event_Wedding.WeddingType;
+import Model.Events;
 import Model.HallBooking;
-import RS_Model.services.EventService;
+import Model.services.EventService;
 import java.util.Date;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
@@ -25,7 +29,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
         this.booking = booking;
 
         orgComboBox.addItem(null);
-        for (RS_BC_Events eventOrg : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfEvents()) {
+        for (Events eventOrg : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfEvents()) {
             orgComboBox.addItem(eventOrg);
         }
         setBackground(new java.awt.Color(255, 208, 56));
@@ -246,7 +250,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_radioWeddingActionPerformed
 
     private void bookEventBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookEventBtnActionPerformed
-        RS_BC_Events businessEvent = (RS_BC_Events) orgComboBox.getSelectedItem();
+        Events businessEvent = (Events) orgComboBox.getSelectedItem();
 
         if (businessEvent == null) {
             JOptionPane.showMessageDialog(this, "Please select a Business Event organization from the dropdown.");
@@ -328,7 +332,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
 
     private void totalPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalPriceActionPerformed
 
-                   RS_BC_Events businessEvent = (RS_BC_Events) orgComboBox.getSelectedItem();
+                   Events businessEvent = (Events) orgComboBox.getSelectedItem();
 
         if (businessEvent == null) {
             JOptionPane.showMessageDialog(this, "Please select a Business Event organization from the dropdown.");

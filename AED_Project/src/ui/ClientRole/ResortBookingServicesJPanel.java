@@ -3,6 +3,9 @@ package ui.ClientRole;
 import Model.Admin;
 import Model.Client;
 import Model.HallBooking;
+import Model.HallType;
+import Model.HallType.RoomType;
+import Model.Resort;
 import Model.ServiceLocation;
 import java.util.Date;
 import java.util.List;
@@ -54,7 +57,7 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
         cmbResort = new javax.swing.JComboBox<>();
         cityCombo = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
-        roomtype = new javax.swing.JComboBox<>();
+        roomtypeComboBox = new javax.swing.JComboBox<>();
         priceBtn = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         DCcheckin = new com.toedter.calendar.JDateChooser();
@@ -108,9 +111,9 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
         jLabel1.setText("HALL TYPE ");
 
-        roomtype.addActionListener(new java.awt.event.ActionListener() {
+        roomtypeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                roomtypeActionPerformed(evt);
+                roomtypeComboBoxActionPerformed(evt);
             }
         });
 
@@ -182,7 +185,7 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                                                             .addComponent(lblroom)
                                                             .addGap(31, 31, 31)))
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(roomtype, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(roomtypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                         .addComponent(roomField)))
                                                 .addComponent(priceBtn))
                                             .addGap(48, 48, 48)
@@ -223,7 +226,7 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(roomtype, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(roomtypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblroom)
@@ -257,8 +260,8 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
 
         ServiceLocation location = systems.findServiceLocation(city);
 
-        RS_BC_Resort hotel = location.getBusinessCatalogueDirectory().findResort(cmbResort.getSelectedItem().toString());
-        List<RS_HallType> availableRooms = hotel.availableRooms(checkinDate, checkoutdate, roomType);
+        Resort hotel = location.getBusinessCatalogueDirectory().findResort(cmbResort.getSelectedItem().toString());
+        List<HallType> availableRooms = hotel.availableRooms(checkinDate, checkoutdate, roomType);
         if (availableRooms.size() < roomCount) {
             JOptionPane.showMessageDialog(this, "Rooms not available for the specified date.");
             return;
@@ -283,15 +286,15 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
         ServiceLocation location = systems.findServiceLocation(city);
         cmbResort.removeAllItems();
         if (location != null) {
-            for (RS_BC_Resort resort : location.getBusinessCatalogueDirectory().getListOfResort()) {  //populate all resort in that city
+            for (Resort resort : location.getBusinessCatalogueDirectory().getListOfResort()) {  //populate all resort in that city
                 cmbResort.addItem(resort.getName());
             }
         }
     }//GEN-LAST:event_cityComboActionPerformed
 
-    private void roomtypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomtypeActionPerformed
+    private void roomtypeComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomtypeComboBoxActionPerformed
 
-    }//GEN-LAST:event_roomtypeActionPerformed
+    }//GEN-LAST:event_roomtypeComboBoxActionPerformed
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         callOnCreateMethod1.run();
@@ -329,6 +332,6 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
     private javax.swing.JButton priceBtn;
     private javax.swing.JTextField priceField;
     private javax.swing.JTextField roomField;
-    private javax.swing.JComboBox<RoomType> roomtype;
+    private javax.swing.JComboBox<RoomType> roomtypeComboBox;
     // End of variables declaration//GEN-END:variables
 }

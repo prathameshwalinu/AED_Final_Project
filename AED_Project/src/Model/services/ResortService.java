@@ -11,11 +11,11 @@ package Model.services;
 
 import java.util.ArrayList;
 import java.util.List;
-import model.RS_BC_Resort;
-import model.RS_HallRoomList;
+import Model.Resort;
+import Model.HallRoomList;
 import ui.main.DateUtils;
 
-public class ResortService extends RS_Service {
+public class ResortService extends EService {
 
     public static enum ResortServiceType {
         TOURGUIDE(10),
@@ -32,13 +32,13 @@ public class ResortService extends RS_Service {
         }
     }
 
-    private RS_HallRoomList hallroomlist;
+    private HallRoomList hallroomlist;
     private List<ResortServiceType> ResortServices;
 
-    public ResortService(RS_BC_Resort resort) {
-        super(resort, RS_Service.ServiceType.RESORT, DateUtils.now());
+    public ResortService(Resort resort) {
+        super(resort, EService.ServiceType.RESORT, DateUtils.now());
         this.ResortServices = new ArrayList<>();
-        this.hallroomlist = new RS_HallRoomList();
+        this.hallroomlist = new HallRoomList();
     }
 
     public List<ResortServiceType> getResortServices() {
@@ -49,11 +49,11 @@ public class ResortService extends RS_Service {
         this.ResortServices = ResortServices;
     }
 
-    public RS_HallRoomList getHallroomlist() {
+    public HallRoomList getHallroomlist() {
         return hallroomlist;
     }
 
-    public void setHallroomlist(RS_HallRoomList hallroomlist) {
+    public void setHallroomlist(HallRoomList hallroomlist) {
         this.hallroomlist = hallroomlist;
     }
 

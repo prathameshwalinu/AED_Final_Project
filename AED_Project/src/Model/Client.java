@@ -73,7 +73,7 @@ public class Client {
         this.address = address;
     }
 
-    public HallBooking addBooking(RS_BC_Resort resort, ServiceLocation serviceLocation) {
+    public HallBooking addBooking(Resort resort, ServiceLocation serviceLocation) {
         HallBooking booking = new HallBooking(resort, serviceLocation);
         hallbookingList.add(booking);
         return booking;
