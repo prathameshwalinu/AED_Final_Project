@@ -25,16 +25,16 @@ public class HallBooking {
         
     }
     
-    public HallBooking(RS_BC_Resort resort, RS_ServiceLocation serviceLocation) {
+    public HallBooking(Resort resort, ServiceLocation serviceLocation) {
         this.services = new ArrayList<>();
-        this.services.add(new RS_BC_ResortService(resort));
+        this.services.add(new ResortService(resort));
         this.serviceLocation = serviceLocation;
         this.id = UUID.randomUUID().toString();
     }
 
     public int getTotalCost() {
         int totalCost = this.cost;
-        for (RS_Service service : services) {
+        for (EService service : services) {
             totalCost += service.getTotalCost();
         }
         return totalCost;
@@ -56,15 +56,15 @@ public class HallBooking {
         return id;
     }
 
-    public List<RS_Service> getServices() {
+    public List<EService> getServices() {
         return services;
     }
 
-    public void setServices(List<RS_Service> services) {
+    public void setServices(List<EService> services) {
         this.services = services;
     }
 
-    public void addService(RS_Service service) {
+    public void addService(EService service) {
         this.services.add(service);
     }
 
@@ -92,18 +92,18 @@ public class HallBooking {
         this.status = status;
     }
 
-    public RS_ServiceLocation getServiceLocation() {
+    public ServiceLocation getServiceLocation() {
         return serviceLocation;
     }
 
-    public void setServiceLocation(RS_ServiceLocation serviceLocation) {
+    public void setServiceLocation(ServiceLocation serviceLocation) {
         this.serviceLocation = serviceLocation;
     }
 
-    public RS_BC_ResortService getResortService() {
-        for (RS_Service service : services) {
-            if (service instanceof RS_BC_ResortService) {
-                return (RS_BC_ResortService) service;
+    public ResortService getResortService() {
+        for (EService service : services) {
+            if (service instanceof ResortService) {
+                return (ResortService) service;
             }
         }
 
@@ -117,10 +117,10 @@ public class HallBooking {
         sb.append("\n").append(TAB).append("Checkin date: ").append(checkin);
         sb.append("\n").append(TAB).append("Checkout date: ").append(checkout);
         
-        List<RS_HallType> listOfHalls = getResortService().getHallroomlist().getListOfHallRoom();
+        List<HallType> listOfHalls = getResortService().getHallroomlist().getListOfHallRoom();
         int roomCost = 0;
         sb.append("\n").append(TAB).append(String.format("Below are the details of the %d Hall booked:", listOfHalls.size()));
-        for (RS_HallType room : listOfHalls) {
+        for (HallType room : listOfHalls) {
             roomCost += room.getHallRoomType().getRate();
             sb.append("\n").append(TAB).append(TAB).append("HallorRoom number: ")
                     .append(room.getRoomorHallNo()).append(",Hall type: ").append(room.getHallRoomType());
@@ -128,7 +128,7 @@ public class HallBooking {
         sb.append("\n").append(TAB).append("Total cost for your stay or Hall: $").append(roomCost);
         
         int totalCost = roomCost;
-        for (RS_Service service : services) {
+        for (EService service : services) {
             totalCost += service.getTotalCost();
             sb.append("\n").append(service).append("\n");
         }
