@@ -1,13 +1,18 @@
 package ui.EventManagerRole;
 
+import Model.Admin;
+
 public class EventSupervisorPanel extends javax.swing.JPanel {
 
     private Runnable callOnCreateMethod1;
     private Runnable callOnCreateMethod2;
     private Runnable callOnCreateMethod3;
-
-    public EventSupervisorPanel( Runnable callOnCreateMethod1, Runnable callOnCreateMethod2, Runnable callOnCreateMethod3) {
+    private Admin systemAdmin;
+    
+    public EventSupervisorPanel( Admin systemAdmin,Runnable callOnCreateMethod1, Runnable callOnCreateMethod2, Runnable callOnCreateMethod3) {
         initComponents();
+        
+        this.systemAdmin = systemAdmin;
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.callOnCreateMethod2 = callOnCreateMethod2;
         this.callOnCreateMethod3 = callOnCreateMethod3;

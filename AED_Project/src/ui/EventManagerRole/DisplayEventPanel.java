@@ -1,5 +1,16 @@
 package ui.EventManagerRole;
 
+import Model.Admin;
+import Model.Client;
+import Model.ClientDirectory;
+import Model.Event_BirthdayParty;
+import Model.Event_Meetings;
+import Model.Event_Wedding;
+import Model.Events;
+import Model.HallBooking;
+import Model.Organization;
+import Model.services.EService;
+import Model.services.EventService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -8,19 +19,35 @@ import javax.swing.table.DefaultTableModel;
 
 public class DisplayEventPanel extends javax.swing.JPanel {
 
+    private Admin EPAdmin;
+    private Events businessEvent;
+    
     private Runnable callOnCreateMethod;
     private String user;
     private String type;
+    
 
 
-    public DisplayEventPanel( Runnable callOnCreateMethod, String user, String type) {
+
+    public DisplayEventPanel( Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, Events businessEvent) {
         initComponents();
+        
+        this.EPAdmin = EPAdmin;
+        this.businessEvent = businessEvent;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
+
         populateComboBox();
         populateTable();
+        
         setBackground(new java.awt.Color(255,208,56));
+        backBtn.setBackground(new java.awt.Color(0, 102, 102));
+        backBtn.setOpaque(true);
+       confirmBtn.setBackground(new java.awt.Color(0, 102, 102));
+       confirmBtn.setOpaque(true);
+       denyButton.setBackground(new java.awt.Color(0, 102, 102));
+       confirmBtn.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -185,12 +212,108 @@ public class DisplayEventPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void confirmBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmBtnActionPerformed
+        int selectedRowIndex = jTable1.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a booking to assign tasks.");
+            return;
+        }
 
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        HallBooking booking = (HallBooking) model.getValueAt(selectedRowIndex, 0);
+
+        EventService eventService = null;
+        for (EService service : booking.getServices()) {
+            if (businessEvent.getName().equals(service.getBusinessCatalogue().getName())) {
+                eventService = (EventService) service;
+                break;
+            }
+        }
+
+        if (eventService == null) {
+            JOptionPane.showMessageDialog(this, "Cannot find business event");
+            return;
+        }
+
+        if (!eventService.getStatus().equals(EService.Status.PENDING)) {
+            JOptionPane.showMessageDialog(this, String.format("Booking '%s' should be 'PENDING' state to be accepted.",
+                    booking.getId()));
+            return;
+        }
+
+        Event_BirthdayParty birthdayService = (Event_BirthdayParty) birthdayOrg.getSelectedItem();
+        Event_Wedding weddingService = (Event_Wedding) weddingOrg.getSelectedItem();
+        Event_Meetings meetingService = (Event_Meetings) meetingOrg.getSelectedItem();
+
+        List<Organization> organizations = new ArrayList<>();
+        for (EventService.EventServiceType type : eventService.getEventServiceTypes().keySet()) {
+            switch (type) {
+                case BIRTHDAYPARTY:
+                    if (birthdayService == null) {
+                        JOptionPane.showMessageDialog(this, "Please select Birthday party organization to be assinged for the booking.");
+                        return;
+                    } else {
+                        organizations.add(birthdayService);
+                    }
+                    break;
+                case MEETINGS:
+                    if (meetingService == null) {
+                        JOptionPane.showMessageDialog(this, "Please select Meeting organization to be assinged for the booking.");
+                        return;
+                    } else {
+                        organizations.add(meetingService);
+                    }
+                    break;
+                case WEDDING:
+                    if (weddingService == null) {
+                        JOptionPane.showMessageDialog(this, "Please select wedding organization to be assinged for the booking.");
+                        return;
+                    } else {
+                        organizations.add(weddingService);
+                    }
+                    break;
+            }
+        }
+
+        for (Organization organization : organizations) {
+            eventService.addOrganization(organization);
+        }
+        eventService.setStatus(EService.Status.CONFIRMED);
+        JOptionPane.showMessageDialog(this, "Assigned all event services to the booking: " + booking.getId());
+        populateTable();
     }//GEN-LAST:event_confirmBtnActionPerformed
 
     private void denyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_denyButtonActionPerformed
+       int selectedRowIndex = jTable1.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a booking to deny request.");
+            return;
+        }
 
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        HallBooking booking = (HallBooking) model.getValueAt(selectedRowIndex, 0);
 
+        EventService eventService = null;
+        for (EService service : booking.getServices()) {
+            if (businessEvent.getName().equals(service.getBusinessCatalogue().getName())) {
+                eventService = (EventService) service;
+                break;
+            }
+        }
+
+        if (eventService == null) {
+            JOptionPane.showMessageDialog(this, "Cannot find business event");
+            return;
+        }
+
+        if (!eventService.getStatus().equals(EService.Status.PENDING)) {
+            JOptionPane.showMessageDialog(this, String.format("Booking '%s' should be 'PENDING' state to be denied.",
+                    booking.getId()));
+            return;
+        }
+
+        eventService.setStatus(EService.Status.REJECTED);
+        JOptionPane.showMessageDialog(this, "Denied booking request with id: " + booking.getId());
+        populateTable();
  
     }//GEN-LAST:event_denyButtonActionPerformed
 
@@ -200,14 +323,70 @@ public class DisplayEventPanel extends javax.swing.JPanel {
 
     private void populateTable() {
 
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+      DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 
+        ClientDirectory clientDirectory = EPAdmin.getClientDirectory(); //get all customers
+        for (Client customer : clientDirectory.getListOfClientDirectory()) {
+            for (HallBooking booking : customer.getHallbookingList()) {      //get booking details each customer
+                for (EService service : booking.getServices()) {       //get services under booking
+
+                    if (service.getBusinessCatalogue().getName().equals(businessEvent.getName())) {
+
+                        EventService businessEventService = (EventService) service;
+                        Object row[] = new Object[10];
+                        row[0] = booking;
+                        row[1] = customer;
+                        row[2] = businessEventService.getStatus();
+                        row[3] = "NO";
+                        row[4] = "NO";
+                        row[5] = "NO";
+
+                        for (EventService.EventServiceType type : businessEventService.getEventServiceTypes().keySet()) {
+                            switch (type) {
+                                case BIRTHDAYPARTY:
+                                    row[3] = "YES";
+                                    break;
+                                case MEETINGS:
+                                    row[4] = "YES";
+                                    break;
+                                case WEDDING:
+                                    row[5] = "YES";
+                                    break;
+                            }
+                        }
+                        model.addRow(row);
+                    }
+                }
+            }
+        }
  
     }
 
     private void populateComboBox() {
+        birthdayOrg.removeAllItems();
+        meetingOrg.removeAllItems();
+        weddingOrg.removeAllItems();
 
+        birthdayOrg.addItem(null);
+        meetingOrg.addItem(null);
+        weddingOrg.addItem(null);
+
+        for (Event_BirthdayParty catering : businessEvent.getListOfBirthdayParty()) {
+            if (catering != null) {
+                birthdayOrg.addItem(catering);
+            }
+        }
+        for (Event_Meetings decor : businessEvent.getListOfMeetings()) {
+            if (decor != null) {
+                meetingOrg.addItem(decor);
+            }
+        }
+        for (Event_Wedding photography : businessEvent.getListOfWeddingServices()) {
+            if (photography != null) {
+                weddingOrg.addItem(photography);
+            }
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

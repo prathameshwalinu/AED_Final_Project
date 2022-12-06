@@ -1,16 +1,24 @@
 package ui.EventPlannerAdminRole;
 
+import Model.Admin;
+import Model.Client;
+import Model.ClientDirectory;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import ui.main.Validator;
 
 
 public class ManageClientJPanel extends javax.swing.JPanel {
 
     private Runnable callOnCreateMethod;
+    private Admin EPAdmin;
 
-    public ManageClientJPanel( Runnable callOnCreateMethod) {
+    public ManageClientJPanel( Admin EPAdmin, Runnable callOnCreateMethod) {
         initComponents();
+        
+        this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;
+        
         populateTable();
         setBackground(new java.awt.Color(255, 208, 56));
         deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
@@ -267,7 +275,19 @@ public class ManageClientJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-
+        DefaultTableModel model = (DefaultTableModel) tblClient.getModel();
+        String username = model.getValueAt(tblClient.getSelectedRow(), 4).toString();
+        ClientDirectory clientDirectory = EPAdmin.getClientDirectory();
+        if (clientDirectory.getListOfClientDirectory() != null) {
+            for (Client client : clientDirectory.getListOfClientDirectory()) {
+                if (client.getUserName().equals(username)) {
+                    EPAdmin.deleteCustomer(client);
+                    populateTable();
+                    JOptionPane.showMessageDialog(this, "Client deleted successfully");
+                    return;
+                }
+            }
+        }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -277,6 +297,28 @@ public class ManageClientJPanel extends javax.swing.JPanel {
         String street = txtStreet.getText();
         String username = usernameField.getText();
         String password = passwordField.getText();
+
+        if (!Validator.validateName(this, name) || !Validator.validateUserName(this, username)
+                || !Validator.validatePassword(this, password)) {
+            return;
+        }
+
+        if (EPAdmin.userExistsInSystem(username)) {
+            JOptionPane.showMessageDialog(this, "Username already exists.");
+            return;
+        }
+
+        Client client = EPAdmin.getClientDirectory().addCustomer();  //add client to directory in system
+        client.setName(name);
+        client.setContact(contact);
+        client.setCity(city);
+        client.setAddress(street);
+        client.setUserName(username);
+        client.setPassword(password);
+        populateTable();
+        JOptionPane.showMessageDialog(this, "Client added successfully");
+
+        EPAdmin.addUser(username, password, "Client");
 
         nameField.setText("");
         contactField.setText("");
@@ -294,6 +336,18 @@ public class ManageClientJPanel extends javax.swing.JPanel {
         if (tblClient.getSelectedRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to update");
             return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tblClient.getModel();
+        if (tblClient.getSelectedRowCount() == 1) {
+            String user = usernameField.getText();
+            Client client = EPAdmin.findCustomer(user);
+            client.setAddress(txtStreet.getText());
+            client.setName(nameField.getText());
+            client.setContact(contactField.getText());
+            client.setCity(cityField.getText());
+            JOptionPane.showMessageDialog(this, "updated Successfully");
+            populateTable();
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -339,6 +393,17 @@ public class ManageClientJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-
+        DefaultTableModel model = (DefaultTableModel) tblClient.getModel();
+        model.setRowCount(0);
+        Object row[] = new Object[10];
+        for (Client client : EPAdmin.getClientDirectory().getListOfClientDirectory()) {
+            row[0] = client.getName();
+            row[1] = client.getContact();
+            row[2] = client.getCity();
+            row[3] = client.getAddress();
+            row[4] = client.getUserName();
+            row[5] = client.getPassword();
+            model.addRow(row);
+        }
         }
 }
