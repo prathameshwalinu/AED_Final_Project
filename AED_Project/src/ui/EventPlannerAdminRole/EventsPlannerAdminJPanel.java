@@ -1,19 +1,22 @@
 package ui.EventPlannerAdminRole;
 
+import Model.Admin;
 import java.awt.Color;
 
 
 public class EventsPlannerAdminJPanel extends javax.swing.JPanel {
 
   
+    Admin systems;
     private Runnable callOnCreateMethod1;
     private Runnable callOnCreateMethod2;
     private Runnable callOnCreateMethod3;
     private Runnable callOnCreateMethod4;
 
-    public EventsPlannerAdminJPanel( Runnable callOnCreateMethod1, Runnable callOnCreateMethod2, Runnable callOnCreateMethod3, Runnable callOnCreateMethod4) {
+    public EventsPlannerAdminJPanel(Admin systems, Runnable callOnCreateMethod1, Runnable callOnCreateMethod2, Runnable callOnCreateMethod3, Runnable callOnCreateMethod4) {
         initComponents();
       
+        this.systems = systems;
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.callOnCreateMethod2 = callOnCreateMethod2;
         this.callOnCreateMethod3 = callOnCreateMethod3;

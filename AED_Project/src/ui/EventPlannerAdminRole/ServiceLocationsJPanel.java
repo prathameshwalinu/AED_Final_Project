@@ -1,17 +1,24 @@
 package ui.EventPlannerAdminRole;
 
+import Model.Admin;
+import Model.ServiceLocation;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class ServiceLocationsJPanel extends javax.swing.JPanel {
 
+    private Admin EPAdmin;
     private Runnable callOnCreateMethod;
 
-    public ServiceLocationsJPanel( Runnable callOnCreateMethod) {
+    public ServiceLocationsJPanel( Admin EPAdmin, Runnable callOnCreateMethod) {
+      
+        this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;
         initComponents();
+        
         populateTable();
+        
         setBackground(new java.awt.Color(255, 208, 56));
          btnBack.setBackground(new java.awt.Color(0, 102, 102));
          btnBack.setOpaque(true);
@@ -117,6 +124,7 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+         
         callOnCreateMethod.run();
     }//GEN-LAST:event_btnBackActionPerformed
     public boolean validateName() {
@@ -153,5 +161,9 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblLocation.getModel();
         model.setRowCount(0);
         Object row[] = new Object[10];
+        for (ServiceLocation location : EPAdmin.getListOfServiceLocation()) {        //populate location
+            row[0] = location.getName();
+            model.addRow(row);
+        }
     }
 }

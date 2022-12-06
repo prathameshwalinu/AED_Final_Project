@@ -1,5 +1,13 @@
 package ui.EventManagerRole;
 
+import Model.Admin;
+import Model.BusinessCatalogueDirectory;
+import Model.Event_BirthdayParty;
+import Model.Event_Meetings;
+import Model.Event_Wedding;
+import Model.Events;
+import Model.ServiceLocation;
+import Model.Supervisor;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -8,15 +16,24 @@ import ui.main.Validator;
 
 public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
 
+    private Admin EPAdmin;
+    private ServiceLocation location;
+    
     private Runnable callOnCreateMethod;
+    
     private String user;
     private String type;
+    
 
-    public SuperviseAdminEventOrganisation( Runnable callOnCreateMethod, String user, String type) {
+    public SuperviseAdminEventOrganisation( Admin EPAdmin,Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
         initComponents();
+        this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
+        this.location = location;
+        locationName.setText(location.getName());
+        locationName.setEditable(false);
         populateTable();
         setBackground(new java.awt.Color(255, 208, 56));
         deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
@@ -255,14 +272,172 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
 
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int selectedRowIndex = jTable1.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        
+        String orgType = (String) model.getValueAt(selectedRowIndex, 1);
+        String OrgName = (String) model.getValueAt(selectedRowIndex, 2);
+        String selectedUser = (String) model.getValueAt(selectedRowIndex, 4);
+        
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        for (Events event : businessCatalogueDirectory.getListOfEvents()) {
+            if (event.findSupervisor(user) != null) {
+                if (orgType.equals("BirthdayParty") && event.getListOfBirthdayParty() != null) {
+                    for (Event_BirthdayParty birthday : event.getListOfBirthdayParty()) {
+                        if (birthday.getName().equals(OrgName)) {
+                            for (Supervisor supr : birthday.getListOfSupervisor()) {
+                                if (supr.getUsername().equals(selectedUser)) {
+                                    birthday.deleteSupervisor(supr);
+                                    JOptionPane.showMessageDialog(this, " Organisation Manager added successfully");
+                                    populateTable();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                } else if (orgType.equals("Meeting") && event.getListOfMeetings() != null) {
+                    for (Event_Meetings meeting : event.getListOfMeetings()) {
+                        if (meeting.getName().equals(OrgName)) {
+                            for (Supervisor supr : meeting.getListOfSupervisor()) {
+                                if (supr.getUsername().equals(selectedUser)) {
+                                    meeting.deleteSupervisor(supr);
+                                    JOptionPane.showMessageDialog(this, " Organisation Manager added successfully");
+                                    populateTable();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    for (Event_Wedding wed : event.getListOfWeddingServices()) {
+                        if (wed.getName().equals(OrgName)) {
+                            for (Supervisor supr : wed.getListOfSupervisor()) {
+                                if (supr.getUsername().equals(selectedUser)) {
+                                    wed.deleteSupervisor(supr);
+                                    JOptionPane.showMessageDialog(this, " Organisation Manager added successfully");
+                                    populateTable();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
  
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Object row[] = new Object[20];
+        String orgType = orgCombo.getSelectedItem().toString();
+        String orgName1 = orgName.getSelectedItem().toString();
+        String name = nameField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        if (!Validator.validateName(this, name) || !Validator.validateUserName(this, username)
+                || !Validator.validatePassword(this, password)) {
+            return;
+        }
+        
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        List<Events> list = businessCatalogueDirectory.getListOfEvents();
+        if (!EPAdmin.userExistsInSystem(username)) {
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).findSupervisor(user) != null) {    //if enterpirse supervisor found 
+                    if (orgType.equals("BirthdayParty")) {
+                        List<Event_BirthdayParty> org1 = list.get(i).getListOfBirthdayParty();    // add organisation managers for each org
+                        for (int j = 0; j < org1.size(); j++) {
+                            if (org1.get(j).getName().equals(orgName1)) {
+                                org1.get(j).addSupervisor(name, location.getName(), username, password);
+                                row[0] = location.getName();
+                                row[1] = orgType;
+                                row[2] = orgName1;
+                                row[3] = name;
+                                row[4] = username;
+                                row[5] = password;
+                                model.addRow(row);
+                                EPAdmin.addUser(username, password, "BirthdayParty");
+                                JOptionPane.showMessageDialog(this, " Organisation Manager added successfully");
+                                return;
+                            }
+                        }
+                    } else if (orgType.equals("Meeting")) {
+                        List<Event_Meetings> org2 = list.get(i).getListOfMeetings();
+
+                        for (int j = 0; j < org2.size(); j++) {
+                            System.out.println(org2.get(i).getName() + "name of Meeting org");
+                            if (org2.get(j).getName().equals(orgName1)) {
+                                org2.get(j).addSupervisor(name, location.getName(), username, password);
+                                row[0] = location.getName();
+                                row[1] = orgType;
+                                row[2] = orgName1;
+                                row[3] = name;
+                                row[4] = username;
+                                row[5] = password;
+                                model.addRow(row);
+                                EPAdmin.addUser(username, password, "Meeting");
+                                JOptionPane.showMessageDialog(this, " Organisation Supervisor added successfully");
+                                return;
+                            }
+                        }
+                    } else {
+                        List<Event_Wedding> org3 = list.get(i).getListOfWeddingServices();
+                        for (int j = 0; j < org3.size(); j++) {
+                            if (org3.get(j).getName().equals(orgName1)) {
+                                org3.get(j).addSupervisor(name, location.getName(), username, password);
+                                row[0] = location.getName();
+                                row[1] = orgType;
+                                row[2] = orgName1;
+                                row[3] = name;
+                                row[4] = username;
+                                row[5] = password;
+                                model.addRow(row);
+                                EPAdmin.addUser(username, password, "Wedding");
+                                JOptionPane.showMessageDialog(this, " Organisation Supervisor added successfully");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "username already exists");
+        }
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void orgComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgComboActionPerformed
+       orgName.removeAllItems();
 
+        String orgType = orgCombo.getSelectedItem().toString();
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        List<Events> list = businessCatalogueDirectory.getListOfEvents();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).findSupervisor(user) != null) {
+                if (orgType.equals("BirthdayParty")) {
+                    List<Event_BirthdayParty> org1 = list.get(i).getListOfBirthdayParty();
+                    for (int j = 0; j < org1.size(); j++) {
+                        orgName.addItem(org1.get(j).getName());
+                    }
+                } else if (orgType.equals("Meeting")) {
+                    List<Event_Meetings> org2 = list.get(i).getListOfMeetings();
+                    for (int j = 0; j < org2.size(); j++) {
+                        orgName.addItem(org2.get(j).getName());
+                    }
+                } else {
+                    List<Event_Wedding> org3 = list.get(i).getListOfWeddingServices();
+                    for (int j = 0; j < org3.size(); j++) {
+                        orgName.addItem(org3.get(j).getName());
+                    }
+                }
+                return;
+            }
+        }
 
     }//GEN-LAST:event_orgComboActionPerformed
 
@@ -289,7 +464,67 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
- 
+       
+        
+        if (jTable1.getSelectedRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        if (jTable1.getSelectedRowCount() == 1) {
+
+            String orgType = orgCombo.getSelectedItem().toString();
+            String orgname = orgName.getSelectedItem().toString();
+            String userName = usernameField.getText();
+            String password = passwordField.getText();
+
+            BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+            for (Events event : businessCatalogueDirectory.getListOfEvents()) {
+                if (orgType.equals("BirthdayParty") && event.getListOfBirthdayParty() != null) {
+                    for (Event_BirthdayParty birthday : event.getListOfBirthdayParty()) {
+                        for (Supervisor supr : birthday.getListOfSupervisor()) {
+                            if (supr.getUsername().equals(usernameField.getText())) {
+                                supr.setName(nameField.getText());
+                                supr.setPassword(passwordField.getText());
+                                EPAdmin.updateUser(userName, password);
+                                JOptionPane.showMessageDialog(this, "Updated successfully");
+                                populateTable();
+                                return;
+                            }
+                        }
+                    }
+                } else if (orgType.equals("Meeting") && event.getListOfMeetings() != null) {
+                    for (Event_Meetings meeting : event.getListOfMeetings()) {
+                        for (Supervisor supr : meeting.getListOfSupervisor()) {
+                            if (supr.getUsername().equals(usernameField.getText())) {
+                                supr.setName(nameField.getText());
+                                supr.setPassword(passwordField.getText());
+                                EPAdmin.updateUser(userName, password);
+                                JOptionPane.showMessageDialog(this, "Updated successfully");
+                                populateTable();
+                                return;
+                            }
+                        }
+                    }
+                } else if (orgType.equals("Weeding") && event.getListOfWeddingServices() != null) {
+                    for (Event_Wedding wed : event.getListOfWeddingServices()) {
+                        for (Supervisor supr : wed.getListOfSupervisor()) {
+                            if (supr.getUsername().equals(usernameField.getText())) {
+                                supr.setName(nameField.getText());
+                                supr.setPassword(passwordField.getText());
+                                EPAdmin.updateUser(userName, password);
+                                JOptionPane.showMessageDialog(this, "Updated successfully");
+                                populateTable();
+                                return;
+                            }
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid organization");
+                }
+            }
+        }
     }//GEN-LAST:event_updateBtnActionPerformed
 
 
@@ -316,5 +551,60 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
+           DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object row[] = new Object[10];
+        String orgType1 = orgCombo.getSelectedItem().toString();
+        ServiceLocation location1 = EPAdmin.findServiceLocation(location.getName());
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        if (businessCatalogueDirectory == null) {
+            return;
+        }
+        for (Events event : businessCatalogueDirectory.getListOfEvents()) {
+            if (event.findSupervisor(user) != null) {
+                if (event.getListOfBirthdayParty() != null) {
+                    row[0] = "BirthdayParty";
+                    for (Event_BirthdayParty birthday : event.getListOfBirthdayParty()) {
+                        for (Supervisor supervisor : birthday.getListOfSupervisor()) {       //add supervisor 
+                            row[0] = location1.getName();
+                            row[1] = "BirthdayParty";
+                            row[2] = birthday.getName();
+                            row[3] = supervisor.getName();
+                            row[4] = supervisor.getUsername();
+                            row[5] = supervisor.getPassword();
+                            model.addRow(row);
+                        }
+                    }
+                }
+                if (event.getListOfMeetings() != null) {
+                    row[0] = "Meeting";
+                    for (Event_Meetings meeting : event.getListOfMeetings()) {
+                        for (Supervisor supervisor : meeting.getListOfSupervisor()) {       //add supervisor 
+                            row[0] = location1.getName();
+                            row[1] = "Meeting";
+                            row[2] = meeting.getName();
+                            row[3] = supervisor.getName();
+                            row[4] = supervisor.getUsername();
+                            row[5] = supervisor.getPassword();
+                            model.addRow(row);
+                        }
+                    }
+                }
+                if (event.getListOfWeddingServices() != null) {
+                    row[0] = "Wedding";
+                    for (Event_Wedding wed : event.getListOfWeddingServices()) {
+                        for (Supervisor supervisor : wed.getListOfSupervisor()) {       //add supervisor 
+                            row[0] = location1.getName();
+                            row[1] = "Wedding";
+                            row[2] = wed.getName();
+                            row[3] = supervisor.getName();
+                            row[4] = supervisor.getUsername();
+                            row[5] = supervisor.getPassword();
+                            model.addRow(row);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
