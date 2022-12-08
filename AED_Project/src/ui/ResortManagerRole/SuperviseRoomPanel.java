@@ -1,14 +1,48 @@
 package ui.ResortManagerRole;
 
+import Model.Admin;
+import Model.BusinessCatalogueDirectory;
+import Model.HallRoomList;
+import Model.HallType;
+import Model.HallType.RoomType;
+import Model.Resort;
+import Model.ServiceLocation;
+import Model.Supervisor;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class SuperviseRoomPanel extends javax.swing.JPanel {
 
+    private Admin EPAdmin;
+    private ServiceLocation location;
+    
+    private Runnable callOnCreateMethod;
+    private String user;
+    
+    public SuperviseRoomPanel(Admin systemAdmin, Runnable callOnCreateMethod, ServiceLocation location, String user) {
+        initComponents();     
+        
+        this.user = user;
+        this.EPAdmin = systemAdmin;
+        this.location = location;
+        this.callOnCreateMethod = callOnCreateMethod;
+        
 
-    public SuperviseRoomPanel() {
-        initComponents();      
+        ServiceLocation location1 = systemAdmin.findServiceLocation(location.getName());
+        List<Resort> list = location1.getBusinessCatalogueDirectory().getListOfResort();
+
+        for (RoomType type : RoomType.values()) 
+        {
+            roomTypeComboBox.addItem(type);
+        }
+        setBackground(new java.awt.Color(255, 208, 56));
+
+        addButton.setBackground(new java.awt.Color(0, 102, 102));
+        addButton.setOpaque(true);
+        backButton.setBackground(new java.awt.Color(0, 102, 102));
+        backButton.setOpaque(true);
+        populateTable();
     }
 
     @SuppressWarnings("unchecked")
@@ -92,9 +126,6 @@ public class SuperviseRoomPanel extends javax.swing.JPanel {
                         .addGap(32, 32, 32)
                         .addComponent(roomTypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(813, 813, 813)
                         .addComponent(addButton)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -107,6 +138,10 @@ public class SuperviseRoomPanel extends javax.swing.JPanel {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(52, 52, 52))))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -128,10 +163,29 @@ public class SuperviseRoomPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+    
+            callOnCreateMethod.run();
+
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        RoomType selectedItem = (RoomType) roomTypeComboBox.getSelectedItem();
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        List<Resort> list = businessCatalogueDirectory.getListOfResort();
 
+        for (int i = 0; i < list.size(); i++) {
+            List<Supervisor> manager = list.get(i).getListOfSupervisor();
+            for (int j = 0; j < manager.size(); j++) {
+                if (manager.get(j).getUsername().equals(user)) {
+                   HallRoomList roomList = list.get(i).getHallRoomListDirectory();
+                    roomList.createHallRoom(selectedItem);
+                    JOptionPane.showMessageDialog(this, "Room added successfully");
+
+                    populateTable();
+                    return;
+                }
+            }
+        }
         
     }//GEN-LAST:event_addButtonActionPerformed
 
@@ -151,6 +205,22 @@ public class SuperviseRoomPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        
+         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        for (Resort resort : businessCatalogueDirectory.getListOfResort()) {
+            for (Supervisor supr : resort.getListOfSupervisor()) {
+                if (supr.getUsername().equals(user)) {
+                    HallRoomList roomDirec = resort.getHallRoomListDirectory();
+                    for (HallType room : roomDirec.getListOfHallRoom()) {
+                        Object row[] = new Object[10];
+                        row[0] = room.getRoomorHallNo();
+                        row[1] = room.getHallRoomType().getName();
+                        row[2] = room.getHallRoomType().getRate();
+                        model.addRow(row);
+                    }
+                }
+            }
+        }       
     }
 }

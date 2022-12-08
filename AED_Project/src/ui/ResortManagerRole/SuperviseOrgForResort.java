@@ -1,5 +1,11 @@
 package ui.ResortManagerRole;
 
+import Model.Admin;
+import Model.BusinessCatalogueDirectory;
+import Model.CarServiceORG;
+import Model.Resort;
+import Model.ServiceLocation;
+import Model.TourGuideORG;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.List;
@@ -9,16 +15,23 @@ import javax.swing.table.DefaultTableModel;
 
 public class SuperviseOrgForResort extends javax.swing.JPanel {
 
+    private Admin EPAdmin;
+    private ServiceLocation location;
+    
     private Runnable callOnCreateMethod;
     private String type;
     private String user;
+    
 
-    public SuperviseOrgForResort() {
+    public SuperviseOrgForResort(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type,ServiceLocation location) {
         initComponents();
+        this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
+        this.location = location;
         setBackground(new java.awt.Color(255, 208, 56));
+        cityNameTextField.setText(location.getName());
         cityNameTextField.setEditable(false);
 
         deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
@@ -239,22 +252,26 @@ public class SuperviseOrgForResort extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
     private void txtCreateMobileNumberKeyReleased(java.awt.event.KeyEvent evt){
+  
     String PATTERN = "^[0-9]{0,10}$";
     Pattern pattern = Pattern.compile(PATTERN);
-Matcher match = pattern.matcher(txtCreateMobileNumber.getText());
-if(!match.matches())
-{
-error_mobilenumber.setText("Mobile Number format is incorrect!");
-}
-else if(txtCreateMobileNumber.getText().length()!= 10)
-{
+    Matcher match = pattern.matcher(txtCreateMobileNumber.getText());
+    
+    if(!match.matches())
+    {
+    error_mobilenumber.setText("Mobile Number format is incorrect!");
+    }
+    
+    else if(txtCreateMobileNumber.getText().length()!= 10)
+    {
     error_mobilenumber.setText("Enter 10 digit phone no.");
-//JOptionPane.showMessageDialog(null,"Enter 10 digit phone no.");
-}
+    //JOptionPane.showMessageDialog(null,"Enter 10 digit phone no.");
+    }
 
-else{
-error_mobilenumber.setText(null);
-}
+    else
+    {
+        error_mobilenumber.setText(null);
+    }
 
     }
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
@@ -270,21 +287,156 @@ error_mobilenumber.setText(null);
     }//GEN-LAST:event_orgComboActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-    
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Object row[] = new Object[20];
+        String networkName = location.getName(); //find the location from city-combobox
+        String name = nameField.getText();
+        String contact = txtCreateMobileNumber.getText();
+        
+
+        if (name == null || name.length() < 2) {
+            JOptionPane.showMessageDialog(this, "Organization name should be at least 2 characters long.");
+            return;
+            
+        }
+        else
+        {
+            if(txtCreateMobileNumber.getText().length() != 10)
+            {
+             invalidphoneno();   
+            }
+            
+            else
+            {
+                String orgType1 = orgCombo.getSelectedItem().toString();      // org-type (physician org)     
+                BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+                List<Resort> resort = businessCatalogueDirectory.getListOfResort();
+
+                for (int i = 0; i < resort.size(); i++)
+                {
+                    resort.get(i).findSupervisor(user);      //find healthclub for which manager is working for
+                    if (orgType1.equals("TourGuide")) 
+                    {
+                        resort.get(i).addTourGuideORG(name, contact, networkName);
+                        row[0] = orgType1;
+                        row[1] = name;
+                        row[2] = contact;
+                        row[3] = networkName;
+                        model.addRow(row);
+                        JOptionPane.showMessageDialog(this, " Organisation added successfully");
+                        return;                               //healthclub found
+                    } 
+                    else
+                    {
+                        resort.get(i).addCarServiceORG(name, contact, networkName);
+                        row[0] = orgType1;
+                        row[1] = name;
+                        row[2] = contact;
+                        row[3] = networkName;
+                        model.addRow(row);
+                        JOptionPane.showMessageDialog(this, "Organisation added successfully");
+                        return;
+                    }
+                }
+            }
+        }    
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int selectedRowIndex = jTable1.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        String OrgType = (String) model.getValueAt(selectedRowIndex, 0);
+        String OrgName = (String) model.getValueAt(selectedRowIndex, 1);
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        for (Resort resort : businessCatalogueDirectory.getListOfResort()) {
+            if (resort.findSupervisor(user) != null) {
+                if (OrgType.equals("TourGuide") && resort.getTourGuideORG() != null) {
+                    for (TourGuideORG tourGuide : resort.getTourGuideORG()) {
+                        if (tourGuide.getName().equals(OrgName)) {
+                            resort.deleteTourGuide(tourGuide);
 
+                            JOptionPane.showMessageDialog(this, "Deleted successfully");
+                            populateTable();
+                        }
+                    }
+                } 
+                else if (resort.getCarServiceORGList() != null) {
+                    for (CarServiceORG carServices : resort.getCarServiceORGList()) {
+                        if (carServices.getName().equals(OrgName)) {
+                            resort.deleteCarService(carServices);
+                            JOptionPane.showMessageDialog(this, "Deleted successfully");
+                            populateTable();
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+
+            }
+        }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
+        if (jTable1.getSelectedRowCount() != 1) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update.");
+        }
 
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        String orgType = orgCombo.getSelectedItem().toString();
+        String orgname = model.getValueAt(jTable1.getSelectedRow(), 1).toString();
+
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        for (Resort resort : businessCatalogueDirectory.getListOfResort()) {
+            if (orgType.equals("TourGuide") && resort.getTourGuideORG() != null) {
+                for (TourGuideORG tourGuide : resort.getTourGuideORG()) {
+                    if (tourGuide.getName().equals(orgname)) {
+                        tourGuide.setName(nameField.getText());
+                        tourGuide.setContact(txtCreateMobileNumber.getText());
+                        JOptionPane.showMessageDialog(this, "Updated successfully");
+                        populateTable();
+                        return;
+                    }
+                }
+            } else if (orgType.equals("CarService") && resort.getCarServiceORGList() != null) {
+                for (CarServiceORG car : resort.getCarServiceORGList()) {
+                    if (car.getName().equals(orgname)) {
+                        car.setName(nameField.getText());
+                        car.setContact(txtCreateMobileNumber.getText());
+                        JOptionPane.showMessageDialog(this, "Updated successfully");
+                        populateTable();
+                        return;
+                    }
+                }
+            }
+
+        }
         
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        if (jTable1.getSelectedRowCount() != 1) {
+            return;
+        }
+
+        String orgType = model.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        String orgName = model.getValueAt(jTable1.getSelectedRow(), 1).toString();
+        String orgContact = model.getValueAt(jTable1.getSelectedRow(), 2).toString();
+        String orgCity = model.getValueAt(jTable1.getSelectedRow(), 3).toString();
+
+        nameField.setText(orgName);
+        txtCreateMobileNumber.setText(orgContact);
+        cityNameTextField.setText(orgCity);
+        orgCombo.setSelectedItem(orgType);
+        cityNameTextField.setEnabled(false);        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void txtCreateMobileNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCreateMobileNumberActionPerformed
@@ -312,26 +464,60 @@ error_mobilenumber.setText(null);
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        
+       DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object row[] = new Object[10];
+        String orgType1 = orgCombo.getSelectedItem().toString();
+        ServiceLocation location1 = EPAdmin.findServiceLocation(location.getName());
+        BusinessCatalogueDirectory businessCatalogueDirectory = location1.getBusinessCatalogueDirectory();
+        if (businessCatalogueDirectory != null) {
+            return;
+        }
+        for (Resort resort : businessCatalogueDirectory.getListOfResort()) {
+            if (resort.findSupervisor(user) != null) {
+                if (resort.getTourGuideORG() != null) {
+                    row[0] = "TourGuide";
+                    for (TourGuideORG tourGuide : resort.getTourGuideORG()) {
+                        row[0] = "TourGuide";
+                        row[1] = tourGuide.getName();
+                        row[2] = tourGuide.getContact();
+                        row[3] = location1.getName();
+                        model.addRow(row);
+                    }
+                }
+                if (resort.getCarServiceORGList() != null) {
+                    row[0] = "CarService";
+                    for (CarServiceORG carService : resort.getCarServiceORGList()) {
+                        row[0] = "CarService";
+                        row[1] = carService.getName();
+                        row[2] = carService.getContact();
+                        row[3] = location.getName();
+                        model.addRow(row);
+                    }
+                }
+            }
+        }        
     }
 
     private void invalidphoneno() {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
       String PATTERN = "^[0-9]{0,10}$";
-    Pattern pattern = Pattern.compile(PATTERN);
-Matcher match = pattern.matcher(txtCreateMobileNumber.getText());
-if(!match.matches())
-{
-error_mobilenumber.setText("Mobile Number format is incorrect!");
-}
-else if(txtCreateMobileNumber.getText().length()!= 10)
-{
-    error_mobilenumber.setText("Enter 10 digit phone no.");
-//JOptionPane.showMessageDialog(null,"Enter 10 digit phone no.");
-}
+      Pattern pattern = Pattern.compile(PATTERN);
+      Matcher match = pattern.matcher(txtCreateMobileNumber.getText());
+      
+        if(!match.matches())
+        {
+            error_mobilenumber.setText("Mobile Number format is incorrect!");
+        }
+        else if(txtCreateMobileNumber.getText().length()!= 10)
+        {
+            error_mobilenumber.setText("Enter 10 digit phone no.");
+        //JOptionPane.showMessageDialog(null,"Enter 10 digit phone no.");
+        }
 
-else{
-error_mobilenumber.setText(" ");
-}
+        else
+        {
+            error_mobilenumber.setText(" ");
+        }
     }
 }

@@ -1,5 +1,12 @@
 package ui.ResortManagerRole;
 
+import Model.Admin;
+import Model.BusinessCatalogueDirectory;
+import Model.CarServiceORG;
+import Model.Resort;
+import Model.ServiceLocation;
+import Model.Supervisor;
+import Model.TourGuideORG;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -8,16 +15,27 @@ import ui.main.Validator;
 
 public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
 
+    private Admin EPAdmin;
+    private ServiceLocation location;
+    
     private Runnable callOnCreateMethod;
     private String user;
     private String type;
+    
 
-    public SuperviseAdminOrgForResort() {
+    public SuperviseAdminOrgForResort(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
         initComponents();
+        
+        this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
+        this.location = location;
+        
+        networkName.setText(location.getName());
+        
         populateTable();
+        
         setBackground(new java.awt.Color(255, 208, 56));
         deleteButton.setBackground(new java.awt.Color(0, 102, 102));
         deleteButton.setOpaque(true);
@@ -246,29 +264,224 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
     }//GEN-LAST:event_nameFieldActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-       
-       
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int selectedRowIndex = jTable1.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        
+        String orgType = (String) model.getValueAt(selectedRowIndex, 1);
+        String OrgName = (String) model.getValueAt(selectedRowIndex, 2);
+        String selectedUser = (String) model.getValueAt(selectedRowIndex, 4);
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        for (Resort resort : businessCatalogueDirectory.getListOfResort()) {
+            if (resort.findSupervisor(user) != null) {
+                if (orgType.equals("TourGuide") && resort.getTourGuideORG() != null) {
+                    for (TourGuideORG tourGuide : resort.getTourGuideORG()) {
+                        if (tourGuide.getName().equals(OrgName)) {
+                            for (Supervisor supr : tourGuide.getListOfSupervisor()) {
+                                if (supr.getUsername().equals(selectedUser)) {
+                                    tourGuide.deleteManager(supr);
+                                    JOptionPane.showMessageDialog(this, " Organisation Supervisor added successfully");
+                                    populateTable();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                } 
+                else if (orgType.equals("CarService") && resort.getCarServiceORGList() != null) {
+                    for (CarServiceORG carService : resort.getCarServiceORGList()) {
+                        if (carService.getName().equals(OrgName)) {
+                            for (Supervisor supr : carService.getListOfSupervisor()) {
+                                if (supr.getUsername().equals(selectedUser)) {
+                                    carService.deleteSupervisor(supr);
+                                    JOptionPane.showMessageDialog(this, " Organisation Manager added successfully");
+                                    populateTable();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }          
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        
+        callOnCreateMethod.run();
+
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Object row[] = new Object[20];
+        String orgType = orgCombo.getSelectedItem().toString();
+        String orgName1 = orgName.getSelectedItem().toString();
+        String name = nameField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
 
+        if (!Validator.validateName(this, name) || !Validator.validateUserName(this, username)
+                || !Validator.validatePassword(this, password)) {
+            return;
+        }
+
+        if (!EPAdmin.userExistsInSystem(username)) {
+
+            BusinessCatalogueDirectory enterpriseDirec = location.getBusinessCatalogueDirectory();
+            
+            List<Resort> list = enterpriseDirec.getListOfResort();
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).findSupervisor(user) != null) {    //if supr found for resort enterprise
+                    if (orgType.equals("TourGuide")) {
+                        
+                        List<TourGuideORG> org1 = list.get(i).getTourGuideORG();
+                        
+                        for (int j = 0; j < org1.size(); j++) {
+                            if (org1.get(j).getName().equals(orgName1)) {
+                                org1.get(j).addSupervisor(name, location.getName(), username, password); // add managers for each org
+                                row[0] = location.getName();
+                                row[1] = orgType;
+                                row[2] = orgName1;
+                                row[3] = name;
+                                row[4] = username;
+                                row[5] = password;
+                                model.addRow(row);
+                                EPAdmin.addUser(username, password, "TourGuide");
+                                JOptionPane.showMessageDialog(this, " Organisation Manager added successfully");
+                                return;
+                            }
+                        }
+                    } 
+                    else if (orgType.equals("CarService")) {
+                        
+                        List<CarServiceORG> org2 = list.get(i).getCarServiceORGList();
+                        
+                        for (int j = 0; j < org2.size(); j++) {
+                            if (org2.get(j).getName().equals(orgName1)) {
+                                org2.get(j).addSupervisor(name, location.getName(), username, password);
+                                row[0] = location.getName();
+                                row[1] = orgType;
+                                row[2] = orgName1;
+                                row[3] = name;
+                                row[4] = username;
+                                row[5] = password;
+                                model.addRow(row);
+                                EPAdmin.addUser(username, password, "CarService");
+                                JOptionPane.showMessageDialog(this, " Organisation Manager added successfully");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        } 
+        else 
+        {
+            JOptionPane.showMessageDialog(this, " This username already exists");
+        }
                     
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void orgComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgComboActionPerformed
-      
+        String orgType = orgCombo.getSelectedItem().toString();
+        orgName.removeAllItems();
 
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        
+        List<Resort> list = businessCatalogueDirectory.getListOfResort();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).findSupervisor(user) != null) {
+                if (orgType.equals("TourGuide")) {
+                    List<TourGuideORG> org1 = list.get(i).getTourGuideORG();
+                    for (int j = 0; j < org1.size(); j++) {
+                        orgName.addItem(org1.get(j).getName());
+                        return;
+                    }
+                } 
+                else {
+                    List<CarServiceORG> org3 = list.get(i).getCarServiceORGList();
+                    for (int j = 0; j < org3.size(); j++) {
+                        orgName.addItem(org3.get(j).getName());
+                    }
+                }
+                return;
+            }
+        }     
     }//GEN-LAST:event_orgComboActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-        
+        if (jTable1.getSelectedRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        if (jTable1.getSelectedRowCount() == 1) {
+
+            String orgType = orgCombo.getSelectedItem().toString();
+            String orgname = orgName.getSelectedItem().toString();
+            String userName = usernameField.getText();
+            String password = passwordField.getText();
+
+            BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+            for (Resort resort : businessCatalogueDirectory.getListOfResort()) {
+                if (orgType.equals("TourGuide") && resort.getTourGuideORG() != null) {
+                    for (TourGuideORG tourGuide : resort.getTourGuideORG()) {
+                        for (Supervisor supr : tourGuide.getListOfSupervisor()) {
+                            if (supr.getUsername().equals(usernameField.getText())) {
+                                supr.setName(nameField.getText());
+                                supr.setPassword(passwordField.getText());
+                                EPAdmin.updateUser(userName, password);
+                                JOptionPane.showMessageDialog(this, "Updated successfully");
+                                populateTable();
+                                return;
+                            }
+                        }
+                    }
+                } 
+                else if (orgType.equals("CarService") && resort.getCarServiceORGList() != null) {
+                    for (CarServiceORG car : resort.getCarServiceORGList()) {
+                        for (Supervisor supr : car.getListOfSupervisor()) {
+                            if (supr.getUsername().equals(usernameField.getText())) {
+                                supr.setName(nameField.getText());
+                                supr.setPassword(passwordField.getText());
+                                EPAdmin.updateUser(userName, password);
+                                JOptionPane.showMessageDialog(this, "Updated successfully");
+                                populateTable();
+                                return;
+                            }
+                        }
+                    }
+                } 
+                else {
+                    JOptionPane.showMessageDialog(this, "Invalid organization");
+                }
+            }
+        }       
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        String city = model.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        String orgType = model.getValueAt(jTable1.getSelectedRow(), 1).toString();
+        String oName = model.getValueAt(jTable1.getSelectedRow(), 2).toString();
+        String managerName = model.getValueAt(jTable1.getSelectedRow(), 3).toString();
+        String managerUsername = model.getValueAt(jTable1.getSelectedRow(), 4).toString();
+        String managerPassword = model.getValueAt(jTable1.getSelectedRow(), 5).toString();
+
+        nameField.setText(managerName);
+        usernameField.setText(managerUsername);
+        passwordField.setText(managerPassword);
+        usernameField.setEnabled(false);
+
+        orgCombo.setSelectedItem(orgType);
+        orgName.setSelectedItem(oName);       
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void orgNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgNameActionPerformed
@@ -300,6 +513,46 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
 
     private void populateTable() {
         
-  
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object row[] = new Object[10];
+
+        ServiceLocation location1 = EPAdmin.findServiceLocation(location.getName());
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        if (businessCatalogueDirectory == null) {
+            return;
+        }
+        for (Resort resort : businessCatalogueDirectory.getListOfResort()) {
+            if (resort.findSupervisor(user) != null) {
+                if (resort.getTourGuideORG() != null) {
+                    row[0] = "TourGuide";
+                    for (TourGuideORG tourGuide : resort.getTourGuideORG()) {
+                        for (Supervisor supr : tourGuide.getListOfSupervisor()) {       //add supr 
+                            row[0] = location1.getName();
+                            row[1] = "TourGuide";
+                            row[2] = tourGuide.getName();
+                            row[3] = supr.getName();
+                            row[4] = supr.getUsername();
+                            row[5] = supr.getPassword();
+                            model.addRow(row);
+                        }
+                    }
+                }
+                if (resort.getCarServiceORGList() != null) {
+                    row[0] = "CarService";
+                    for (CarServiceORG carService : resort.getCarServiceORGList()) {
+                        for (Supervisor supr : carService.getListOfSupervisor()) {       //add supr 
+                            row[0] = location1.getName();
+                            row[1] = "CarService";
+                            row[2] = carService.getName();
+                            row[3] = supr.getName();
+                            row[4] = supr.getUsername();
+                            row[5] = supr.getPassword();
+                            model.addRow(row);
+                        }
+                    }
+                }
+            }
+        }
     }
 }

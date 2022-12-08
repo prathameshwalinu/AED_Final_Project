@@ -1,5 +1,13 @@
 package ui.EntertainmentsupervisorRole;
 
+import Model.Admin;
+import Model.BusinessCatalogueDirectory;
+import Model.Entertainment;
+import Model.Entertainment_ChoreographerORG;
+import Model.Entertainment_MagicianORG;
+import Model.Entertainment_SingerORG;
+import Model.ServiceLocation;
+import Model.Supervisor;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -8,16 +16,25 @@ import ui.main.Validator;
 
 public class OrganizationAdminPanel extends javax.swing.JPanel {
 
+    private Admin EPAdmin;
     private Runnable callOnCreateMethod;
     private String user;
     private String type;
+    private ServiceLocation location;
 
-    public OrganizationAdminPanel() {
+    public OrganizationAdminPanel(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
+        
         initComponents();
+        
+        this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
+        this.location = location;
+        
+        txtlocation.setText(location.getName());
         txtlocation.setEditable(false);
+        
         setBackground(new java.awt.Color(255, 208, 56));
         updateButton.setBackground(new java.awt.Color(0, 102, 102));
         updateButton.setOpaque(true);
@@ -29,19 +46,25 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
         addButton.setOpaque(true);
     }
 
-    public boolean validateName() {
+    public boolean validateName() 
+    {
         if (nameField.getText().matches("[a-zA-Z]{2,19}") && nameField.getText() != null) {
             return true;
-        } else {
+        } 
+        else 
+        {
             JOptionPane.showMessageDialog(this, "Invalid input : name should contain only alphabets");
             return false;
         }
     }
 
-    public boolean PasswordName() {
+    public boolean PasswordName() 
+    {
         if (passwordField.getText().matches("[a-zA-Z]{3,}") && passwordField.getText() != null) {
             return true;
-        } else {
+        } 
+        else 
+        {
             JOptionPane.showMessageDialog(this, "Invalid input : password should contain more than 3 or more letters");
             return false;
         }
@@ -244,26 +267,257 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
+        
+        callOnCreateMethod.run();
+        
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-          
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Object row[] = new Object[20];
+        String orgType = orgCombo.getSelectedItem().toString();
+        String orgName1 = orgName.getSelectedItem().toString();
+        String name = nameField.getText();
+        String username = usernameField.getText();
+        String password = passwordField.getText();
+
+        if (!Validator.validateName(this, name) || !Validator.validateUserName(this, username)
+                || !Validator.validatePassword(this, password)) {
+            return;
+        }
+
+        if (!EPAdmin.userExistsInSystem(username)) {
+
+            BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+            List<Entertainment> list = businessCatalogueDirectory.getListOfEntertainment();
+
+            for (int i = 0; i < list.size(); i++) {
+                if (list.get(i).findSupervisor(user) != null) {    //if entertainment ent supervisor found in location
+                    if (orgType.equals("Magician")) {
+                        List<Entertainment_MagicianORG> org1 = list.get(i).getListOfMagicianORG();
+                        for (int j = 0; j < org1.size(); j++) {
+                            if (org1.get(j).getName().equals(orgName1)) {
+                                org1.get(j).addSupervisor(name, location.getName(), username, password); //add managers for each org (eg:physiican org)
+                                row[0] = location.getName();
+                                row[1] = orgType;
+                                row[2] = orgName1;
+                                row[3] = name;
+                                row[4] = username;
+                                row[5] = password;
+                                model.addRow(row);
+                                EPAdmin.addUser(username, password, "Magician");
+                                JOptionPane.showMessageDialog(this, "Successfully added Magician organization");
+                                return;
+                            }
+                        }
+                    }
+                    else if (orgType.equals("Choreographer"))
+                    {
+                        List<Entertainment_ChoreographerORG> org2 = list.get(i).getListOfChoreographerORG();
+                        for (int j = 0; j < org2.size(); j++) {
+                            if (org2.get(j).getName().equals(orgName1)) {
+                                org2.get(j).addSupervisor(name, location.getName(), username, password);
+                                row[0] = location.getName();
+                                row[1] = orgType;
+                                row[2] = orgName1;
+                                row[3] = name;
+                                row[4] = username;
+                                row[5] = password;
+                                model.addRow(row);
+                                EPAdmin.addUser(username, password, "Choreographer");
+                                JOptionPane.showMessageDialog(this, "Successfully added Choreographer organization");
+                                return;
+                            }
+                        }
+                    } else {
+                        List<Entertainment_SingerORG> org3 = list.get(i).getListOfSingerORG();
+                        for (int j = 0; j < org3.size(); j++) {
+                            if (org3.get(j).getName().equals(orgName1)) {
+                                org3.get(j).addSupervisor(name, location.getName(), username, password);
+                                row[0] = location.getName();
+                                row[1] = orgType;
+                                row[2] = orgName1;
+                                row[3] = name;
+                                row[4] = username;
+                                row[5] = password;
+                                model.addRow(row);
+                                EPAdmin.addUser(username, password, "Singer");
+                                JOptionPane.showMessageDialog(this, "Successfully added Singer organization");
+                                return;
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, " username already exits");
+        }          
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void orgComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgComboActionPerformed
-        
+        orgName.removeAllItems();
+        String orgType = orgCombo.getSelectedItem().toString();
+
+        BusinessCatalogueDirectory enterpriseDirec = location.getBusinessCatalogueDirectory();
+        List<Entertainment> list = enterpriseDirec.getListOfEntertainment();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).findSupervisor(user) != null) {
+                if (orgType.equals("Magician")) {
+                    List<Entertainment_MagicianORG> org1 = list.get(i).getListOfMagicianORG();
+                    for (int j = 0; j < org1.size(); j++) {
+                        orgName.addItem(org1.get(j).getName());
+                    }
+                } else if (orgType.equals("Choreographer")) {
+                    List<Entertainment_ChoreographerORG> org2 = list.get(i).getListOfChoreographerORG();
+                    for (int j = 0; j < org2.size(); j++) {
+                        orgName.addItem(org2.get(j).getName());
+                    }
+                } else {
+                    List<Entertainment_SingerORG> org3 = list.get(i).getListOfSingerORG();
+                    for (int j = 0; j < org3.size(); j++) {
+                        orgName.addItem(org3.get(j).getName());
+                    }
+                }
+                return;
+            }
+        }        
     }//GEN-LAST:event_orgComboActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        
+       DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        int selectedRowIndex = jTable1.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        String orgType = (String) model.getValueAt(selectedRowIndex, 1);
+        String OrgName = (String) model.getValueAt(selectedRowIndex, 2);
+        String selectedUser = (String) model.getValueAt(selectedRowIndex, 4);
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        for (Entertainment ent : businessCatalogueDirectory.getListOfEntertainment()) {
+            if (ent.findSupervisor(user) != null) {
+                if (orgType.equals("Singer") && ent.getListOfSingerORG() != null) {
+                    for (Entertainment_SingerORG singer : ent.getListOfSingerORG()) {
+                        if (singer.getName().equals(OrgName)) {
+                            for (Supervisor supr : singer.getListOfSupervisor()) {
+                                if (supr.getUsername().equals(selectedUser)) {
+                                    singer.deleteSupervisor(supr);
+                                    JOptionPane.showMessageDialog(this, " Organisation Supervisor added successfully");
+                                    populateTable();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                } else if (orgType.equals("Magician") && ent.getListOfMagicianORG() != null) {
+                    for (Entertainment_MagicianORG magician : ent.getListOfMagicianORG()) {
+                        if (magician.getName().equals(OrgName)) {
+                            for (Supervisor supr : magician.getListOfSupervisor()) {
+                                if (supr.getUsername().equals(selectedUser)) {
+                                    magician.deleteSupervisor(supr);
+                                    JOptionPane.showMessageDialog(this, " Organisation Supervisor added successfully");
+                                    populateTable();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    for (Entertainment_ChoreographerORG choreographer : ent.getListOfChoreographerORG()) {
+                        if (choreographer.getName().equals(OrgName)) {
+                            for (Supervisor supr : choreographer.getListOfSupervisor()) {
+                                if (supr.getUsername().equals(selectedUser)) {
+                                    choreographer.deleteSupervisor(supr);
+                                    JOptionPane.showMessageDialog(this, " Organisation Supervisor added successfully");
+                                    populateTable();
+                                    return;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }        
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-       
+      
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        String city = model.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        String orgType = model.getValueAt(jTable1.getSelectedRow(), 1).toString();
+        String oName = model.getValueAt(jTable1.getSelectedRow(), 2).toString();
+        String supervisorName = model.getValueAt(jTable1.getSelectedRow(), 3).toString();
+        String supervisorUsername = model.getValueAt(jTable1.getSelectedRow(), 4).toString();
+        String supervisorPassword = model.getValueAt(jTable1.getSelectedRow(), 5).toString();
+
+        nameField.setText(supervisorName);
+        usernameField.setText(supervisorUsername);
+        passwordField.setText(supervisorPassword);
+        usernameField.setEnabled(false);
+        orgCombo.setSelectedItem(orgType);
+        orgName.setSelectedItem(oName);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
-       
+        if (jTable1.getSelectedRowCount() == 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to update");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        if (jTable1.getSelectedRowCount() == 1) {
+
+            String orgType = orgCombo.getSelectedItem().toString();
+            String orgname = orgName.getSelectedItem().toString();
+            String userName = usernameField.getText();
+            String password = passwordField.getText();
+
+            BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+            for (Entertainment ent : businessCatalogueDirectory.getListOfEntertainment()) {
+                if (orgType.equals("Magician") && ent.getListOfMagicianORG() != null) {
+                    for (Entertainment_MagicianORG mag : ent.getListOfMagicianORG()) {
+                        for (Supervisor supr : mag.getListOfSupervisor()) {
+                            if (supr.getUsername().equals(usernameField.getText())) {
+                                supr.setName(nameField.getText());
+                                supr.setPassword(passwordField.getText());
+                                EPAdmin.updateUser(userName, password);
+                                JOptionPane.showMessageDialog(this, "Updated successfully");
+                                populateTable();
+                                return;
+                            }
+                        }
+                    }
+                } else if (orgType.equals("Singer") && ent.getListOfSingerORG() != null) {
+                    for (Entertainment_SingerORG sing : ent.getListOfSingerORG()) {
+                        for (Supervisor supr : sing.getListOfSupervisor()) {
+                            if (supr.getUsername().equals(usernameField.getText())) {
+                                supr.setName(nameField.getText());
+                                supr.setPassword(passwordField.getText());
+                                EPAdmin.updateUser(userName, password);
+                                JOptionPane.showMessageDialog(this, "Updated successfully");
+                                populateTable();
+                                return;
+                            }
+                        }
+                    }
+                } else if (orgType.equals("Choreographer") && ent.getListOfChoreographerORG() != null) {
+                    for (Entertainment_ChoreographerORG choreo : ent.getListOfChoreographerORG()) {
+                        for (Supervisor supr : choreo.getListOfSupervisor()) {
+                            if (supr.getUsername().equals(usernameField.getText())) {
+                                supr.setName(nameField.getText());
+                                supr.setPassword(passwordField.getText());
+                                EPAdmin.updateUser(userName, password);
+                                JOptionPane.showMessageDialog(this, "Updated successfully");
+                                populateTable();
+                                return;
+                            }
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "Invalid organization");
+                }
+            }
+        }       
     }//GEN-LAST:event_updateButtonActionPerformed
 
 
@@ -289,7 +543,62 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        
-               
+  
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        Object row[] = new Object[10];
+        String orgType1 = orgCombo.getSelectedItem().toString();
+        ServiceLocation location1 = EPAdmin.findServiceLocation(location.getName());
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        if (businessCatalogueDirectory == null) {
+            return;
+        }
+        for (Entertainment entertainment : businessCatalogueDirectory.getListOfEntertainment()) {
+            if (entertainment.findSupervisor(user) != null) {
+                if (entertainment.getListOfMagicianORG() != null) {
+                    row[0] = "Magician";
+                    for (Entertainment_MagicianORG magician : entertainment.getListOfMagicianORG()) {
+                        for (Supervisor supervisor : magician.getListOfSupervisor()) {       //add supervisor 
+                            row[0] = location1.getName();
+                            row[1] = "Magician";
+                            row[2] = magician.getName();
+                            row[3] = supervisor.getName();
+                            row[4] = supervisor.getUsername();
+                            row[5] = supervisor.getPassword();
+                            model.addRow(row);
+                        }
+                    }
+                }
+                if (entertainment.getListOfSingerORG() != null) {
+                    row[0] = "Singer";
+                    for (Entertainment_SingerORG singer : entertainment.getListOfSingerORG()) {
+                        for (Supervisor supervisor : singer.getListOfSupervisor()) {       //add supervisor 
+                            row[0] = location1.getName();
+                            row[1] = "Singer";
+                            row[2] = singer.getName();
+                            row[3] = supervisor.getName();
+                            row[4] = supervisor.getUsername();
+                            row[5] = supervisor.getPassword();
+                            model.addRow(row);
+                        }
+                    }
+                }
+                if (entertainment.getListOfChoreographerORG() != null) {
+                    row[0] = "Choreographer";
+                    for (Entertainment_ChoreographerORG choreographer : entertainment.getListOfChoreographerORG()) {
+                        for (Supervisor supervisor : choreographer.getListOfSupervisor()) {       //add supervisor 
+                            row[0] = location1.getName();
+                            row[1] = "Choreographer";
+                            row[2] = choreographer.getName();
+                            row[3] = supervisor.getName();
+                            row[4] = supervisor.getUsername();
+                            row[5] = supervisor.getPassword();
+                            model.addRow(row);
+                        }
+                    }
+                }
+
+            }
+        }
     }
 }

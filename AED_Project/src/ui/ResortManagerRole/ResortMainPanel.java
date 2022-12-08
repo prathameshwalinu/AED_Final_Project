@@ -1,5 +1,7 @@
 package ui.ResortManagerRole;
 
+import Model.Admin;
+
 
 public class ResortMainPanel extends javax.swing.JPanel {
 
@@ -8,12 +10,16 @@ public class ResortMainPanel extends javax.swing.JPanel {
     private Runnable callOnCreateMethod3;
     private Runnable callOnCreateMethod4;
 
-    public ResortMainPanel() {
+    private Admin EPAdmin;
+    
+    public ResortMainPanel(Admin EPAdmin, Runnable callOnCreateMethod1, Runnable callOnCreateMethod2, Runnable callOnCreateMethod3, Runnable callOnCreateMethod4) {
         initComponents();
+        this.EPAdmin = EPAdmin;
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.callOnCreateMethod2 = callOnCreateMethod2;
         this.callOnCreateMethod3 = callOnCreateMethod3;
         this.callOnCreateMethod4 = callOnCreateMethod4;
+        
         setBackground(new java.awt.Color(255, 208, 56));
         viewTask.setBackground(new java.awt.Color(0, 102, 102));
         viewTask.setOpaque(true);
@@ -62,7 +68,7 @@ public class ResortMainPanel extends javax.swing.JPanel {
             }
         });
         add(orgBtn);
-        orgBtn.setBounds(360, 280, 300, 40);
+        orgBtn.setBounds(380, 280, 300, 40);
 
         viewTask.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         viewTask.setText("TASK DASHBOARD");
@@ -90,15 +96,26 @@ public class ResortMainPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void orgAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgAdminBtnActionPerformed
+            
+        callOnCreateMethod3.run();
     }//GEN-LAST:event_orgAdminBtnActionPerformed
 
     private void viewTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTaskActionPerformed
+ 
+        callOnCreateMethod1.run();
+
     }//GEN-LAST:event_viewTaskActionPerformed
 
     private void orgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgBtnActionPerformed
+
+        callOnCreateMethod2.run();
+
     }//GEN-LAST:event_orgBtnActionPerformed
 
     private void manageRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageRoomsActionPerformed
+        
+        callOnCreateMethod4.run();
+
     }//GEN-LAST:event_manageRoomsActionPerformed
 
 

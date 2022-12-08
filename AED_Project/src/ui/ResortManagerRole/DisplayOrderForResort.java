@@ -1,5 +1,15 @@
 package ui.ResortManagerRole;
 
+import Model.Admin;
+import Model.CarServiceORG;
+import Model.Client;
+import Model.ClientDirectory;
+import Model.HallBooking;
+import Model.Organization;
+import Model.Resort;
+import Model.TourGuideORG;
+import Model.services.EService;
+import Model.services.ResortService;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -8,15 +18,21 @@ import javax.swing.table.DefaultTableModel;
 
 public class DisplayOrderForResort extends javax.swing.JPanel {
 
+    private Admin EPAdmin;
+    private Resort resort;
+    
     private Runnable callOnCreateMethod;
     private String user;
     private String type;
+    
 
-    public DisplayOrderForResort() {
+    public DisplayOrderForResort(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, Resort hotel) {
         initComponents();
+        this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
+        this.resort = hotel;
         populateComboBox();
         populateTable();
         setBackground(new java.awt.Color(255, 208, 56));
@@ -158,7 +174,65 @@ public class DisplayOrderForResort extends javax.swing.JPanel {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void viewTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTaskActionPerformed
-        
+         int selectedRowIndex = jTable1.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a booking to assign tasks.");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        HallBooking booking = (HallBooking) model.getValueAt(selectedRowIndex, 0);
+
+        ResortService resortService = null;
+        for (EService service : booking.getServices()) {
+            if (resort.getName().equals(service.getBusinessCatalogue().getName())) {
+                resortService = (ResortService) service;
+                break;
+            }
+        }
+
+        if (resortService == null) {
+            JOptionPane.showMessageDialog(this, "Cannot find hotel");
+            return;
+        }
+
+        if (!resortService.getStatus().equals(EService.Status.PENDING)) {
+            JOptionPane.showMessageDialog(this, String.format("Booking '%s' should be 'PENDING' state to be accepted.",
+                    booking.getId()));
+            return;
+        }
+
+        TourGuideORG tourGuide = (TourGuideORG) tourGuideOrg.getSelectedItem();
+        CarServiceORG carServices = (CarServiceORG) carServiceOrg.getSelectedItem();
+
+        List<Organization> organizations = new ArrayList<>();
+        for (ResortService.ResortServiceType type : resortService.getResortServices()) {
+            switch (type) {
+                case TOURGUIDE:
+                    if (tourGuide == null) {
+                        JOptionPane.showMessageDialog(this, "Please select tour guide organization to be assinged for the booking.");
+                        return;
+                    } else {
+                        organizations.add(tourGuide);
+                    }
+                    break;
+                case CARSERVICE:
+                    if (carServices == null) {
+                        JOptionPane.showMessageDialog(this, "Please select car services organization to be assinged for the booking.");
+                        return;
+                    } else {
+                        organizations.add(carServices);
+                    }
+                    break;
+            }
+        }
+
+        for (Organization organization : organizations) {
+            resortService.addOrganization(organization);
+        }
+        resortService.setStatus(EService.Status.CONFIRMED);
+        JOptionPane.showMessageDialog(this, "Assigned all resort services to the booking: " + booking.getId());
+        populateTable();       
                     
     }//GEN-LAST:event_viewTaskActionPerformed
 
@@ -167,7 +241,39 @@ public class DisplayOrderForResort extends javax.swing.JPanel {
     }//GEN-LAST:event_tourGuideOrgActionPerformed
 
     private void populateTable() {
-        
+         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        ClientDirectory clientDirectory = EPAdmin.getClientDirectory(); //get all customers
+        for (Client client : clientDirectory.getListOfClientDirectory()) {
+            for (HallBooking booking : client.getHallbookingList()) {      //get booking details each client
+                for (EService service : booking.getServices()) {       //get services under booking
+                    System.out.println("Enterprise : " + service.getBusinessCatalogue());
+                    if (resort.getName().equals(service.getBusinessCatalogue().getName())) {
+                        ResortService resortService = (ResortService) service;
+
+                        Object row[] = new Object[10];
+                        row[0] = booking;
+                        row[1] = client;
+                        row[2] = resortService.getStatus();
+                        row[3] = "NO";
+                        row[4] = "NO";
+
+                        for (ResortService.ResortServiceType type : resortService.getResortServices()) {
+                            switch (type) {
+                                case TOURGUIDE:
+                                    row[3] = "YES";
+                                    break;
+                                case CARSERVICE:
+                                    row[4] = "YES";
+                                    break;
+                            }
+                        }
+                        model.addRow(row);
+                    }
+                }
+            }
+        }       
     }
        
 
@@ -186,5 +292,18 @@ public class DisplayOrderForResort extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateComboBox() {
+                tourGuideOrg.addItem(null);
+        carServiceOrg.addItem(null);
+
+        for (TourGuideORG tourGuide : resort.getTourGuideORG()) {
+            if (tourGuide != null) {
+                tourGuideOrg.addItem(tourGuide);
+            }
+        }
+        for (CarServiceORG carServices : resort.getCarServiceORGList()) {
+            if (carServices != null) {
+                carServiceOrg.addItem(carServices);
+            }
+        }
     }
 }

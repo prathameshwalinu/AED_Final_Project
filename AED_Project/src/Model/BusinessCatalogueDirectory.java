@@ -6,10 +6,10 @@ import java.util.Map;
 
 public class BusinessCatalogueDirectory {
 
-    private List<RS_BC_Resort> listOfResort;
-    private List<RS_BC_Events> listOfEvents;
-    private List<RS_BC_Entertainment> listOfEntertainment;
-    private List<RS_BC_Catering> listOfCatering;
+    private List<Resort> listOfResort;
+    private List<Events> listOfEvents;
+    private List<Entertainment> listOfEntertainment;
+    private List<Catering> listOfCatering;
 
     public BusinessCatalogueDirectory() {
         listOfResort = new ArrayList<>();
@@ -18,60 +18,60 @@ public class BusinessCatalogueDirectory {
         listOfCatering = new ArrayList<>();
     }
 
-    public List<RS_BC_Resort> getListOfResort() {
+    public List<Resort> getListOfResort() {
         return listOfResort;
     }
 
-    public void setListOfResort(List<RS_BC_Resort> listOfResort) {
+    public void setListOfResort(List<Resort> listOfResort) {
         this.listOfResort = listOfResort;
     }
 
-    public List<RS_BC_Events> getListOfEvents() {
+    public List<Events> getListOfEvents() {
         return listOfEvents;
     }
 
-    public void setListOfEvents(List<RS_BC_Events> listOfEvents) {
+    public void setListOfEvents(List<Events> listOfEvents) {
         this.listOfEvents = listOfEvents;
     }
 
-    public List<RS_BC_Entertainment> getListOfEntertainment() {
+    public List<Entertainment> getListOfEntertainment() {
         return listOfEntertainment;
     }
 
-    public void setListOfEntertainment(List<RS_BC_Entertainment> listOfEntertainment) {
+    public void setListOfEntertainment(List<Entertainment> listOfEntertainment) {
         this.listOfEntertainment = listOfEntertainment;
     }
 
-    public List<RS_BC_Catering> getListOfCatering() {
+    public List<Catering> getListOfCatering() {
         return listOfCatering;
     }
 
-    public void setListOfCatering(List<RS_BC_Catering> listOfCatering) {
+    public void setListOfCatering(List<Catering> listOfCatering) {
         this.listOfCatering = listOfCatering;
     }
 
     public void addEntertainment(String name, String contact) {
-        RS_BC_Entertainment entertainment = new RS_BC_Entertainment(name, contact);
+        Entertainment entertainment = new Entertainment(name, contact);
         listOfEntertainment.add(entertainment);
     }
 
     public void addCatering(String name, String contact) {
-        RS_BC_Catering catering = new RS_BC_Catering(name, contact);
+        Catering catering = new Catering(name, contact);
         listOfCatering.add(catering);
     }
 
     public void addEvents(String name, String contact) {
-        RS_BC_Events event = new RS_BC_Events(name, contact);
+        Events event = new Events(name, contact);
         listOfEvents.add(event);
     }
 
     public void addResort(String name, String contact) {
-        RS_BC_Resort resort = new RS_BC_Resort(name, contact);
+        Resort resort = new Resort(name, contact);
         listOfResort.add(resort);
     }
 
-    public RS_BC_Resort findResort(String resortName) {
-        for (RS_BC_Resort resort : listOfResort) {
+    public Resort findResort(String resortName) {
+        for (Resort resort : listOfResort) {
             if (resort.getName().equals(resortName)) {
                 return resort;
             }
@@ -79,8 +79,8 @@ public class BusinessCatalogueDirectory {
         return null;
     }
 
-    public RS_BC_Entertainment findEntertainment(String entertainmentName) {
-        for (RS_BC_Entertainment entr : listOfEntertainment) {
+    public Entertainment findEntertainment(String entertainmentName) {
+        for (Entertainment entr : listOfEntertainment) {
             if (entr.getName().equals(entertainmentName)) {
                 return entr;
             }
@@ -88,8 +88,8 @@ public class BusinessCatalogueDirectory {
         return null;
     }
 
-    public RS_BC_Catering findCatering(String name) {
-        for (RS_BC_Catering entertainment : listOfCatering) {
+    public Catering findCatering(String name) {
+        for (Catering entertainment : listOfCatering) {
             if (entertainment.getName().equals(name)) {
                 return entertainment;
             }
@@ -97,8 +97,8 @@ public class BusinessCatalogueDirectory {
         return null;
     }
 
-    public RS_BC_Events findEvents(String name) {
-        for (RS_BC_Events event : listOfEvents) {
+    public Events findEvents(String name) {
+        for (Events event : listOfEvents) {
             if (event.getName().equals(name)) {
                 return event;
             }
@@ -106,19 +106,19 @@ public class BusinessCatalogueDirectory {
         return null;
     }
 
-    public void deleteBusinessCatalogueEvents(RS_BC_Events event) {
+    public void deleteBusinessCatalogueEvents(Events event) {
         listOfEvents.remove(event);
     }
 
-    public void deleteBusinessCatalogueEntertainment(RS_BC_Entertainment Entertainment) {
+    public void deleteBusinessCatalogueEntertainment(Entertainment Entertainment) {
         listOfEntertainment.remove(Entertainment);
     }
 
-    public void deleteBusinessCatalogueCatering(RS_BC_Catering cater) {
+    public void deleteBusinessCatalogueCatering(Catering cater) {
         listOfCatering.remove(cater);
     }
 
-    public void deleteBusinessCatalogueResort(RS_BC_Resort resort) {
+    public void deleteBusinessCatalogueResort(Resort resort) {
         listOfResort.remove(resort);
     }
 }
