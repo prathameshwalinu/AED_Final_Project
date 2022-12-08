@@ -1,23 +1,32 @@
 package ui.confirm;
 
 import Model.Admin;
+import Model.Client;
+import Model.ClientDirectory;
+import Model.HallBooking;
+import Model.Organization;
+import Model.Supervisor;
+import Model.services.EService;
 import javax.swing.table.DefaultTableModel;
 
-public class WorkRequestsForEventPanel extends javax.swing.JPanel {
+public class WorkRequestsForEventPanel extends javax.swing.JPanel 
+{
 
-    private Admin Admin;
+    private Admin EPAdmin;
     private String user;
     private String type;
-
-    public WorkRequestsForEventPanel(Admin Admin, String user, String type) {
-        initComponents();
-        this.Admin = Admin;
-        this.user = user;
-        this.type = type;
-        lblbookservices.setText(lblbookservices.getText() + type.toUpperCase() + " ORGANIZATION");
-        populateTable();
-        setBackground(new java.awt.Color(255, 208, 56));
-    }
+    
+    
+public WorkRequestsForEventPanel(Admin Admin, String user, String type) 
+{
+    initComponents();
+    this.EPAdmin = EPAdmin;
+    this.user = user;
+    this.type = type;
+    lblbookservices.setText(lblbookservices.getText() + type.toUpperCase() + " ORGANIZATION");
+    populateTable();
+    setBackground(new java.awt.Color(255, 208, 56));
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -84,6 +93,31 @@ public class WorkRequestsForEventPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        
+             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        ClientDirectory clientDirectory = EPAdmin.getClientDirectory();
+        for (Client client : clientDirectory.getListOfClientDirectory()) {
+            for (HallBooking booking : client.getHallbookingList()) {
+                for (EService service : booking.getServices()) {
+                    for (Organization org : service.getListOfOrganization()) {
+                        for (Supervisor man : org.getListOfSupervisor()) {
+                            if (man.getUsername().equals(user)) {
+                                Object row[] = new Object[5];
+                                row[0] = client.getUserName();
+                                row[1] = booking.getId();
+                                row[2] = booking.getResortService().getBusinessCatalogue().getName();
+                                row[3] = service.getDate();
+                                row[4] = service.getStatus();
+
+                                model.addRow(row);
+                            }
+
+                            System.out.println();
+                        }
+                    }
+                }
+            }
+        }   
     }
 }
