@@ -1,5 +1,14 @@
 package ui.CateringManagerRole;
 
+import Model.Admin;
+import Model.Catering;
+import Model.Client;
+import Model.ClientDirectory;
+import Model.HallBooking;
+import Model.ServiceAgentOrganisation;
+import Model.services.CateringService;
+import Model.services.EService;
+import java.security.Provider.Service;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -8,16 +17,20 @@ import javax.swing.table.DefaultTableModel;
 public class ViewTaskPanelCatering extends javax.swing.JPanel {
 
 
+    private Admin EPAdmin;
     private Runnable callOnCreateMethod;
     private String user;
     private String type;
+    private Catering catering;
 
 
-    public ViewTaskPanelCatering(Runnable callOnCreateMethod, String user, String type) {
+    public ViewTaskPanelCatering(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, Catering catering) {
         initComponents();
+        this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
+        this.catering = catering;
         populateComboBox();
         populateTable();
         setBackground(new java.awt.Color(255, 208, 56));
@@ -156,6 +169,41 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
             return;
         }
 
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        HallBooking booking = (HallBooking) model.getValueAt(selectRowIndex, 0);
+
+        CateringService resService = null;
+        for (EService service : booking.getServices()) {
+            if (catering.getName().equals(service.getBusinessCatalogue().getName())) {
+                resService = (CateringService) service;
+                break;
+            }
+        }
+
+        if (resService == null) {
+            throw new RuntimeException("Restaurant service not found, something went wrong.");
+        }
+
+        if (!resService.getStatus().equals(EService.Status.PENDING)) {
+            JOptionPane.showMessageDialog(this, String.format("Booking '%s' should be 'PENDING' state to be accepted.",
+                    booking.getId()));
+            return;
+        }
+
+        ServiceAgentOrganisation delivery = (ServiceAgentOrganisation) deliveryOrg.getSelectedItem();
+        if (delivery == null) {
+            JOptionPane.showMessageDialog(this, "Please select delivery organization to be assinged.");
+            return;
+        }
+
+        resService.addOrganization(delivery);
+        resService.setStatus(EService.Status.CONFIRMED);
+
+        JOptionPane.showMessageDialog(this, String.format("Booking %s is assigned to delivery ord '%s'",
+                booking.getId(), delivery));
+
+        populateTable();
+
 
     }//GEN-LAST:event_acceptBtnActionPerformed
 
@@ -165,6 +213,30 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a booking to deny request.");
             return;
         }
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        HallBooking booking = (HallBooking) model.getValueAt(selectRowIndex, 0);
+
+        CateringService resService = null;
+        for (EService service : booking.getServices()) {
+            if (service instanceof CateringService) {
+                resService = (CateringService) service;
+                break;
+            }
+        }
+
+        if (resService == null) {
+            throw new RuntimeException("Restaurant service not found, something went wrong.");
+        }
+        if (!resService.getStatus().equals(EService.Status.PENDING)) {
+            JOptionPane.showMessageDialog(this, String.format("Booking '%s' should be 'PENDING' state to be accepted.",
+                    booking.getId()));
+            return;
+        }
+
+        resService.setStatus(EService.Status.REJECTED);
+        JOptionPane.showMessageDialog(this, String.format("Booking '%s' is denied.", booking.getId()));
+        populateTable();
 
  
     }//GEN-LAST:event_denyBtnActionPerformed
@@ -182,15 +254,34 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 
-
-
+        Object row[] = new Object[10];
+        ClientDirectory clientDirectory = EPAdmin.getClientDirectory(); //get all customers
+        for (Client customer : clientDirectory.getListOfClientDirectory()) {
+            for (HallBooking booking : customer.getHallbookingList()) {      //get booking details each customer
+                for (EService service : booking.getServices()) {       //get services under booking
+                    if (service.getBusinessCatalogue().getName().equals(catering.getName())) {
+                        CateringService cateringService = (CateringService) service;
+                        row[0] = booking;
+                        row[1] = customer;
+                        row[2] = booking.getStatus();
+                        row[3] = customer.getAddress();
+                        row[4] = cateringService.getStatus();
+                        model.addRow(row);
+                    }
+                }
+            }
+        }
     }
 
     private void populateComboBox() {
-
+        deliveryOrg.addItem(null);
+        for (ServiceAgentOrganisation delivery : catering.getListOfServiceAgentOrganisation()) {
+            if (delivery != null) {
+                deliveryOrg.addItem(delivery);
+            }
+        }
     }
 }
