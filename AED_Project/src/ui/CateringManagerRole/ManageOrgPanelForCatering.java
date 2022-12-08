@@ -1,5 +1,10 @@
 package ui.CateringManagerRole;
 
+import Model.Admin;
+import Model.BusinessCatalogueDirectory;
+import Model.Catering;
+import Model.ServiceAgentOrganisation;
+import Model.ServiceLocation;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -7,13 +12,23 @@ import javax.swing.table.DefaultTableModel;
 import ui.main.Validator;
 
 public class ManageOrgPanelForCatering extends javax.swing.JPanel {
+    
+    private Admin EPAdmin;
     private Runnable callOnCreateMethod;
     private String type;
     private String user;
+    private ServiceLocation location;
 
     public ManageOrgPanelForCatering( Runnable callOnCreateMethod, String user, String type) {
         initComponents();
- 
+        this.EPAdmin = EPAdmin;
+        this.callOnCreateMethod = callOnCreateMethod;
+        this.user = user;
+        this.type = type;
+        this.location = location;
+        setBackground(new java.awt.Color(255, 208, 56));
+        cityNameTextField.setText(location.getName());
+        cityNameTextField.setEditable(false);
 
         deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
         deleteBtn.setOpaque(true);
@@ -207,12 +222,57 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
- 
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        Object row[] = new Object[20];
+        String name = nameField.getText();
+        String contact = contactField.getText();
+        String locationName = location.getName();
+        String orgType1 = orgCombo.getSelectedItem().toString();      // org-type (delivery org)    
+        BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
+
+        if (name == null || name.length() < 2) {
+            JOptionPane.showMessageDialog(this, "Organization name should be at least 2 characters long.");
+            return;
+        }
+
+        List<Catering> res = enterpriseCatalogueDirectory.getListOfCatering();
+        for (int i = 0; i < res.size(); i++) {
+            if (res.get(i).findSupervisor(user) != null) {     //find catering for which manager is working for   
+                res.get(i).addServiceAgentOrganisation(name, contact, locationName);   //add deliveryman org name
+                row[0] = orgType1;
+                row[1] = name;
+                row[2] = contact;
+                row[3] = locationName;
+                model.addRow(row);
+                JOptionPane.showMessageDialog(this, "Organization added successfully");
+                return;
+            }
+        } 
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int selectedRowIndex = jTable1.getSelectedRow();
+        if (selectedRowIndex < 0) {
+            JOptionPane.showMessageDialog(this, "Please select a row to delete");
+            return;
+        }
+        String OrgType = (String) model.getValueAt(selectedRowIndex, 0);
+        String OrgName = (String) model.getValueAt(selectedRowIndex, 1);
+        BusinessCatalogueDirectory enterpriseDirec = location.getBusinessCatalogueDirectory();
+        for (Catering res : enterpriseDirec.getListOfCatering()) {
+            if (res.findSupervisor(user) != null) {
+                if (res.getListOfServiceAgentOrganisation() != null) {
+                    for (ServiceAgentOrganisation del : res.getListOfServiceAgentOrganisation()) {
+                        if (del.getName().equals(OrgName)) {
+                            del.deleteServiceAgent(del);
+                            JOptionPane.showMessageDialog(this, "Deleted successfully");
+                            populateTable();
+                        }
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
@@ -224,10 +284,24 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
 
         String orgType = orgCombo.getSelectedItem().toString();
         String orgname = model.getValueAt(jTable1.getSelectedRow(), 1).toString();
+
+        BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        for (Catering res : enterpriseCatalogueDirectory.getListOfCatering()) {
+            if (orgType.equals("ServiceAgent") && res.getListOfServiceAgentOrganisation() != null) {
+                for (ServiceAgentOrganisation del : res.getListOfServiceAgentOrganisation()) {
+                    if (del.getName().equals(orgname)) {
+                        del.setName(nameField.getText());
+                        del.setContact(contactField.getText());
+                        JOptionPane.showMessageDialog(this, "Updated successfully");
+                        populateTable();
+                        return;
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         if (jTable1.getSelectedRowCount() != 1) {
             return;
@@ -269,6 +343,21 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
         model.setRowCount(0);
         Object row[] = new Object[10];
         String orgType1 = orgCombo.getSelectedItem().toString();
-
+        ServiceLocation location1 = EPAdmin.findServiceLocation(location.getName());
+        BusinessCatalogueDirectory enterpriseCatalogueDirectory = location1.getBusinessCatalogueDirectory();
+        for (Catering catering : enterpriseCatalogueDirectory.getListOfCatering()) {
+            if (catering.findSupervisor(user) != null) {
+                if (catering.getListOfServiceAgentOrganisation() != null) {
+                    row[0] = "ServiceAgent";
+                    for (ServiceAgentOrganisation delivery : catering.getListOfServiceAgentOrganisation()) {
+                        row[0] = "ServiceAgent";
+                        row[1] = delivery.getName();
+                        row[2] = delivery.getContact();
+                        row[3] = location1.getName();
+                        model.addRow(row);
+                    }
+                }
+            }
+        }
     }
 }

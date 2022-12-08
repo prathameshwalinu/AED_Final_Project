@@ -1,13 +1,33 @@
 package ui.CateringManagerRole;
 
+import Model.Admin;
+
 
 
 public class CateringMainPanel extends javax.swing.JPanel {
 
-;
+    private Admin EPAdmin;
+    private Runnable callOnCreateMethod1;
+    private Runnable callOnCreateMethod2;
+    private Runnable callOnCreateMethod3;
+    private Runnable callOnCreateMethod4;
 
-    public CateringMainPanel() {
+    public CateringMainPanel(Admin systemAdmin, Runnable callOnCreateMethod1, Runnable callOnCreateMethod2, Runnable callOnCreateMethod3, Runnable callOnCreateMethod4) {
         initComponents();
+        this.callOnCreateMethod1 = callOnCreateMethod1;
+        this.callOnCreateMethod2 = callOnCreateMethod2;
+        this.callOnCreateMethod3 = callOnCreateMethod3;
+        this.callOnCreateMethod4 = callOnCreateMethod4;
+        setBackground(new java.awt.Color(255, 208, 56));
+
+        viewTask.setBackground(new java.awt.Color(0, 102, 102));
+        viewTask.setOpaque(true);
+        orgButton.setBackground(new java.awt.Color(0, 102, 102));
+        orgButton.setOpaque(true);
+        orgAdminBtn.setBackground(new java.awt.Color(0, 102, 102));
+        orgAdminBtn.setOpaque(true);
+        addMenu.setBackground(new java.awt.Color(0, 102, 102));
+        addMenu.setOpaque(true);
         
     }
 
@@ -94,19 +114,27 @@ public class CateringMainPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTaskActionPerformed
+            
+        callOnCreateMethod1.run(); 
         
     }//GEN-LAST:event_viewTaskActionPerformed
 
     private void orgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgButtonActionPerformed
-     
+                
+        callOnCreateMethod2.run(); 
+        
     }//GEN-LAST:event_orgButtonActionPerformed
 
     private void orgAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgAdminBtnActionPerformed
+            
+        callOnCreateMethod3.run();  
         
     }//GEN-LAST:event_orgAdminBtnActionPerformed
 
     private void addMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMenuActionPerformed
-       
+            
+        callOnCreateMethod4.run();       
+            
     }//GEN-LAST:event_addMenuActionPerformed
 
 

@@ -1,5 +1,11 @@
 package ui.CateringManagerRole;
 
+import Model.Admin;
+import Model.BusinessCatalogueDirectory;
+import Model.Catering;
+import Model.Catering_Menu;
+import Model.ServiceLocation;
+import Model.Supervisor;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -7,12 +13,22 @@ import javax.swing.table.DefaultTableModel;
 
 public class AddOrderJPanel extends javax.swing.JPanel {
 
+    private Admin EPAdmin;
+    private Runnable callOnCreateMethod;
+    private String type;
+    private String user;
+    private ServiceLocation location;
 
 
-    public AddOrderJPanel() {
+    public AddOrderJPanel(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
         initComponents();
- 
+        this.EPAdmin = EPAdmin;
+        this.callOnCreateMethod = callOnCreateMethod;
+        this.user = user;
+        this.type = type;
+        this.location = location;
         setBackground(new java.awt.Color(255,208,56));
+        populateMenu();
         addBtn.setBackground(new java.awt.Color(0, 102, 102));
         addBtn.setOpaque(true);
         backButton.setBackground(new java.awt.Color(0, 102, 102));
@@ -20,7 +36,23 @@ public class AddOrderJPanel extends javax.swing.JPanel {
 
     }
 
-
+    public boolean validateMenu() {
+        if (menuField.getText().matches("[a-zA-Z]{2,19}")) {
+            return true;
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid input : menu should contain only alphabets");
+            return false;
+        }
+    }
+    
+   public boolean priceField() {
+    if (priceField == null) {
+        JOptionPane.showMessageDialog(this, "price field should not b left blank");
+        return false;
+    } else {
+        return true;
+    }
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -145,6 +177,21 @@ public class AddOrderJPanel extends javax.swing.JPanel {
         String item = menuField.getText();
         int price = Integer.parseInt(priceField.getText().trim());
 
+        BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        List<Catering> resList = enterpriseCatalogueDirectory.getListOfCatering();                // get all restaurants
+        for (Catering res : resList) {
+            List<Supervisor> supervisor = res.getListOfSupervisor();
+            for (Supervisor manager : supervisor) {
+                if (manager.getUsername().equals(user)) {            //if manager is found in that catering then add item to that res...
+                    res.addMenuItem(item, price);
+
+                    populateMenu();
+                    JOptionPane.showMessageDialog(this, "Item added successfully");
+                    return;
+                }
+            }
+        }
+
 
     }//GEN-LAST:event_addBtnActionPerformed
 
@@ -161,5 +208,21 @@ public class AddOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JTextField priceField;
     // End of variables declaration//GEN-END:variables
 
+    private void populateMenu() {
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        
+        BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        for (Catering catering : enterpriseCatalogueDirectory.getListOfCatering()) {
+            if (catering.findSupervisor(user) != null) {
+                Object row[] = new Object[10];
+                for (Catering_Menu item : catering.getListOfMenuItem()) {
+                    row[0] = item.getDetails();
+                    row[1] = item.getPrice();
+                    model.addRow(row);
+                }
+            }
+        }
 
+    }
 }
