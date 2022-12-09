@@ -16,7 +16,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
     private String username;
     private HallBooking booking;
     
-    public EntertainmentServicesJPanel() {
+    public EntertainmentServicesJPanel(Admin systems, Consumer<HallBooking> callOnCreateMethod1, String username, HallBooking booking) {
         initComponents();
         this.systems = systems;
         this.callOnCreateMethod1 = callOnCreateMethod1;

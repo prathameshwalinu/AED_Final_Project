@@ -17,7 +17,7 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
     private Admin EPAdmin;
     private Runnable callOnCreateMethod;
 
-    public BusinessCatalogueJPanel(Runnable callOnCreateMethod) {
+    public BusinessCatalogueJPanel(Admin EPAdmin, Runnable callOnCreateMethod) {
         
         initComponents();
         this.EPAdmin = EPAdmin;

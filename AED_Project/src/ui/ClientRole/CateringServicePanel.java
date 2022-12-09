@@ -17,7 +17,7 @@ public class CateringServicePanel extends javax.swing.JPanel {
     private String username;
     private HallBooking booking;
 
-    public CateringServicePanel() {
+    public CateringServicePanel(Admin systems, Consumer<HallBooking> callOnCreateMethod1, String username, HallBooking booking) {
 initComponents();
         this.systems = systems;
         this.callOnCreateMethod1 = callOnCreateMethod1;

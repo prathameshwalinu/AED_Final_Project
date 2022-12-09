@@ -21,7 +21,7 @@ public class ManageOrgAdminForCatering extends javax.swing.JPanel {
     private String user;
     private ServiceLocation location;
    
-    public ManageOrgAdminForCatering() {
+    public ManageOrgAdminForCatering(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
         initComponents();
         this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;

@@ -343,9 +343,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 List<Supervisor> supervisor = entertainment.get(j).getListOfSupervisor();
                 for (int k = 0; k < supervisor.size(); k++) {
                     if (supervisor.get(k).getUsername().equals(username)) {
-                        EntertainmentSupervisorPanel entertainmentSupervisorPanel = new EntertainmentSupervisorPanelAdmin, this::viewTaskPanel, this::createOrganization,
-                                this::organizationAdminPanel);
-                        jSplitPane.setRightComponent(entertainmentSupervisorPanel);
+                        EntertainmentSupervisorPanel entertainmentSupervisorPanel = new EntertainmentSupervisorPanel(Admin, this::viewTaskPanel, this::createOrganization,this::organizationAdminPanel);                                          
+                                jSplitPane.setRightComponent(entertainmentSupervisorPanel);
 
                     }
                 }

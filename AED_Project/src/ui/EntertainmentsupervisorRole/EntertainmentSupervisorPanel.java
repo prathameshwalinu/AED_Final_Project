@@ -9,13 +9,13 @@ import Model.Admin;
 
 public class EntertainmentSupervisorPanel extends javax.swing.JPanel {
 
-    private Admin EPAdmin;
+    private Admin Admin;
     
     private Runnable callOnCreateMethod1;
     private Runnable callOnCreateMethod2;
     private Runnable callOnCreateMethod3;
 
-    public EntertainmentSupervisorPanel(Admin EPAdmin, Runnable callOnCreateMethod1, Runnable callOnCreateMethod2, Runnable callOnCreateMethod3) {
+    public EntertainmentSupervisorPanel(Admin Admin, Runnable callOnCreateMethod1, Runnable callOnCreateMethod2, Runnable callOnCreateMethod3) {
       
         initComponents();
         
