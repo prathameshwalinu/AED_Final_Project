@@ -78,8 +78,6 @@ public class MainJFrame extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
         WorkArea = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -128,12 +126,12 @@ public class MainJFrame extends javax.swing.JFrame {
                         .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(logoutBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ControlPanelLayout.setVerticalGroup(
             ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ControlPanelLayout.createSequentialGroup()
-                .addGap(205, 205, 205)
+                .addContainerGap(203, Short.MAX_VALUE)
                 .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -141,22 +139,25 @@ public class MainJFrame extends javax.swing.JFrame {
                 .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(47, 47, 47)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addComponent(loginBtn)
                 .addGap(31, 31, 31)
                 .addComponent(logoutBtn)
-                .addContainerGap(396, Short.MAX_VALUE))
+                .addContainerGap(387, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(ControlPanel);
 
-        WorkArea.setLayout(null);
-
-        jLabel7.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
-        WorkArea.add(jLabel7);
-        jLabel7.setBounds(305, 232, 0, 0);
-        WorkArea.add(jLabel16);
-        jLabel16.setBounds(910, 340, 0, 150);
+        javax.swing.GroupLayout WorkAreaLayout = new javax.swing.GroupLayout(WorkArea);
+        WorkArea.setLayout(WorkAreaLayout);
+        WorkAreaLayout.setHorizontalGroup(
+            WorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 1123, Short.MAX_VALUE)
+        );
+        WorkAreaLayout.setVerticalGroup(
+            WorkAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 813, Short.MAX_VALUE)
+        );
 
         jSplitPane.setRightComponent(WorkArea);
 
@@ -174,20 +175,8 @@ public class MainJFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-
-        System.out.println("Logout called.");
-        DbUtils.getInstance().storeSystem(Admin);
-        jSplitPane.setRightComponent(WorkArea);
-        loginBtn.setEnabled(true);
-        logoutBtn.setEnabled(false);
-        usernameField.setText("");
-        passwordField.setText("");
-        System.out.println("Logout success.");
-    }//GEN-LAST:event_logoutBtnActionPerformed
-
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
-               this.userName = usernameField.getText();
+        this.userName = usernameField.getText();
         this.password = passwordField.getText();
 
         if (Admin.validateUserNamePassword(userName, password)) {
@@ -256,9 +245,19 @@ public class MainJFrame extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Invalid username or password");
         }
-        
- 
+
     }//GEN-LAST:event_loginBtnActionPerformed
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+        System.out.println("Logout called.");
+//        DbUtils.getInstance().storeSystem(Admin);
+        jSplitPane.setRightComponent(WorkArea);
+        loginBtn.setEnabled(true);
+        logoutBtn.setEnabled(false);
+        usernameField.setText("");
+        passwordField.setText("");
+        System.out.println("Logout success.");
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void renderNetworkPanel() {
         ServiceLocationsJPanel network1 = new ServiceLocationsJPanel(Admin, this::renderSystemAdminPanel);
@@ -678,9 +677,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private javax.swing.JPanel ControlPanel;
     private javax.swing.JPanel WorkArea;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JSplitPane jSplitPane;
     private javax.swing.JButton loginBtn;
     private javax.swing.JButton logoutBtn;

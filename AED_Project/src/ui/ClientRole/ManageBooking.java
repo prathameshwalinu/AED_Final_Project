@@ -165,6 +165,16 @@ public class ManageBooking extends javax.swing.JPanel {
         String bookingId = (String) model.getValueAt(selectedRowIndex, 1);
 
         System.out.println(bookingId + " is selected");
+        ClientDirectory clientDirectory = EPAdmin.getClientDirectory();
+        Client client = clientDirectory.findClientUsername(username);
+
+        List<HallBooking> list = client.getHallbookingList();
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i).getId().equals(bookingId)) {
+                callOnViewServiceMethod.accept(list.get(i));
+                return;
+            }
+        }
 
     }//GEN-LAST:event_viewOrderActionPerformed
 
@@ -181,6 +191,21 @@ public class ManageBooking extends javax.swing.JPanel {
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
+        Object row[] = new Object[10];
+        ClientDirectory clientDirectory = EPAdmin.getClientDirectory();
+        Client client = clientDirectory.findClientUsername(username);
+        System.out.println("customer found is " + client.getName() + " username is " + username);
+        for (HallBooking bookingList : client.getHallbookingList()) {
+            row[0] = bookingList.getResortService().getBusinessCatalogue();
+            row[1] = bookingList.getId();
+            String id = bookingList.getId();
+            System.out.println(id);
+            row[2] = bookingList.getTotalCost();
+            row[3] = bookingList.getStatus();
+            row[4] = bookingList.getCheckin();
+            row[5] = bookingList.getCheckout();
+            model.addRow(row);
+        }
 
     }
 }
