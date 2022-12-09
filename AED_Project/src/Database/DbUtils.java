@@ -32,12 +32,14 @@ public class DbUtils {
     private ObjectContainer createConnection() {
         EmbeddedConfiguration config = Db4oEmbedded.newConfiguration();
         config.common().activationDepth(Integer.MAX_VALUE);
+        config.common().objectClass(Admin.class).updateDepth(Integer.MAX_VALUE);
+        config.common().objectClass(Admin.class).cascadeOnUpdate(true);
 
-        ObjectContainer db = Db4oEmbedded.openFile(config, "database/aed_project_db");
+        ObjectContainer db = Db4oEmbedded.openFile(config, "database/riverstone.db4o");
         return db;
     }
-    
-        public synchronized void storeSystem(Admin system) {
+
+    public synchronized void storeSystem(Admin system) {
         ObjectContainer conn = createConnection();
         conn.store(system);
         conn.commit();
