@@ -242,7 +242,7 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookRoomBtnActionPerformed
-                Date checkinDate = DCcheckin.getDate();
+        Date checkinDate = DCcheckin.getDate();
         Date checkoutdate = DCcheckout.getDate();
         String city = cityCombo.getSelectedItem().toString();
         int roomCount = Integer.parseInt(roomField.getText());

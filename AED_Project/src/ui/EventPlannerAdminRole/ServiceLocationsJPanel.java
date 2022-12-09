@@ -74,6 +74,11 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
         lblLocation.setText("SERVICE LOCATION:");
 
         txtlocation.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        txtlocation.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtlocationActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -139,12 +144,17 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String name = txtlocation.getText();
-        if (validateName()) {    
+        if (validateName()) {   
+            EPAdmin.addLocation(name);
             JOptionPane.showMessageDialog(this, "Location added successfully");
             txtlocation.setText("");
             populateTable();
         }
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void txtlocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtlocationActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtlocationActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

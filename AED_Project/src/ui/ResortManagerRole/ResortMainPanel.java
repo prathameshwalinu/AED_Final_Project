@@ -40,7 +40,6 @@ public class ResortMainPanel extends javax.swing.JPanel {
         orgBtn = new javax.swing.JButton();
         viewTask = new javax.swing.JButton();
         manageRooms = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -89,10 +88,6 @@ public class ResortMainPanel extends javax.swing.JPanel {
         });
         add(manageRooms);
         manageRooms.setBounds(360, 420, 300, 40);
-
-        jLabel1.setText("jLabel1");
-        add(jLabel1);
-        jLabel1.setBounds(790, 0, 110, 130);
     }// </editor-fold>//GEN-END:initComponents
 
     private void orgAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgAdminBtnActionPerformed
@@ -120,7 +115,6 @@ public class ResortMainPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblsysadmin;
     private javax.swing.JButton manageRooms;
     private javax.swing.JButton orgAdminBtn;
