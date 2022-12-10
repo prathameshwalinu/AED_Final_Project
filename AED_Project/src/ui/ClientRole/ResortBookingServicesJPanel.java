@@ -294,7 +294,6 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                 + (roomCount * roomType.getRate()) + "$");
         callOnCreateMethod1.run();
         
-
         String message = booking.prettyPrint();        
 //        System.out.println(message); 
         EmailFun.sendMail(emailid.getText(), message);

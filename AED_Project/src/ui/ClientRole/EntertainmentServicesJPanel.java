@@ -49,7 +49,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         cmbEntertainment = new javax.swing.JComboBox();
-        dateField = new com.toedter.calendar.JDateChooser();
+        dateFld = new com.toedter.calendar.JDateChooser();
 
         lblbookservices.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblbookservices.setText("ENTERTAINMENT SERVICES");
@@ -133,7 +133,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
                                 .addGap(60, 60, 60)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(cmbEntertainment, 0, 231, Short.MAX_VALUE)
-                                    .addComponent(dateField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(dateFld, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(addServiceBtn)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -158,14 +158,15 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE)
-                        .addComponent(jLabel7))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 97, Short.MAX_VALUE)
                         .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(48, 48, 48)
-                        .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
+                        .addGap(45, 45, 45)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(dateFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cmbEntertainment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -197,7 +198,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Please select a Entertainment menu from the dropdown.");
             return;
         }
-        Date date = DateUtils.formatDate(dateField.getDate());
+        Date date = DateUtils.formatDate(dateFld.getDate());
         Date checkin = booking.getCheckin();
         Date checkout = booking.getCheckout();
 
@@ -254,7 +255,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox btnMusic;
     private javax.swing.JCheckBox btnShow;
     private javax.swing.JComboBox cmbEntertainment;
-    private com.toedter.calendar.JDateChooser dateField;
+    private com.toedter.calendar.JDateChooser dateFld;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

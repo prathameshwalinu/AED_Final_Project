@@ -20,12 +20,12 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 /**
  *
- * @author vivekhanagoji
+ * @author prathamesh
  */
 public class EmailFun {
-    
-    
-    
+
+
+
     public static void sendMail(String recepient, String message)
     {
         try {
@@ -34,10 +34,10 @@ public class EmailFun {
             pro.put("mail.smtp.starttls.enable", "true");
             pro.put("mail.smtp.host", "smtp.gmail.com");
             pro.put("mail.smtp.port", "587");
-            
+
             String myAccEMail =    "hulkrobert25@gmail.com";
             String password = "pblqxfiyclbgtpvp";
-            
+
             Session ses = Session.getInstance(pro, new Authenticator()
             {
                 @Override
@@ -45,22 +45,20 @@ public class EmailFun {
                     return new PasswordAuthentication(myAccEMail, password);
                 }
             });
-            
+
             Message msg = prepareMessage(ses, myAccEMail, recepient, message);
-            
+
             Transport.send(msg);    
             System.out.println("Message sent successfully");
         } catch (MessagingException ex) {
             Logger.getLogger(EmailFun.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
     }
         private static Message prepareMessage(Session ses, String myAccEMail, String recepient, String mainMessage)
         {
         try {
             Message message = new MimeMessage(ses);
             message.setFrom(new InternetAddress(myAccEMail));
-            
             message.setRecipient(Message.RecipientType.TO, new InternetAddress(recepient ) );
             message.setSubject("Your Booking Confirmation");
             message.setText(mainMessage);
@@ -70,5 +68,5 @@ public class EmailFun {
         }
         return null;
         }
-          
+
 }
