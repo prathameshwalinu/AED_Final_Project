@@ -208,4 +208,6 @@ public class ManageBooking extends javax.swing.JPanel {
         }
 
     }
+    
+    //resolve garbage value for booking ID
 }
