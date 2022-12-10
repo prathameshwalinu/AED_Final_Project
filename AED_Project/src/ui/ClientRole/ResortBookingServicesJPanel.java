@@ -2,6 +2,7 @@ package ui.ClientRole;
 
 import Model.Admin;
 import Model.Client;
+import Model.EmailFun;
 import Model.HallBooking;
 import Model.HallType;
 import Model.HallType.RoomType;
@@ -18,6 +19,8 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
     private Admin systems;
     private Runnable callOnCreateMethod1;
     private String username;
+    private HallBooking booking;
+
 
     public ResortBookingServicesJPanel(Admin systems, Runnable callOnCreateMethod1, String username) {
         initComponents();
@@ -63,6 +66,8 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
         DCcheckin = new com.toedter.calendar.JDateChooser();
         DCcheckout = new com.toedter.calendar.JDateChooser();
         lbldate1 = new javax.swing.JLabel();
+        lblroom1 = new javax.swing.JLabel();
+        emailid = new javax.swing.JTextField();
 
         backBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
         backBtn.setText("< BACK");
@@ -130,6 +135,9 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
         lbldate1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
         lbldate1.setText("CHECK-OUT");
 
+        lblroom1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        lblroom1.setText("EMAIL ID");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -181,12 +189,15 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                                                         .addGroup(layout.createSequentialGroup()
                                                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                             .addGap(45, 45, 45))
-                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                            .addComponent(lblroom)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(lblroom, javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                .addComponent(lblroom1))
                                                             .addGap(31, 31, 31)))
                                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                         .addComponent(roomtypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                        .addComponent(roomField)))
+                                                        .addComponent(roomField)
+                                                        .addComponent(emailid)))
                                                 .addComponent(priceBtn))
                                             .addGap(48, 48, 48)
                                             .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))))
@@ -231,13 +242,17 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblroom)
                     .addComponent(roomField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblroom1)
+                    .addComponent(emailid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(priceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(56, 56, 56)
                 .addComponent(bookRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(231, Short.MAX_VALUE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -279,6 +294,10 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(this, "Room booked successfully. The total cost for your booking is "
                 + (roomCount * roomType.getRate()) + "$");
         callOnCreateMethod1.run();
+        
+        String message = booking.prettyPrint();        
+//        System.out.println(message); 
+        EmailFun.sendMail(emailid.getText(), message);
     }//GEN-LAST:event_bookRoomBtnActionPerformed
 
     private void cityComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityComboActionPerformed
@@ -320,6 +339,7 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel btnnoofpeople;
     private javax.swing.JComboBox<String> cityCombo;
     private javax.swing.JComboBox<String> cmbResort;
+    private javax.swing.JTextField emailid;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel lblbookservices;
@@ -328,6 +348,7 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel lbldate1;
     private javax.swing.JLabel lblhotel;
     private javax.swing.JLabel lblroom;
+    private javax.swing.JLabel lblroom1;
     private javax.swing.JTextField peopleField;
     private javax.swing.JButton priceBtn;
     private javax.swing.JTextField priceField;
