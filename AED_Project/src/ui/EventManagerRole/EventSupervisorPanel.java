@@ -16,13 +16,13 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.callOnCreateMethod2 = callOnCreateMethod2;
         this.callOnCreateMethod3 = callOnCreateMethod3;
-        setBackground(new java.awt.Color(255, 208, 56));
-        viewTask.setBackground(new java.awt.Color(0, 102, 102));
-        viewTask.setOpaque(true);
-        orgBtn.setBackground(new java.awt.Color(0, 102, 102));
-        orgBtn.setOpaque(true);
-        orgadmin.setBackground(new java.awt.Color(0, 102, 102));
-        orgadmin.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//        viewTask.setBackground(new java.awt.Color(0, 102, 102));
+//        viewTask.setOpaque(true);
+//        orgBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        orgBtn.setOpaque(true);
+//        orgadmin.setBackground(new java.awt.Color(0, 102, 102));
+//        orgadmin.setOpaque(true);
 
     }
 
@@ -37,27 +37,30 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        orgBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        orgBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         orgBtn.setText("MANAGE ORGANISATION");
+        orgBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         orgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orgBtnActionPerformed(evt);
             }
         });
 
-        viewTask.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        viewTask.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         viewTask.setText("DISPLAY");
+        viewTask.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         viewTask.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewTaskActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Academy Engraved LET", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("EVENT SUPERVISOR PANEL ");
 
-        orgadmin.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        orgadmin.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         orgadmin.setText("MANAGE ORGANISATION ADMIN");
+        orgadmin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         orgadmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orgadminActionPerformed(evt);
@@ -79,7 +82,7 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
                             .addComponent(orgadmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(viewTask, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(orgBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(252, Short.MAX_VALUE))
+                .addContainerGap(270, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

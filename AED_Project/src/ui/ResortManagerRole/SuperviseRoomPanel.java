@@ -36,12 +36,12 @@ public class SuperviseRoomPanel extends javax.swing.JPanel {
         {
             roomTypeComboBox.addItem(type);
         }
-        setBackground(new java.awt.Color(255, 208, 56));
-
-        addButton.setBackground(new java.awt.Color(0, 102, 102));
-        addButton.setOpaque(true);
-        backButton.setBackground(new java.awt.Color(0, 102, 102));
-        backButton.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//
+//        addButton.setBackground(new java.awt.Color(0, 102, 102));
+//        addButton.setOpaque(true);
+//        backButton.setBackground(new java.awt.Color(0, 102, 102));
+//        backButton.setOpaque(true);
         populateTable();
     }
 

@@ -18,16 +18,16 @@ public class CateringMainPanel extends javax.swing.JPanel {
         this.callOnCreateMethod2 = callOnCreateMethod2;
         this.callOnCreateMethod3 = callOnCreateMethod3;
         this.callOnCreateMethod4 = callOnCreateMethod4;
-        setBackground(new java.awt.Color(255, 208, 56));
+        //setBackground(new java.awt.Color(255, 208, 56));
 
-        viewTask.setBackground(new java.awt.Color(0, 102, 102));
-        viewTask.setOpaque(true);
-        orgButton.setBackground(new java.awt.Color(0, 102, 102));
-        orgButton.setOpaque(true);
-        orgAdminBtn.setBackground(new java.awt.Color(0, 102, 102));
-        orgAdminBtn.setOpaque(true);
-        addMenu.setBackground(new java.awt.Color(0, 102, 102));
-        addMenu.setOpaque(true);
+        //viewTask.setBackground(new java.awt.Color(0, 102, 102));
+        //viewTask.setOpaque(true);
+        //orgButton.setBackground(new java.awt.Color(0, 102, 102));
+        //orgButton.setOpaque(true);
+        //orgAdminBtn.setBackground(new java.awt.Color(0, 102, 102));
+        //orgAdminBtn.setOpaque(true);
+        //addMenu.setBackground(new java.awt.Color(0, 102, 102));
+        //addMenu.setOpaque(true);
         
     }
 

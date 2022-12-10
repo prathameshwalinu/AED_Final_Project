@@ -35,11 +35,11 @@ public class DisplayOrderForResort extends javax.swing.JPanel {
         this.resort = hotel;
         populateComboBox();
         populateTable();
-        setBackground(new java.awt.Color(255, 208, 56));
-        viewTask.setBackground(new java.awt.Color(0, 102, 102));
-        viewTask.setOpaque(true);
-        backButton.setBackground(new java.awt.Color(0, 102, 102));
-        backButton.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//        viewTask.setBackground(new java.awt.Color(0, 102, 102));
+//        viewTask.setOpaque(true);
+//        backButton.setBackground(new java.awt.Color(0, 102, 102));
+//        backButton.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")

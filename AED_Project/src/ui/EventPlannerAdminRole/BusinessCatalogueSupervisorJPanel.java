@@ -25,16 +25,16 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             cmbLocation.addItem(location.getName());
         }
         populateTable();
-        setBackground(new java.awt.Color(255, 208, 56));
-
-        btnDelete.setBackground(new java.awt.Color(0, 102, 102));
-        btnDelete.setOpaque(true);
-        btnAdd.setBackground(new java.awt.Color(0, 102, 102));
-        btnAdd.setOpaque(true);
-        btnUpdate.setBackground(new java.awt.Color(0, 102, 102));
-        btnUpdate.setOpaque(true);
-        backButton.setBackground(new java.awt.Color(0, 102, 102));
-        backButton.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//
+//        btnDelete.setBackground(new java.awt.Color(0, 102, 102));
+//        btnDelete.setOpaque(true);
+//        btnAdd.setBackground(new java.awt.Color(0, 102, 102));
+//        btnAdd.setOpaque(true);
+//        btnUpdate.setBackground(new java.awt.Color(0, 102, 102));
+//        btnUpdate.setOpaque(true);
+//        backButton.setBackground(new java.awt.Color(0, 102, 102));
+//        backButton.setOpaque(true);
     }
 
     public boolean validateName() {
@@ -81,26 +81,28 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        backButton.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backButton.setText("BACK");
+        backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
-        lblBCSupr.setFont(new java.awt.Font("Academy Engraved LET", 0, 36)); // NOI18N
+        lblBCSupr.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblBCSupr.setText("BUSINESS CATALOGUE SUPERVISOR");
 
-        btnDelete.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnDelete.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnDelete.setText("DELETE");
+        btnDelete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
 
-        tblBusinessCatalogue.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        tblBusinessCatalogue.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         tblBusinessCatalogue.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -124,8 +126,9 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblBusinessCatalogue);
 
-        btnAdd.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnAdd.setText("ADD");
+        btnAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
@@ -139,10 +142,10 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("BUSINESS CATALOGUE:");
 
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("LOCATION:");
 
         cmbLocation.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
@@ -153,23 +156,24 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnUpdate.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnUpdate.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnUpdate.setText("UPDATE");
+        btnUpdate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("SUPERVISOR NAME:");
 
         usernameField.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setText("USERNAME:");
 
-        jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel5.setText("PASSWORD:");
 
         passwordField.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
@@ -187,7 +191,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel7.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel7.setText("BUSINESS CATALOGUE NAME:");
 
         cmbBCName.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
@@ -221,10 +225,10 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                                     .addComponent(cmbBCType, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtSuprName, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addComponent(backButton)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(89, 89, 89)
-                                .addComponent(lblBCSupr, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(lblBCSupr, javax.swing.GroupLayout.PREFERRED_SIZE, 695, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +267,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                     .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(cmbBCType, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -275,7 +279,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(106, 106, 106)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                         .addComponent(jLabel5)
                         .addGap(31, 31, 31))
                     .addGroup(layout.createSequentialGroup()

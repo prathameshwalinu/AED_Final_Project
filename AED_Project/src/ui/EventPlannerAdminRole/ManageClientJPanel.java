@@ -20,15 +20,15 @@ public class ManageClientJPanel extends javax.swing.JPanel {
         this.callOnCreateMethod = callOnCreateMethod;
         
         populateTable();
-        setBackground(new java.awt.Color(255, 208, 56));
-        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
-        deleteBtn.setOpaque(true);
-        addButton.setBackground(new java.awt.Color(0, 102, 102));
-        addButton.setOpaque(true);
-        updateButton.setBackground(new java.awt.Color(0, 102, 102));
-        updateButton.setOpaque(true);
-        backButton.setBackground(new java.awt.Color(0, 102, 102));
-        backButton.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        deleteBtn.setOpaque(true);
+//        addButton.setBackground(new java.awt.Color(0, 102, 102));
+//        addButton.setOpaque(true);
+//        updateButton.setBackground(new java.awt.Color(0, 102, 102));
+//        updateButton.setOpaque(true);
+//        backButton.setBackground(new java.awt.Color(0, 102, 102));
+//        backButton.setOpaque(true);
     }
 
     public boolean validateName() {
@@ -102,29 +102,31 @@ public class ManageClientJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        backButton.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backButton.setText("BACK");
+        backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
-        lblsysadmin.setFont(new java.awt.Font("Academy Engraved LET", 0, 48)); // NOI18N
+        lblsysadmin.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
         lblsysadmin.setText("MANAGE CLIENTS");
 
-        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("MOBILE NO:");
 
-        deleteBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         deleteBtn.setText("DELETE");
+        deleteBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteBtnActionPerformed(evt);
             }
         });
 
-        tblClient.setFont(new java.awt.Font("Baskerville Old Face", 0, 12)); // NOI18N
+        tblClient.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
         tblClient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -148,35 +150,37 @@ public class ManageClientJPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(tblClient);
 
-        addButton.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        addButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addButton.setText("ADD");
+        addButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         addButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addButtonActionPerformed(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setText("USERNAME:");
 
-        jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel5.setText("PASSWORD:");
 
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("CLIENT NAME:");
 
-        updateButton.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        updateButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         updateButton.setText("UPDATE");
+        updateButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         updateButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateButtonActionPerformed(evt);
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel6.setText("CITY:");
 
-        jLabel9.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel9.setText("STREET:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -270,7 +274,7 @@ public class ManageClientJPanel extends javax.swing.JPanel {
                     .addComponent(txtStreet, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(jLabel9))
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(224, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

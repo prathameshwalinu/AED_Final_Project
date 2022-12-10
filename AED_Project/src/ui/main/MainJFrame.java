@@ -61,8 +61,8 @@ public class MainJFrame extends javax.swing.JFrame {
         setExtendedState(MainJFrame.MAXIMIZED_BOTH);
         this.Admin = DbUtils.getInstance().retrieveSystem();
         logoutBtn.setEnabled(false);
-        ControlPanel.setBackground(new java.awt.Color(0, 102, 102));
-        WorkArea.setBackground(new java.awt.Color(255, 208, 56));
+        //ControlPanel.setBackground(new java.awt.Color(0, 102, 102));
+        //WorkArea.setBackground(new java.awt.Color(255, 208, 56));
     }
 
     @SuppressWarnings("unchecked")

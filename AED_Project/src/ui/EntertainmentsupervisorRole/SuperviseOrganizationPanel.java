@@ -28,16 +28,16 @@ public class SuperviseOrganizationPanel extends javax.swing.JPanel {
         cityNameTextField.setText(location.getName());
         cityNameTextField.setEditable(false);
         populateTable();
-        setBackground(new java.awt.Color(255, 208, 56));
-
-        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
-        deleteBtn.setOpaque(true);
-        addButton.setBackground(new java.awt.Color(0, 102, 102));
-        addButton.setOpaque(true);
-        updateButton.setBackground(new java.awt.Color(0, 102, 102));
-        updateButton.setOpaque(true);
-        backButton.setBackground(new java.awt.Color(0, 102, 102));
-        backButton.setOpaque(true);     
+//        setBackground(new java.awt.Color(255, 208, 56));
+//
+//        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        deleteBtn.setOpaque(true);
+//        addButton.setBackground(new java.awt.Color(0, 102, 102));
+//        addButton.setOpaque(true);
+//        updateButton.setBackground(new java.awt.Color(0, 102, 102));
+//        updateButton.setOpaque(true);
+//        backButton.setBackground(new java.awt.Color(0, 102, 102));
+//        backButton.setOpaque(true);     
     }
 
     @SuppressWarnings("unchecked")

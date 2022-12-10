@@ -36,11 +36,11 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
         this.entertainment = entertainment;
         populateComboBox();
         populateTable();
-        setBackground(new java.awt.Color(255,208,56));
-        bckBtn.setBackground(new java.awt.Color(0, 102, 102));
-        bckBtn.setOpaque(true);
-        btnassignWork.setBackground(new java.awt.Color(0, 102, 102));
-        btnassignWork.setOpaque(true);
+//        setBackground(new java.awt.Color(255,208,56));
+//        bckBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        bckBtn.setOpaque(true);
+//        btnassignWork.setBackground(new java.awt.Color(0, 102, 102));
+//        btnassignWork.setOpaque(true);
 
     }
 
@@ -81,7 +81,7 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTblDash);
 
-        jLabel1.setFont(new java.awt.Font("Academy Engraved LET", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("DISPLAY DASHBOARD ");
 
         cmbSinger.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -97,6 +97,7 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
 
         btnassignWork.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnassignWork.setText("ADD AND CONFIRM");
+        btnassignWork.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnassignWork.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnassignWorkActionPerformed(evt);
@@ -105,6 +106,7 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
 
         bckBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         bckBtn.setText("BACK");
+        bckBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         bckBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bckBtnActionPerformed(evt);
@@ -127,9 +129,6 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(bckBtn))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -142,7 +141,10 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
                             .addComponent(cmbChoreographer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(83, 83, 83)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(bckBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(176, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -151,8 +153,8 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(333, 333, 333)
-                        .addComponent(btnassignWork)))
-                .addGap(0, 366, Short.MAX_VALUE))
+                        .addComponent(btnassignWork, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -177,7 +179,7 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
                     .addComponent(cmbChoreographer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(92, 92, 92)
                 .addComponent(btnassignWork, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

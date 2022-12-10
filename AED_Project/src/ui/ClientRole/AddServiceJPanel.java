@@ -30,17 +30,17 @@ public class AddServiceJPanel extends javax.swing.JPanel {
         this.backButton4 = backButton;
         this.username = username;
         this.booking = booking;
-        setBackground(new java.awt.Color(255, 208, 56));
-        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-        backBtn.setOpaque(true);
-        btnEvent.setBackground(new java.awt.Color(0, 102, 102));
-        btnEvent.setOpaque(true);
-        btnCatering.setBackground(new java.awt.Color(0, 102, 102));
-        btnCatering.setOpaque(true);
-        btnEntertainment.setBackground(new java.awt.Color(0, 102, 102));
-        btnEntertainment.setOpaque(true);
-        btnOthers.setBackground(new java.awt.Color(0, 102, 102));
-        btnOthers.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        backBtn.setOpaque(true);
+//        btnEvent.setBackground(new java.awt.Color(0, 102, 102));
+//        btnEvent.setOpaque(true);
+//        btnCatering.setBackground(new java.awt.Color(0, 102, 102));
+//        btnCatering.setOpaque(true);
+//        btnEntertainment.setBackground(new java.awt.Color(0, 102, 102));
+//        btnEntertainment.setOpaque(true);
+//        btnOthers.setBackground(new java.awt.Color(0, 102, 102));
+//        btnOthers.setOpaque(true);
     }
 
     

@@ -27,11 +27,11 @@ initComponents();
         for (Catering cat : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfCatering()) {
             cmbCatering.addItem(cat);
         }
-        setBackground(new java.awt.Color(255, 208, 56));
-        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-        backBtn.setOpaque(true);
-        placeOrder.setBackground(new java.awt.Color(0, 102, 102));
-        placeOrder.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        backBtn.setOpaque(true);
+//        placeOrder.setBackground(new java.awt.Color(0, 102, 102));
+//        placeOrder.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -53,8 +53,9 @@ initComponents();
             }
         });
 
-        backBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
-        backBtn.setText("< BACK");
+        backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        backBtn.setText("BACK");
+        backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
@@ -64,18 +65,19 @@ initComponents();
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("MENU ITEMS IN CATERING");
 
-        placeOrder.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        placeOrder.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         placeOrder.setText("PLACE ORDER");
+        placeOrder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         placeOrder.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 placeOrderActionPerformed(evt);
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("SELECT ITEM FROM LIST: ");
 
-        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setText("SELECT A CATERING NAME: ");
 
         cmbCatering.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
@@ -130,7 +132,7 @@ initComponents();
                     .addComponent(menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(60, 60, 60)
                 .addComponent(placeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(343, Short.MAX_VALUE))
+                .addContainerGap(345, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

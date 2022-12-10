@@ -21,16 +21,16 @@ public class EventsPlannerAdminJPanel extends javax.swing.JPanel {
         this.callOnCreateMethod2 = callOnCreateMethod2;
         this.callOnCreateMethod3 = callOnCreateMethod3;
         this.callOnCreateMethod4 = callOnCreateMethod4;
-        setBackground(new java.awt.Color(255, 208, 56));
-
-        btnServiceLocations.setBackground(new java.awt.Color(0, 102, 102));
-        btnServiceLocations.setOpaque(true);
-        btnClients.setBackground(new java.awt.Color(0, 102, 102));
-        btnClients.setOpaque(true);
-        btnEventSupervisor.setBackground(new java.awt.Color(0, 102, 102));
-        btnEventSupervisor.setOpaque(true);
-        btnBusinessCatalogue.setBackground(new java.awt.Color(0, 102, 102));
-        btnBusinessCatalogue.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//
+//        btnServiceLocations.setBackground(new java.awt.Color(0, 102, 102));
+//        btnServiceLocations.setOpaque(true);
+//        btnClients.setBackground(new java.awt.Color(0, 102, 102));
+//        btnClients.setOpaque(true);
+//        btnEventSupervisor.setBackground(new java.awt.Color(0, 102, 102));
+//        btnEventSupervisor.setOpaque(true);
+//        btnBusinessCatalogue.setBackground(new java.awt.Color(0, 102, 102));
+//        btnBusinessCatalogue.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")

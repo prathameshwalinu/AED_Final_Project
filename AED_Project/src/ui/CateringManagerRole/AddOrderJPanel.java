@@ -27,12 +27,12 @@ public class AddOrderJPanel extends javax.swing.JPanel {
         this.user = user;
         this.type = type;
         this.location = location;
-        setBackground(new java.awt.Color(255,208,56));
+        //setBackground(new java.awt.Color(255,208,56));
         populateMenu();
-        addBtn.setBackground(new java.awt.Color(0, 102, 102));
-        addBtn.setOpaque(true);
-        backButton.setBackground(new java.awt.Color(0, 102, 102));
-        backButton.setOpaque(true);
+        //addBtn.setBackground(new java.awt.Color(0, 102, 102));
+        //addBtn.setOpaque(true);
+        //backButton.setBackground(new java.awt.Color(0, 102, 102));
+        //backButton.setOpaque(true);
 
     }
 

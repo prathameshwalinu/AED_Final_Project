@@ -23,13 +23,13 @@ public class EntertainmentSupervisorPanel extends javax.swing.JPanel {
         this.callOnCreateMethod2 = callOnCreateMethod2;
         this.callOnCreateMethod3 = callOnCreateMethod3;
         
-        setBackground(new java.awt.Color(255, 208, 56));
-        btnDisplayDash.setBackground(new java.awt.Color(0, 102, 102));
-        btnDisplayDash.setOpaque(true);
-        btnSuperviseEvent.setBackground(new java.awt.Color(0, 102, 102));
-        btnSuperviseEvent.setOpaque(true);
-        btnSuperviseEventAdmin.setBackground(new java.awt.Color(0, 102, 102));
-        btnSuperviseEventAdmin.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//        btnDisplayDash.setBackground(new java.awt.Color(0, 102, 102));
+//        btnDisplayDash.setOpaque(true);
+//        btnSuperviseEvent.setBackground(new java.awt.Color(0, 102, 102));
+//        btnSuperviseEvent.setOpaque(true);
+//        btnSuperviseEventAdmin.setBackground(new java.awt.Color(0, 102, 102));
+//        btnSuperviseEventAdmin.setOpaque(true);
 
     }
 
