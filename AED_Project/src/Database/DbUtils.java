@@ -36,6 +36,8 @@ public class DbUtils {
         config.common().objectClass(Admin.class).cascadeOnUpdate(true);
 
         ObjectContainer db = Db4oEmbedded.openFile(config, "database/aedfinalproject.db4o");
+        
+        //add db file
         return db;
     }
 
