@@ -3,26 +3,26 @@ package Model;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Catering extends BusinessCatalogue {
+public class Admin extends BusinessCatalogue {
 
     private List<Supervisor> listOfSupervisor;
-    private List<Catering_Order> listOfCateringOrder;
-    private List<Catering_Menu> listOfMenuItem;
+    private List<Admin_Order> listOfAdminOrder;
+    private List<Admin_Menu> listOfMenuItem;
     private List<ServiceAgentOrganisation> listOfServiceAgentOrganisation;
 
-    public Catering(String name, String contact) {
+    public Admin(String name, String contact) {
         super(name, contact);
         listOfSupervisor = new ArrayList<>();
-        listOfCateringOrder = new ArrayList<>();
+        listOfAdminOrder = new ArrayList<>();
         listOfMenuItem = new ArrayList<>();
         listOfServiceAgentOrganisation = new ArrayList<>();
     }
 
-    public List<Catering_Menu> getListOfMenuItem() {
+    public List<Admin_Menu> getListOfMenuItem() {
         return listOfMenuItem;
     }
 
-    public void setListOfMenuItem(List<Catering_Menu> ListOfMenuItem) {
+    public void setListOfMenuItem(List<Admin_Menu> ListOfMenuItem) {
         this.listOfMenuItem = ListOfMenuItem;
     }
 
@@ -34,12 +34,12 @@ public class Catering extends BusinessCatalogue {
         this.listOfSupervisor = listOfSupervisor;
     }
 
-    public List<Catering_Order> getListOfCateringOrder() {
-        return listOfCateringOrder;
+    public List<Admin_Order> getListOfAdminOrder() {
+        return listOfAdminOrder;
     }
 
-    public void setListOfCateringOrder(List<Catering_Order> listOfCateringOrder) {
-        this.listOfCateringOrder = listOfCateringOrder;
+    public void setListOfAdminOrder(List<Admin_Order> listOfAdminOrder) {
+        this.listOfAdminOrder = listOfAdminOrder;
     }
 
     public List<ServiceAgentOrganisation> getListOfServiceAgentOrganisation() {
@@ -71,7 +71,7 @@ public class Catering extends BusinessCatalogue {
     }
 
     public void addMenuItem(String item, int price) {
-        listOfMenuItem.add(new Catering_Menu(item, price));
+        listOfMenuItem.add(new Admin_Menu(item, price));
     }
 
     public void deleteSupervisor(Supervisor supr) {

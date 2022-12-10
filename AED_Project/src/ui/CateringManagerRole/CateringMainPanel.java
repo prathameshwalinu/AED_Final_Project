@@ -1,10 +1,10 @@
-package ui.CateringManagerRole;
+package ui.AdminManagerRole;
 
 import Model.Admin;
 
 
 
-public class CateringMainPanel extends javax.swing.JPanel {
+public class AdminMainPanel extends javax.swing.JPanel {
 
     private Admin EPAdmin;
     private Runnable callOnCreateMethod1;
@@ -12,7 +12,7 @@ public class CateringMainPanel extends javax.swing.JPanel {
     private Runnable callOnCreateMethod3;
     private Runnable callOnCreateMethod4;
 
-    public CateringMainPanel(Admin systemAdmin, Runnable callOnCreateMethod1, Runnable callOnCreateMethod2, Runnable callOnCreateMethod3, Runnable callOnCreateMethod4) {
+    public AdminMainPanel(Admin systemAdmin, Runnable callOnCreateMethod1, Runnable callOnCreateMethod2, Runnable callOnCreateMethod3, Runnable callOnCreateMethod4) {
         initComponents();
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.callOnCreateMethod2 = callOnCreateMethod2;

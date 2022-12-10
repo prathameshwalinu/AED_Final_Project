@@ -8,12 +8,12 @@ package ui.ManagerRole;
  *
  * @author aishw
  */
-public class CateringMainJPanel extends javax.swing.JPanel {
+public class AdminMainJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form RestaurantMainJPanel
      */
-    public CateringMainJPanel() {
+    public AdminMainJPanel() {
         initComponents();
     }
 
@@ -49,7 +49,7 @@ public class CateringMainJPanel extends javax.swing.JPanel {
         });
 
         lblsysadmin.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
-        lblsysadmin.setText("CATERING SUPERVISOR");
+        lblsysadmin.setText("Admin SUPERVISOR");
 
         jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jButton3.setText("CONFIRM BOOKINGS & ASSIGN ");

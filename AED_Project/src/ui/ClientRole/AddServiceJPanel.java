@@ -9,7 +9,7 @@ public class AddServiceJPanel extends javax.swing.JPanel {
     
     private Admin systems;
     private Consumer<HallBooking> callOnEventBooking;
-    private Consumer<HallBooking> callOnCateringBooking;
+    private Consumer<HallBooking> callOnAdminBooking;
     private Consumer<HallBooking> callOnEntertainmentBooking;
     private Consumer<HallBooking> callOnResortServiceBooking;
     private Runnable backButton4;
@@ -24,7 +24,7 @@ public class AddServiceJPanel extends javax.swing.JPanel {
         initComponents();
         this.systems = systems;
         this.callOnEventBooking = callOnEventBooking;
-        this.callOnCateringBooking = callOnOrderBooking;
+        this.callOnAdminBooking = callOnOrderBooking;
         this.callOnEntertainmentBooking = callOnEntertainmentBooking;
         this.callOnResortServiceBooking = callOnResortServiceBooking;
         this.backButton4 = backButton;
@@ -35,8 +35,8 @@ public class AddServiceJPanel extends javax.swing.JPanel {
 //        backBtn.setOpaque(true);
 //        btnEvent.setBackground(new java.awt.Color(0, 102, 102));
 //        btnEvent.setOpaque(true);
-//        btnCatering.setBackground(new java.awt.Color(0, 102, 102));
-//        btnCatering.setOpaque(true);
+//        btnAdmin.setBackground(new java.awt.Color(0, 102, 102));
+//        btnAdmin.setOpaque(true);
 //        btnEntertainment.setBackground(new java.awt.Color(0, 102, 102));
 //        btnEntertainment.setOpaque(true);
 //        btnOthers.setBackground(new java.awt.Color(0, 102, 102));
@@ -51,7 +51,7 @@ public class AddServiceJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         btnEvent = new javax.swing.JButton();
-        btnCatering = new javax.swing.JButton();
+        btnAdmin = new javax.swing.JButton();
         btnEntertainment = new javax.swing.JButton();
         btnOthers = new javax.swing.JButton();
 
@@ -74,11 +74,11 @@ public class AddServiceJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnCatering.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
-        btnCatering.setText("CATERING");
-        btnCatering.addActionListener(new java.awt.event.ActionListener() {
+        btnAdmin.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnAdmin.setText("Admin");
+        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCateringActionPerformed(evt);
+                btnAdminActionPerformed(evt);
             }
         });
 
@@ -117,7 +117,7 @@ public class AddServiceJPanel extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(btnEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnCatering, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(35, 35, 35)
                                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,7 +134,7 @@ public class AddServiceJPanel extends javax.swing.JPanel {
                 .addGap(46, 46, 46)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCatering, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnEntertainment, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,9 +147,9 @@ public class AddServiceJPanel extends javax.swing.JPanel {
         callOnEventBooking.accept(booking);
     }//GEN-LAST:event_btnEventActionPerformed
 
-    private void btnCateringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCateringActionPerformed
-        callOnCateringBooking.accept(booking);
-    }//GEN-LAST:event_btnCateringActionPerformed
+    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
+        callOnAdminBooking.accept(booking);
+    }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnEntertainmentActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntertainmentActionPerformed
         callOnEntertainmentBooking.accept(booking);
@@ -166,7 +166,7 @@ public class AddServiceJPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JButton btnCatering;
+    private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnEntertainment;
     private javax.swing.JButton btnEvent;
     private javax.swing.JButton btnOthers;

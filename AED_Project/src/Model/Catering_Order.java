@@ -3,16 +3,16 @@ package Model;
 
 import java.util.UUID;
 
-public class Catering_Order {
+public class Admin_Order {
     private String id;
     private String status;
     private String details;
     private String feedback;
     private Client client;
-    private Catering catering;
+    private Admin Admin;
     private ServiceAgent serviceAgent;
 
-    public Catering_Order(String details) {
+    public Admin_Order(String details) {
 //        id = UUID.randomUUID().toString();
         this.details = details;
     }
@@ -40,12 +40,12 @@ public class Catering_Order {
         this.serviceAgent = serviceAgent;
     }
 
-    public Catering getCatering() {
-        return catering;
+    public Admin getAdmin() {
+        return Admin;
     }
 
-    public void setCatering(Catering catering) {
-        this.catering = catering;
+    public void setAdmin(Admin Admin) {
+        this.Admin = Admin;
     }
 
     public String getDetails() {

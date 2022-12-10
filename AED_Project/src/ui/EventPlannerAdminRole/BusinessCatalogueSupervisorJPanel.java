@@ -2,7 +2,7 @@ package ui.EventPlannerAdminRole;
 
 import Model.Admin;
 import Model.BusinessCatalogueDirectory;
-import Model.Catering;
+import Model.Admin;
 import Model.Entertainment;
 import Model.Events;
 import Model.Resort;
@@ -184,7 +184,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
         });
 
         cmbBCType.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        cmbBCType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Business Catalogue", "Entertainment", "Catering", "Resort", "Event" }));
+        cmbBCType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Business Catalogue", "Entertainment", "Admin", "Resort", "Event" }));
         cmbBCType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbBCTypeActionPerformed(evt);
@@ -318,8 +318,8 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                     }
                 }
             }
-        } else if (enterpriseType.equals("Catering")) {
-            for (Catering cat : businessCatalogueDirectory.getListOfCatering()) {
+        } else if (enterpriseType.equals("Admin")) {
+            for (Admin cat : businessCatalogueDirectory.getListOfAdmin()) {
                 for (Supervisor supr : cat.getListOfSupervisor()) {
                     if (supr.getName().equals(selectedUser)) {
                         cat.deleteSupervisor(supr);
@@ -398,13 +398,13 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                 row[4] = userName;
                 row[5] = password;
                 model.addRow(row);
-            } else if (enterpriseType1.equals("Catering") && businessCatelogDirectory != null) {
-                Catering res1 = businessCatelogDirectory.findCatering(enterpriseName1);
+            } else if (enterpriseType1.equals("Admin") && businessCatelogDirectory != null) {
+                Admin res1 = businessCatelogDirectory.findAdmin(enterpriseName1);
                 res1.addSupervisor(userName, userName, password);
-                EPAdmin.addUser(userName, password, "Catering");
+                EPAdmin.addUser(userName, password, "Admin");
 
                 row[0] = locationName;
-                row[1] = "Catering";
+                row[1] = "Admin";
                 row[2] = enterpriseName1;
                 row[3] = name;
                 row[4] = userName;
@@ -456,8 +456,8 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             for (Events event : businessCatalogueDirectory.getListOfEvents()) {
                 cmbBCName.addItem(event.getName());
             }
-        } else if (enterpriseType1.equals("Catering")) {
-            for (Catering cat : businessCatalogueDirectory.getListOfCatering()) {
+        } else if (enterpriseType1.equals("Admin")) {
+            for (Admin cat : businessCatalogueDirectory.getListOfAdmin()) {
                 cmbBCName.addItem(cat.getName());
             }
         } else if (enterpriseType1.equals("Resort")) {
@@ -530,8 +530,8 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                     return;
                 }
             }
-        } else if (enterpriseType1.equals("Catering")) {
-            Catering cat = businessCatalogueDirectory.findCatering(enterpriseName1);
+        } else if (enterpriseType1.equals("Admin")) {
+            Admin cat = businessCatalogueDirectory.findAdmin(enterpriseName1);
             for (Supervisor man : cat.getListOfSupervisor()) {
                 if (man.getUsername().equals(managerUserName)) {
                     man.setName(name);
@@ -627,12 +627,12 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                     model.addRow(row);
                 }
             }
-            for (Catering cat : businessCatalogueDirectory.getListOfCatering()) {   //poplulate restauarant enterprise
-                row[1] = "Catering";
+            for (Admin cat : businessCatalogueDirectory.getListOfAdmin()) {   //poplulate restauarant enterprise
+                row[1] = "Admin";
                 row[2] = cat.getName();
                 for (Supervisor supervisor : cat.getListOfSupervisor()) {
                     row[0] = location.getName();
-                    row[1] = "Catering";
+                    row[1] = "Admin";
                     row[2] = cat.getName();
                     row[3] = supervisor.getName();
                     row[4] = supervisor.getUsername();
