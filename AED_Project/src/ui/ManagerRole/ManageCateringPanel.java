@@ -8,11 +8,11 @@ package ui.ManagerRole;
  *
  * @author aishw
  */
-public class ManageAdminPanel extends javax.swing.JPanel {
+public class ManageCateringPanel extends javax.swing.JPanel {
 
     
      
-    public ManageAdminPanel() {
+    public ManageCateringPanel() {
         initComponents();
     }
 

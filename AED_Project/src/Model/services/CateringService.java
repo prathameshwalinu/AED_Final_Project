@@ -9,14 +9,14 @@ package Model.services;
  * @author prathamesh
  */
 import java.util.Date;
-import Model.Admin;
+import Model.Catering;
 
-public class AdminService extends EService {
+public class CateringService extends EService {
 
     private String menuItem;
 
-    public AdminService(Admin res, Date eventDate, String menuItem, int cost) {
-        super(res, EService.ServiceType.Admin, eventDate);
+    public CateringService(Catering res, Date eventDate, String menuItem, int cost) {
+        super(res, EService.ServiceType.CATERING, eventDate);
         this.menuItem = menuItem;
         super.totalCost = cost;
     }
@@ -30,7 +30,7 @@ public class AdminService extends EService {
     }
 
     public String toString() {
-        StringBuilder sb = new StringBuilder("\nAdmin order details:");
+        StringBuilder sb = new StringBuilder("\nCatering order details:");
         sb.append("\n").append(TAB).append("Caterers name: ").append(businessCatalogue);
         sb.append("\n").append(TAB).append("Order item: ").append(menuItem);
         sb.append("\n").append(TAB).append("Total cost for Order: $").append(totalCost);

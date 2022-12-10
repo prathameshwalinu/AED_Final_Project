@@ -39,7 +39,6 @@ public class OtherServicePanel extends javax.swing.JPanel {
         RBtnCarService = new javax.swing.JRadioButton();
         placeRequest = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
-        dateField = new com.toedter.calendar.JDateChooser();
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("HOTEL SERVICE PANEL");
@@ -85,11 +84,8 @@ public class OtherServicePanel extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(179, 179, 179)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel1))
                             .addComponent(RbtnTourGuide, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(RBtnCarService)))
@@ -110,9 +106,7 @@ public class OtherServicePanel extends javax.swing.JPanel {
                 .addGap(42, 42, 42)
                 .addComponent(jLabel1)
                 .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jLabel3)
                 .addGap(41, 41, 41)
                 .addComponent(RbtnTourGuide)
                 .addGap(26, 26, 26)
@@ -161,7 +155,6 @@ public class OtherServicePanel extends javax.swing.JPanel {
     private javax.swing.JRadioButton RBtnCarService;
     private javax.swing.JRadioButton RbtnTourGuide;
     private javax.swing.JButton backBtn;
-    private com.toedter.calendar.JDateChooser dateField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton placeRequest;

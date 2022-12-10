@@ -60,7 +60,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         priceField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        dateField = new com.toedter.calendar.JDateChooser();
+        dateField = new org.netbeans.modules.form.InvalidComponent();
         orgComboBox = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         totalPrice = new javax.swing.JButton();
@@ -191,14 +191,15 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
                                 .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(12, 12, 12)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(136, 136, 136)
-                                        .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                        .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(33, 33, 33)
                         .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(198, 226, Short.MAX_VALUE))
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -376,7 +377,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox cmbBirthdayParty;
     private javax.swing.JComboBox cmbMeeting;
     private javax.swing.JComboBox cmbWedding;
-    private com.toedter.calendar.JDateChooser dateField;
+    private org.netbeans.modules.form.InvalidComponent dateField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

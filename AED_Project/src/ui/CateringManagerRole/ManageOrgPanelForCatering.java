@@ -1,8 +1,8 @@
-package ui.AdminManagerRole;
+package ui.CateringManagerRole;
 
 import Model.Admin;
 import Model.BusinessCatalogueDirectory;
-import Model.Admin;
+import Model.Catering;
 import Model.ServiceAgentOrganisation;
 import Model.ServiceLocation;
 import java.util.List;
@@ -11,7 +11,7 @@ import javax.swing.table.DefaultTableModel;
 
 import ui.main.Validator;
 
-public class ManageOrgPanelForAdmin extends javax.swing.JPanel {
+public class ManageOrgPanelForCatering extends javax.swing.JPanel {
     
     private Admin EPAdmin;
     private Runnable callOnCreateMethod;
@@ -19,7 +19,7 @@ public class ManageOrgPanelForAdmin extends javax.swing.JPanel {
     private String user;
     private ServiceLocation location;
 
-    public ManageOrgPanelForAdmin( Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
+    public ManageOrgPanelForCatering( Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
         initComponents();
         this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;
@@ -235,9 +235,9 @@ public class ManageOrgPanelForAdmin extends javax.swing.JPanel {
             return;
         }
 
-        List<Admin> res = enterpriseCatalogueDirectory.getListOfAdmin();
+        List<Catering> res = enterpriseCatalogueDirectory.getListOfCatering();
         for (int i = 0; i < res.size(); i++) {
-            if (res.get(i).findSupervisor(user) != null) {     //find Admin for which manager is working for   
+            if (res.get(i).findSupervisor(user) != null) {     //find catering for which manager is working for   
                 res.get(i).addServiceAgentOrganisation(name, contact, locationName);   //add deliveryman org name
                 row[0] = orgType1;
                 row[1] = name;
@@ -260,7 +260,7 @@ public class ManageOrgPanelForAdmin extends javax.swing.JPanel {
         String OrgType = (String) model.getValueAt(selectedRowIndex, 0);
         String OrgName = (String) model.getValueAt(selectedRowIndex, 1);
         BusinessCatalogueDirectory enterpriseDirec = location.getBusinessCatalogueDirectory();
-        for (Admin res : enterpriseDirec.getListOfAdmin()) {
+        for (Catering res : enterpriseDirec.getListOfCatering()) {
             if (res.findSupervisor(user) != null) {
                 if (res.getListOfServiceAgentOrganisation() != null) {
                     for (ServiceAgentOrganisation del : res.getListOfServiceAgentOrganisation()) {
@@ -286,7 +286,7 @@ public class ManageOrgPanelForAdmin extends javax.swing.JPanel {
         String orgname = model.getValueAt(jTable1.getSelectedRow(), 1).toString();
 
         BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
-        for (Admin res : enterpriseCatalogueDirectory.getListOfAdmin()) {
+        for (Catering res : enterpriseCatalogueDirectory.getListOfCatering()) {
             if (orgType.equals("ServiceAgent") && res.getListOfServiceAgentOrganisation() != null) {
                 for (ServiceAgentOrganisation del : res.getListOfServiceAgentOrganisation()) {
                     if (del.getName().equals(orgname)) {
@@ -345,11 +345,11 @@ public class ManageOrgPanelForAdmin extends javax.swing.JPanel {
         String orgType1 = orgCombo.getSelectedItem().toString();
         ServiceLocation location1 = EPAdmin.findServiceLocation(location.getName());
         BusinessCatalogueDirectory enterpriseCatalogueDirectory = location1.getBusinessCatalogueDirectory();
-        for (Admin Admin : enterpriseCatalogueDirectory.getListOfAdmin()) {
-            if (Admin.findSupervisor(user) != null) {
-                if (Admin.getListOfServiceAgentOrganisation() != null) {
+        for (Catering catering : enterpriseCatalogueDirectory.getListOfCatering()) {
+            if (catering.findSupervisor(user) != null) {
+                if (catering.getListOfServiceAgentOrganisation() != null) {
                     row[0] = "ServiceAgent";
-                    for (ServiceAgentOrganisation delivery : Admin.getListOfServiceAgentOrganisation()) {
+                    for (ServiceAgentOrganisation delivery : catering.getListOfServiceAgentOrganisation()) {
                         row[0] = "ServiceAgent";
                         row[1] = delivery.getName();
                         row[2] = delivery.getContact();

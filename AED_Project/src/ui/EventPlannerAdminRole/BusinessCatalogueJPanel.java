@@ -3,7 +3,7 @@ package ui.EventPlannerAdminRole;
 import Model.Admin;
 import Model.BusinessCatalogue;
 import Model.BusinessCatalogueDirectory;
-import Model.Admin;
+import Model.Catering;
 import Model.Entertainment;
 import Model.Events;
 import Model.Resort;
@@ -326,10 +326,10 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
                 }
             }
         } 
-        else if (businessCatalogueType.equals("Admin") && enterpriseDirec.getListOfAdmin() != null) {
-            for (Admin cat : enterpriseDirec.getListOfAdmin()) {
+        else if (businessCatalogueType.equals("Catering") && enterpriseDirec.getListOfCatering() != null) {
+            for (Catering cat : enterpriseDirec.getListOfCatering()) {
                 if (cat.getName().equals(businessCatalogueName)) {
-                    enterpriseDirec.deleteBusinessCatalogueAdmin(cat);
+                    enterpriseDirec.deleteBusinessCatalogueCatering(cat);
                     JOptionPane.showMessageDialog(this, "Enterprise deleted successfully");
                     populateTable();
                 }
@@ -375,8 +375,8 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Enterprise added successfully");
             return;
         } 
-        else if (businessCatalogueType1.equals("Admin") && businessCatalogueDirectory != null) {
-            businessCatalogueDirectory.addAdmin(name, contact);
+        else if (businessCatalogueType1.equals("Catering") && businessCatalogueDirectory != null) {
+            businessCatalogueDirectory.addCatering(name, contact);
             JOptionPane.showMessageDialog(this, "Enterprise added successfully");
 
             return;
@@ -443,8 +443,8 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
                     BCToUpdate = list;
                 }
             }
-        } else if (businessCatalogueType1.equals("Admin") && businessCatalogueDirectory != null) {
-            for (Admin list : businessCatalogueDirectory.getListOfAdmin()) {
+        } else if (businessCatalogueType1.equals("Catering") && businessCatalogueDirectory != null) {
+            for (Catering list : businessCatalogueDirectory.getListOfCatering()) {
                 if (list.getName().equals(businessCatalogueName)) {           //if enterprise name matches 
                     BCToUpdate = list;
                 }
@@ -526,13 +526,13 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
             }
         }
 
-        List<Admin> AdminList = location.getBusinessCatalogueDirectory().getListOfAdmin();
-        if (AdminList != null) {
-            for (int i = 0; i < AdminList.size(); i++) {
+        List<Catering> cateringList = location.getBusinessCatalogueDirectory().getListOfCatering();
+        if (cateringList != null) {
+            for (int i = 0; i < cateringList.size(); i++) {
                 row[0] = locationItem;
-                row[1] = AdminList.get(i).getName();
-                row[2] = "Admin";
-                row[3] = AdminList.get(i).getContact();
+                row[1] = cateringList.get(i).getName();
+                row[2] = "Catering";
+                row[3] = cateringList.get(i).getContact();
                 model.addRow(row);
             }
         }

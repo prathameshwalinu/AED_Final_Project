@@ -2,7 +2,7 @@ package ui.EventPlannerAdminRole;
 
 import Model.Admin;
 import Model.BusinessCatalogueDirectory;
-import Model.Admin;
+import Model.Catering;
 import Model.Entertainment;
 import Model.Events;
 import Model.Resort;
@@ -318,8 +318,8 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                     }
                 }
             }
-        } else if (enterpriseType.equals("Admin")) {
-            for (Admin cat : businessCatalogueDirectory.getListOfAdmin()) {
+        } else if (enterpriseType.equals("Catering")) {
+            for (Catering cat : businessCatalogueDirectory.getListOfCatering()) {
                 for (Supervisor supr : cat.getListOfSupervisor()) {
                     if (supr.getName().equals(selectedUser)) {
                         cat.deleteSupervisor(supr);
@@ -398,8 +398,8 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                 row[4] = userName;
                 row[5] = password;
                 model.addRow(row);
-            } else if (enterpriseType1.equals("Admin") && businessCatelogDirectory != null) {
-                Admin res1 = businessCatelogDirectory.findAdmin(enterpriseName1);
+            } else if (enterpriseType1.equals("Catering") && businessCatelogDirectory != null) {
+                Catering res1 = businessCatelogDirectory.findCatering(enterpriseName1);
                 res1.addSupervisor(userName, userName, password);
                 EPAdmin.addUser(userName, password, "Admin");
 
@@ -456,8 +456,8 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             for (Events event : businessCatalogueDirectory.getListOfEvents()) {
                 cmbBCName.addItem(event.getName());
             }
-        } else if (enterpriseType1.equals("Admin")) {
-            for (Admin cat : businessCatalogueDirectory.getListOfAdmin()) {
+        } else if (enterpriseType1.equals("Catering")) {
+            for (Catering cat : businessCatalogueDirectory.getListOfCatering()) {
                 cmbBCName.addItem(cat.getName());
             }
         } else if (enterpriseType1.equals("Resort")) {
@@ -531,7 +531,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                 }
             }
         } else if (enterpriseType1.equals("Admin")) {
-            Admin cat = businessCatalogueDirectory.findAdmin(enterpriseName1);
+            Catering cat = businessCatalogueDirectory.findCatering(enterpriseName1);
             for (Supervisor man : cat.getListOfSupervisor()) {
                 if (man.getUsername().equals(managerUserName)) {
                     man.setName(name);
@@ -627,12 +627,12 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                     model.addRow(row);
                 }
             }
-            for (Admin cat : businessCatalogueDirectory.getListOfAdmin()) {   //poplulate restauarant enterprise
-                row[1] = "Admin";
+            for (Catering cat : businessCatalogueDirectory.getListOfCatering()) {   //poplulate restauarant enterprise
+                row[1] = "Catering";
                 row[2] = cat.getName();
                 for (Supervisor supervisor : cat.getListOfSupervisor()) {
                     row[0] = location.getName();
-                    row[1] = "Admin";
+                    row[1] = "Catering";
                     row[2] = cat.getName();
                     row[3] = supervisor.getName();
                     row[4] = supervisor.getUsername();

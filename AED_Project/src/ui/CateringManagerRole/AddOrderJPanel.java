@@ -1,9 +1,9 @@
-package ui.AdminManagerRole;
+package ui.CateringManagerRole;
 
 import Model.Admin;
 import Model.BusinessCatalogueDirectory;
-import Model.Admin;
-import Model.Admin_Menu;
+import Model.Catering;
+import Model.Catering_Menu;
 import Model.ServiceLocation;
 import Model.Supervisor;
 import java.util.List;
@@ -178,11 +178,11 @@ public class AddOrderJPanel extends javax.swing.JPanel {
         int price = Integer.parseInt(priceField.getText().trim());
 
         BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
-        List<Admin> resList = enterpriseCatalogueDirectory.getListOfAdmin();                // get all restaurants
-        for (Admin res : resList) {
+       List<Catering> resList = enterpriseCatalogueDirectory.getListOfCatering();                // get all restaurants
+        for (Catering res : resList) {
             List<Supervisor> supervisor = res.getListOfSupervisor();
             for (Supervisor manager : supervisor) {
-                if (manager.getUsername().equals(user)) {            //if manager is found in that Admin then add item to that res...
+                if (manager.getUsername().equals(user)) {            //if manager is found in that catering then add item to that res...
                     res.addMenuItem(item, price);
 
                     populateMenu();
@@ -213,10 +213,10 @@ public class AddOrderJPanel extends javax.swing.JPanel {
         model.setRowCount(0);
         
         BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
-        for (Admin Admin : enterpriseCatalogueDirectory.getListOfAdmin()) {
-            if (Admin.findSupervisor(user) != null) {
+        for (Catering catering : enterpriseCatalogueDirectory.getListOfCatering()) {
+            if (catering.findSupervisor(user) != null) {
                 Object row[] = new Object[10];
-                for (Admin_Menu item : Admin.getListOfMenuItem()) {
+                for (Catering_Menu item : catering.getListOfMenuItem()) {
                     row[0] = item.getDetails();
                     row[1] = item.getPrice();
                     model.addRow(row);

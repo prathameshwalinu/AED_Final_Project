@@ -62,8 +62,6 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
         roomtypeComboBox = new javax.swing.JComboBox<>();
         priceBtn = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
-        DCcheckin = new com.toedter.calendar.JDateChooser();
-        DCcheckout = new com.toedter.calendar.JDateChooser();
         lbldate1 = new javax.swing.JLabel();
         lblroom1 = new javax.swing.JLabel();
         emailid = new javax.swing.JTextField();
@@ -162,12 +160,8 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(lbldate)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(DCcheckin, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(45, 45, 45)
-                                        .addComponent(lbldate1)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(DCcheckout, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGap(252, 252, 252)
+                                        .addComponent(lbldate1))
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                         .addComponent(bookRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGroup(layout.createSequentialGroup()
@@ -201,7 +195,7 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                                                 .addComponent(priceBtn))
                                             .addGap(48, 48, 48)
                                             .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                        .addGap(0, 445, Short.MAX_VALUE)))
+                        .addGap(0, 464, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -217,10 +211,7 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                         .addComponent(lblbookservices)
                         .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(lbldate)
-                                .addComponent(DCcheckin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(DCcheckout, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(lbldate)
                             .addComponent(lbldate1))
                         .addGap(29, 29, 29)
                         .addComponent(lblcity))
@@ -332,8 +323,6 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private com.toedter.calendar.JDateChooser DCcheckin;
-    private com.toedter.calendar.JDateChooser DCcheckout;
     private javax.swing.JButton backBtn;
     private javax.swing.JButton bookRoomBtn;
     private javax.swing.JLabel btnnoofpeople;

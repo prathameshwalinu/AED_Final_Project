@@ -10,7 +10,7 @@ public class CarService {
     private String password;
     private String username;
 
-    List<Admin_Order> list = new ArrayList<>();
+    List<Catering_Order> list = new ArrayList<>();
 
     public  CarService(String name, String city, String username, String password) {
         this.name = name;
