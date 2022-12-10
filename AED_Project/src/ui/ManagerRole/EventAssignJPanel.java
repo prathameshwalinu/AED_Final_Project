@@ -42,12 +42,14 @@ public class EventAssignJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        lblsysadmin.setFont(new java.awt.Font("Academy Engraved LET", 0, 36)); // NOI18N
+        lblsysadmin.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblsysadmin.setText("CONFIRM AND ASSIGN EVENTS");
 
-        jButton2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jButton2.setText("BACK");
+        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
+        tblviewdetails.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
         tblviewdetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -65,38 +67,40 @@ public class EventAssignJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblviewdetails);
 
-        jButton4.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jButton4.setText("ASSIGN");
+        jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jButton3.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jButton3.setText("CONFIRM BOOKING");
+        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jComboBox2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jComboBox2.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("MEETINGS:");
 
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("BIRTHDAY PARTY:");
 
-        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("WEDDING");
 
-        jComboBox3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jComboBox3.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         jLabel8.setText("jLabel7");
@@ -163,7 +167,7 @@ public class EventAssignJPanel extends javax.swing.JPanel {
                     .addComponent(jLabel2)
                     .addComponent(jLabel3)
                     .addComponent(jLabel1))
-                .addContainerGap(227, Short.MAX_VALUE))
+                .addContainerGap(229, Short.MAX_VALUE))
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(21, 21, 21)

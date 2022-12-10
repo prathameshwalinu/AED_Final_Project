@@ -33,13 +33,13 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
         this.catering = catering;
         populateComboBox();
         populateTable();
-        setBackground(new java.awt.Color(255, 208, 56));
-        acceptBtn.setBackground(new java.awt.Color(0, 102, 102));
-        acceptBtn.setOpaque(true);
-        denyBtn.setBackground(new java.awt.Color(0, 102, 102));
-        denyBtn.setOpaque(true);
-        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-        backBtn.setOpaque(true);
+        //setBackground(new java.awt.Color(255, 208, 56));
+        //acceptBtn.setBackground(new java.awt.Color(0, 102, 102));
+        //acceptBtn.setOpaque(true);
+        //denyBtn.setBackground(new java.awt.Color(0, 102, 102));
+        //denyBtn.setOpaque(true);
+        //backBtn.setBackground(new java.awt.Color(0, 102, 102));
+        //backBtn.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")

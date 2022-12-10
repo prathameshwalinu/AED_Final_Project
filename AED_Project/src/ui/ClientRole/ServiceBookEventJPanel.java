@@ -32,13 +32,13 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
         for (Events eventOrg : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfEvents()) {
             orgComboBox.addItem(eventOrg);
         }
-        setBackground(new java.awt.Color(255, 208, 56));
-        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-        backBtn.setOpaque(true);
-        totalPrice.setBackground(new java.awt.Color(0, 102, 102));
-        totalPrice.setOpaque(true);
-        bookEventBtn.setBackground(new java.awt.Color(0, 102, 102));
-        bookEventBtn.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        backBtn.setOpaque(true);
+//        totalPrice.setBackground(new java.awt.Color(0, 102, 102));
+//        totalPrice.setOpaque(true);
+//        bookEventBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        bookEventBtn.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -68,8 +68,9 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
-        backBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
-        backBtn.setText("< BACK");
+        backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        backBtn.setText("BACK");
+        backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
@@ -79,7 +80,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
         lblbookservices.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblbookservices.setText("BOOK EVENTS");
 
-        radioWedding.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        radioWedding.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         radioWedding.setText("WEDDING");
         radioWedding.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,7 +88,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
             }
         });
 
-        radioBirthdayParty.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        radioBirthdayParty.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         radioBirthdayParty.setText("BIRTHDAY PARTY");
         radioBirthdayParty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,8 +96,9 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
             }
         });
 
-        bookEventBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        bookEventBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         bookEventBtn.setText("BOOK EVENT");
+        bookEventBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         bookEventBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bookEventBtnActionPerformed(evt);
@@ -107,10 +109,10 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
 
         cmbWedding.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
 
-        jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel5.setText("TYPE OF PACKAGE ");
 
-        jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel1.setText("TYPE OF PACKAGE");
 
         cmbBirthdayParty.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
@@ -120,7 +122,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
             }
         });
 
-        radioMeeting.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        radioMeeting.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         radioMeeting.setText("MEETINGS");
         radioMeeting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,17 +130,18 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jLabel6.setText("TYPE OF PACKAGE");
 
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("DATE ");
 
-        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setText("EVENT");
 
-        totalPrice.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        totalPrice.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         totalPrice.setText("TOTAL PRICE");
+        totalPrice.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         totalPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 totalPriceActionPerformed(evt);
@@ -149,27 +152,6 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(backBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(185, 185, 185)
-                                .addComponent(orgComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(136, 136, 136)
-                                        .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                .addGap(198, 226, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,6 +178,27 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
                             .addComponent(bookEventBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(205, 205, 205))))
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(269, 269, 269)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(185, 185, 185)
+                                .addComponent(orgComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(12, 12, 12)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(136, 136, 136)
+                                        .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(198, 226, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -212,13 +215,13 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(orgComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(radioWedding)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(cmbWedding, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
                 .addComponent(radioBirthdayParty)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)

@@ -14,13 +14,13 @@ public class ClientJPanel extends javax.swing.JPanel {
         this.admin = admin;
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.callOnCreateMethod2 = callOnCreateMethod2;
-        setBackground(new java.awt.Color(255, 208, 56));
-        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-        backBtn.setOpaque(true);
-        btnBookResort.setBackground(new java.awt.Color(0, 102, 102));
-        btnBookResort.setOpaque(true);
-        manageBooking.setBackground(new java.awt.Color(0, 102, 102));
-        manageBooking.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        backBtn.setOpaque(true);
+//        btnBookResort.setBackground(new java.awt.Color(0, 102, 102));
+//        btnBookResort.setOpaque(true);
+//        manageBooking.setBackground(new java.awt.Color(0, 102, 102));
+//        manageBooking.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -35,19 +35,22 @@ public class ClientJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("CLIENT PANEL ");
 
-        btnBookResort.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnBookResort.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnBookResort.setText("RESORT BOOKING AND SERVICES");
+        btnBookResort.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBookResort.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBookResortActionPerformed(evt);
             }
         });
 
-        backBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
-        backBtn.setText("< BACK");
+        backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        backBtn.setText("BACK");
+        backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        manageBooking.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        manageBooking.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         manageBooking.setText("MANAGE BOOKING");
+        manageBooking.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         manageBooking.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageBookingActionPerformed(evt);
@@ -61,18 +64,17 @@ public class ClientJPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(62, 62, 62)
-                        .addComponent(backBtn))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(337, 337, 337)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(335, 335, 335)
-                        .addComponent(manageBooking, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(312, 312, 312)
-                        .addComponent(btnBookResort)))
-                .addContainerGap(402, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnBookResort, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(manageBooking, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(428, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

@@ -49,19 +49,20 @@ public class ManageCateringDeliveryJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setFont(new java.awt.Font("Baskerville Old Face", 0, 11)); // NOI18N
 
-        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setText("USER NAME:");
 
-        jButton3.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jButton3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jButton3.setText("UPDATE");
+        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("BUSINESS CATALOGUE:");
 
-        jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel6.setText("PHONE NUMBER:");
 
-        jComboBox1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,18 +70,19 @@ public class ManageCateringDeliveryJPanel extends javax.swing.JPanel {
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("SUPERVISOR ID:");
 
-        jButton4.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jButton4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jButton4.setText("DELETE");
+        jButton4.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
-        jTable1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null},
@@ -110,24 +112,26 @@ public class ManageCateringDeliveryJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel5.setText("PASSWORD:");
 
-        jButton2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jButton2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jButton2.setText("BACK");
+        jButton2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jButton1.setText("ADD");
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        lblsysadmin.setFont(new java.awt.Font("Academy Engraved LET", 0, 36)); // NOI18N
+        lblsysadmin.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblsysadmin.setText("MANAGE EMPLOYES (DELIVERY SERVICES)");
 
-        jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("SUPERVISOR:");
 
         jTextField8.addActionListener(new java.awt.event.ActionListener() {
@@ -186,8 +190,8 @@ public class ManageCateringDeliveryJPanel extends javax.swing.JPanel {
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(344, 344, 344)
-                        .addComponent(jButton1)
-                        .addGap(190, 190, 190)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(180, 180, 180)
                         .addComponent(jButton3)
                         .addGap(227, 227, 227)
                         .addComponent(jButton4)))

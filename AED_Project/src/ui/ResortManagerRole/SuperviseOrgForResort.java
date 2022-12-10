@@ -30,18 +30,18 @@ public class SuperviseOrgForResort extends javax.swing.JPanel {
         this.user = user;
         this.type = type;
         this.location = location;
-        setBackground(new java.awt.Color(255, 208, 56));
-        cityNameTextField.setText(location.getName());
-        cityNameTextField.setEditable(false);
-
-        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
-        deleteBtn.setOpaque(true);
-        addBtn.setBackground(new java.awt.Color(0, 102, 102));
-        addBtn.setOpaque(true);
-        updateButton.setBackground(new java.awt.Color(0, 102, 102));
-        updateButton.setOpaque(true);
-        backButton.setBackground(new java.awt.Color(0, 102, 102));
-        backButton.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//        cityNameTextField.setText(location.getName());
+//        cityNameTextField.setEditable(false);
+//
+//        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        deleteBtn.setOpaque(true);
+//        addBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        addBtn.setOpaque(true);
+//        updateButton.setBackground(new java.awt.Color(0, 102, 102));
+//        updateButton.setOpaque(true);
+//        backButton.setBackground(new java.awt.Color(0, 102, 102));
+//        backButton.setOpaque(true);
 
         populateTable();
     }

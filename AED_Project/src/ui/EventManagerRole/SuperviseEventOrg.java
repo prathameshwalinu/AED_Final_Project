@@ -35,15 +35,15 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
         cityNameTextField.setEditable(false);
 
         populateTable();
-        setBackground(new java.awt.Color(255, 208, 56));
-        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
-        deleteBtn.setOpaque(true);
-        addBtn.setBackground(new java.awt.Color(0, 102, 102));
-        addBtn.setOpaque(true);
-        updateBtn.setBackground(new java.awt.Color(0, 102, 102));
-        updateBtn.setOpaque(true);
-        backButton.setBackground(new java.awt.Color(0, 102, 102));
-        backButton.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        deleteBtn.setOpaque(true);
+//        addBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        addBtn.setOpaque(true);
+//        updateBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        updateBtn.setOpaque(true);
+//        backButton.setBackground(new java.awt.Color(0, 102, 102));
+//        backButton.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -68,7 +68,7 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        jTable1.setFont(new java.awt.Font("Baskerville Old Face", 0, 11)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 11)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -92,49 +92,54 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        backButton.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backButton.setText("BACK");
+        backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backButtonActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Academy Engraved LET", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("SUPERVISE ORGANISATION FOR EVENTS ");
 
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("ORGANISATION TYPE");
 
+        orgCombo.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
         orgCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select an organisation", "Meeting", "BirthdayParty", "Wedding" }));
 
-        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("NAME");
 
-        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setText("PHONE NO.");
 
-        jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel5.setText("CITY");
 
-        addBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        addBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addBtn.setText("ADD");
+        addBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addBtnActionPerformed(evt);
             }
         });
 
-        deleteBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         deleteBtn.setText("DELETE");
+        deleteBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         deleteBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 deleteBtnActionPerformed(evt);
             }
         });
 
-        updateBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        updateBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         updateBtn.setText("UPDATE");
+        updateBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateBtnActionPerformed(evt);
@@ -169,7 +174,7 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(31, 31, 31)
                         .addComponent(backButton)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(66, 66, 66)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,7 +197,7 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(32, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addGap(22, 22, 22)
                 .addComponent(jLabel1)
@@ -215,7 +220,7 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
                     .addComponent(contactField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5)
                     .addComponent(cityNameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addContainerGap(179, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

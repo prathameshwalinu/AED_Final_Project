@@ -41,13 +41,13 @@ public class DisplayEventPanel extends javax.swing.JPanel {
         populateComboBox();
         populateTable();
         
-        setBackground(new java.awt.Color(255,208,56));
-        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-        backBtn.setOpaque(true);
-       confirmBtn.setBackground(new java.awt.Color(0, 102, 102));
-       confirmBtn.setOpaque(true);
-       denyButton.setBackground(new java.awt.Color(0, 102, 102));
-       confirmBtn.setOpaque(true);
+//        setBackground(new java.awt.Color(255,208,56));
+//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        backBtn.setOpaque(true);
+//       confirmBtn.setBackground(new java.awt.Color(0, 102, 102));
+//       confirmBtn.setOpaque(true);
+//       denyButton.setBackground(new java.awt.Color(0, 102, 102));
+//       confirmBtn.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -69,15 +69,16 @@ public class DisplayEventPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        backBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backBtn.setText("BACK");
+        backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Academy Engraved LET", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("VIEW ORDER DETAILS FOR EVENTS");
 
         jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
@@ -99,13 +100,13 @@ public class DisplayEventPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("SELECT A BIRTHDAY PARTY ORG:");
 
-        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("SELECT A MEETING ORG:");
 
-        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setText("SELECT A WEDDING ORG:");
 
         weddingOrg.addActionListener(new java.awt.event.ActionListener() {
@@ -114,16 +115,18 @@ public class DisplayEventPanel extends javax.swing.JPanel {
             }
         });
 
-        confirmBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        confirmBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         confirmBtn.setText("CONFIRM REQUEST");
+        confirmBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         confirmBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 confirmBtnActionPerformed(evt);
             }
         });
 
-        denyButton.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        denyButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         denyButton.setText("DENY REQUEST");
+        denyButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         denyButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 denyButtonActionPerformed(evt);
@@ -191,7 +194,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addComponent(meetingOrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 71, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(birthdayOrg, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -203,7 +206,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(denyButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(confirmBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(122, Short.MAX_VALUE))
+                .addContainerGap(123, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

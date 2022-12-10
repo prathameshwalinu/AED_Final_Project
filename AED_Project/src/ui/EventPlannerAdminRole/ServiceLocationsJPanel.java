@@ -19,11 +19,11 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
         
         populateTable();
         
-        setBackground(new java.awt.Color(255, 208, 56));
-         btnBack.setBackground(new java.awt.Color(0, 102, 102));
-         btnBack.setOpaque(true);
-         btnAdd.setBackground(new java.awt.Color(0, 102, 102));
-         btnAdd.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//         btnBack.setBackground(new java.awt.Color(0, 102, 102));
+//         btnBack.setOpaque(true);
+//         btnAdd.setBackground(new java.awt.Color(0, 102, 102));
+//         btnAdd.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -40,15 +40,16 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
 
-        btnBack.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnBack.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnBack.setText("BACK");
+        btnBack.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
             }
         });
 
-        tblLocation.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
+        tblLocation.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         tblLocation.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -59,18 +60,19 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblLocation);
 
-        btnAdd.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnAdd.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnAdd.setText("ADD");
+        btnAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
 
-        lblServiceLocation.setFont(new java.awt.Font("Academy Engraved LET", 0, 36)); // NOI18N
+        lblServiceLocation.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblServiceLocation.setText("SERVICE LOCATIONS");
 
-        lblLocation.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        lblLocation.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         lblLocation.setText("SERVICE LOCATION:");
 
         txtlocation.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N

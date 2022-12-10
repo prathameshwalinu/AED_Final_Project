@@ -22,11 +22,11 @@ public class OtherServicePanel extends javax.swing.JPanel {
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.username = username;
         this.booking = booking;
-        setBackground(new java.awt.Color(255, 208, 56));
-        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-        backBtn.setOpaque(true);
-        placeRequest.setBackground(new java.awt.Color(0, 102, 102));
-        placeRequest.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        backBtn.setOpaque(true);
+//        placeRequest.setBackground(new java.awt.Color(0, 102, 102));
+//        placeRequest.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -44,15 +44,16 @@ public class OtherServicePanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("HOTEL SERVICE PANEL");
 
-        backBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
-        backBtn.setText("< BACK");
+        backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        backBtn.setText(" BACK");
+        backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
 
-        RbtnTourGuide.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        RbtnTourGuide.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         RbtnTourGuide.setText("TOUR GUIDE ($100)");
         RbtnTourGuide.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -60,18 +61,19 @@ public class OtherServicePanel extends javax.swing.JPanel {
             }
         });
 
-        RBtnCarService.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        RBtnCarService.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         RBtnCarService.setText("CAR SERVICE ($100)");
 
-        placeRequest.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        placeRequest.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         placeRequest.setText("PLACE REQUEST");
+        placeRequest.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         placeRequest.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 placeRequestActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("DATE");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -117,7 +119,7 @@ public class OtherServicePanel extends javax.swing.JPanel {
                 .addComponent(RBtnCarService)
                 .addGap(29, 29, 29)
                 .addComponent(placeRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(366, Short.MAX_VALUE))
+                .addContainerGap(368, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

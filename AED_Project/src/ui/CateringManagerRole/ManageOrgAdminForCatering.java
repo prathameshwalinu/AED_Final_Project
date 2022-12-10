@@ -32,15 +32,15 @@ public class ManageOrgAdminForCatering extends javax.swing.JPanel {
         networkName.setEditable(false);
 
         populateTable();
-        setBackground(new java.awt.Color(255, 208, 56));
-        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
-        deleteBtn.setOpaque(true);
-        addButton.setBackground(new java.awt.Color(0, 102, 102));
-        addButton.setOpaque(true);
-        updateButton.setBackground(new java.awt.Color(0, 102, 102));
-        updateButton.setOpaque(true);
-        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-        backBtn.setOpaque(true);
+        //setBackground(new java.awt.Color(255, 208, 56));
+        //deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
+        //deleteBtn.setOpaque(true);
+        //addButton.setBackground(new java.awt.Color(0, 102, 102));
+        //addButton.setOpaque(true);
+        //updateButton.setBackground(new java.awt.Color(0, 102, 102));
+        //updateButton.setOpaque(true);
+        //backBtn.setBackground(new java.awt.Color(0, 102, 102));
+        //backBtn.setOpaque(true);
     }
 
 //    public boolean validateName() {

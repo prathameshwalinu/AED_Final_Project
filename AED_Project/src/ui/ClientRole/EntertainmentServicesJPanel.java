@@ -26,11 +26,11 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
         for (Entertainment entertain : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfEntertainment()) {
             cmbEntertainment.addItem(entertain);
         }
-        setBackground(new java.awt.Color(255, 208, 56));
-        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-        backBtn.setOpaque(true);
-        addServiceBtn.setBackground(new java.awt.Color(0, 102, 102));
-        addServiceBtn.setOpaque(true);
+//        setBackground(new java.awt.Color(255, 208, 56));
+//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        backBtn.setOpaque(true);
+//        addServiceBtn.setBackground(new java.awt.Color(0, 102, 102));
+//        addServiceBtn.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -54,15 +54,16 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
         lblbookservices.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblbookservices.setText("ENTERTAINMENT SERVICES");
 
-        backBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
-        backBtn.setText("< BACK");
+        backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        backBtn.setText("BACK");
+        backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
 
-        btnDance.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnDance.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnDance.setText("DANCE ($100)");
         btnDance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -70,7 +71,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnMusic.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnMusic.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnMusic.setText("MUSIC ($150)");
         btnMusic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,7 +79,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
             }
         });
 
-        btnShow.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnShow.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnShow.setText("SHOWS  ($300)");
         btnShow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -86,8 +87,9 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
             }
         });
 
-        addServiceBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        addServiceBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addServiceBtn.setText("ADD SERVICE");
+        addServiceBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         addServiceBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addServiceBtnActionPerformed(evt);
@@ -103,10 +105,10 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jLabel6.setText("(MONDAY - SUNDAY) 12P.M-4P.M ");
 
-        jLabel7.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel7.setText("SELECT A DATE :");
 
-        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setText("ENTERTAINMENT:");
 
         cmbEntertainment.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
@@ -117,9 +119,6 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(31, 31, 31)
-                        .addComponent(backBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(213, 213, 213)
                         .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -148,21 +147,20 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
                                         .addGap(86, 86, 86)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel3)
-                                            .addComponent(jLabel5))))))))
+                                            .addComponent(jLabel5)))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(78, 272, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 127, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 97, Short.MAX_VALUE)
-                        .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)))
+                .addGap(24, 24, 24)
+                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel7)
                     .addComponent(dateFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
