@@ -1,8 +1,8 @@
-package ui.CateringManagerRole;
+package ui.AdminManagerRole;
 
 import Model.Admin;
 import Model.BusinessCatalogueDirectory;
-import Model.Catering;
+import Model.Admin;
 import Model.ServiceAgentOrganisation;
 import Model.ServiceLocation;
 import Model.Supervisor;
@@ -12,7 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import ui.main.Validator;
 
-public class ManageOrgAdminForCatering extends javax.swing.JPanel {
+public class ManageOrgAdminForAdmin extends javax.swing.JPanel {
 
 
     private Admin EPAdmin;
@@ -21,7 +21,7 @@ public class ManageOrgAdminForCatering extends javax.swing.JPanel {
     private String user;
     private ServiceLocation location;
    
-    public ManageOrgAdminForCatering(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
+    public ManageOrgAdminForAdmin(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
         initComponents();
         this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;
@@ -161,7 +161,7 @@ public class ManageOrgAdminForCatering extends javax.swing.JPanel {
         });
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
-        jLabel7.setText("MANAGE ORGANIZATION ADMIN FOR CATERING");
+        jLabel7.setText("MANAGE ORGANIZATION ADMIN FOR Admin");
 
         orgCombo.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         orgCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ServiceAgent" }));
@@ -302,7 +302,7 @@ public class ManageOrgAdminForCatering extends javax.swing.JPanel {
 
         if (!EPAdmin.userExistsInSystem(username)) {
             BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
-            List<Catering> list = enterpriseCatalogueDirectory.getListOfCatering();
+            List<Admin> list = enterpriseCatalogueDirectory.getListOfAdmin();
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).findSupervisor(user) != null) {    //if manager found 
                     if (orgType.equals("ServiceAgent")) {
@@ -341,7 +341,7 @@ public class ManageOrgAdminForCatering extends javax.swing.JPanel {
         orgName.removeAllItems();
 
         BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
-        List<Catering> list = enterpriseCatalogueDirectory.getListOfCatering();
+        List<Admin> list = enterpriseCatalogueDirectory.getListOfAdmin();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).findSupervisor(user) != null) {
                 if (orgType.equals("ServiceAgent")) {
@@ -368,7 +368,7 @@ public class ManageOrgAdminForCatering extends javax.swing.JPanel {
         String OrgName = (String) model.getValueAt(selectedRowIndex, 2);
         String selectedUser = (String) model.getValueAt(selectedRowIndex, 4);
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
-        for (Catering res : businessCatalogueDirectory.getListOfCatering()) {
+        for (Admin res : businessCatalogueDirectory.getListOfAdmin()) {
             if (res.findSupervisor(user) != null) {
                 if (res.getListOfServiceAgentOrganisation() != null) {
                     for (ServiceAgentOrganisation del : res.getListOfServiceAgentOrganisation()) {
@@ -422,7 +422,7 @@ public class ManageOrgAdminForCatering extends javax.swing.JPanel {
             String password = passwordField.getText();
 
             BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
-            for (Catering rest : businessCatalogueDirectory.getListOfCatering()) {
+            for (Admin rest : businessCatalogueDirectory.getListOfAdmin()) {
                 if (orgType.equals("ServiceAgent") && rest.getListOfServiceAgentOrganisation() != null) {
                     for (ServiceAgentOrganisation del : rest.getListOfServiceAgentOrganisation()) {
                         for (Supervisor man : del.getListOfSupervisor()) {
@@ -480,7 +480,7 @@ public class ManageOrgAdminForCatering extends javax.swing.JPanel {
         if (businessCatalogueDirectory == null) {
             return;
         }
-        for (Catering restaurant : businessCatalogueDirectory.getListOfCatering()) {
+        for (Admin restaurant : businessCatalogueDirectory.getListOfAdmin()) {
             if (restaurant.findSupervisor(user) != null) {
                 if (restaurant.getListOfServiceAgentOrganisation() != null) {
                     row[0] = "ServiceAgent";

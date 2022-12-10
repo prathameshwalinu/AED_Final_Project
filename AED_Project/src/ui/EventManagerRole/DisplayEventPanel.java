@@ -87,7 +87,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "BOOKING ID", "NAME", "STATUS", "CATERING", "DECOR", "PHOTOGRAPHY"
+                "BOOKING ID", "NAME", "STATUS", "Admin", "DECOR", "PHOTOGRAPHY"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -375,9 +375,9 @@ public class DisplayEventPanel extends javax.swing.JPanel {
         meetingOrg.addItem(null);
         weddingOrg.addItem(null);
 
-        for (Event_BirthdayParty catering : businessEvent.getListOfBirthdayParty()) {
-            if (catering != null) {
-                birthdayOrg.addItem(catering);
+        for (Event_BirthdayParty Admin : businessEvent.getListOfBirthdayParty()) {
+            if (Admin != null) {
+                birthdayOrg.addItem(Admin);
             }
         }
         for (Event_Meetings decor : businessEvent.getListOfMeetings()) {
