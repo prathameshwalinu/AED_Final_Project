@@ -8,12 +8,12 @@ package ui.ManagerRole;
  *
  * @author aishw
  */
-public class CateringAssignJPanel extends javax.swing.JPanel {
+public class AdminAssignJPanel extends javax.swing.JPanel {
 
     /**
      * Creates new form RestaurantJPanel
      */
-    public CateringAssignJPanel() {
+    public AdminAssignJPanel() {
         initComponents();
     }
 

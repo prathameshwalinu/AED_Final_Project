@@ -1,12 +1,12 @@
-package ui.CateringManagerRole;
+package ui.AdminManagerRole;
 
 import Model.Admin;
-import Model.Catering;
+import Model.Admin;
 import Model.Client;
 import Model.ClientDirectory;
 import Model.HallBooking;
 import Model.ServiceAgentOrganisation;
-import Model.services.CateringService;
+import Model.services.AdminService;
 import Model.services.EService;
 import java.security.Provider.Service;
 import java.util.ArrayList;
@@ -14,23 +14,23 @@ import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-public class ViewTaskPanelCatering extends javax.swing.JPanel {
+public class ViewTaskPanelAdmin extends javax.swing.JPanel {
 
 
     private Admin EPAdmin;
     private Runnable callOnCreateMethod;
     private String user;
     private String type;
-    private Catering catering;
+    private Admin Admin;
 
 
-    public ViewTaskPanelCatering(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, Catering catering) {
+    public ViewTaskPanelAdmin(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, Admin Admin) {
         initComponents();
         this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
-        this.catering = catering;
+        this.Admin = Admin;
         populateComboBox();
         populateTable();
         //setBackground(new java.awt.Color(255, 208, 56));
@@ -106,7 +106,7 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
         });
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
-        jLabel2.setText("VIEW ORDER DETAILS FOR CATERING");
+        jLabel2.setText("VIEW ORDER DETAILS FOR Admin");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -172,10 +172,10 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         HallBooking booking = (HallBooking) model.getValueAt(selectRowIndex, 0);
 
-        CateringService resService = null;
+        AdminService resService = null;
         for (EService service : booking.getServices()) {
-            if (catering.getName().equals(service.getBusinessCatalogue().getName())) {
-                resService = (CateringService) service;
+            if (Admin.getName().equals(service.getBusinessCatalogue().getName())) {
+                resService = (AdminService) service;
                 break;
             }
         }
@@ -217,10 +217,10 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         HallBooking booking = (HallBooking) model.getValueAt(selectRowIndex, 0);
 
-        CateringService resService = null;
+        AdminService resService = null;
         for (EService service : booking.getServices()) {
-            if (service instanceof CateringService) {
-                resService = (CateringService) service;
+            if (service instanceof AdminService) {
+                resService = (AdminService) service;
                 break;
             }
         }
@@ -262,13 +262,13 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
         for (Client customer : clientDirectory.getListOfClientDirectory()) {
             for (HallBooking booking : customer.getHallbookingList()) {      //get booking details each customer
                 for (EService service : booking.getServices()) {       //get services under booking
-                    if (service.getBusinessCatalogue().getName().equals(catering.getName())) {
-                        CateringService cateringService = (CateringService) service;
+                    if (service.getBusinessCatalogue().getName().equals(Admin.getName())) {
+                        AdminService AdminService = (AdminService) service;
                         row[0] = booking;
                         row[1] = customer;
                         row[2] = booking.getStatus();
                         row[3] = customer.getAddress();
-                        row[4] = cateringService.getStatus();
+                        row[4] = AdminService.getStatus();
                         model.addRow(row);
                     }
                 }
@@ -278,7 +278,7 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
 
     private void populateComboBox() {
         deliveryOrg.addItem(null);
-        for (ServiceAgentOrganisation delivery : catering.getListOfServiceAgentOrganisation()) {
+        for (ServiceAgentOrganisation delivery : Admin.getListOfServiceAgentOrganisation()) {
             if (delivery != null) {
                 deliveryOrg.addItem(delivery);
             }

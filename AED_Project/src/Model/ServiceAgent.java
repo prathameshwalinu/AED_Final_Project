@@ -6,7 +6,7 @@ import java.util.List;
 public class ServiceAgent extends Person {
 
     private String city;
-    List<Catering_Order> list = new ArrayList<>();
+    List<Admin_Order> list = new ArrayList<>();
 
     public ServiceAgent(String name, String city, String username, String password) {
         this.name = name;
@@ -23,19 +23,19 @@ public class ServiceAgent extends Person {
         this.city = city;
     }
 
-    public List<Catering_Order> getList() {
+    public List<Admin_Order> getList() {
         return list;
     }
 
-    public void setList(List<Catering_Order> list) {
+    public void setList(List<Admin_Order> list) {
         this.list = list;
     }
 
-    public void addOrder(Catering_Order order) {
+    public void addOrder(Admin_Order order) {
         list.add(order);
     }
 
-    public Catering_Order findOrder(String orderId) {
+    public Admin_Order findOrder(String orderId) {
         for (int i = 0; i < list.size(); i++) {
             if (orderId.equals(list.get(i).getId())) {
                 return list.get(i);

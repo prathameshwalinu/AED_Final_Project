@@ -9,13 +9,13 @@ public class BusinessCatalogueDirectory {
     private List<Resort> listOfResort;
     private List<Events> listOfEvents;
     private List<Entertainment> listOfEntertainment;
-    private List<Catering> listOfCatering;
+    private List<Admin> listOfAdmin;
 
     public BusinessCatalogueDirectory() {
         listOfResort = new ArrayList<>();
         listOfEvents = new ArrayList<>();
         listOfEntertainment = new ArrayList<>();
-        listOfCatering = new ArrayList<>();
+        listOfAdmin = new ArrayList<>();
     }
 
     public List<Resort> getListOfResort() {
@@ -42,12 +42,12 @@ public class BusinessCatalogueDirectory {
         this.listOfEntertainment = listOfEntertainment;
     }
 
-    public List<Catering> getListOfCatering() {
-        return listOfCatering;
+    public List<Admin> getListOfAdmin() {
+        return listOfAdmin;
     }
 
-    public void setListOfCatering(List<Catering> listOfCatering) {
-        this.listOfCatering = listOfCatering;
+    public void setListOfAdmin(List<Admin> listOfAdmin) {
+        this.listOfAdmin = listOfAdmin;
     }
 
     public void addEntertainment(String name, String contact) {
@@ -55,9 +55,9 @@ public class BusinessCatalogueDirectory {
         listOfEntertainment.add(entertainment);
     }
 
-    public void addCatering(String name, String contact) {
-        Catering catering = new Catering(name, contact);
-        listOfCatering.add(catering);
+    public void addAdmin(String name, String contact) {
+        Admin Admin = new Admin(name, contact);
+        listOfAdmin.add(Admin);
     }
 
     public void addEvents(String name, String contact) {
@@ -88,8 +88,8 @@ public class BusinessCatalogueDirectory {
         return null;
     }
 
-    public Catering findCatering(String name) {
-        for (Catering entertainment : listOfCatering) {
+    public Admin findAdmin(String name) {
+        for (Admin entertainment : listOfAdmin) {
             if (entertainment.getName().equals(name)) {
                 return entertainment;
             }
@@ -114,8 +114,8 @@ public class BusinessCatalogueDirectory {
         listOfEntertainment.remove(Entertainment);
     }
 
-    public void deleteBusinessCatalogueCatering(Catering cater) {
-        listOfCatering.remove(cater);
+    public void deleteBusinessCatalogueAdmin(Admin cater) {
+        listOfAdmin.remove(cater);
     }
 
     public void deleteBusinessCatalogueResort(Resort resort) {

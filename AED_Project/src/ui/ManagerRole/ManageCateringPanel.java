@@ -8,11 +8,11 @@ package ui.ManagerRole;
  *
  * @author aishw
  */
-public class ManageCateringPanel extends javax.swing.JPanel {
+public class ManageAdminPanel extends javax.swing.JPanel {
 
     
      
-    public ManageCateringPanel() {
+    public ManageAdminPanel() {
         initComponents();
     }
 
@@ -61,7 +61,7 @@ public class ManageCateringPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         lblsysadmin.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
-        lblsysadmin.setText("SUPERVISE MENU (IN CATERING)");
+        lblsysadmin.setText("SUPERVISE MENU (IN Admin)");
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("ITEM:");

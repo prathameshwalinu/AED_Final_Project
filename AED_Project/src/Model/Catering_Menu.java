@@ -1,11 +1,11 @@
 package Model;
 
-public class Catering_Menu {
+public class Admin_Menu {
 
     private String details;
     private int price;
 
-    public Catering_Menu(String item, int price) {
+    public Admin_Menu(String item, int price) {
         this.details = item;
         this.price = price;
     }

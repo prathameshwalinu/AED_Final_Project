@@ -317,8 +317,8 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
     private void radioBirthdayPartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBirthdayPartyActionPerformed
         if (radioBirthdayParty.isSelected()) {
             cmbBirthdayParty.removeAllItems();
-            for (BirthdayPartyType catering : BirthdayPartyType.values()) {
-                cmbBirthdayParty.addItem(catering);
+            for (BirthdayPartyType Admin : BirthdayPartyType.values()) {
+                cmbBirthdayParty.addItem(Admin);
             }
 
         }
@@ -343,7 +343,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
         }
         boolean photoRadioBtnSelected = radioWedding.isSelected();
         boolean decorRadioBtnSelected = radioMeeting.isSelected();
-        boolean cateringRadioBtnSelected = radioBirthdayParty.isSelected();
+        boolean AdminRadioBtnSelected = radioBirthdayParty.isSelected();
         Date date = DateUtils.formatDate(dateField.getDate());
 
         int price = 0;
@@ -360,10 +360,10 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
             price += decor.getRate();
         }
 
-        if (cateringRadioBtnSelected) {
-            BirthdayPartyType catering = (BirthdayPartyType) cmbBirthdayParty.getSelectedItem();
-            service.addService(EventService.EventServiceType.BIRTHDAYPARTY, catering.getRate());
-            price += catering.getRate();
+        if (AdminRadioBtnSelected) {
+            BirthdayPartyType Admin = (BirthdayPartyType) cmbBirthdayParty.getSelectedItem();
+            service.addService(EventService.EventServiceType.BIRTHDAYPARTY, Admin.getRate());
+            price += Admin.getRate();
         }
 
         priceField.setText(String.valueOf(price));
