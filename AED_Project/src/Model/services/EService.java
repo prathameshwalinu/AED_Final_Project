@@ -21,7 +21,7 @@ public abstract class EService {
 
     static enum ServiceType {
         EVENT,
-        Admin,
+        CATERING,
         ENTERTAINMENT,
         RESORT,
     }

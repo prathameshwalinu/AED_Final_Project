@@ -1,18 +1,17 @@
-
 package Model;
 
 import java.util.UUID;
 
-public class Admin_Order {
+public class Catering_Order {
     private String id;
     private String status;
     private String details;
     private String feedback;
     private Client client;
-    private Admin Admin;
+    private Catering catering;
     private ServiceAgent serviceAgent;
 
-    public Admin_Order(String details) {
+    public Catering_Order(String details) {
 //        id = UUID.randomUUID().toString();
         this.details = details;
     }
@@ -40,12 +39,12 @@ public class Admin_Order {
         this.serviceAgent = serviceAgent;
     }
 
-    public Admin getAdmin() {
-        return Admin;
+    public Catering getCatering() {
+        return catering;
     }
 
-    public void setAdmin(Admin Admin) {
-        this.Admin = Admin;
+    public void setCatering(Catering catering) {
+        this.catering = catering;
     }
 
     public String getDetails() {
@@ -76,5 +75,3 @@ public class Admin_Order {
         return details;
     }
 }
-
-   

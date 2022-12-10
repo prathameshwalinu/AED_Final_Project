@@ -1,31 +1,31 @@
 package ui.ClientRole;
 
 import Model.Admin;
-import Model.Admin;
-import Model.Admin_Menu;
+import Model.Catering;
+import Model.Catering_Menu;
 import Model.HallBooking;
-import Model.services.AdminService;
+import Model.services.CateringService;
 import java.util.Date;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
 import ui.main.DateUtils;
 
-public class AdminServicePanel extends javax.swing.JPanel {
+public class CateringServicePanel extends javax.swing.JPanel {
     
     private Admin systems;
     private Consumer<HallBooking> callOnCreateMethod1;
     private String username;
     private HallBooking booking;
 
-    public AdminServicePanel(Admin systems, Consumer<HallBooking> callOnCreateMethod1, String username, HallBooking booking) {
+    public CateringServicePanel(Admin systems, Consumer<HallBooking> callOnCreateMethod1, String username, HallBooking booking) {
 initComponents();
         this.systems = systems;
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.username = username;
         this.booking = booking;
 
-        for (Admin cat : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfAdmin()) {
-            cmbAdmin.addItem(cat);
+        for (Catering cat : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfCatering()) {
+            cmbCatering.addItem(cat);
         }
 //        setBackground(new java.awt.Color(255, 208, 56));
 //        backBtn.setBackground(new java.awt.Color(0, 102, 102));
@@ -44,7 +44,7 @@ initComponents();
         placeOrder = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        cmbAdmin = new javax.swing.JComboBox();
+        cmbCatering = new javax.swing.JComboBox();
 
         menuItem.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         menuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -63,7 +63,7 @@ initComponents();
         });
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
-        jLabel1.setText("MENU ITEMS IN Admin");
+        jLabel1.setText("MENU ITEMS IN CATERING");
 
         placeOrder.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         placeOrder.setText("PLACE ORDER");
@@ -78,12 +78,12 @@ initComponents();
         jLabel2.setText("SELECT ITEM FROM LIST: ");
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel4.setText("SELECT A Admin NAME: ");
+        jLabel4.setText("SELECT A CATERING NAME: ");
 
-        cmbAdmin.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        cmbAdmin.addActionListener(new java.awt.event.ActionListener() {
+        cmbCatering.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        cmbCatering.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbAdminActionPerformed(evt);
+                cmbCateringActionPerformed(evt);
             }
         });
 
@@ -108,7 +108,7 @@ initComponents();
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jLabel4)
                                     .addGap(18, 18, 18)
-                                    .addComponent(cmbAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(cmbCatering, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addGap(0, 139, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -124,7 +124,7 @@ initComponents();
                 .addComponent(jLabel1)
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cmbAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cmbCatering, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -142,9 +142,9 @@ initComponents();
 
     private void cmbAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAdminActionPerformed
         menuItem.removeAllItems();
-        Admin Admin = (Admin) cmbAdmin.getSelectedItem();
-        if (Admin != null) {
-            for (Admin_Menu item : Admin.getListOfMenuItem()) {
+        Catering catering = (Catering) cmbCatering.getSelectedItem();
+        if (catering != null) {
+            for (Catering_Menu item : catering.getListOfMenuItem()) {
                 menuItem.addItem(item);
             }
         }
@@ -156,19 +156,29 @@ initComponents();
 
     private void placeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderActionPerformed
        Date date = DateUtils.formatDate(new Date());
-        Admin_Menu item = (Admin_Menu) menuItem.getSelectedItem();
-        Admin Admin = (Admin) cmbAdmin.getSelectedItem();
+        Catering_Menu item = (Catering_Menu) menuItem.getSelectedItem();
+        Catering catering = (Catering) cmbCatering.getSelectedItem();
 
-        AdminService service = new AdminService(Admin, date, item.getDetails(), item.getPrice());
+        CateringService service = new CateringService(catering, date, item.getDetails(), item.getPrice());
         booking.addService(service);
         JOptionPane.showMessageDialog(this, "Order placed successfully");
 
         callOnCreateMethod1.accept(booking);
     }//GEN-LAST:event_placeOrderActionPerformed
 
+    private void cmbCateringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCateringActionPerformed
+        menuItem.removeAllItems();
+        Catering catering = (Catering) cmbCatering.getSelectedItem();
+        if (catering != null) {
+            for (Catering_Menu item : catering.getListOfMenuItem()) {
+                menuItem.addItem(item);
+            }
+        }
+    }//GEN-LAST:event_cmbCateringActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JComboBox cmbAdmin;
+    private javax.swing.JComboBox cmbCatering;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;

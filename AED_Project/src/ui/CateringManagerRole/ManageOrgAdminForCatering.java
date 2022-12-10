@@ -1,8 +1,8 @@
-package ui.AdminManagerRole;
+package ui.CateringManagerRole;
 
 import Model.Admin;
 import Model.BusinessCatalogueDirectory;
-import Model.Admin;
+import Model.Catering;
 import Model.ServiceAgentOrganisation;
 import Model.ServiceLocation;
 import Model.Supervisor;
@@ -12,8 +12,7 @@ import javax.swing.table.DefaultTableModel;
 
 import ui.main.Validator;
 
-public class ManageOrgAdminForAdmin extends javax.swing.JPanel {
-
+public class ManageOrgAdminForCatering extends javax.swing.JPanel {
 
     private Admin EPAdmin;
     private Runnable callOnCreateMethod;
@@ -21,7 +20,7 @@ public class ManageOrgAdminForAdmin extends javax.swing.JPanel {
     private String user;
     private ServiceLocation location;
    
-    public ManageOrgAdminForAdmin(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
+    public ManageOrgAdminForCatering(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
         initComponents();
         this.EPAdmin = EPAdmin;
         this.callOnCreateMethod = callOnCreateMethod;
@@ -302,7 +301,7 @@ public class ManageOrgAdminForAdmin extends javax.swing.JPanel {
 
         if (!EPAdmin.userExistsInSystem(username)) {
             BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
-            List<Admin> list = enterpriseCatalogueDirectory.getListOfAdmin();
+            List<Catering> list = enterpriseCatalogueDirectory.getListOfCatering();
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).findSupervisor(user) != null) {    //if manager found 
                     if (orgType.equals("ServiceAgent")) {
@@ -341,7 +340,7 @@ public class ManageOrgAdminForAdmin extends javax.swing.JPanel {
         orgName.removeAllItems();
 
         BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
-        List<Admin> list = enterpriseCatalogueDirectory.getListOfAdmin();
+        List<Catering> list = enterpriseCatalogueDirectory.getListOfCatering();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).findSupervisor(user) != null) {
                 if (orgType.equals("ServiceAgent")) {
@@ -368,7 +367,7 @@ public class ManageOrgAdminForAdmin extends javax.swing.JPanel {
         String OrgName = (String) model.getValueAt(selectedRowIndex, 2);
         String selectedUser = (String) model.getValueAt(selectedRowIndex, 4);
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
-        for (Admin res : businessCatalogueDirectory.getListOfAdmin()) {
+        for (Catering res : businessCatalogueDirectory.getListOfCatering()) {
             if (res.findSupervisor(user) != null) {
                 if (res.getListOfServiceAgentOrganisation() != null) {
                     for (ServiceAgentOrganisation del : res.getListOfServiceAgentOrganisation()) {
@@ -422,7 +421,7 @@ public class ManageOrgAdminForAdmin extends javax.swing.JPanel {
             String password = passwordField.getText();
 
             BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
-            for (Admin rest : businessCatalogueDirectory.getListOfAdmin()) {
+            for (Catering rest : businessCatalogueDirectory.getListOfCatering()) {
                 if (orgType.equals("ServiceAgent") && rest.getListOfServiceAgentOrganisation() != null) {
                     for (ServiceAgentOrganisation del : rest.getListOfServiceAgentOrganisation()) {
                         for (Supervisor man : del.getListOfSupervisor()) {
@@ -480,7 +479,7 @@ public class ManageOrgAdminForAdmin extends javax.swing.JPanel {
         if (businessCatalogueDirectory == null) {
             return;
         }
-        for (Admin restaurant : businessCatalogueDirectory.getListOfAdmin()) {
+        for (Catering restaurant : businessCatalogueDirectory.getListOfCatering()) {
             if (restaurant.findSupervisor(user) != null) {
                 if (restaurant.getListOfServiceAgentOrganisation() != null) {
                     row[0] = "ServiceAgent";

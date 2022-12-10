@@ -1,9 +1,12 @@
 package ui.main;
-
+/**
+ *
+ * @author prathmesh
+ */
 import Database.DbUtils;
 import Model.Admin;
 import Model.BusinessCatalogue;
-import Model.Admin;
+import Model.Catering;
 import Model.Client;
 import Model.Entertainment;
 import Model.Events;
@@ -13,13 +16,13 @@ import Model.ServiceLocation;
 import Model.Supervisor;
 import java.util.List;
 import javax.swing.JOptionPane;
-import ui.AdminManagerRole.AddOrderJPanel;
-import ui.AdminManagerRole.AdminMainPanel;
-import ui.AdminManagerRole.ManageOrgAdminForAdmin;
-import ui.AdminManagerRole.ManageOrgPanelForAdmin;
-import ui.AdminManagerRole.ViewTaskPanelAdmin;
+import ui.CateringManagerRole.AddOrderJPanel;
+import ui.CateringManagerRole.CateringMainPanel;
+import ui.CateringManagerRole.ManageOrgAdminForCatering;
+import ui.CateringManagerRole.ManageOrgPanelForCatering;
+import ui.CateringManagerRole.ViewTaskPanelCatering;
 import ui.ClientRole.AddServiceJPanel;
-import ui.ClientRole.AdminServicePanel;
+import ui.ClientRole.CateringServicePanel;
 import ui.ClientRole.ClientJPanel;
 import ui.ClientRole.EntertainmentServicesJPanel;
 import ui.ClientRole.ManageBooking;
@@ -196,8 +199,8 @@ public class MainJFrame extends javax.swing.JFrame {
                 renderEntertainmentManager(userName);
                 break;
 
-                case "Admin":
-                renderAdminManager(userName);
+                case "Catering":
+                renderCateringManager(userName);
                 break;
 
                 case "Resort":
@@ -314,8 +317,8 @@ public class MainJFrame extends javax.swing.JFrame {
         jSplitPane.setRightComponent(event);
     }
 
-    private void placeOrder(HallBooking booking) {           //customer order from Admin
-        AdminServicePanel order = new AdminServicePanel(Admin, this::addServices, userName, booking);
+    private void placeOrder(HallBooking booking) {           //customer order from catering
+        CateringServicePanel order = new CateringServicePanel(Admin, this::addServices, userName, booking);
         jSplitPane.setRightComponent(order);
     }
 
@@ -408,33 +411,33 @@ public class MainJFrame extends javax.swing.JFrame {
     private void healthClubManagerPanel() {   //go back to healthclub
         jSplitPane.setRightComponent(new EntertainmentSupervisorPanel(Admin, this::viewTaskPanel, this::createOrganization, this::organizationAdminPanel));
     }
-
-    private void renderAdminManager(String username) {
+    
+    private void renderCateringManager(String username) {
         List<ServiceLocation> location = Admin.getListOfServiceLocation();
         for (int i = 0; i < location.size(); i++) {
-            List<Admin> Admin = location.get(i).getBusinessCatalogueDirectory().getListOfAdmin();
-            for (int j = 0; j < Admin.size(); j++) {
-                List<Supervisor> supervisor = Admin.get(j).getListOfSupervisor();
+            List<Catering> catering = location.get(i).getBusinessCatalogueDirectory().getListOfCatering();
+            for (int j = 0; j < catering.size(); j++) {
+                List<Supervisor> supervisor = catering.get(j).getListOfSupervisor();
                 for (int k = 0; k < supervisor.size(); k++) {
                     if (supervisor.get(k).getUsername().equals(username)) {
-                        AdminMainPanel AdminAssign = new AdminMainPanel(Admin, this::renderViewTask1, this::renderAdminOrg, this::renderAdminAdmin, this::addOrderPanel);
-                        jSplitPane.setRightComponent(AdminAssign);
+                        CateringMainPanel cateringAssign = new CateringMainPanel(Admin, this::renderViewTask1, this::renderCateringOrg, this::renderCateringAdmin, this::addOrderPanel);
+                        jSplitPane.setRightComponent(cateringAssign);
                     }
                 }
             }
         }
     }
 
-    private ServiceLocation findUserLocationForAdmin() {
+
+    private ServiceLocation findUserLocationForCatering() {
         List<ServiceLocation> location = Admin.getListOfServiceLocation();
         for (int i = 0; i < location.size(); i++) {
-            List<Admin> Admin = location.get(i).getBusinessCatalogueDirectory().getListOfAdmin();
-            for (int j = 0; j < Admin.size(); j++) {
-                List<Supervisor> supervisor = Admin.get(j).getListOfSupervisor();
+            List<Catering> catering = location.get(i).getBusinessCatalogueDirectory().getListOfCatering();
+            for (int j = 0; j < catering.size(); j++) {
+                List<Supervisor> supervisor = catering.get(j).getListOfSupervisor();
                 for (int k = 0; k < supervisor.size(); k++) {
                     if (supervisor.get(k).getUsername().equals(userName)) {
                         return location.get(i);
-
                     }
                 }
             }
@@ -442,15 +445,15 @@ public class MainJFrame extends javax.swing.JFrame {
         return null;
     }
 
-    private BusinessCatalogue findUserAdmin() {
+    private BusinessCatalogue findUserCatering() {
         List<ServiceLocation> location = Admin.getListOfServiceLocation();
         for (int i = 0; i < location.size(); i++) {
-            List<Admin> Admin = location.get(i).getBusinessCatalogueDirectory().getListOfAdmin();
-            for (int j = 0; j < Admin.size(); j++) {
-                List<Supervisor> supervisor = Admin.get(j).getListOfSupervisor();
+            List<Catering> catering = location.get(i).getBusinessCatalogueDirectory().getListOfCatering();
+            for (int j = 0; j < catering.size(); j++) {
+                List<Supervisor> supervisor = catering.get(j).getListOfSupervisor();
                 for (int k = 0; k < supervisor.size(); k++) {
                     if (supervisor.get(k).getUsername().equals(userName)) {
-                        return Admin.get(j);
+                        return catering.get(j);
                     }
                 }
             }
@@ -460,36 +463,36 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void renderViewTask1() {
         String type = Admin.findUserType(userName);
-        Admin Admin = (Admin) findUserAdmin();
-        ViewTaskPanelAdmin resMan = new ViewTaskPanelAdmin(Admin, this::AdminManagerPanel, userName, type, Admin);
+        Catering catering = (Catering) findUserCatering();
+        ViewTaskPanelCatering resMan = new ViewTaskPanelCatering(Admin, this::cateringManagerPanel, userName, type, catering);
         jSplitPane.setRightComponent(resMan);
     }
 
-    private void renderAdminOrg() {
+    private void renderCateringOrg() {
         String type = Admin.findUserType(userName);
-        ServiceLocation location = findUserLocationForAdmin();
-        ManageOrgPanelForAdmin org = new ManageOrgPanelForAdmin(Admin, this::AdminManagerPanel, userName, type, location
+        ServiceLocation location = findUserLocationForCatering();
+        ManageOrgPanelForCatering org = new ManageOrgPanelForCatering(Admin, this::cateringManagerPanel, userName, type, location
         );
         jSplitPane.setRightComponent(org);
     }
 
-    private void renderAdminAdmin() { //create organisation admin under restauarant
+    private void renderCateringAdmin() { //create organisation admin under restauarant
         String type = Admin.findUserType(userName);
-        ServiceLocation location = findUserLocationForAdmin();
-        ManageOrgAdminForAdmin orgAdmin = new ManageOrgAdminForAdmin(Admin, this::AdminManagerPanel, userName, type, location);
+        ServiceLocation location = findUserLocationForCatering();
+        ManageOrgAdminForCatering orgAdmin = new ManageOrgAdminForCatering(Admin, this::cateringManagerPanel, userName, type, location);
         jSplitPane.setRightComponent(orgAdmin);
     }
 
     private void addOrderPanel() {
         String type = Admin.findUserType(userName);
-        ServiceLocation location = findUserLocationForAdmin();
-        AddOrderJPanel order = new AddOrderJPanel(Admin, this::AdminManagerPanel, userName, type, location);
+        ServiceLocation location = findUserLocationForCatering();
+        AddOrderJPanel order = new AddOrderJPanel(Admin, this::cateringManagerPanel, userName, type, location);
         jSplitPane.setRightComponent(order);
     }
 
-    private void AdminManagerPanel() {
-        jSplitPane.setRightComponent(new AdminMainPanel(Admin, this::renderViewTask1, this::renderAdminOrg,
-                this::renderAdminAdmin, this::addOrderPanel));
+    private void cateringManagerPanel() {
+        jSplitPane.setRightComponent(new CateringMainPanel(Admin, this::renderViewTask1, this::renderCateringOrg,
+                this::renderCateringAdmin, this::addOrderPanel));
     }
 
     private void renderResortManager(String username) {   //hotel panel
