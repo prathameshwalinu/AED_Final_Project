@@ -1,33 +1,29 @@
 package ui.EventManagerRole;
 
-import Model.Admin;
-import Model.BusinessCatalogueDirectory;
-import Model.Event_BirthdayParty;
-import Model.Event_Meetings;
-import Model.Event_Wedding;
-import Model.Events;
-import Model.ServiceLocation;
-import Model.Supervisor;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import Model.Events;
+import Model.Event_BirthdayParty;
+import Model.Event_Meetings;
+import Model.BusinessCatalogueDirectory;
+import Model.Supervisor;
+import Model.ServiceLocation;
+import Model.Event_Wedding;
+import Model.Admin;
 import ui.main.Validator;
 
 public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
 
-    private Admin EPAdmin;
-    private ServiceLocation location;
-    
+    private Admin Admin;
     private Runnable callOnCreateMethod;
-    
     private String user;
     private String type;
-    
+    private ServiceLocation location;
 
-    public SuperviseAdminEventOrganisation( Admin EPAdmin,Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
+    public SuperviseAdminEventOrganisation(Admin Admin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
         initComponents();
-        this.EPAdmin = EPAdmin;
+        this.Admin = Admin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
@@ -35,15 +31,15 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
         locationName.setText(location.getName());
         locationName.setEditable(false);
         populateTable();
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        deleteBtn.setOpaque(true);
-//        addBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        addBtn.setOpaque(true);
-//        updateBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        updateBtn.setOpaque(true);
-//        backButton.setBackground(new java.awt.Color(0, 102, 102));
-//        backButton.setOpaque(true);
+        setBackground(new java.awt.Color(255, 208, 56));
+        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
+        deleteBtn.setOpaque(true);
+        addBtn.setBackground(new java.awt.Color(0, 102, 102));
+        addBtn.setOpaque(true);
+        updateBtn.setBackground(new java.awt.Color(0, 102, 102));
+        updateBtn.setOpaque(true);
+        backButton.setBackground(new java.awt.Color(0, 102, 102));
+        backButton.setOpaque(true);
     }
 
     public boolean validateName() {
@@ -93,41 +89,48 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
         setLayout(null);
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 204));
         jLabel6.setText("NAME");
         add(jLabel6);
-        jLabel6.setBounds(666, 490, 78, 22);
+        jLabel6.setBounds(634, 448, 82, 25);
         add(usernameField);
-        usernameField.setBounds(798, 546, 176, 23);
+        usernameField.setBounds(823, 518, 176, 23);
         add(nameField);
-        nameField.setBounds(798, 492, 176, 23);
+        nameField.setBounds(823, 451, 176, 23);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 204));
         jLabel2.setText("ORGANIZATION TYPE ");
         add(jLabel2);
-        jLabel2.setBounds(82, 544, 203, 22);
+        jLabel2.setBounds(25, 516, 203, 22);
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 204));
         jLabel7.setText("LOCATION");
         add(jLabel7);
-        jLabel7.setBounds(82, 490, 119, 22);
+        jLabel7.setBounds(25, 449, 203, 22);
         add(passwordField);
-        passwordField.setBounds(798, 609, 176, 23);
+        passwordField.setBounds(823, 594, 176, 23);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 204));
         jLabel4.setText("USERNAME");
         add(jLabel4);
-        jLabel4.setBounds(665, 544, 121, 22);
+        jLabel4.setBounds(634, 516, 121, 22);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 204));
         jLabel5.setText("PASSWORD");
         add(jLabel5);
-        jLabel5.setBounds(666, 607, 126, 22);
+        jLabel5.setBounds(634, 592, 126, 22);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 204));
         jLabel3.setText("ORGANIZATION NAME");
         add(jLabel3);
-        jLabel3.setBounds(82, 607, 225, 22);
+        jLabel3.setBounds(25, 592, 205, 22);
 
+        deleteBtn.setBackground(new java.awt.Color(255, 255, 204));
         deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         deleteBtn.setText("DELETE");
         deleteBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -137,13 +140,15 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
             }
         });
         add(deleteBtn);
-        deleteBtn.setBounds(715, 440, 73, 36);
+        deleteBtn.setBounds(1011, 382, 92, 36);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 204));
         jLabel1.setText("SUPERVISE ADMIN EVENT ORGANIZATION");
         add(jLabel1);
-        jLabel1.setBounds(160, 170, 803, 43);
+        jLabel1.setBounds(138, 109, 803, 43);
 
+        backButton.setBackground(new java.awt.Color(255, 255, 204));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backButton.setText("BACK");
         backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -153,7 +158,7 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
             }
         });
         add(backButton);
-        backButton.setBounds(50, 30, 54, 26);
+        backButton.setBounds(25, 27, 87, 35);
 
         jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -180,7 +185,7 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(61, 230, 974, 191);
+        jScrollPane1.setBounds(25, 227, 974, 191);
 
         orgCombo.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         orgCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select an organisation type", "Meeting", "Wedding", "BirthdayParty" }));
@@ -190,8 +195,9 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
             }
         });
         add(orgCombo);
-        orgCombo.setBounds(321, 545, 220, 23);
+        orgCombo.setBounds(254, 517, 220, 23);
 
+        addBtn.setBackground(new java.awt.Color(255, 255, 204));
         addBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addBtn.setText("ADD");
         addBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -201,8 +207,9 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
             }
         });
         add(addBtn);
-        addBtn.setBounds(258, 439, 127, 39);
+        addBtn.setBounds(1011, 292, 92, 39);
 
+        updateBtn.setBackground(new java.awt.Color(255, 255, 204));
         updateBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         updateBtn.setText("UPDATE");
         updateBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -212,34 +219,32 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
             }
         });
         add(updateBtn);
-        updateBtn.setBounds(511, 439, 78, 39);
+        updateBtn.setBounds(1011, 337, 92, 39);
 
         orgName.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         orgName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select organisation Name" }));
         add(orgName);
-        orgName.setBounds(325, 608, 216, 23);
+        orgName.setBounds(254, 593, 220, 23);
         add(locationName);
-        locationName.setBounds(321, 492, 220, 23);
+        locationName.setBounds(254, 451, 220, 23);
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/N.jpeg")); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 204));
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventManagerRole/N.jpeg"))); // NOI18N
         jLabel8.setText("jLabel8");
         add(jLabel8);
-        jLabel8.setBounds(0, 0, 1260, 660);
+        jLabel8.setBounds(0, 0, 1120, 760);
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int selectedRowIndex = jTable1.getSelectedRow();
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to delete");
             return;
         }
-        
         String orgType = (String) model.getValueAt(selectedRowIndex, 1);
         String OrgName = (String) model.getValueAt(selectedRowIndex, 2);
         String selectedUser = (String) model.getValueAt(selectedRowIndex, 4);
-        
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
         for (Events event : businessCatalogueDirectory.getListOfEvents()) {
             if (event.findSupervisor(user) != null) {
@@ -288,8 +293,7 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
- 
-                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Object row[] = new Object[20];
         String orgType = orgCombo.getSelectedItem().toString();
         String orgName1 = orgName.getSelectedItem().toString();
@@ -304,7 +308,7 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
         
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
         List<Events> list = businessCatalogueDirectory.getListOfEvents();
-        if (!EPAdmin.userExistsInSystem(username)) {
+        if (!Admin.userExistsInSystem(username)) {
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).findSupervisor(user) != null) {    //if enterpirse supervisor found 
                     if (orgType.equals("BirthdayParty")) {
@@ -319,7 +323,7 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
                                 row[4] = username;
                                 row[5] = password;
                                 model.addRow(row);
-                                EPAdmin.addUser(username, password, "BirthdayParty");
+                                Admin.addUser(username, password, "BirthdayParty");
                                 JOptionPane.showMessageDialog(this, " Organisation Manager added successfully");
                                 return;
                             }
@@ -338,7 +342,7 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
                                 row[4] = username;
                                 row[5] = password;
                                 model.addRow(row);
-                                EPAdmin.addUser(username, password, "Meeting");
+                                Admin.addUser(username, password, "Meeting");
                                 JOptionPane.showMessageDialog(this, " Organisation Supervisor added successfully");
                                 return;
                             }
@@ -355,7 +359,7 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
                                 row[4] = username;
                                 row[5] = password;
                                 model.addRow(row);
-                                EPAdmin.addUser(username, password, "Wedding");
+                                Admin.addUser(username, password, "Wedding");
                                 JOptionPane.showMessageDialog(this, " Organisation Supervisor added successfully");
                                 return;
                             }
@@ -369,7 +373,7 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void orgComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgComboActionPerformed
-       orgName.removeAllItems();
+        orgName.removeAllItems();
 
         String orgType = orgCombo.getSelectedItem().toString();
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
@@ -395,7 +399,6 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
                 return;
             }
         }
-
     }//GEN-LAST:event_orgComboActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -421,8 +424,6 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-       
-        
         if (jTable1.getSelectedRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to update");
             return;
@@ -444,7 +445,7 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
                             if (supr.getUsername().equals(usernameField.getText())) {
                                 supr.setName(nameField.getText());
                                 supr.setPassword(passwordField.getText());
-                                EPAdmin.updateUser(userName, password);
+                                Admin.updateUser(userName, password);
                                 JOptionPane.showMessageDialog(this, "Updated successfully");
                                 populateTable();
                                 return;
@@ -457,7 +458,7 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
                             if (supr.getUsername().equals(usernameField.getText())) {
                                 supr.setName(nameField.getText());
                                 supr.setPassword(passwordField.getText());
-                                EPAdmin.updateUser(userName, password);
+                                Admin.updateUser(userName, password);
                                 JOptionPane.showMessageDialog(this, "Updated successfully");
                                 populateTable();
                                 return;
@@ -470,7 +471,7 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
                             if (supr.getUsername().equals(usernameField.getText())) {
                                 supr.setName(nameField.getText());
                                 supr.setPassword(passwordField.getText());
-                                EPAdmin.updateUser(userName, password);
+                                Admin.updateUser(userName, password);
                                 JOptionPane.showMessageDialog(this, "Updated successfully");
                                 populateTable();
                                 return;
@@ -509,11 +510,11 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-           DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         Object row[] = new Object[10];
         String orgType1 = orgCombo.getSelectedItem().toString();
-        ServiceLocation location1 = EPAdmin.findServiceLocation(location.getName());
+        ServiceLocation location1 = Admin.findServiceLocation(location.getName());
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
         if (businessCatalogueDirectory == null) {
             return;
