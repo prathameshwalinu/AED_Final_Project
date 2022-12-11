@@ -2,18 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Database;
+package db;
 
-import Model.Admin;
+/**
+ *
+ * @author himanshu
+ */
 import com.db4o.Db4oEmbedded;
 import com.db4o.ObjectContainer;
 import com.db4o.ObjectSet;
 import com.db4o.config.EmbeddedConfiguration;
+import Model.Admin;
 
-/**
- *
- * @author prathamesh
- */
 public class DbUtils {
 
     private static DbUtils dbUtils;
@@ -35,9 +35,7 @@ public class DbUtils {
         config.common().objectClass(Admin.class).updateDepth(Integer.MAX_VALUE);
         config.common().objectClass(Admin.class).cascadeOnUpdate(true);
 
-        ObjectContainer db = Db4oEmbedded.openFile(config, "database/aedfinalproject.db4o");
-        
-        //add db file
+        ObjectContainer db = Db4oEmbedded.openFile(config, "database/riverstone.db4o");
         return db;
     }
 
