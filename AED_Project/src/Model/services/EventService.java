@@ -6,7 +6,7 @@ package Model.services;
 
 /**
  *
- * @author prathamesh
+ * @author himanshu
  */
 
 import java.util.Date;
@@ -14,9 +14,8 @@ import java.util.HashMap;
 import java.util.Map;
 import Model.HallBooking;
 import Model.Events;
-import Model.services.EService;
 
-public class EventService extends EService {
+public class EventService extends Service {
 
     private HallBooking id;
 

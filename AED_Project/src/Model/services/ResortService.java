@@ -1,12 +1,14 @@
+package Model.services;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Model.services;
+
 
 /**
  *
- * @author prathamesh
+ * @author prathmeshw
  */
 
 import java.util.ArrayList;
@@ -15,7 +17,7 @@ import Model.Resort;
 import Model.HallRoomList;
 import ui.main.DateUtils;
 
-public class ResortService extends EService {
+public class ResortService extends Service {
 
     public static enum ResortServiceType {
         TOURGUIDE(10),
@@ -36,7 +38,7 @@ public class ResortService extends EService {
     private List<ResortServiceType> ResortServices;
 
     public ResortService(Resort resort) {
-        super(resort, EService.ServiceType.RESORT, DateUtils.now());
+        super(resort, Service.ServiceType.RESORT, DateUtils.now());
         this.ResortServices = new ArrayList<>();
         this.hallroomlist = new HallRoomList();
     }
