@@ -7,6 +7,7 @@ package ui.EventPlannerAdminRole;
 import Model.*;
 import Model.services.*;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 
 
@@ -32,6 +33,7 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
         btnAdd = new javax.swing.JButton();
         lblServiceLocation = new javax.swing.JLabel();
         lblLocation = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         txtlocation = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
@@ -62,7 +64,7 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblLocation);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(233, 308, 397, 162);
+        jScrollPane1.setBounds(130, 290, 570, 162);
 
         btnAdd.setBackground(new java.awt.Color(204, 255, 255));
         btnAdd.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
@@ -74,7 +76,7 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAdd);
-        btnAdd.setBounds(385, 219, 99, 39);
+        btnAdd.setBounds(560, 220, 100, 30);
 
         lblServiceLocation.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblServiceLocation.setForeground(new java.awt.Color(255, 255, 255));
@@ -86,11 +88,23 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
         lblLocation.setForeground(new java.awt.Color(255, 255, 255));
         lblLocation.setText("SERVICE LOCATION:");
         add(lblLocation);
-        lblLocation.setBounds(233, 164, 211, 22);
+        lblLocation.setBounds(140, 170, 211, 22);
+
+        jButton1.setBackground(new java.awt.Color(204, 255, 255));
+        jButton1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jButton1.setText("VERIFY");
+        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1);
+        jButton1.setBounds(560, 170, 100, 30);
 
         txtlocation.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         add(txtlocation);
-        txtlocation.setBounds(450, 165, 180, 22);
+        txtlocation.setBounds(360, 170, 180, 22);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventPlannerAdminRole/client.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -121,10 +135,27 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       if (txtlocation.getText().trim().isEmpty()){
+          JOptionPane.showMessageDialog(null, "Enter address first");  
+        }else{
+        SwingUtilities.invokeLater(new Runnable() {
+ 
+            @Override   
+            public void run() {
+                MapViewer browser = new MapViewer();
+                browser.setVisible(true);
+                browser.loadURL("https://www.google.com/maps/search/?api=1&query="+txtlocation.getText().trim());
+            }
+        });
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLocation;
