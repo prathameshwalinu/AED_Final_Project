@@ -54,7 +54,6 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
         denyBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -124,18 +123,9 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
         backBtn.setBounds(22, 22, 54, 26);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
-<<<<<<< Updated upstream
-        jLabel2.setText("VIEW ORDER DETAILS FOR Admin");
-=======
         jLabel2.setText("VIEW ORDER DETAILS FOR CATERING");
         add(jLabel2);
         jLabel2.setBounds(90, 113, 718, 43);
->>>>>>> Stashed changes
-
-        jLabel3.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/catbk.jpeg")); // NOI18N
-        jLabel3.setText("jLabel3");
-        add(jLabel3);
-        jLabel3.setBounds(0, 0, 870, 770);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -229,7 +219,6 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
     private javax.swing.JButton denyBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

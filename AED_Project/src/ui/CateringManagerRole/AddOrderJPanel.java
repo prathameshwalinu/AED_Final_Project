@@ -67,7 +67,6 @@ public class AddOrderJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         priceField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setToolTipText("");
@@ -137,11 +136,6 @@ public class AddOrderJPanel extends javax.swing.JPanel {
         jLabel4.setText("MENU ITEM LIST");
         add(jLabel4);
         jLabel4.setBounds(271, 110, 333, 43);
-
-        jLabel5.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/catbk.jpeg")); // NOI18N
-        jLabel5.setText("jLabel5");
-        add(jLabel5);
-        jLabel5.setBounds(0, 0, 890, 620);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -179,7 +173,6 @@ public class AddOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField menuField;

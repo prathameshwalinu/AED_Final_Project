@@ -61,7 +61,6 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
         cityNameTextField = new javax.swing.JTextField();
         deleteBtn = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -149,15 +148,11 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
         addButton.setBounds(521, 336, 83, 26);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
-<<<<<<< Updated upstream
-        jLabel5.setText("MANAGE Admin ORGANISATION");
-=======
         jLabel5.setText("MANAGE CATERING ORGANISATION");
         add(jLabel5);
         jLabel5.setBounds(126, 73, 684, 43);
         add(cityNameTextField);
         cityNameTextField.setBounds(659, 511, 232, 23);
->>>>>>> Stashed changes
 
         deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         deleteBtn.setText("DELETE");
@@ -180,11 +175,6 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
         });
         add(updateButton);
         updateButton.setBounds(714, 336, 100, 26);
-
-        jLabel6.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/catbk.jpeg")); // NOI18N
-        jLabel6.setText("jLabel6");
-        add(jLabel6);
-        jLabel6.setBounds(0, 0, 1130, 760);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -301,7 +291,6 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField nameField;
