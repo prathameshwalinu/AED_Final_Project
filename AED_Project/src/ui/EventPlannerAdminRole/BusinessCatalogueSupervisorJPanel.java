@@ -1,40 +1,29 @@
 package ui.EventPlannerAdminRole;
+/**
+ *
+ * @author himanshu
+ */
 
-import Model.Admin;
-import Model.BusinessCatalogueDirectory;
-import Model.Catering;
-import Model.Entertainment;
-import Model.Events;
-import Model.Resort;
-import Model.ServiceLocation;
-import Model.Supervisor;
+import Model.*;
+import Model.services.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+
 import ui.main.Validator;
 
-
 public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
-    private Admin EPAdmin;
+
+    private Admin Admin;
     private Runnable callOnCreateMethod;
 
-    public BusinessCatalogueSupervisorJPanel(Admin EPAdmin, Runnable callOnCreateMethod) {
-       initComponents();
-        this.EPAdmin = EPAdmin;
+    public BusinessCatalogueSupervisorJPanel(Admin Admin, Runnable callOnCreateMethod) {
+        initComponents();
+        this.Admin = Admin;
         this.callOnCreateMethod = callOnCreateMethod;
-        for (ServiceLocation location : EPAdmin.getListOfServiceLocation()) {
+        for (ServiceLocation location : Admin.getListOfServiceLocation()) {
             cmbLocation.addItem(location.getName());
         }
         populateTable();
-//        setBackground(new java.awt.Color(255, 208, 56));
-//
-//        btnDelete.setBackground(new java.awt.Color(0, 102, 102));
-//        btnDelete.setOpaque(true);
-//        btnAdd.setBackground(new java.awt.Color(0, 102, 102));
-//        btnAdd.setOpaque(true);
-//        btnUpdate.setBackground(new java.awt.Color(0, 102, 102));
-//        btnUpdate.setOpaque(true);
-//        backButton.setBackground(new java.awt.Color(0, 102, 102));
-//        backButton.setOpaque(true);
     }
 
     public boolean validateName() {
@@ -83,6 +72,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
 
+        backButton.setBackground(new java.awt.Color(204, 255, 255));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backButton.setText("BACK");
         backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -92,25 +82,26 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             }
         });
         add(backButton);
-        backButton.setBounds(23, 23, 82, 26);
+        backButton.setBounds(44, 23, 90, 26);
 
         lblBCSupr.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        lblBCSupr.setForeground(new java.awt.Color(255, 255, 255));
         lblBCSupr.setText("BUSINESS CATALOGUE SUPERVISOR");
         add(lblBCSupr);
-        lblBCSupr.setBounds(112, 71, 695, 43);
+        lblBCSupr.setBounds(133, 71, 695, 43);
 
+        btnDelete.setBackground(new java.awt.Color(204, 255, 255));
         btnDelete.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnDelete.setText("DELETE");
-        btnDelete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnDelete.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDeleteActionPerformed(evt);
             }
         });
         add(btnDelete);
-        btnDelete.setBounds(720, 419, 73, 39);
+        btnDelete.setBounds(824, 341, 104, 39);
 
-        tblBusinessCatalogue.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        tblBusinessCatalogue.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         tblBusinessCatalogue.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -135,18 +126,18 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblBusinessCatalogue);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(67, 227, 893, 186);
+        jScrollPane1.setBounds(73, 194, 745, 186);
 
+        btnAdd.setBackground(new java.awt.Color(204, 255, 255));
         btnAdd.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnAdd.setText("ADD");
-        btnAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAddActionPerformed(evt);
             }
         });
         add(btnAdd);
-        btnAdd.setBounds(268, 419, 121, 38);
+        btnAdd.setBounds(824, 241, 104, 38);
 
         txtSuprName.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         txtSuprName.addActionListener(new java.awt.event.ActionListener() {
@@ -155,17 +146,19 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             }
         });
         add(txtSuprName);
-        txtSuprName.setBounds(410, 630, 194, 23);
+        txtSuprName.setBounds(434, 523, 228, 23);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel1.setText("BUSINESS CATALOGUE:");
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("BUSINESS CATALOGUE");
         add(jLabel1);
-        jLabel1.setBounds(23, 508, 239, 22);
+        jLabel1.setBounds(73, 472, 285, 22);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("LOCATION:");
         add(jLabel2);
-        jLabel2.setBounds(170, 190, 119, 22);
+        jLabel2.setBounds(73, 158, 119, 22);
 
         cmbLocation.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         cmbLocation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Location" }));
@@ -175,76 +168,71 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             }
         });
         add(cmbLocation);
-        cmbLocation.setBounds(300, 190, 194, 23);
+        cmbLocation.setBounds(210, 159, 194, 23);
 
+        btnUpdate.setBackground(new java.awt.Color(204, 255, 255));
         btnUpdate.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnUpdate.setText("UPDATE");
-        btnUpdate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnUpdate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnUpdateActionPerformed(evt);
             }
         });
         add(btnUpdate);
-        btnUpdate.setBounds(519, 419, 78, 38);
+        btnUpdate.setBounds(824, 291, 104, 38);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel3.setText("SUPERVISOR NAME:");
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("SUPERVISOR NAME");
         add(jLabel3);
-        jLabel3.setBounds(20, 630, 213, 22);
+        jLabel3.setBounds(73, 522, 285, 22);
 
         usernameField.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         add(usernameField);
-        usernameField.setBounds(414, 590, 190, 23);
+        usernameField.setBounds(434, 578, 228, 23);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel4.setText("USERNAME:");
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("USERNAME");
         add(jLabel4);
-        jLabel4.setBounds(20, 590, 124, 22);
+        jLabel4.setBounds(73, 580, 285, 22);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel5.setText("PASSWORD:");
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("PASSWORD");
         add(jLabel5);
-        jLabel5.setBounds(20, 670, 138, 22);
+        jLabel5.setBounds(73, 634, 285, 22);
 
         passwordField.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
         add(passwordField);
-        passwordField.setBounds(410, 670, 194, 23);
+        passwordField.setBounds(434, 635, 228, 23);
 
         cmbBCType.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        cmbBCType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Business Catalogue", "Entertainment", "Admin", "Resort", "Event" }));
+        cmbBCType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Business Catalogue", "Entertainment", "Catering", "Resort", "Event" }));
         cmbBCType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbBCTypeActionPerformed(evt);
             }
         });
         add(cmbBCType);
-        cmbBCType.setBounds(419, 509, 190, 23);
+        cmbBCType.setBounds(434, 471, 228, 23);
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel7.setText("BUSINESS CATALOGUE NAME:");
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel7.setText("BUSINESS CATALOGUE NAME");
         add(jLabel7);
-        jLabel7.setBounds(23, 550, 285, 22);
+        jLabel7.setBounds(73, 419, 285, 22);
 
         cmbBCName.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         cmbBCName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecte name of enterprise" }));
-        cmbBCName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbBCNameActionPerformed(evt);
-            }
-        });
         add(cmbBCName);
-        cmbBCName.setBounds(415, 551, 194, 23);
+        cmbBCName.setBounds(434, 420, 228, 23);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/N.jpeg")); // NOI18N
+        jLabel6.setBackground(new java.awt.Color(204, 255, 255));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventPlannerAdminRole/client.jpeg"))); // NOI18N
         jLabel6.setText("jLabel6");
         add(jLabel6);
-        jLabel6.setBounds(0, 0, 1050, 790);
+        jLabel6.setBounds(0, 0, 990, 710);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
@@ -258,7 +246,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
         String enterpriseType = (String) model.getValueAt(selectedRowIndex, 1);
         String enterpriseName = (String) model.getValueAt(selectedRowIndex, 2);
         String selectedUser = (String) model.getValueAt(selectedRowIndex, 4);
-        ServiceLocation location = EPAdmin.findServiceLocation(locationName);
+        ServiceLocation location = Admin.findServiceLocation(locationName);
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
         if (enterpriseType.equals("Event")) {
             for (Events event : businessCatalogueDirectory.getListOfEvents()) {
@@ -323,14 +311,14 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             return;
         }
 
-        if (!EPAdmin.userExistsInSystem(userName)) {
-            ServiceLocation location = EPAdmin.findServiceLocation(locationName);  //finiding location
+        if (!Admin.userExistsInSystem(userName)) {
+            ServiceLocation location = Admin.findServiceLocation(locationName);  //finiding location
             BusinessCatalogueDirectory businessCatelogDirectory = location.getBusinessCatalogueDirectory();
             if (enterpriseType1.equals("Entertainment") && businessCatelogDirectory != null) {
                 Entertainment entertainmentName1 = businessCatelogDirectory.findEntertainment(enterpriseName1);
                 entertainmentName1.addSupervisor(name, userName, password);
-                EPAdmin.getUserNamePasswordMap();
-                EPAdmin.addUser(userName, password, "Entertainment");
+                Admin.getUserNamePasswordMap();
+                Admin.addUser(userName, password, "Entertainment");
                 row[0] = locationName;
                 row[1] = "Entertainment";
                 row[2] = enterpriseName1;
@@ -342,7 +330,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             } else if (enterpriseType1.equals("Event") && businessCatelogDirectory != null) {
                 Events event1 = businessCatelogDirectory.findEvents(enterpriseName1);
                 event1.addSupervisor(name, userName, password);
-                EPAdmin.addUser(userName, password, "Event");
+                Admin.addUser(userName, password, "Event");
                 row[0] = locationName;
                 row[1] = "Event";
                 row[2] = enterpriseName1;
@@ -353,10 +341,10 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             } else if (enterpriseType1.equals("Catering") && businessCatelogDirectory != null) {
                 Catering res1 = businessCatelogDirectory.findCatering(enterpriseName1);
                 res1.addSupervisor(userName, userName, password);
-                EPAdmin.addUser(userName, password, "Admin");
+                Admin.addUser(userName, password, "Catering");
 
                 row[0] = locationName;
-                row[1] = "Admin";
+                row[1] = "Catering";
                 row[2] = enterpriseName1;
                 row[3] = name;
                 row[4] = userName;
@@ -365,7 +353,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             } else if (enterpriseType1.equals("Resort") && businessCatelogDirectory != null) {
                 Resort hotel1 = businessCatelogDirectory.findResort(enterpriseName1);
                 hotel1.addSupervisor(name, userName, password);
-                EPAdmin.addUser(userName, password, "Resort");
+                Admin.addUser(userName, password, "Resort");
                 row[0] = locationName;
                 row[1] = "Resort";
                 row[2] = enterpriseName1;
@@ -397,7 +385,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
     private void cmbBCTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBCTypeActionPerformed
         cmbBCName.removeAllItems();
         String locationName = cmbLocation.getSelectedItem().toString();
-        ServiceLocation location = EPAdmin.findServiceLocation(locationName);
+        ServiceLocation location = Admin.findServiceLocation(locationName);
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
         String enterpriseType1 = cmbBCType.getSelectedItem().toString();
         if (enterpriseType1.equals("Entertainment")) {
@@ -419,13 +407,12 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
         } else {
             return;
         }
-        
-        
+
     }//GEN-LAST:event_cmbBCTypeActionPerformed
 
     private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
 
-                if (tblBusinessCatalogue.getSelectedRowCount() != 1) {
+        if (tblBusinessCatalogue.getSelectedRowCount() != 1) {
             JOptionPane.showMessageDialog(this, "Please select a row to update.");
         }
 
@@ -437,7 +424,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
         String password = passwordField.getText();
         String name = txtSuprName.getText();
 
-        ServiceLocation location = EPAdmin.findServiceLocation(locationkName);  //finiding location
+        ServiceLocation location = Admin.findServiceLocation(locationkName);  //finiding location
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
 
         if (enterpriseType1.equals("Entertainment")) {
@@ -448,7 +435,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                     ent.setName(name);
                     ent.setPassword(password);
 
-                    EPAdmin.updateUser(managerUserName, password);
+                    Admin.updateUser(managerUserName, password);
                     populateTable();
                     JOptionPane.showMessageDialog(this, " Updated successfully ");
                     return;
@@ -462,7 +449,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                     man.setName(name);
                     man.setPassword(password);
 
-                    EPAdmin.updateUser(managerUserName, password);
+                    Admin.updateUser(managerUserName, password);
                     populateTable();
                     JOptionPane.showMessageDialog(this, " Updated successfully ");
                     return;
@@ -476,20 +463,20 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
                     man.setName(name);
                     man.setPassword(password);
 
-                    EPAdmin.updateUser(managerUserName, password);
+                    Admin.updateUser(managerUserName, password);
                     populateTable();
                     JOptionPane.showMessageDialog(this, " Updated successfully ");
                     return;
                 }
             }
-        } else if (enterpriseType1.equals("Admin")) {
+        } else if (enterpriseType1.equals("Catering")) {
             Catering cat = businessCatalogueDirectory.findCatering(enterpriseName1);
             for (Supervisor man : cat.getListOfSupervisor()) {
                 if (man.getUsername().equals(managerUserName)) {
                     man.setName(name);
                     man.setPassword(password);
 
-                    EPAdmin.updateUser(managerUserName, password);
+                    Admin.updateUser(managerUserName, password);
 
                     populateTable();
                     JOptionPane.showMessageDialog(this, "Updated successfully ");
@@ -500,7 +487,6 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Invalid enterprise [" + enterpriseType1 + "]");
         }
 
-        
     }//GEN-LAST:event_btnUpdateActionPerformed
 
     private void tblBusinessCatalogueMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblBusinessCatalogueMouseClicked
@@ -527,14 +513,6 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
         cmbBCType.setSelectedItem(eType);
     }//GEN-LAST:event_tblBusinessCatalogueMouseClicked
 
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
-
-    private void cmbBCNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBCNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbBCNameActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
@@ -560,11 +538,10 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-
         DefaultTableModel model = (DefaultTableModel) tblBusinessCatalogue.getModel();
         model.setRowCount(0);
         Object row[] = new Object[10];
-        for (ServiceLocation location : EPAdmin.getListOfServiceLocation()) {        //populate location
+        for (ServiceLocation location : Admin.getListOfServiceLocation()) {        //populate location
             row[0] = location.getName();
             BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();  //populate enterpirse name
             for (Events event : businessCatalogueDirectory.getListOfEvents()) {   //poplulate events enterprise
@@ -621,7 +598,6 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             }
 
         }
-        
     }
 
 }

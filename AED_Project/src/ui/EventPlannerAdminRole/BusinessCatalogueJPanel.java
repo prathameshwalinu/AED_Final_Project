@@ -1,45 +1,30 @@
 package ui.EventPlannerAdminRole;
+/**
+ *
+ * @author himanshu
+ */
 
-import Model.Admin;
-import Model.BusinessCatalogue;
-import Model.BusinessCatalogueDirectory;
-import Model.Catering;
-import Model.Entertainment;
-import Model.Events;
-import Model.Resort;
-import Model.ServiceLocation;
+import Model.*;
+import Model.services.*;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class BusinessCatalogueJPanel extends javax.swing.JPanel {
-    
-    private Admin EPAdmin;
+
+    private Admin Admin;
     private Runnable callOnCreateMethod;
 
-    public BusinessCatalogueJPanel(Admin EPAdmin, Runnable callOnCreateMethod) {
-        
+    public BusinessCatalogueJPanel(Admin Admin, Runnable callOnCreateMethod) {
         initComponents();
-        this.EPAdmin = EPAdmin;
-        
+        this.Admin = Admin;
         this.callOnCreateMethod = callOnCreateMethod;
-        for (ServiceLocation location : EPAdmin.getListOfServiceLocation()) {      //populate items in location combobox
+        for (ServiceLocation location : Admin.getListOfServiceLocation()) {      //populate items in location combobox
             cmbLocation.addItem(location.getName());
         }
-        for (ServiceLocation location : EPAdmin.getListOfServiceLocation()) {
+        for (ServiceLocation location : Admin.getListOfServiceLocation()) {
             cmbLocationSearch.addItem(location.getName());
         }
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        btnDelete.setBackground(new java.awt.Color(0, 102, 102));
-//        btnDelete.setOpaque(true);
-//        btnAdd.setBackground(new java.awt.Color(0, 102, 102));
-//        btnAdd.setOpaque(true);
-//        BtnUpdate.setBackground(new java.awt.Color(0, 102, 102));
-//        BtnUpdate.setOpaque(true);
-//        backButton.setBackground(new java.awt.Color(0, 102, 102));
-//        backButton.setOpaque(true);
-//        btnDisplay.setBackground(new java.awt.Color(0, 102, 102));
-//        btnDisplay.setOpaque(true);
     }
 
     public boolean validateName() {
@@ -87,11 +72,13 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
 
-        lbLBC.setFont(new java.awt.Font("Lucida Grande", 1, 24)); // NOI18N
+        lbLBC.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        lbLBC.setForeground(new java.awt.Color(255, 255, 255));
         lbLBC.setText("BUSINESS CATALOGUE");
         add(lbLBC);
-        lbLBC.setBounds(360, 140, 319, 30);
+        lbLBC.setBounds(259, 92, 444, 43);
 
+        BtnUpdate.setBackground(new java.awt.Color(204, 255, 255));
         BtnUpdate.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         BtnUpdate.setText("UPDATE");
         BtnUpdate.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -101,8 +88,9 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
             }
         });
         add(BtnUpdate);
-        BtnUpdate.setBounds(390, 440, 182, 26);
+        BtnUpdate.setBounds(838, 353, 129, 26);
 
+        btnDelete.setBackground(new java.awt.Color(204, 255, 255));
         btnDelete.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnDelete.setText("DELETE");
         btnDelete.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -112,9 +100,9 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
             }
         });
         add(btnDelete);
-        btnDelete.setBounds(610, 440, 173, 26);
+        btnDelete.setBounds(838, 397, 129, 26);
 
-        jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -139,8 +127,9 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(90, 250, 769, 171);
+        jScrollPane1.setBounds(51, 252, 769, 171);
 
+        btnAdd.setBackground(new java.awt.Color(204, 255, 255));
         btnAdd.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnAdd.setText("ADD");
         btnAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -150,28 +139,25 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
             }
         });
         add(btnAdd);
-        btnAdd.setBounds(170, 440, 182, 26);
+        btnAdd.setBounds(838, 309, 129, 26);
 
         txtBCName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        txtBCName.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtBCNameActionPerformed(evt);
-            }
-        });
         add(txtBCName);
-        txtBCName.setBounds(550, 560, 180, 28);
+        txtBCName.setBounds(346, 538, 180, 28);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel1.setText("CATALOGUE:");
+        jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("CATALOGUE");
         add(jLabel1);
-        jLabel1.setBounds(220, 630, 143, 22);
+        jLabel1.setBounds(51, 594, 264, 22);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel2.setText("LOCATION:");
+        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("LOCATION");
         add(jLabel2);
-        jLabel2.setBounds(220, 500, 133, 22);
+        jLabel2.setBounds(51, 484, 264, 22);
 
-        cmbLocation.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        cmbLocation.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         cmbLocation.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select any one" }));
         cmbLocation.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -179,42 +165,46 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
             }
         });
         add(cmbLocation);
-        cmbLocation.setBounds(550, 500, 180, 28);
+        cmbLocation.setBounds(346, 481, 180, 28);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel3.setText("BUSNIESS CATALOGUE NAME:");
+        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("BUSNIESS CATALOGUE NAME");
         add(jLabel3);
-        jLabel3.setBounds(220, 560, 268, 29);
+        jLabel3.setBounds(51, 538, 264, 29);
 
-        cmbLocationType.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
-        cmbLocationType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select any one", "Event", "Resort", "Admin", "Entertainment" }));
+        cmbLocationType.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
+        cmbLocationType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select any one", "Event", "Resort", "Catering", "Entertainment" }));
         cmbLocationType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbLocationTypeActionPerformed(evt);
             }
         });
         add(cmbLocationType);
-        cmbLocationType.setBounds(550, 630, 180, 28);
+        cmbLocationType.setBounds(346, 591, 180, 28);
 
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel6.setText("MOBILE NO:");
+        jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("MOBILE NO");
         add(jLabel6);
-        jLabel6.setBounds(220, 700, 166, 22);
+        jLabel6.setBounds(51, 640, 264, 22);
 
         txtMobile.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         add(txtMobile);
-        txtMobile.setBounds(550, 690, 180, 28);
+        txtMobile.setBounds(346, 637, 180, 28);
 
-        cmbLocationSearch.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        cmbLocationSearch.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         cmbLocationSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select any one " }));
         add(cmbLocationSearch);
-        cmbLocationSearch.setBounds(380, 210, 168, 30);
+        cmbLocationSearch.setBounds(259, 204, 168, 30);
 
-        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("SELECT A LOCATION");
         add(jLabel7);
-        jLabel7.setBounds(200, 210, 150, 27);
+        jLabel7.setBounds(51, 205, 190, 27);
 
+        btnDisplay.setBackground(new java.awt.Color(204, 255, 255));
         btnDisplay.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnDisplay.setText("VIEW");
         btnDisplay.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -224,8 +214,9 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
             }
         });
         add(btnDisplay);
-        btnDisplay.setBounds(670, 210, 122, 26);
+        btnDisplay.setBounds(838, 265, 129, 26);
 
+        backButton.setBackground(new java.awt.Color(204, 255, 255));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backButton.setText("BACK");
         backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -235,16 +226,15 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
             }
         });
         add(backButton);
-        backButton.setBounds(51, 24, 107, 44);
+        backButton.setBounds(51, 24, 79, 32);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/N.jpeg")); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventPlannerAdminRole/client.jpeg"))); // NOI18N
         jLabel4.setText("jLabel4");
         add(jLabel4);
-        jLabel4.setBounds(0, 0, 880, 770);
+        jLabel4.setBounds(0, 0, 1000, 750);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
-       
         int selectedRowIndex = jTable1.getSelectedRow();
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to delete");
@@ -254,7 +244,7 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
         String locationName = (String) model.getValueAt(selectedRowIndex, 0);
         String businessCatalogueType = (String) model.getValueAt(selectedRowIndex, 2);
         String businessCatalogueName = (String) model.getValueAt(selectedRowIndex, 1);
-        ServiceLocation network = EPAdmin.findServiceLocation(locationName);
+        ServiceLocation network = Admin.findServiceLocation(locationName);
         BusinessCatalogueDirectory enterpriseDirec = network.getBusinessCatalogueDirectory();
         if (businessCatalogueType.equals("Event") && enterpriseDirec.getListOfEvents() != null) {
             for (Events event : enterpriseDirec.getListOfEvents()) {
@@ -264,8 +254,7 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
                     populateTable();
                 }
             }
-        } 
-        else if (businessCatalogueType.equals("Resort") && enterpriseDirec.getListOfResort() != null) {
+        } else if (businessCatalogueType.equals("Resort") && enterpriseDirec.getListOfResort() != null) {
             for (Resort resort : enterpriseDirec.getListOfResort()) {
                 if (resort.getName().equals(businessCatalogueName)) {
                     enterpriseDirec.deleteBusinessCatalogueResort(resort);
@@ -273,8 +262,7 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
                     populateTable();
                 }
             }
-        } 
-        else if (businessCatalogueType.equals("Catering") && enterpriseDirec.getListOfCatering() != null) {
+        } else if (businessCatalogueType.equals("Catering") && enterpriseDirec.getListOfCatering() != null) {
             for (Catering cat : enterpriseDirec.getListOfCatering()) {
                 if (cat.getName().equals(businessCatalogueName)) {
                     enterpriseDirec.deleteBusinessCatalogueCatering(cat);
@@ -282,8 +270,7 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
                     populateTable();
                 }
             }
-        } 
-        else if (businessCatalogueType.equals("Entertainment") && enterpriseDirec.getListOfEntertainment() != null) {
+        } else if (businessCatalogueType.equals("Entertainment") && enterpriseDirec.getListOfEntertainment() != null) {
             for (Entertainment ent : enterpriseDirec.getListOfEntertainment()) {
                 if (ent.getName().equals(businessCatalogueName)) {
                     enterpriseDirec.deleteBusinessCatalogueEntertainment(ent);
@@ -294,6 +281,8 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
         } else {
             JOptionPane.showMessageDialog(this, "not found");
         }
+
+
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void cmbLocationTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbLocationTypeActionPerformed
@@ -305,12 +294,11 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_cmbLocationActionPerformed
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-     
         String contact = txtMobile.getText();
         String name = txtBCName.getText();
         String locationName = cmbLocation.getSelectedItem().toString();
         String businessCatalogueType1 = cmbLocationType.getSelectedItem().toString();
-        ServiceLocation network = EPAdmin.findServiceLocation(locationName);
+        ServiceLocation network = Admin.findServiceLocation(locationName);
 
         if (name == null || name.length() < 2) {
             JOptionPane.showMessageDialog(this, "Invalid input: Enterprise name should be atleast 2 characters long.");
@@ -322,20 +310,17 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
             businessCatalogueDirectory.addEntertainment(name, contact);
             JOptionPane.showMessageDialog(this, "Enterprise added successfully");
             return;
-        } 
-        else if (businessCatalogueType1.equals("Catering") && businessCatalogueDirectory != null) {
+        } else if (businessCatalogueType1.equals("Catering") && businessCatalogueDirectory != null) {
             businessCatalogueDirectory.addCatering(name, contact);
             JOptionPane.showMessageDialog(this, "Enterprise added successfully");
 
             return;
-        } 
-        else if (businessCatalogueType1.equals("Event") && businessCatalogueDirectory != null) {
+        } else if (businessCatalogueType1.equals("Event") && businessCatalogueDirectory != null) {
             businessCatalogueDirectory.addEvents(name, contact);
             JOptionPane.showMessageDialog(this, "Enterprise added successfully");
 
             return;
-        } 
-        else if (businessCatalogueType1.equals("Resort") && businessCatalogueDirectory != null) {
+        } else if (businessCatalogueType1.equals("Resort") && businessCatalogueDirectory != null) {
             businessCatalogueDirectory.addResort(name, contact);
             JOptionPane.showMessageDialog(this, "Enterprise added successfully");
             return;
@@ -345,18 +330,15 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayActionPerformed
-        
-            populateTable();
+        populateTable();
     }//GEN-LAST:event_btnDisplayActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-       
         callOnCreateMethod.run();
-        
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
-       if (jTable1.getSelectedRowCount() != 1) {
+        if (jTable1.getSelectedRowCount() != 1) {
             JOptionPane.showMessageDialog(this, "Please select 1 row to update");
             return;
         }
@@ -366,10 +348,10 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
         String businessCatalogueType1 = cmbLocationType.getSelectedItem().toString();
         String businessCatalogueName = model.getValueAt(jTable1.getSelectedRow(), 1).toString();
 
-        ServiceLocation location = EPAdmin.findServiceLocation(locationName);
-       BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+        ServiceLocation location = Admin.findServiceLocation(locationName);
+        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
 
-       BusinessCatalogue BCToUpdate = null;
+        BusinessCatalogue BCToUpdate = null;
         if (businessCatalogueType1.equals("Entertainment") && businessCatalogueDirectory != null) {
 
             for (Entertainment list : businessCatalogueDirectory.getListOfEntertainment()) {
@@ -428,10 +410,6 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
         txtMobile.setText(bcContact);
     }//GEN-LAST:event_jTable1MouseClicked
 
-    private void txtBCNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBCNameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtBCNameActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnUpdate;
@@ -456,13 +434,11 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        
-        
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         Object row[] = new Object[10];
         String locationItem = cmbLocationSearch.getSelectedItem().toString();
-        ServiceLocation location = EPAdmin.findServiceLocation(locationItem);
+        ServiceLocation location = Admin.findServiceLocation(locationItem);
 
         List<Events> eventList = location.getBusinessCatalogueDirectory().getListOfEvents();
         if (eventList != null) {
@@ -507,5 +483,6 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
                 model.addRow(row);
             }
         }
+
     }
 }
