@@ -1,11 +1,14 @@
 package Model;
-
+/**
+ *
+ * @author himanshu
+ */
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 import Model.services.ResortService;
-import Model.services.EService;
+import Model.services.Service;
 import ui.main.DateUtils;
 
 public class HallBooking {
@@ -18,7 +21,7 @@ public class HallBooking {
     private int cost;
     private ServiceLocation serviceLocation;
 
-    private List<EService> services;
+    private List<Service> services;
     private String id;
 
     public HallBooking() {
@@ -34,7 +37,7 @@ public class HallBooking {
 
     public int getTotalCost() {
         int totalCost = this.cost;
-        for (EService service : services) {
+        for (Service service : services) {
             totalCost += service.getTotalCost();
         }
         return totalCost;
@@ -56,15 +59,15 @@ public class HallBooking {
         return id;
     }
 
-    public List<EService> getServices() {
+    public List<Service> getServices() {
         return services;
     }
 
-    public void setServices(List<EService> services) {
+    public void setServices(List<Service> services) {
         this.services = services;
     }
 
-    public void addService(EService service) {
+    public void addService(Service service) {
         this.services.add(service);
     }
 
@@ -101,7 +104,7 @@ public class HallBooking {
     }
 
     public ResortService getResortService() {
-        for (EService service : services) {
+        for (Service service : services) {
             if (service instanceof ResortService) {
                 return (ResortService) service;
             }
@@ -128,7 +131,7 @@ public class HallBooking {
         sb.append("\n").append(TAB).append("Total cost for your stay or Hall: $").append(roomCost);
         
         int totalCost = roomCost;
-        for (EService service : services) {
+        for (Service service : services) {
             totalCost += service.getTotalCost();
             sb.append("\n").append(service).append("\n");
         }
