@@ -1,28 +1,26 @@
 package ui.EventManagerRole;
 
-import Model.Admin;
+/**
+ *
+ * @author himanshu
+ */
+
+import Model.*;
+import Model.services.*;
 
 public class EventSupervisorPanel extends javax.swing.JPanel {
 
+    private Admin systemAdmin;
     private Runnable callOnCreateMethod1;
     private Runnable callOnCreateMethod2;
     private Runnable callOnCreateMethod3;
-    private Admin systemAdmin;
-    
-    public EventSupervisorPanel( Admin systemAdmin,Runnable callOnCreateMethod1, Runnable callOnCreateMethod2, Runnable callOnCreateMethod3) {
+
+    public EventSupervisorPanel(Admin systemAdmin, Runnable callOnCreateMethod1, Runnable callOnCreateMethod2, Runnable callOnCreateMethod3) {
         initComponents();
-        
         this.systemAdmin = systemAdmin;
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.callOnCreateMethod2 = callOnCreateMethod2;
         this.callOnCreateMethod3 = callOnCreateMethod3;
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        viewTask.setBackground(new java.awt.Color(0, 102, 102));
-//        viewTask.setOpaque(true);
-//        orgBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        orgBtn.setOpaque(true);
-//        orgadmin.setBackground(new java.awt.Color(0, 102, 102));
-//        orgadmin.setOpaque(true);
 
     }
 
@@ -39,6 +37,7 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
 
+        orgBtn.setBackground(new java.awt.Color(255, 255, 204));
         orgBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         orgBtn.setText("MANAGE ORGANISATION");
         orgBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -48,8 +47,9 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
             }
         });
         add(orgBtn);
-        orgBtn.setBounds(295, 269, 302, 40);
+        orgBtn.setBounds(300, 330, 302, 40);
 
+        viewTask.setBackground(new java.awt.Color(255, 255, 204));
         viewTask.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         viewTask.setText("DISPLAY");
         viewTask.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -59,13 +59,15 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
             }
         });
         add(viewTask);
-        viewTask.setBounds(295, 194, 302, 39);
+        viewTask.setBounds(300, 260, 302, 39);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 204));
         jLabel1.setText("EVENT SUPERVISOR PANEL ");
         add(jLabel1);
-        jLabel1.setBounds(203, 110, 508, 43);
+        jLabel1.setBounds(200, 120, 508, 43);
 
+        orgadmin.setBackground(new java.awt.Color(255, 255, 204));
         orgadmin.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         orgadmin.setText("MANAGE ORGANISATION ADMIN");
         orgadmin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -75,12 +77,12 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
             }
         });
         add(orgadmin);
-        orgadmin.setBounds(295, 348, 302, 41);
+        orgadmin.setBounds(300, 410, 302, 41);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/N.jpeg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventManagerRole/N.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(0, 0, 880, 570);
+        jLabel2.setBounds(0, 0, 840, 670);
     }// </editor-fold>//GEN-END:initComponents
 
     private void orgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgBtnActionPerformed

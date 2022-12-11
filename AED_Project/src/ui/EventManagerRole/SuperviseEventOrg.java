@@ -1,12 +1,11 @@
 package ui.EventManagerRole;
+/**
+ *
+ * @author himanshu
+ */
 
-import Model.Admin;
-import Model.BusinessCatalogueDirectory;
-import Model.Event_BirthdayParty;
-import Model.Event_Meetings;
-import Model.Event_Wedding;
-import Model.Events;
-import Model.ServiceLocation;
+import Model.*;
+import Model.services.*;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -14,18 +13,15 @@ import javax.swing.table.DefaultTableModel;
 
 public class SuperviseEventOrg extends javax.swing.JPanel {
 
-
-    private Admin EPAdmin;
-    private ServiceLocation location;
-    
+    private Admin Admin;
     private Runnable callOnCreateMethod;
     private String type;
     private String user;
-    
+    private ServiceLocation location;
 
-    public SuperviseEventOrg(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type,ServiceLocation network) {
-       initComponents();
-        this.EPAdmin = EPAdmin;
+    public SuperviseEventOrg(Admin Admin, Runnable callOnCreateMethod, String user, String type, ServiceLocation network) {
+        initComponents();
+        this.Admin = Admin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
@@ -35,15 +31,7 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
         cityNameTextField.setEditable(false);
 
         populateTable();
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        deleteBtn.setOpaque(true);
-//        addBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        addBtn.setOpaque(true);
-//        updateBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        updateBtn.setOpaque(true);
-//        backButton.setBackground(new java.awt.Color(0, 102, 102));
-//        backButton.setOpaque(true);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -70,7 +58,7 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
 
-        jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 11)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -95,8 +83,9 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(250, 290, 667, 183);
+        jScrollPane1.setBounds(137, 221, 760, 183);
 
+        backButton.setBackground(new java.awt.Color(255, 255, 204));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backButton.setText("BACK");
         backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -106,42 +95,54 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
             }
         });
         add(backButton);
-        backButton.setBounds(31, 32, 54, 26);
+        backButton.setBounds(25, 32, 96, 32);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 204));
         jLabel1.setText("SUPERVISE ORGANISATION FOR EVENTS ");
         add(jLabel1);
-        jLabel1.setBounds(200, 230, 756, 43);
+        jLabel1.setBounds(164, 108, 756, 43);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 204));
         jLabel2.setText("ORGANISATION TYPE");
         add(jLabel2);
-        jLabel2.setBounds(66, 626, 222, 22);
+        jLabel2.setBounds(137, 446, 222, 22);
 
         orgCombo.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
         orgCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select an organisation", "Meeting", "BirthdayParty", "Wedding" }));
         add(orgCombo);
-        orgCombo.setBounds(294, 628, 210, 22);
+        orgCombo.setBounds(381, 448, 210, 22);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 204));
         jLabel3.setText("NAME");
         add(jLabel3);
-        jLabel3.setBounds(579, 626, 119, 22);
+        jLabel3.setBounds(137, 499, 222, 22);
+
+        nameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nameFieldActionPerformed(evt);
+            }
+        });
         add(nameField);
-        nameField.setBounds(732, 628, 199, 23);
+        nameField.setBounds(381, 501, 210, 23);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 204));
         jLabel4.setText("PHONE NO.");
         add(jLabel4);
-        jLabel4.setBounds(66, 697, 119, 22);
+        jLabel4.setBounds(137, 542, 222, 22);
         add(contactField);
-        contactField.setBounds(294, 699, 210, 23);
+        contactField.setBounds(381, 544, 210, 23);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 204));
         jLabel5.setText("CITY");
         add(jLabel5);
-        jLabel5.setBounds(579, 697, 98, 22);
+        jLabel5.setBounds(137, 585, 98, 22);
 
+        addBtn.setBackground(new java.awt.Color(255, 255, 204));
         addBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addBtn.setText("ADD");
         addBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -151,8 +152,9 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
             }
         });
         add(addBtn);
-        addBtn.setBounds(217, 502, 107, 37);
+        addBtn.setBounds(923, 261, 116, 37);
 
+        deleteBtn.setBackground(new java.awt.Color(255, 255, 204));
         deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         deleteBtn.setText("DELETE");
         deleteBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -162,8 +164,9 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
             }
         });
         add(deleteBtn);
-        deleteBtn.setBounds(780, 500, 73, 39);
+        deleteBtn.setBounds(923, 365, 116, 39);
 
+        updateBtn.setBackground(new java.awt.Color(255, 255, 204));
         updateBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         updateBtn.setText("UPDATE");
         updateBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -173,7 +176,7 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
             }
         });
         add(updateBtn);
-        updateBtn.setBounds(550, 500, 78, 37);
+        updateBtn.setBounds(923, 310, 116, 37);
 
         cityNameTextField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -181,16 +184,16 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
             }
         });
         add(cityNameTextField);
-        cityNameTextField.setBounds(732, 699, 198, 23);
+        cityNameTextField.setBounds(381, 587, 210, 23);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/N.jpeg")); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventManagerRole/N.jpeg"))); // NOI18N
         jLabel6.setText("jLabel6");
         add(jLabel6);
-        jLabel6.setBounds(0, 0, 1030, 770);
+        jLabel6.setBounds(0, 0, 1120, 710);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-       DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         Object row[] = new Object[20];
         String locationName = location.getName();
         String name = nameField.getText();
@@ -204,12 +207,9 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
         String orgType1 = orgCombo.getSelectedItem().toString();      // org-type (physician org)     
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
         List<Events> events = businessCatalogueDirectory.getListOfEvents();
-       
-        for (int i = 0; i < events.size(); i++)
-        {
+        for (int i = 0; i < events.size(); i++) {
             events.get(i).findSupervisor(user);      //find healthclub for which manager is working for
-            if (orgType1.equals("BirthdayParty")) 
-            {
+            if (orgType1.equals("BirthdayParty")) {
                 events.get(i).addBirthdayParty(name, contact, locationName);
                 row[0] = orgType1;
                 row[1] = name;
@@ -218,9 +218,7 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
                 model.addRow(row);
                 JOptionPane.showMessageDialog(this, "Birthday Party Event Org added successfully");
                 return;
-            } 
-            else if (orgType1.equals("Meeting"))
-            {
+            } else if (orgType1.equals("Meeting")) {
                 events.get(i).addMeetings(name, contact, locationName);
                 row[0] = orgType1;
                 row[1] = name;
@@ -229,9 +227,7 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
                 model.addRow(row);
                 JOptionPane.showMessageDialog(this, "Meeting Organisation successfully");
                 return;
-            }
-            else 
-            {
+            } else {
                 events.get(i).addWeddingServices(name, contact, locationName);
                 row[0] = orgType1;
                 row[1] = name;
@@ -241,8 +237,7 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Wedding Organisation added successfully");
                 return;
             }
-        } 
-
+        }
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -254,17 +249,14 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
     }//GEN-LAST:event_cityNameTextFieldActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
-       DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int selectedRowIndex = jTable1.getSelectedRow();
-        
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to delete");
             return;
         }
-        
         String OrgType = (String) model.getValueAt(selectedRowIndex, 0);
         String OrgName = (String) model.getValueAt(selectedRowIndex, 1);
-        
         BusinessCatalogueDirectory enterpriseDirec = location.getBusinessCatalogueDirectory();
         for (Events event : enterpriseDirec.getListOfEvents()) {
             if (event.findSupervisor(user) != null) {
@@ -292,13 +284,13 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
                             populateTable();
                         }
                     }
-                } else 
-                {
+                } else {
                     return;
                 }
 
             }
         }
+
     }//GEN-LAST:event_deleteBtnActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
@@ -321,7 +313,7 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-      
+
         if (jTable1.getSelectedRowCount() != 1) {
             JOptionPane.showMessageDialog(this, "Please select a row to update.");
         }
@@ -366,8 +358,11 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
             }
 
         }
- 
     }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nameFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -394,7 +389,7 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
         model.setRowCount(0);
         Object row[] = new Object[10];
         String orgType1 = orgCombo.getSelectedItem().toString();
-        ServiceLocation location1 = EPAdmin.findServiceLocation(location.getName());
+        ServiceLocation location1 = Admin.findServiceLocation(location.getName());
         BusinessCatalogueDirectory businessCatalogueDirectory = location1.getBusinessCatalogueDirectory();
         if (businessCatalogueDirectory == null) {
             return;

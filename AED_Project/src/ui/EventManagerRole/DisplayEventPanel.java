@@ -1,16 +1,11 @@
 package ui.EventManagerRole;
+/**
+ *
+ * @author himanshu
+ */
 
-import Model.Admin;
-import Model.Client;
-import Model.ClientDirectory;
-import Model.Event_BirthdayParty;
-import Model.Event_Meetings;
-import Model.Event_Wedding;
-import Model.Events;
-import Model.HallBooking;
-import Model.Organization;
-import Model.services.EService;
-import Model.services.EventService;
+import Model.*;
+import Model.services.*;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,35 +14,21 @@ import javax.swing.table.DefaultTableModel;
 
 public class DisplayEventPanel extends javax.swing.JPanel {
 
-    private Admin EPAdmin;
-    private Events businessEvent;
-    
+    private Admin Admin;
     private Runnable callOnCreateMethod;
     private String user;
     private String type;
-    
+    private Events businessEvent;
 
-
-
-    public DisplayEventPanel( Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, Events businessEvent) {
+    public DisplayEventPanel(Admin Admin, Runnable callOnCreateMethod, String user, String type, Events businessEvent) {
         initComponents();
-        
-        this.EPAdmin = EPAdmin;
-        this.businessEvent = businessEvent;
+        this.Admin = Admin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
-
+        this.businessEvent = businessEvent;
         populateComboBox();
         populateTable();
-        
-//        setBackground(new java.awt.Color(255,208,56));
-//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        backBtn.setOpaque(true);
-//       confirmBtn.setBackground(new java.awt.Color(0, 102, 102));
-//       confirmBtn.setOpaque(true);
-//       denyButton.setBackground(new java.awt.Color(0, 102, 102));
-//       confirmBtn.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -66,11 +47,12 @@ public class DisplayEventPanel extends javax.swing.JPanel {
         weddingOrg = new javax.swing.JComboBox();
         confirmBtn = new javax.swing.JButton();
         denyButton = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
 
+        backBtn.setBackground(new java.awt.Color(255, 255, 204));
         backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backBtn.setText("BACK");
         backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -80,12 +62,13 @@ public class DisplayEventPanel extends javax.swing.JPanel {
             }
         });
         add(backBtn);
-        backBtn.setBounds(27, 17, 133, 26);
+        backBtn.setBounds(27, 17, 110, 38);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 204));
         jLabel1.setText("VIEW ORDER DETAILS FOR EVENTS");
         add(jLabel1);
-        jLabel1.setBounds(170, 160, 666, 43);
+        jLabel1.setBounds(95, 92, 666, 43);
 
         jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -93,7 +76,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "BOOKING ID", "NAME", "STATUS", "Admin", "DECOR", "PHOTOGRAPHY"
+                "BOOKING ID", "NAME", "STATUS", "CATERING", "DECOR", "PHOTOGRAPHY"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -107,28 +90,36 @@ public class DisplayEventPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(80, 220, 800, 194);
+        jScrollPane1.setBounds(19, 147, 830, 194);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 204));
         jLabel2.setText("SELECT A BIRTHDAY PARTY ORG:");
         add(jLabel2);
-        jLabel2.setBounds(110, 470, 321, 21);
+        jLabel2.setBounds(19, 385, 321, 21);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 204));
         jLabel3.setText("SELECT A MEETING ORG:");
         add(jLabel3);
-        jLabel3.setBounds(510, 470, 267, 22);
+        jLabel3.setBounds(19, 453, 321, 22);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 204));
         jLabel4.setText("SELECT A WEDDING ORG:");
         add(jLabel4);
-        jLabel4.setBounds(150, 570, 262, 22);
+        jLabel4.setBounds(19, 529, 321, 22);
 
         add(birthdayOrg);
-        birthdayOrg.setBounds(150, 510, 236, 23);
+        birthdayOrg.setBounds(391, 386, 202, 23);
 
+        meetingOrg.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                meetingOrgActionPerformed(evt);
+            }
+        });
         add(meetingOrg);
-        meetingOrg.setBounds(520, 510, 206, 23);
+        meetingOrg.setBounds(391, 455, 202, 23);
 
         weddingOrg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -136,8 +127,9 @@ public class DisplayEventPanel extends javax.swing.JPanel {
             }
         });
         add(weddingOrg);
-        weddingOrg.setBounds(520, 570, 203, 23);
+        weddingOrg.setBounds(391, 531, 202, 23);
 
+        confirmBtn.setBackground(new java.awt.Color(255, 255, 204));
         confirmBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         confirmBtn.setText("CONFIRM REQUEST");
         confirmBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -147,8 +139,9 @@ public class DisplayEventPanel extends javax.swing.JPanel {
             }
         });
         add(confirmBtn);
-        confirmBtn.setBounds(260, 690, 246, 50);
+        confirmBtn.setBounds(669, 622, 180, 50);
 
+        denyButton.setBackground(new java.awt.Color(255, 255, 204));
         denyButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         denyButton.setText("DENY REQUEST");
         denyButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -158,12 +151,12 @@ public class DisplayEventPanel extends javax.swing.JPanel {
             }
         });
         add(denyButton);
-        denyButton.setBounds(590, 690, 189, 50);
+        denyButton.setBounds(669, 684, 180, 50);
 
-        jLabel6.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/N.jpeg")); // NOI18N
-        jLabel6.setText("jLabel6");
-        add(jLabel6);
-        jLabel6.setBounds(0, 0, 910, 760);
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventManagerRole/N.jpeg"))); // NOI18N
+        jLabel5.setText("jLabel5");
+        add(jLabel5);
+        jLabel5.setBounds(0, 0, 880, 770);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -181,7 +174,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
         HallBooking booking = (HallBooking) model.getValueAt(selectedRowIndex, 0);
 
         EventService eventService = null;
-        for (EService service : booking.getServices()) {
+        for (Service service : booking.getServices()) {
             if (businessEvent.getName().equals(service.getBusinessCatalogue().getName())) {
                 eventService = (EventService) service;
                 break;
@@ -193,7 +186,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
             return;
         }
 
-        if (!eventService.getStatus().equals(EService.Status.PENDING)) {
+        if (!eventService.getStatus().equals(Service.Status.PENDING)) {
             JOptionPane.showMessageDialog(this, String.format("Booking '%s' should be 'PENDING' state to be accepted.",
                     booking.getId()));
             return;
@@ -236,13 +229,13 @@ public class DisplayEventPanel extends javax.swing.JPanel {
         for (Organization organization : organizations) {
             eventService.addOrganization(organization);
         }
-        eventService.setStatus(EService.Status.CONFIRMED);
+        eventService.setStatus(Service.Status.CONFIRMED);
         JOptionPane.showMessageDialog(this, "Assigned all event services to the booking: " + booking.getId());
         populateTable();
     }//GEN-LAST:event_confirmBtnActionPerformed
 
     private void denyButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_denyButtonActionPerformed
-       int selectedRowIndex = jTable1.getSelectedRow();
+        int selectedRowIndex = jTable1.getSelectedRow();
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a booking to deny request.");
             return;
@@ -252,7 +245,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
         HallBooking booking = (HallBooking) model.getValueAt(selectedRowIndex, 0);
 
         EventService eventService = null;
-        for (EService service : booking.getServices()) {
+        for (Service service : booking.getServices()) {
             if (businessEvent.getName().equals(service.getBusinessCatalogue().getName())) {
                 eventService = (EventService) service;
                 break;
@@ -264,17 +257,20 @@ public class DisplayEventPanel extends javax.swing.JPanel {
             return;
         }
 
-        if (!eventService.getStatus().equals(EService.Status.PENDING)) {
+        if (!eventService.getStatus().equals(Service.Status.PENDING)) {
             JOptionPane.showMessageDialog(this, String.format("Booking '%s' should be 'PENDING' state to be denied.",
                     booking.getId()));
             return;
         }
 
-        eventService.setStatus(EService.Status.REJECTED);
+        eventService.setStatus(Service.Status.REJECTED);
         JOptionPane.showMessageDialog(this, "Denied booking request with id: " + booking.getId());
         populateTable();
- 
     }//GEN-LAST:event_denyButtonActionPerformed
+
+    private void meetingOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meetingOrgActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_meetingOrgActionPerformed
 
     private void weddingOrgActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_weddingOrgActionPerformed
         // TODO add your handling code here:
@@ -282,13 +278,13 @@ public class DisplayEventPanel extends javax.swing.JPanel {
 
     private void populateTable() {
 
-      DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 
-        ClientDirectory clientDirectory = EPAdmin.getClientDirectory(); //get all customers
+        ClientDirectory clientDirectory = Admin.getClientDirectory(); //get all customers
         for (Client customer : clientDirectory.getListOfClientDirectory()) {
             for (HallBooking booking : customer.getHallbookingList()) {      //get booking details each customer
-                for (EService service : booking.getServices()) {       //get services under booking
+                for (Service service : booking.getServices()) {       //get services under booking
 
                     if (service.getBusinessCatalogue().getName().equals(businessEvent.getName())) {
 
@@ -319,7 +315,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
                 }
             }
         }
- 
+
     }
 
     private void populateComboBox() {
@@ -331,9 +327,9 @@ public class DisplayEventPanel extends javax.swing.JPanel {
         meetingOrg.addItem(null);
         weddingOrg.addItem(null);
 
-        for (Event_BirthdayParty Admin : businessEvent.getListOfBirthdayParty()) {
-            if (Admin != null) {
-                birthdayOrg.addItem(Admin);
+        for (Event_BirthdayParty catering : businessEvent.getListOfBirthdayParty()) {
+            if (catering != null) {
+                birthdayOrg.addItem(catering);
             }
         }
         for (Event_Meetings decor : businessEvent.getListOfMeetings()) {
@@ -357,7 +353,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JComboBox meetingOrg;
