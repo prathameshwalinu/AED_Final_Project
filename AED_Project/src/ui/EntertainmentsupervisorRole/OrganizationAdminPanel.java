@@ -1,70 +1,49 @@
 package ui.EntertainmentsupervisorRole;
+/**
+ *
+ * @author nishapatil
+ */
 
-import Model.Admin;
-import Model.BusinessCatalogueDirectory;
-import Model.Entertainment;
-import Model.Entertainment_ChoreographerORG;
-import Model.Entertainment_MagicianORG;
-import Model.Entertainment_SingerORG;
-import Model.ServiceLocation;
-import Model.Supervisor;
+import Model.*;
+import Model.services.*;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
 import ui.main.Validator;
 
 public class OrganizationAdminPanel extends javax.swing.JPanel {
 
-    private Admin EPAdmin;
+    private Admin Admin;
     private Runnable callOnCreateMethod;
     private String user;
     private String type;
     private ServiceLocation location;
 
-    public OrganizationAdminPanel(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
-        
+    public OrganizationAdminPanel(Admin Admin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
         initComponents();
-        
-        this.EPAdmin = EPAdmin;
+        this.Admin = Admin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
         this.location = location;
-        
         txtlocation.setText(location.getName());
         txtlocation.setEditable(false);
-        
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        updateButton.setBackground(new java.awt.Color(0, 102, 102));
-//        updateButton.setOpaque(true);
-//        backButton.setBackground(new java.awt.Color(0, 102, 102));
-//        backButton.setOpaque(true);
-//        deleteButton.setBackground(new java.awt.Color(0, 102, 102));
-//        deleteButton.setOpaque(true);
-//        addButton.setBackground(new java.awt.Color(0, 102, 102));
-//        addButton.setOpaque(true);
+        populateTable();
     }
 
-    public boolean validateName() 
-    {
+    public boolean validateName() {
         if (nameField.getText().matches("[a-zA-Z]{2,19}") && nameField.getText() != null) {
             return true;
-        } 
-        else 
-        {
+        } else {
             JOptionPane.showMessageDialog(this, "Invalid input : name should contain only alphabets");
             return false;
         }
     }
 
-    public boolean PasswordName() 
-    {
+    public boolean PasswordName() {
         if (passwordField.getText().matches("[a-zA-Z]{3,}") && passwordField.getText() != null) {
             return true;
-        } 
-        else 
-        {
+        } else {
             JOptionPane.showMessageDialog(this, "Invalid input : password should contain more than 3 or more letters");
             return false;
         }
@@ -122,12 +101,13 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(39, 99, 803, 164);
+        jScrollPane1.setBounds(24, 99, 876, 202);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ORGANIZATION TYPE");
         add(jLabel1);
-        jLabel1.setBounds(39, 394, 226, 22);
+        jLabel1.setBounds(39, 418, 226, 22);
 
         orgCombo.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         orgCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select an organisation type", "Magician", "Choreographer", "Singer" }));
@@ -137,31 +117,35 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
             }
         });
         add(orgCombo);
-        orgCombo.setBounds(322, 395, 199, 23);
+        orgCombo.setBounds(320, 419, 202, 23);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("NAME");
         add(jLabel2);
-        jLabel2.setBounds(628, 316, 67, 22);
+        jLabel2.setBounds(558, 381, 67, 22);
 
         nameField.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         add(nameField);
-        nameField.setBounds(814, 317, 183, 23);
+        nameField.setBounds(684, 374, 187, 23);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("USERNAME");
         add(jLabel3);
-        jLabel3.setBounds(628, 394, 101, 22);
+        jLabel3.setBounds(558, 418, 101, 22);
         add(usernameField);
-        usernameField.setBounds(814, 396, 183, 23);
+        usernameField.setBounds(685, 420, 186, 23);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("PASSWORD");
         add(jLabel4);
-        jLabel4.setBounds(628, 478, 101, 22);
+        jLabel4.setBounds(558, 460, 101, 22);
         add(passwordField);
-        passwordField.setBounds(811, 480, 186, 23);
+        passwordField.setBounds(685, 462, 186, 23);
 
+        addButton.setBackground(new java.awt.Color(153, 153, 255));
         addButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addButton.setText("ADD");
         addButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -171,8 +155,9 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
             }
         });
         add(addButton);
-        addButton.setBounds(848, 99, 123, 26);
+        addButton.setBounds(906, 145, 122, 40);
 
+        deleteButton.setBackground(new java.awt.Color(153, 153, 255));
         deleteButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         deleteButton.setText("DELETE");
         deleteButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -182,8 +167,9 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
             }
         });
         add(deleteButton);
-        deleteButton.setBounds(848, 187, 122, 26);
+        deleteButton.setBounds(906, 261, 122, 40);
 
+        backButton.setBackground(new java.awt.Color(153, 153, 255));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backButton.setText("BACK");
         backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -193,22 +179,25 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
             }
         });
         add(backButton);
-        backButton.setBounds(39, 15, 86, 38);
+        backButton.setBounds(39, 15, 96, 38);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("ORGANIZATION NAME ");
         add(jLabel5);
-        jLabel5.setBounds(39, 478, 211, 22);
+        jLabel5.setBounds(39, 460, 211, 22);
 
         orgName.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         add(orgName);
-        orgName.setBounds(322, 479, 202, 23);
+        orgName.setBounds(320, 461, 202, 23);
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("LOCATION");
         add(jLabel6);
-        jLabel6.setBounds(39, 316, 127, 22);
+        jLabel6.setBounds(39, 381, 127, 22);
 
+        updateButton.setBackground(new java.awt.Color(153, 153, 255));
         updateButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         updateButton.setText("UPDATE");
         updateButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -218,20 +207,18 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
             }
         });
         add(updateButton);
-        updateButton.setBounds(848, 143, 122, 26);
+        updateButton.setBounds(906, 203, 122, 40);
         add(txtlocation);
-        txtlocation.setBounds(322, 318, 199, 23);
+        txtlocation.setBounds(320, 383, 202, 23);
 
-        jLabel7.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/lights.jpeg")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EntertainmentsupervisorRole/entertainmentfinal.jpeg"))); // NOI18N
         jLabel7.setText("jLabel7");
         add(jLabel7);
-        jLabel7.setBounds(0, 0, 1040, 610);
+        jLabel7.setBounds(0, 0, 1040, 640);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        
         callOnCreateMethod.run();
-        
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -248,7 +235,7 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
             return;
         }
 
-        if (!EPAdmin.userExistsInSystem(username)) {
+        if (!Admin.userExistsInSystem(username)) {
 
             BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
             List<Entertainment> list = businessCatalogueDirectory.getListOfEntertainment();
@@ -267,14 +254,12 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
                                 row[4] = username;
                                 row[5] = password;
                                 model.addRow(row);
-                                EPAdmin.addUser(username, password, "Magician");
+                                Admin.addUser(username, password, "Magician");
                                 JOptionPane.showMessageDialog(this, "Successfully added Magician organization");
                                 return;
                             }
                         }
-                    }
-                    else if (orgType.equals("Choreographer"))
-                    {
+                    } else if (orgType.equals("Choreographer")) {
                         List<Entertainment_ChoreographerORG> org2 = list.get(i).getListOfChoreographerORG();
                         for (int j = 0; j < org2.size(); j++) {
                             if (org2.get(j).getName().equals(orgName1)) {
@@ -286,7 +271,7 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
                                 row[4] = username;
                                 row[5] = password;
                                 model.addRow(row);
-                                EPAdmin.addUser(username, password, "Choreographer");
+                                Admin.addUser(username, password, "Choreographer");
                                 JOptionPane.showMessageDialog(this, "Successfully added Choreographer organization");
                                 return;
                             }
@@ -303,7 +288,7 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
                                 row[4] = username;
                                 row[5] = password;
                                 model.addRow(row);
-                                EPAdmin.addUser(username, password, "Singer");
+                                Admin.addUser(username, password, "Singer");
                                 JOptionPane.showMessageDialog(this, "Successfully added Singer organization");
                                 return;
                             }
@@ -313,7 +298,7 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
             }
         } else {
             JOptionPane.showMessageDialog(this, " username already exits");
-        }          
+        }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void orgComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgComboActionPerformed
@@ -342,11 +327,12 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
                 }
                 return;
             }
-        }        
+        }
+
     }//GEN-LAST:event_orgComboActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-       DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int selectedRowIndex = jTable1.getSelectedRow();
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to delete");
@@ -399,11 +385,10 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
                     }
                 }
             }
-        }        
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-      
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         String city = model.getValueAt(jTable1.getSelectedRow(), 0).toString();
         String orgType = model.getValueAt(jTable1.getSelectedRow(), 1).toString();
@@ -442,7 +427,7 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
                             if (supr.getUsername().equals(usernameField.getText())) {
                                 supr.setName(nameField.getText());
                                 supr.setPassword(passwordField.getText());
-                                EPAdmin.updateUser(userName, password);
+                                Admin.updateUser(userName, password);
                                 JOptionPane.showMessageDialog(this, "Updated successfully");
                                 populateTable();
                                 return;
@@ -455,7 +440,7 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
                             if (supr.getUsername().equals(usernameField.getText())) {
                                 supr.setName(nameField.getText());
                                 supr.setPassword(passwordField.getText());
-                                EPAdmin.updateUser(userName, password);
+                                Admin.updateUser(userName, password);
                                 JOptionPane.showMessageDialog(this, "Updated successfully");
                                 populateTable();
                                 return;
@@ -468,7 +453,7 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
                             if (supr.getUsername().equals(usernameField.getText())) {
                                 supr.setName(nameField.getText());
                                 supr.setPassword(passwordField.getText());
-                                EPAdmin.updateUser(userName, password);
+                                Admin.updateUser(userName, password);
                                 JOptionPane.showMessageDialog(this, "Updated successfully");
                                 populateTable();
                                 return;
@@ -479,7 +464,7 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(this, "Invalid organization");
                 }
             }
-        }       
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
 
@@ -506,12 +491,11 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-  
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         Object row[] = new Object[10];
         String orgType1 = orgCombo.getSelectedItem().toString();
-        ServiceLocation location1 = EPAdmin.findServiceLocation(location.getName());
+        ServiceLocation location1 = Admin.findServiceLocation(location.getName());
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
         if (businessCatalogueDirectory == null) {
             return;
