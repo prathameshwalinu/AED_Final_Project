@@ -1,12 +1,14 @@
 package ui.ClientRole;
+/**
+ *
+ * @author prathmeshw
+ */
 
-import Model.Admin;
-import Model.Entertainment;
-import Model.HallBooking;
-import Model.services.EntertainmentService;
+import Model.*;
 import java.util.Date;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
+import Model.services.*;
 import ui.main.DateUtils;
 
 public class EntertainmentServicesJPanel extends javax.swing.JPanel {
@@ -15,7 +17,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
     private Consumer<HallBooking> callOnCreateMethod1;
     private String username;
     private HallBooking booking;
-    
+
     public EntertainmentServicesJPanel(Admin systems, Consumer<HallBooking> callOnCreateMethod1, String username, HallBooking booking) {
         initComponents();
         this.systems = systems;
@@ -26,11 +28,6 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
         for (Entertainment entertain : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfEntertainment()) {
             cmbEntertainment.addItem(entertain);
         }
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        backBtn.setOpaque(true);
-//        addServiceBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        addServiceBtn.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -49,11 +46,19 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         cmbEntertainment = new javax.swing.JComboBox();
-        dateFld = new com.toedter.calendar.JDateChooser();
+        dateField = new org.netbeans.modules.form.InvalidComponent();
+        jLabel1 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
         lblbookservices.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        lblbookservices.setForeground(new java.awt.Color(255, 255, 255));
         lblbookservices.setText("ENTERTAINMENT SERVICES");
+        add(lblbookservices);
+        lblbookservices.setBounds(214, 115, 531, 44);
 
+        backBtn.setBackground(new java.awt.Color(153, 153, 255));
         backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backBtn.setText("BACK");
         backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -62,31 +67,43 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
                 backBtnActionPerformed(evt);
             }
         });
+        add(backBtn);
+        backBtn.setBounds(31, 27, 108, 36);
 
         btnDance.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        btnDance.setForeground(new java.awt.Color(255, 255, 255));
         btnDance.setText("DANCE ($100)");
         btnDance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDanceActionPerformed(evt);
             }
         });
+        add(btnDance);
+        btnDance.setBounds(241, 353, 156, 26);
 
         btnMusic.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        btnMusic.setForeground(new java.awt.Color(255, 255, 255));
         btnMusic.setText("MUSIC ($150)");
         btnMusic.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnMusicActionPerformed(evt);
             }
         });
+        add(btnMusic);
+        btnMusic.setBounds(241, 419, 149, 26);
 
         btnShow.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        btnShow.setForeground(new java.awt.Color(255, 255, 255));
         btnShow.setText("SHOWS  ($300)");
         btnShow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnShowActionPerformed(evt);
             }
         });
+        add(btnShow);
+        btnShow.setBounds(241, 483, 162, 26);
 
+        addServiceBtn.setBackground(new java.awt.Color(153, 153, 255));
         addServiceBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addServiceBtn.setText("ADD SERVICE");
         addServiceBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -95,95 +112,48 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
                 addServiceBtnActionPerformed(evt);
             }
         });
+        add(addServiceBtn);
+        addServiceBtn.setBounds(708, 665, 136, 43);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        jLabel3.setText("(MONDAY- SUNDAY) 7A.M - 9A.M");
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("(MONDAY-SUNDAY) 7A.M - 9A.M");
+        add(jLabel3);
+        jLabel3.setBounds(483, 359, 227, 17);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("(MONDAY-SUNDAY) 4P.M-5:30P.M ");
+        add(jLabel5);
+        jLabel5.setBounds(483, 425, 241, 17);
 
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("(MONDAY - SUNDAY) 12P.M-4P.M ");
+        add(jLabel6);
+        jLabel6.setBounds(483, 490, 205, 17);
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("SELECT A DATE :");
+        add(jLabel7);
+        jLabel7.setBounds(241, 224, 152, 22);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("ENTERTAINMENT:");
+        add(jLabel4);
+        jLabel4.setBounds(241, 276, 182, 27);
 
         cmbEntertainment.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        add(cmbEntertainment);
+        cmbEntertainment.setBounds(483, 279, 241, 23);
+        add(dateField);
+        dateField.setBounds(483, 224, 211, 19);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(213, 213, 213)
-                        .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(240, 240, 240)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel7)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(60, 60, 60)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(cmbEntertainment, 0, 231, Short.MAX_VALUE)
-                                    .addComponent(dateFld, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(addServiceBtn)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnShow)
-                                        .addGap(80, 80, 80)
-                                        .addComponent(jLabel6))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(btnMusic)
-                                            .addComponent(btnDance))
-                                        .addGap(86, 86, 86)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel3)
-                                            .addComponent(jLabel5)))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(78, 272, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addComponent(dateFld, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbEntertainment, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnDance)
-                    .addComponent(jLabel3))
-                .addGap(47, 47, 47)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnMusic)
-                    .addComponent(jLabel5))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnShow)
-                    .addComponent(jLabel6))
-                .addGap(38, 38, 38)
-                .addComponent(addServiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(367, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/entertainmentfinal.jpeg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1);
+        jLabel1.setBounds(0, 0, 900, 770);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
@@ -191,12 +161,13 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnShowActionPerformed
 
     private void addServiceBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addServiceBtnActionPerformed
+
         Entertainment entertain = (Entertainment) cmbEntertainment.getSelectedItem();
         if (entertain == null) {
             JOptionPane.showMessageDialog(this, "Please select a Entertainment menu from the dropdown.");
             return;
         }
-        Date date = DateUtils.formatDate(dateFld.getDate());
+        Date date = DateUtils.formatDate(dateField.getDate());
         Date checkin = booking.getCheckin();
         Date checkout = booking.getCheckout();
 
@@ -253,7 +224,8 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox btnMusic;
     private javax.swing.JCheckBox btnShow;
     private javax.swing.JComboBox cmbEntertainment;
-    private com.toedter.calendar.JDateChooser dateFld;
+    private org.netbeans.modules.form.InvalidComponent dateField;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;

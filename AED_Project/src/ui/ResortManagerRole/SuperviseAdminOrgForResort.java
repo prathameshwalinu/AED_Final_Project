@@ -1,50 +1,32 @@
 package ui.ResortManagerRole;
-
-import Model.Admin;
-import Model.BusinessCatalogueDirectory;
-import Model.CarServiceORG;
-import Model.Resort;
-import Model.ServiceLocation;
-import Model.Supervisor;
-import Model.TourGuideORG;
+/**
+ *
+ * @author prathmeshw
+ */
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import Model.*;
+import Model.services.*;
 import ui.main.Validator;
 
 public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
 
-    private Admin EPAdmin;
-    private ServiceLocation location;
-    
+    private Admin Admin;
     private Runnable callOnCreateMethod;
     private String user;
     private String type;
-    
+    private ServiceLocation location;
 
-    public SuperviseAdminOrgForResort(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
+    public SuperviseAdminOrgForResort(Admin Admin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
         initComponents();
-        
-        this.EPAdmin = EPAdmin;
+        this.Admin = Admin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
         this.location = location;
-        
         networkName.setText(location.getName());
-        
         populateTable();
-        
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        deleteButton.setBackground(new java.awt.Color(0, 102, 102));
-//        deleteButton.setOpaque(true);
-//        addButton.setBackground(new java.awt.Color(0, 102, 102));
-//        addButton.setOpaque(true);
-//        updateButton.setBackground(new java.awt.Color(0, 102, 102));
-//        updateButton.setOpaque(true);
-//        backButton.setBackground(new java.awt.Color(0, 102, 102));
-//        backButton.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -70,9 +52,12 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         orgName = new javax.swing.JComboBox<>();
         networkName = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
+        addButton.setBackground(new java.awt.Color(204, 255, 255));
         addButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addButton.setText("ADD");
         addButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -81,30 +66,46 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                 addButtonActionPerformed(evt);
             }
         });
+        add(addButton);
+        addButton.setBounds(958, 159, 100, 39);
 
         nameField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 nameFieldActionPerformed(evt);
             }
         });
+        add(nameField);
+        nameField.setBounds(750, 362, 144, 23);
 
-        orgCombo.setFont(new java.awt.Font("Lucida Grande", 0, 10)); // NOI18N
+        orgCombo.setFont(new java.awt.Font("Baskerville Old Face", 0, 10)); // NOI18N
         orgCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "TourGuide", "CarService" }));
         orgCombo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orgComboActionPerformed(evt);
             }
         });
+        add(orgCombo);
+        orgCombo.setBounds(336, 434, 187, 22);
 
-        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ORGANIZATION TYPE");
+        add(jLabel1);
+        jLabel1.setBounds(94, 431, 197, 22);
 
-        jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("NAME");
+        add(jLabel6);
+        jLabel6.setBounds(606, 360, 113, 22);
 
-        jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("LOCATION");
+        add(jLabel2);
+        jLabel2.setBounds(94, 356, 197, 31);
 
+        updateButton.setBackground(new java.awt.Color(204, 255, 255));
         updateButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         updateButton.setText("UPDATE");
         updateButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -113,16 +114,38 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                 updateButtonActionPerformed(evt);
             }
         });
+        add(updateButton);
+        updateButton.setBounds(958, 214, 100, 40);
 
-        jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("ORGANIZATION NAME");
+        add(jLabel3);
+        jLabel3.setBounds(94, 500, 205, 22);
 
-        jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        usernameField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                usernameFieldActionPerformed(evt);
+            }
+        });
+        add(usernameField);
+        usernameField.setBounds(750, 434, 144, 23);
+        add(passwordField);
+        passwordField.setBounds(750, 502, 144, 23);
+
+        jLabel4.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("USERNAME");
+        add(jLabel4);
+        jLabel4.setBounds(606, 432, 113, 22);
 
-        jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("PASSWORD");
+        add(jLabel5);
+        jLabel5.setBounds(606, 500, 113, 22);
 
+        backButton.setBackground(new java.awt.Color(204, 255, 255));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backButton.setText("BACK");
         backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -131,10 +154,16 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                 backButtonActionPerformed(evt);
             }
         });
+        add(backButton);
+        backButton.setBounds(32, 21, 80, 30);
 
         lblsysadmin.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        lblsysadmin.setForeground(new java.awt.Color(255, 255, 255));
         lblsysadmin.setText("SUPERVISE RESORT ORGANISATION ADMIN");
+        add(lblsysadmin);
+        lblsysadmin.setBounds(105, 83, 823, 43);
 
+        deleteButton.setBackground(new java.awt.Color(204, 255, 255));
         deleteButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         deleteButton.setText("DELETE");
         deleteButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -143,8 +172,10 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                 deleteButtonActionPerformed(evt);
             }
         });
+        add(deleteButton);
+        deleteButton.setBounds(958, 271, 100, 46);
 
-        jTable1.setFont(new java.awt.Font("Lucida Grande", 1, 14)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Baskerville Old Face", 3, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -168,99 +199,23 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTable1);
 
+        add(jScrollPane1);
+        jScrollPane1.setBounds(94, 159, 846, 158);
+
         orgName.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orgNameActionPerformed(evt);
             }
         });
+        add(orgName);
+        orgName.setBounds(336, 502, 187, 23);
+        add(networkName);
+        networkName.setBounds(336, 362, 187, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(114, Short.MAX_VALUE)
-                .addComponent(lblsysadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(217, 217, 217))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(51, 51, 51)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(41, 41, 41)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addComponent(orgCombo, 0, 187, Short.MAX_VALUE)
-                                        .addComponent(orgName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(networkName, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(83, 83, 83)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 113, Short.MAX_VALUE))
-                                .addGap(31, 31, 31)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(nameField, javax.swing.GroupLayout.DEFAULT_SIZE, 144, Short.MAX_VALUE)
-                                    .addComponent(usernameField)
-                                    .addComponent(passwordField)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(90, 90, 90)
-                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(128, 128, 128)
-                                .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(117, 117, 117)
-                                .addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 846, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(backButton, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(backButton)
-                .addGap(36, 36, 36)
-                .addComponent(lblsysadmin)
-                .addGap(33, 33, 33)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(deleteButton, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(updateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6)
-                    .addComponent(nameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(networkName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(orgCombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel1)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addComponent(jLabel4)))
-                .addGap(43, 43, 43)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(orgName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5)
-                    .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(469, 469, 469))
-        );
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ResortManagerRole/hotel5.jpg"))); // NOI18N
+        jLabel7.setText("jLabel7");
+        add(jLabel7);
+        jLabel7.setBounds(0, 0, 1150, 650);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed
@@ -268,14 +223,12 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
     }//GEN-LAST:event_nameFieldActionPerformed
 
     private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
-        
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         int selectedRowIndex = jTable1.getSelectedRow();
         if (selectedRowIndex < 0) {
             JOptionPane.showMessageDialog(this, "Please select a row to delete");
             return;
         }
-        
         String orgType = (String) model.getValueAt(selectedRowIndex, 1);
         String OrgName = (String) model.getValueAt(selectedRowIndex, 2);
         String selectedUser = (String) model.getValueAt(selectedRowIndex, 4);
@@ -295,8 +248,7 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                             }
                         }
                     }
-                } 
-                else if (orgType.equals("CarService") && resort.getCarServiceORGList() != null) {
+                } else if (orgType.equals("CarService") && resort.getCarServiceORGList() != null) {
                     for (CarServiceORG carService : resort.getCarServiceORGList()) {
                         if (carService.getName().equals(OrgName)) {
                             for (Supervisor supr : carService.getListOfSupervisor()) {
@@ -311,13 +263,11 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                     }
                 }
             }
-        }          
+        }
     }//GEN-LAST:event_deleteButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        
         callOnCreateMethod.run();
-
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -334,17 +284,14 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
             return;
         }
 
-        if (!EPAdmin.userExistsInSystem(username)) {
+        if (!Admin.userExistsInSystem(username)) {
 
             BusinessCatalogueDirectory enterpriseDirec = location.getBusinessCatalogueDirectory();
-            
             List<Resort> list = enterpriseDirec.getListOfResort();
             for (int i = 0; i < list.size(); i++) {
                 if (list.get(i).findSupervisor(user) != null) {    //if supr found for resort enterprise
                     if (orgType.equals("TourGuide")) {
-                        
                         List<TourGuideORG> org1 = list.get(i).getTourGuideORG();
-                        
                         for (int j = 0; j < org1.size(); j++) {
                             if (org1.get(j).getName().equals(orgName1)) {
                                 org1.get(j).addSupervisor(name, location.getName(), username, password); // add managers for each org
@@ -355,16 +302,13 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                                 row[4] = username;
                                 row[5] = password;
                                 model.addRow(row);
-                                EPAdmin.addUser(username, password, "TourGuide");
+                                Admin.addUser(username, password, "TourGuide");
                                 JOptionPane.showMessageDialog(this, " Organisation Manager added successfully");
                                 return;
                             }
                         }
-                    } 
-                    else if (orgType.equals("CarService")) {
-                        
+                    } else if (orgType.equals("CarService")) {
                         List<CarServiceORG> org2 = list.get(i).getCarServiceORGList();
-                        
                         for (int j = 0; j < org2.size(); j++) {
                             if (org2.get(j).getName().equals(orgName1)) {
                                 org2.get(j).addSupervisor(name, location.getName(), username, password);
@@ -375,7 +319,7 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                                 row[4] = username;
                                 row[5] = password;
                                 model.addRow(row);
-                                EPAdmin.addUser(username, password, "CarService");
+                                Admin.addUser(username, password, "CarService");
                                 JOptionPane.showMessageDialog(this, " Organisation Manager added successfully");
                                 return;
                             }
@@ -383,12 +327,9 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                     }
                 }
             }
-        } 
-        else 
-        {
+        } else {
             JOptionPane.showMessageDialog(this, " This username already exists");
         }
-                    
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void orgComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgComboActionPerformed
@@ -396,7 +337,6 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
         orgName.removeAllItems();
 
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
-        
         List<Resort> list = businessCatalogueDirectory.getListOfResort();
         for (int i = 0; i < list.size(); i++) {
             if (list.get(i).findSupervisor(user) != null) {
@@ -406,8 +346,7 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                         orgName.addItem(org1.get(j).getName());
                         return;
                     }
-                } 
-                else {
+                } else {
                     List<CarServiceORG> org3 = list.get(i).getCarServiceORGList();
                     for (int j = 0; j < org3.size(); j++) {
                         orgName.addItem(org3.get(j).getName());
@@ -415,7 +354,8 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                 }
                 return;
             }
-        }     
+        }
+
     }//GEN-LAST:event_orgComboActionPerformed
 
     private void updateButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateButtonActionPerformed
@@ -440,37 +380,34 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                             if (supr.getUsername().equals(usernameField.getText())) {
                                 supr.setName(nameField.getText());
                                 supr.setPassword(passwordField.getText());
-                                EPAdmin.updateUser(userName, password);
+                                Admin.updateUser(userName, password);
                                 JOptionPane.showMessageDialog(this, "Updated successfully");
                                 populateTable();
                                 return;
                             }
                         }
                     }
-                } 
-                else if (orgType.equals("CarService") && resort.getCarServiceORGList() != null) {
+                } else if (orgType.equals("CarService") && resort.getCarServiceORGList() != null) {
                     for (CarServiceORG car : resort.getCarServiceORGList()) {
                         for (Supervisor supr : car.getListOfSupervisor()) {
                             if (supr.getUsername().equals(usernameField.getText())) {
                                 supr.setName(nameField.getText());
                                 supr.setPassword(passwordField.getText());
-                                EPAdmin.updateUser(userName, password);
+                                Admin.updateUser(userName, password);
                                 JOptionPane.showMessageDialog(this, "Updated successfully");
                                 populateTable();
                                 return;
                             }
                         }
                     }
-                } 
-                else {
+                } else {
                     JOptionPane.showMessageDialog(this, "Invalid organization");
                 }
             }
-        }       
+        }
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         String city = model.getValueAt(jTable1.getSelectedRow(), 0).toString();
         String orgType = model.getValueAt(jTable1.getSelectedRow(), 1).toString();
@@ -485,12 +422,16 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
         usernameField.setEnabled(false);
 
         orgCombo.setSelectedItem(orgType);
-        orgName.setSelectedItem(oName);       
+        orgName.setSelectedItem(oName);
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void orgNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgNameActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_orgNameActionPerformed
+
+    private void usernameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_usernameFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_usernameFieldActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -503,6 +444,7 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblsysadmin;
@@ -516,12 +458,11 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         Object row[] = new Object[10];
 
-        ServiceLocation location1 = EPAdmin.findServiceLocation(location.getName());
+        ServiceLocation location1 = Admin.findServiceLocation(location.getName());
         BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
         if (businessCatalogueDirectory == null) {
             return;

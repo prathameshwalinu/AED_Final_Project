@@ -1,38 +1,34 @@
 package ui.ClientRole;
+/**
+ *
+ * @author prathmeshw
+ */
 
-import Model.Admin;
-import Model.Client;
-import Model.ClientDirectory;
-import Model.HallBooking;
+import Model.*;
+import Model.services.*;
 import java.util.List;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
+
 public class ManageBooking extends javax.swing.JPanel {
 
-    private Admin EPAdmin;
+    private Admin Admin;
     private Runnable callOnCreateMethod1;
     private Consumer<HallBooking> callOnAddServiceMethod;
     private Consumer<HallBooking> callOnViewServiceMethod;
     private String username;
 
-    public ManageBooking(Admin EPAdmin, Runnable callOnCreateMethod1, Consumer<HallBooking> callOnCreateMethod2, Consumer<HallBooking> callOnViewServiceMethod, String username) {
+    public ManageBooking(Admin Admin, Runnable callOnCreateMethod1, Consumer<HallBooking> callOnCreateMethod2, Consumer<HallBooking> callOnViewServiceMethod, String username) {
         initComponents();
-        this.EPAdmin = EPAdmin;
+        this.Admin = Admin;
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.callOnAddServiceMethod = callOnCreateMethod2;
         this.callOnViewServiceMethod = callOnViewServiceMethod;
         this.username = username;
 
         populateTable();
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        backBtn.setOpaque(true);
-//        addServiceBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        addServiceBtn.setOpaque(true);
-//        viewOrder.setBackground(new java.awt.Color(0, 102, 102));
-//        viewOrder.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -45,10 +41,18 @@ public class ManageBooking extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         addServiceBtn = new javax.swing.JButton();
         viewOrder = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BOOKING DETAILS");
+        add(jLabel1);
+        jLabel1.setBounds(248, 83, 357, 35);
 
+        backBtn.setBackground(new java.awt.Color(204, 255, 255));
         backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backBtn.setText("BACK");
         backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -57,8 +61,10 @@ public class ManageBooking extends javax.swing.JPanel {
                 backBtnActionPerformed(evt);
             }
         });
+        add(backBtn);
+        backBtn.setBounds(30, 20, 80, 36);
 
-        jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -77,6 +83,10 @@ public class ManageBooking extends javax.swing.JPanel {
         });
         jScrollPane2.setViewportView(jTable1);
 
+        add(jScrollPane2);
+        jScrollPane2.setBounds(6, 168, 810, 229);
+
+        addServiceBtn.setBackground(new java.awt.Color(204, 255, 255));
         addServiceBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addServiceBtn.setText("ADD SERVICES");
         addServiceBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -85,7 +95,10 @@ public class ManageBooking extends javax.swing.JPanel {
                 addServiceBtnActionPerformed(evt);
             }
         });
+        add(addServiceBtn);
+        addServiceBtn.setBounds(558, 449, 258, 53);
 
+        viewOrder.setBackground(new java.awt.Color(204, 255, 255));
         viewOrder.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         viewOrder.setText("VIEW SERVICE DETAILS");
         viewOrder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -94,39 +107,13 @@ public class ManageBooking extends javax.swing.JPanel {
                 viewOrderActionPerformed(evt);
             }
         });
+        add(viewOrder);
+        viewOrder.setBounds(558, 528, 258, 53);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(268, 268, 268))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(34, 34, 34)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(addServiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(viewOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 810, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(backBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 53, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(addServiceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(viewOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(322, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/client.jpeg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2);
+        jLabel2.setBounds(0, 0, 900, 670);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -145,7 +132,7 @@ public class ManageBooking extends javax.swing.JPanel {
 
         System.out.println(bookingId + " is selected");
 
-        ClientDirectory clientDirectory = EPAdmin.getClientDirectory();
+        ClientDirectory clientDirectory = Admin.getClientDirectory();
         Client client = clientDirectory.findClientUsername(username);
 
         List<HallBooking> list = client.getHallbookingList();
@@ -167,7 +154,8 @@ public class ManageBooking extends javax.swing.JPanel {
         String bookingId = (String) model.getValueAt(selectedRowIndex, 1);
 
         System.out.println(bookingId + " is selected");
-        ClientDirectory clientDirectory = EPAdmin.getClientDirectory();
+
+        ClientDirectory clientDirectory = Admin.getClientDirectory();
         Client client = clientDirectory.findClientUsername(username);
 
         List<HallBooking> list = client.getHallbookingList();
@@ -177,7 +165,6 @@ public class ManageBooking extends javax.swing.JPanel {
                 return;
             }
         }
-
     }//GEN-LAST:event_viewOrderActionPerformed
 
 
@@ -185,6 +172,7 @@ public class ManageBooking extends javax.swing.JPanel {
     private javax.swing.JButton addServiceBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JButton viewOrder;
@@ -194,14 +182,12 @@ public class ManageBooking extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
         Object row[] = new Object[10];
-        ClientDirectory clientDirectory = EPAdmin.getClientDirectory();
+        ClientDirectory clientDirectory = Admin.getClientDirectory();
         Client client = clientDirectory.findClientUsername(username);
         System.out.println("customer found is " + client.getName() + " username is " + username);
         for (HallBooking bookingList : client.getHallbookingList()) {
             row[0] = bookingList.getResortService().getBusinessCatalogue();
             row[1] = bookingList.getId();
-            String id = bookingList.getId();
-            System.out.println(id);
             row[2] = bookingList.getTotalCost();
             row[3] = bookingList.getStatus();
             row[4] = bookingList.getCheckin();
@@ -210,6 +196,4 @@ public class ManageBooking extends javax.swing.JPanel {
         }
 
     }
-    
-    //resolve garbage value for booking ID
 }

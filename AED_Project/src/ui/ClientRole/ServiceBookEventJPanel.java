@@ -1,17 +1,17 @@
 package ui.ClientRole;
+/**
+ *
+ * @author prathmeshw
+ */
 
-import Model.Admin;
+import Model.*;
 import Model.Event_BirthdayParty.BirthdayPartyType;
-import Model.Event_Meetings.MeetingsType;
-import Model.Event_Wedding.WeddingType;
-import Model.Events;
-import Model.HallBooking;
-import Model.services.EventService;
+import Model.Event_Meetings.*;
+import Model.Event_Wedding.*;
+import Model.services.*;
 import java.util.Date;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
-
-
 import ui.main.DateUtils;
 
 public class ServiceBookEventJPanel extends javax.swing.JPanel {
@@ -32,13 +32,6 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
         for (Events eventOrg : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfEvents()) {
             orgComboBox.addItem(eventOrg);
         }
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        backBtn.setOpaque(true);
-//        totalPrice.setBackground(new java.awt.Color(0, 102, 102));
-//        totalPrice.setOpaque(true);
-//        bookEventBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        bookEventBtn.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -60,14 +53,19 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         priceField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
+        dateField = new com.toedter.calendar.JDateChooser();
         orgComboBox = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         totalPrice = new javax.swing.JButton();
-        dateFeild = new com.toedter.calendar.JDateChooser();
+        jLabel3 = new javax.swing.JLabel();
 
         jRadioButtonMenuItem1.setSelected(true);
         jRadioButtonMenuItem1.setText("jRadioButtonMenuItem1");
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
+        backBtn.setBackground(new java.awt.Color(204, 255, 255));
         backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backBtn.setText("BACK");
         backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -76,26 +74,38 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
                 backBtnActionPerformed(evt);
             }
         });
+        add(backBtn);
+        backBtn.setBounds(33, 21, 110, 26);
 
         lblbookservices.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        lblbookservices.setForeground(new java.awt.Color(255, 255, 255));
         lblbookservices.setText("BOOK EVENTS");
+        add(lblbookservices);
+        lblbookservices.setBounds(241, 65, 286, 43);
 
         radioWedding.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        radioWedding.setForeground(new java.awt.Color(255, 255, 255));
         radioWedding.setText("WEDDING");
         radioWedding.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioWeddingActionPerformed(evt);
             }
         });
+        add(radioWedding);
+        radioWedding.setBounds(33, 262, 111, 26);
 
         radioBirthdayParty.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        radioBirthdayParty.setForeground(new java.awt.Color(255, 255, 255));
         radioBirthdayParty.setText("BIRTHDAY PARTY");
         radioBirthdayParty.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioBirthdayPartyActionPerformed(evt);
             }
         });
+        add(radioBirthdayParty);
+        radioBirthdayParty.setBounds(33, 323, 183, 26);
 
+        bookEventBtn.setBackground(new java.awt.Color(204, 255, 255));
         bookEventBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         bookEventBtn.setText("BOOK EVENT");
         bookEventBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -104,16 +114,33 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
                 bookEventBtnActionPerformed(evt);
             }
         });
+        add(bookEventBtn);
+        bookEventBtn.setBounds(408, 691, 178, 38);
 
         cmbMeeting.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        add(cmbMeeting);
+        cmbMeeting.setBounds(405, 390, 445, 26);
 
         cmbWedding.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
+        cmbWedding.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbWeddingActionPerformed(evt);
+            }
+        });
+        add(cmbWedding);
+        cmbWedding.setBounds(408, 263, 445, 26);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("TYPE OF PACKAGE ");
+        add(jLabel5);
+        jLabel5.setBounds(222, 264, 165, 22);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("TYPE OF PACKAGE");
+        add(jLabel1);
+        jLabel1.setBounds(222, 325, 165, 22);
 
         cmbBirthdayParty.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         cmbBirthdayParty.addActionListener(new java.awt.event.ActionListener() {
@@ -121,129 +148,60 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
                 cmbBirthdayPartyActionPerformed(evt);
             }
         });
+        add(cmbBirthdayParty);
+        cmbBirthdayParty.setBounds(408, 324, 445, 26);
 
         radioMeeting.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        radioMeeting.setForeground(new java.awt.Color(255, 255, 255));
         radioMeeting.setText("MEETINGS");
         radioMeeting.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radioMeetingActionPerformed(evt);
             }
         });
+        add(radioMeeting);
+        radioMeeting.setBounds(33, 389, 183, 26);
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 0, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("TYPE OF PACKAGE");
+        add(jLabel6);
+        jLabel6.setBounds(222, 390, 165, 25);
+        add(priceField);
+        priceField.setBounds(408, 561, 178, 28);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("DATE ");
+        add(jLabel2);
+        jLabel2.setBounds(33, 147, 98, 22);
+        add(dateField);
+        dateField.setBounds(212, 147, 200, 23);
+
+        add(orgComboBox);
+        orgComboBox.setBounds(212, 190, 200, 23);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("EVENT");
+        add(jLabel4);
+        jLabel4.setBounds(33, 188, 61, 22);
 
+        totalPrice.setBackground(new java.awt.Color(204, 255, 255));
         totalPrice.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         totalPrice.setText("TOTAL PRICE");
-        totalPrice.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         totalPrice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 totalPriceActionPerformed(evt);
             }
         });
+        add(totalPrice);
+        totalPrice.setBounds(236, 558, 151, 28);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel1)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5)
-                                .addComponent(radioBirthdayParty)
-                                .addComponent(radioWedding)
-                                .addComponent(radioMeeting, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(186, 186, 186)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(cmbWedding, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbBirthdayParty, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(cmbMeeting, javax.swing.GroupLayout.PREFERRED_SIZE, 431, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(117, 117, 117))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(totalPrice)
-                        .addGap(80, 80, 80)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bookEventBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(205, 205, 205))))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(269, 269, 269)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(185, 185, 185)
-                                .addComponent(orgComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(12, 12, 12)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(136, 136, 136)
-                                        .addComponent(dateFeild, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(125, 125, 125))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(backBtn)
-                .addGap(16, 16, 16)
-                .addComponent(lblbookservices)
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(32, 32, 32)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(orgComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                        .addComponent(radioWedding)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(cmbWedding, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                        .addComponent(radioBirthdayParty)
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel1)
-                            .addComponent(cmbBirthdayParty, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(43, 43, 43)
-                        .addComponent(radioMeeting)
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cmbMeeting, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(59, 59, 59)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(totalPrice))
-                        .addGap(52, 52, 52)
-                        .addComponent(bookEventBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(dateFeild, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/hotel5.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3);
+        jLabel3.setBounds(0, 0, 870, 790);
     }// </editor-fold>//GEN-END:initComponents
 
     private void radioWeddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioWeddingActionPerformed
@@ -256,6 +214,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_radioWeddingActionPerformed
 
     private void bookEventBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookEventBtnActionPerformed
+
         Events businessEvent = (Events) orgComboBox.getSelectedItem();
 
         if (businessEvent == null) {
@@ -263,7 +222,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
             return;
         }
 
-        Date date = DateUtils.formatDate(dateFeild.getDate());
+        Date date = DateUtils.formatDate(dateField.getDate());
         Date checkin = booking.getCheckin();
         Date checkout = booking.getCheckout();
         if (date.compareTo(checkin) < 0 || date.compareTo(checkout) > 0) {
@@ -306,7 +265,6 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
 
         JOptionPane.showMessageDialog(this, "Business event service added successfully.");
         callOnCreateMethod1.accept(booking);
-      
     }//GEN-LAST:event_bookEventBtnActionPerformed
 
     private void cmbBirthdayPartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBirthdayPartyActionPerformed
@@ -320,15 +278,15 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
     private void radioBirthdayPartyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBirthdayPartyActionPerformed
         if (radioBirthdayParty.isSelected()) {
             cmbBirthdayParty.removeAllItems();
-            for (BirthdayPartyType Admin : BirthdayPartyType.values()) {
-                cmbBirthdayParty.addItem(Admin);
+            for (BirthdayPartyType catering : BirthdayPartyType.values()) {
+                cmbBirthdayParty.addItem(catering);
             }
 
         }
     }//GEN-LAST:event_radioBirthdayPartyActionPerformed
 
     private void radioMeetingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioMeetingActionPerformed
-         if (radioMeeting.isSelected()) {
+        if (radioMeeting.isSelected()) {
             cmbMeeting.removeAllItems();
             for (MeetingsType meet : MeetingsType.values()) {
                 cmbMeeting.addItem(meet);
@@ -338,7 +296,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
 
     private void totalPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalPriceActionPerformed
 
-                   Events businessEvent = (Events) orgComboBox.getSelectedItem();
+        Events businessEvent = (Events) orgComboBox.getSelectedItem();
 
         if (businessEvent == null) {
             JOptionPane.showMessageDialog(this, "Please select a Business Event organization from the dropdown.");
@@ -346,8 +304,8 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
         }
         boolean photoRadioBtnSelected = radioWedding.isSelected();
         boolean decorRadioBtnSelected = radioMeeting.isSelected();
-        boolean AdminRadioBtnSelected = radioBirthdayParty.isSelected();
-        Date date = DateUtils.formatDate(dateFeild.getDate());
+        boolean cateringRadioBtnSelected = radioBirthdayParty.isSelected();
+        Date date = DateUtils.formatDate(dateField.getDate());
 
         int price = 0;
         EventService service = new EventService(businessEvent, date);
@@ -363,14 +321,18 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
             price += decor.getRate();
         }
 
-        if (AdminRadioBtnSelected) {
-            BirthdayPartyType Admin = (BirthdayPartyType) cmbBirthdayParty.getSelectedItem();
-            service.addService(EventService.EventServiceType.BIRTHDAYPARTY, Admin.getRate());
-            price += Admin.getRate();
+        if (cateringRadioBtnSelected) {
+            BirthdayPartyType catering = (BirthdayPartyType) cmbBirthdayParty.getSelectedItem();
+            service.addService(EventService.EventServiceType.BIRTHDAYPARTY, catering.getRate());
+            price += catering.getRate();
         }
 
         priceField.setText(String.valueOf(price));
     }//GEN-LAST:event_totalPriceActionPerformed
+
+    private void cmbWeddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbWeddingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbWeddingActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -379,9 +341,10 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox cmbBirthdayParty;
     private javax.swing.JComboBox cmbMeeting;
     private javax.swing.JComboBox cmbWedding;
-    private com.toedter.calendar.JDateChooser dateFeild;
+    private com.toedter.calendar.JDateChooser dateField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

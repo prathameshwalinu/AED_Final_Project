@@ -1,24 +1,25 @@
 package ui.ClientRole;
+/**
+ *
+ * @author prathmeshw
+ */
 
-import Model.Admin;
-import Model.Catering;
-import Model.Catering_Menu;
-import Model.HallBooking;
-import Model.services.CateringService;
+import Model.*;
+import Model.services.*;
 import java.util.Date;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
 import ui.main.DateUtils;
 
 public class CateringServicePanel extends javax.swing.JPanel {
-    
+
     private Admin systems;
     private Consumer<HallBooking> callOnCreateMethod1;
     private String username;
     private HallBooking booking;
 
     public CateringServicePanel(Admin systems, Consumer<HallBooking> callOnCreateMethod1, String username, HallBooking booking) {
-initComponents();
+        initComponents();
         this.systems = systems;
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.username = username;
@@ -27,11 +28,6 @@ initComponents();
         for (Catering cat : booking.getServiceLocation().getBusinessCatalogueDirectory().getListOfCatering()) {
             cmbCatering.addItem(cat);
         }
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        backBtn.setOpaque(true);
-//        placeOrder.setBackground(new java.awt.Color(0, 102, 102));
-//        placeOrder.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -45,6 +41,10 @@ initComponents();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         cmbCatering = new javax.swing.JComboBox();
+        jLabel3 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
         menuItem.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         menuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -52,7 +52,10 @@ initComponents();
                 menuItemActionPerformed(evt);
             }
         });
+        add(menuItem);
+        menuItem.setBounds(482, 361, 287, 22);
 
+        backBtn.setBackground(new java.awt.Color(255, 204, 204));
         backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backBtn.setText("BACK");
         backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -61,10 +64,15 @@ initComponents();
                 backBtnActionPerformed(evt);
             }
         });
+        add(backBtn);
+        backBtn.setBounds(39, 30, 100, 40);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
-        jLabel1.setText("MENU ITEMS IN CATERING");
+        jLabel1.setText("MENU ITEMS IN DINING");
+        add(jLabel1);
+        jLabel1.setBounds(181, 140, 539, 43);
 
+        placeOrder.setBackground(new java.awt.Color(255, 204, 204));
         placeOrder.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         placeOrder.setText("PLACE ORDER");
         placeOrder.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -73,12 +81,18 @@ initComponents();
                 placeOrderActionPerformed(evt);
             }
         });
+        add(placeOrder);
+        placeOrder.setBounds(629, 444, 140, 43);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("SELECT ITEM FROM LIST: ");
+        add(jLabel2);
+        jLabel2.setBounds(156, 360, 231, 22);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setText("SELECT A CATERING NAME: ");
+        add(jLabel4);
+        jLabel4.setBounds(156, 293, 256, 22);
 
         cmbCatering.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         cmbCatering.addActionListener(new java.awt.event.ActionListener() {
@@ -86,85 +100,18 @@ initComponents();
                 cmbCateringActionPerformed(evt);
             }
         });
+        add(cmbCatering);
+        cmbCatering.setBounds(479, 294, 290, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(39, 39, 39)
-                        .addComponent(backBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(130, 130, 130)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(placeOrder)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel2)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel4)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(cmbCatering, javax.swing.GroupLayout.PREFERRED_SIZE, 290, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(0, 139, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(170, 170, 170))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addComponent(backBtn)
-                .addGap(71, 71, 71)
-                .addComponent(jLabel1)
-                .addGap(53, 53, 53)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cmbCatering, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(56, 56, 56)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(menuItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(60, 60, 60)
-                .addComponent(placeOrder, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(345, Short.MAX_VALUE))
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/catbk.jpeg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        add(jLabel3);
+        jLabel3.setBounds(0, 0, 840, 760);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         callOnCreateMethod1.accept(booking);
     }//GEN-LAST:event_backBtnActionPerformed
-
-    private void cmbAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAdminActionPerformed
-        menuItem.removeAllItems();
-        Catering catering = (Catering) cmbCatering.getSelectedItem();
-        if (catering != null) {
-            for (Catering_Menu item : catering.getListOfMenuItem()) {
-                menuItem.addItem(item);
-            }
-        }
-    }//GEN-LAST:event_cmbAdminActionPerformed
-
-    private void menuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemActionPerformed
-
-    }//GEN-LAST:event_menuItemActionPerformed
-
-    private void placeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderActionPerformed
-       Date date = DateUtils.formatDate(new Date());
-        Catering_Menu item = (Catering_Menu) menuItem.getSelectedItem();
-        Catering catering = (Catering) cmbCatering.getSelectedItem();
-
-        CateringService service = new CateringService(catering, date, item.getDetails(), item.getPrice());
-        booking.addService(service);
-        JOptionPane.showMessageDialog(this, "Order placed successfully");
-
-        callOnCreateMethod1.accept(booking);
-    }//GEN-LAST:event_placeOrderActionPerformed
 
     private void cmbCateringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCateringActionPerformed
         menuItem.removeAllItems();
@@ -176,11 +123,28 @@ initComponents();
         }
     }//GEN-LAST:event_cmbCateringActionPerformed
 
+    private void menuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuItemActionPerformed
+
+    }//GEN-LAST:event_menuItemActionPerformed
+
+    private void placeOrderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_placeOrderActionPerformed
+        Date date = DateUtils.formatDate(new Date());
+        Catering_Menu item = (Catering_Menu) menuItem.getSelectedItem();
+        Catering catering = (Catering) cmbCatering.getSelectedItem();
+
+        CateringService service = new CateringService(catering, date, item.getDetails(), item.getPrice());
+        booking.addService(service);
+        JOptionPane.showMessageDialog(this, "Order placed successfully");
+
+        callOnCreateMethod1.accept(booking);
+    }//GEN-LAST:event_placeOrderActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JComboBox cmbCatering;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JComboBox menuItem;
     private javax.swing.JButton placeOrder;

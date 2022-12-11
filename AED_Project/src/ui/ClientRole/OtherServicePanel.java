@@ -1,12 +1,14 @@
 package ui.ClientRole;
+/**
+ *
+ * @author prathmeshw
+ */
 
-import Model.Admin;
-import Model.HallBooking;
-import Model.services.ResortService;
+import Model.*;
+import Model.services.*;
 import java.util.Date;
 import java.util.function.Consumer;
 import javax.swing.JOptionPane;
-
 import ui.main.DateUtils;
 
 public class OtherServicePanel extends javax.swing.JPanel {
@@ -22,11 +24,6 @@ public class OtherServicePanel extends javax.swing.JPanel {
         this.callOnCreateMethod1 = callOnCreateMethod1;
         this.username = username;
         this.booking = booking;
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        backBtn.setOpaque(true);
-//        placeRequest.setBackground(new java.awt.Color(0, 102, 102));
-//        placeRequest.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -40,30 +37,47 @@ public class OtherServicePanel extends javax.swing.JPanel {
         placeRequest = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         dateField = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("HOTEL SERVICE PANEL");
+        add(jLabel1);
+        jLabel1.setBounds(202, 81, 423, 43);
 
+        backBtn.setBackground(new java.awt.Color(204, 255, 255));
         backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        backBtn.setText(" BACK");
+        backBtn.setText("BACK");
         backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
+        add(backBtn);
+        backBtn.setBounds(30, 30, 75, 26);
 
         RbtnTourGuide.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        RbtnTourGuide.setForeground(new java.awt.Color(255, 255, 255));
         RbtnTourGuide.setText("TOUR GUIDE ($100)");
         RbtnTourGuide.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 RbtnTourGuideActionPerformed(evt);
             }
         });
+        add(RbtnTourGuide);
+        RbtnTourGuide.setBounds(430, 240, 243, 26);
 
         RBtnCarService.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        RBtnCarService.setForeground(new java.awt.Color(255, 255, 255));
         RBtnCarService.setText("CAR SERVICE ($100)");
+        add(RBtnCarService);
+        RBtnCarService.setBounds(430, 290, 211, 26);
 
+        placeRequest.setBackground(new java.awt.Color(204, 255, 255));
         placeRequest.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         placeRequest.setText("PLACE REQUEST");
         placeRequest.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -72,55 +86,21 @@ public class OtherServicePanel extends javax.swing.JPanel {
                 placeRequestActionPerformed(evt);
             }
         });
+        add(placeRequest);
+        placeRequest.setBounds(562, 664, 231, 47);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("DATE");
+        add(jLabel3);
+        jLabel3.setBounds(450, 190, 75, 22);
+        add(dateField);
+        dateField.setBounds(580, 190, 211, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(179, 179, 179)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(135, 135, 135)
-                                .addComponent(dateField, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jLabel1)
-                            .addComponent(RbtnTourGuide, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(RBtnCarService)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(backBtn)))
-                .addContainerGap(231, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(placeRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(223, 223, 223))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addComponent(backBtn)
-                .addGap(42, 42, 42)
-                .addComponent(jLabel1)
-                .addGap(60, 60, 60)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(41, 41, 41)
-                        .addComponent(RbtnTourGuide)
-                        .addGap(26, 26, 26)
-                        .addComponent(RBtnCarService)
-                        .addGap(29, 29, 29)
-                        .addComponent(placeRequest, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(dateField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(368, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/hotel5.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2);
+        jLabel2.setBounds(0, 0, 840, 770);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -163,6 +143,7 @@ public class OtherServicePanel extends javax.swing.JPanel {
     private javax.swing.JButton backBtn;
     private com.toedter.calendar.JDateChooser dateField;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JButton placeRequest;
     // End of variables declaration//GEN-END:variables
