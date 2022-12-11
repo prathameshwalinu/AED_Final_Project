@@ -34,8 +34,10 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
         viewTask = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         orgadmin = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
         orgBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         orgBtn.setText("MANAGE ORGANISATION");
@@ -45,6 +47,8 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
                 orgBtnActionPerformed(evt);
             }
         });
+        add(orgBtn);
+        orgBtn.setBounds(295, 269, 302, 40);
 
         viewTask.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         viewTask.setText("DISPLAY");
@@ -54,9 +58,13 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
                 viewTaskActionPerformed(evt);
             }
         });
+        add(viewTask);
+        viewTask.setBounds(295, 194, 302, 39);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("EVENT SUPERVISOR PANEL ");
+        add(jLabel1);
+        jLabel1.setBounds(203, 110, 508, 43);
 
         orgadmin.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         orgadmin.setText("MANAGE ORGANISATION ADMIN");
@@ -66,37 +74,13 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
                 orgadminActionPerformed(evt);
             }
         });
+        add(orgadmin);
+        orgadmin.setBounds(295, 348, 302, 41);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(270, 270, 270)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(295, 295, 295)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(orgadmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(viewTask, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(orgBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap(270, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jLabel1)
-                .addGap(73, 73, 73)
-                .addComponent(viewTask, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
-                .addComponent(orgBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(orgadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(410, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/N.jpeg")); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2);
+        jLabel2.setBounds(0, 0, 880, 570);
     }// </editor-fold>//GEN-END:initComponents
 
     private void orgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgBtnActionPerformed
@@ -114,6 +98,7 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JButton orgBtn;
     private javax.swing.JButton orgadmin;
     private javax.swing.JButton viewTask;

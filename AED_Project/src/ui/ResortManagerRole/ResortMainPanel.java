@@ -51,6 +51,7 @@ public class ResortMainPanel extends javax.swing.JPanel {
 
         orgAdminBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         orgAdminBtn.setText("ORGANIZATION ADMIN");
+        orgAdminBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         orgAdminBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orgAdminBtnActionPerformed(evt);
@@ -61,16 +62,18 @@ public class ResortMainPanel extends javax.swing.JPanel {
 
         orgBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         orgBtn.setText("SUPERVISE ORGANIZATION ");
+        orgBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         orgBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 orgBtnActionPerformed(evt);
             }
         });
         add(orgBtn);
-        orgBtn.setBounds(380, 280, 300, 40);
+        orgBtn.setBounds(360, 280, 300, 40);
 
         viewTask.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         viewTask.setText("TASK DASHBOARD");
+        viewTask.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         viewTask.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewTaskActionPerformed(evt);
@@ -81,6 +84,7 @@ public class ResortMainPanel extends javax.swing.JPanel {
 
         manageRooms.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         manageRooms.setText("SUPERVISE RESORT");
+        manageRooms.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         manageRooms.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 manageRoomsActionPerformed(evt);

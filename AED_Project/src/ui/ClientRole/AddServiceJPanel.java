@@ -51,96 +51,71 @@ public class AddServiceJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         backBtn = new javax.swing.JButton();
         btnEvent = new javax.swing.JButton();
-        btnAdmin = new javax.swing.JButton();
         btnEntertainment = new javax.swing.JButton();
         btnOthers = new javax.swing.JButton();
+        btnCatering = new javax.swing.JButton();
+
+        setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("VIEW SERVICES DETAILS");
+        add(jLabel1);
+        jLabel1.setBounds(167, 137, 483, 43);
 
-        backBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
-        backBtn.setText("< BACK");
+        backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        backBtn.setText("BACK");
+        backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
+        add(backBtn);
+        backBtn.setBounds(38, 27, 54, 36);
 
-        btnEvent.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnEvent.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnEvent.setText("EVENT");
+        btnEvent.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnEvent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEventActionPerformed(evt);
             }
         });
+        add(btnEvent);
+        btnEvent.setBounds(132, 228, 262, 38);
 
-        btnAdmin.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
-        btnAdmin.setText("Admin");
-        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminActionPerformed(evt);
-            }
-        });
-
-        btnEntertainment.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnEntertainment.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnEntertainment.setText("ENTERTAINMENT");
+        btnEntertainment.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnEntertainment.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEntertainmentActionPerformed(evt);
             }
         });
+        add(btnEntertainment);
+        btnEntertainment.setBounds(132, 306, 262, 42);
 
-        btnOthers.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        btnOthers.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnOthers.setText("OTHERS");
+        btnOthers.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnOthers.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnOthersActionPerformed(evt);
             }
         });
+        add(btnOthers);
+        btnOthers.setBounds(412, 306, 262, 42);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(backBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnEntertainment, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnOthers, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 262, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGap(35, 35, 35)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(24, 24, 24)))))
-                .addContainerGap(142, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(74, 74, 74)
-                .addComponent(jLabel1)
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEntertainment, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnOthers, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(413, Short.MAX_VALUE))
-        );
+        btnCatering.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        btnCatering.setText("CATERING");
+        btnCatering.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        btnCatering.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCateringActionPerformed(evt);
+            }
+        });
+        add(btnCatering);
+        btnCatering.setBounds(410, 230, 260, 40);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEventActionPerformed
@@ -163,10 +138,14 @@ public class AddServiceJPanel extends javax.swing.JPanel {
         callOnResortServiceBooking.accept(booking);
     }//GEN-LAST:event_btnOthersActionPerformed
 
+    private void btnCateringActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCateringActionPerformed
+        callOnAdminBooking.accept(booking);
+    }//GEN-LAST:event_btnCateringActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JButton btnAdmin;
+    private javax.swing.JButton btnCatering;
     private javax.swing.JButton btnEntertainment;
     private javax.swing.JButton btnEvent;
     private javax.swing.JButton btnOthers;
