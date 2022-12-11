@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ *
+ * @author himanshu
+ */
 public class Entertainment_Singer {
     private String name;
     private String city;
