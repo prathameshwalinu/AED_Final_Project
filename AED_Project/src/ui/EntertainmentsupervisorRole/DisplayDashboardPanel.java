@@ -59,8 +59,10 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
         jTblDash.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTblDash.setModel(new javax.swing.table.DefaultTableModel(
@@ -81,12 +83,21 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
         });
         jScrollPane1.setViewportView(jTblDash);
 
+        add(jScrollPane1);
+        jScrollPane1.setBounds(83, 124, 769, 182);
+
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("DISPLAY DASHBOARD ");
+        add(jLabel1);
+        jLabel1.setBounds(228, 58, 434, 48);
 
         cmbSinger.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(cmbSinger);
+        cmbSinger.setBounds(513, 386, 218, 28);
 
         cmbMagician.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(cmbMagician);
+        cmbMagician.setBounds(513, 439, 218, 28);
 
         cmbChoreographer.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cmbChoreographer.addActionListener(new java.awt.event.ActionListener() {
@@ -94,6 +105,8 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
                 cmbChoreographerActionPerformed(evt);
             }
         });
+        add(cmbChoreographer);
+        cmbChoreographer.setBounds(513, 492, 218, 28);
 
         btnassignWork.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnassignWork.setText("ADD AND CONFIRM");
@@ -103,6 +116,8 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
                 btnassignWorkActionPerformed(evt);
             }
         });
+        add(btnassignWork);
+        btnassignWork.setBounds(333, 612, 208, 44);
 
         bckBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         bckBtn.setText("BACK");
@@ -112,75 +127,28 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
                 bckBtnActionPerformed(evt);
             }
         });
+        add(bckBtn);
+        bckBtn.setBounds(38, 20, 73, 26);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("SELECT A SINGER");
+        add(jLabel2);
+        jLabel2.setBounds(22, 388, 167, 24);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("SELECT A MAGICIAN");
+        add(jLabel3);
+        jLabel3.setBounds(22, 442, 230, 22);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setText("SELECT A CHOREOGRAPHER");
+        add(jLabel4);
+        jLabel4.setBounds(22, 495, 295, 22);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(196, 196, 196)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(cmbMagician, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(cmbSinger, 0, 218, Short.MAX_VALUE)
-                            .addComponent(cmbChoreographer, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 769, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(bckBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(176, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(228, 228, 228)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 434, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(333, 333, 333)
-                        .addComponent(btnassignWork, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(bckBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(80, 80, 80)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cmbSinger, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(cmbMagician, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(cmbChoreographer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(92, 92, 92)
-                .addComponent(btnassignWork, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(229, Short.MAX_VALUE))
-        );
+        jLabel6.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/lights.jpeg")); // NOI18N
+        jLabel6.setText("jLabel6");
+        add(jLabel6);
+        jLabel6.setBounds(0, 0, 1030, 730);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bckBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bckBtnActionPerformed
@@ -293,6 +261,7 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTblDash;
     // End of variables declaration//GEN-END:variables

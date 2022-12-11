@@ -41,65 +41,53 @@ public class EntertainmentSupervisorPanel extends javax.swing.JPanel {
         btnDisplayDash = new javax.swing.JButton();
         btnSuperviseEvent = new javax.swing.JButton();
         btnSuperviseEventAdmin = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Academy Engraved LET", 0, 36)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("ENTERTAINMENT SUPERVISOR PANEL ");
+        add(jLabel1);
+        jLabel1.setBounds(76, 114, 708, 43);
 
         btnDisplayDash.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnDisplayDash.setText("DISPLAY DASHBOARD");
+        btnDisplayDash.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnDisplayDash.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDisplayDashActionPerformed(evt);
             }
         });
+        add(btnDisplayDash);
+        btnDisplayDash.setBounds(301, 220, 301, 42);
 
         btnSuperviseEvent.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnSuperviseEvent.setText("SUPERVISE EVENT");
+        btnSuperviseEvent.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSuperviseEvent.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuperviseEventActionPerformed(evt);
             }
         });
+        add(btnSuperviseEvent);
+        btnSuperviseEvent.setBounds(301, 303, 301, 45);
 
         btnSuperviseEventAdmin.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnSuperviseEventAdmin.setText("SUPERVISE EVENT ADMIN");
+        btnSuperviseEventAdmin.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnSuperviseEventAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSuperviseEventAdminActionPerformed(evt);
             }
         });
+        add(btnSuperviseEventAdmin);
+        btnSuperviseEventAdmin.setBounds(301, 387, 301, 44);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(76, 76, 76)
-                .addComponent(jLabel1)
-                .addContainerGap(50, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnSuperviseEventAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSuperviseEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnDisplayDash, javax.swing.GroupLayout.PREFERRED_SIZE, 301, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(258, 258, 258))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(jLabel1)
-                .addGap(63, 63, 63)
-                .addComponent(btnDisplayDash, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
-                .addComponent(btnSuperviseEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
-                .addComponent(btnSuperviseEventAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(348, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/lights.jpeg")); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2);
+        jLabel2.setBounds(0, 0, 860, 580);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDisplayDashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayDashActionPerformed
@@ -125,5 +113,6 @@ public class EntertainmentSupervisorPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnSuperviseEvent;
     private javax.swing.JButton btnSuperviseEventAdmin;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
