@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ *
+ * @author himanshu
+ */
 public class Catering_Menu {
 
     private String details;
