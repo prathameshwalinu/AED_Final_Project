@@ -1,71 +1,39 @@
 package ui.main;
 /**
  *
- * @author prathmesh
+ * @author prathmeshw
  */
-import Database.DbUtils;
-import Model.Admin;
-import Model.BusinessCatalogue;
-import Model.Catering;
-import Model.Client;
-import Model.Entertainment;
-import Model.Events;
-import Model.HallBooking;
-import Model.Resort;
-import Model.ServiceLocation;
-import Model.Supervisor;
+import db.DbUtils;
 import java.util.List;
 import javax.swing.JOptionPane;
-import ui.CateringManagerRole.AddOrderJPanel;
-import ui.CateringManagerRole.CateringMainPanel;
-import ui.CateringManagerRole.ManageOrgAdminForCatering;
-import ui.CateringManagerRole.ManageOrgPanelForCatering;
-import ui.CateringManagerRole.ViewTaskPanelCatering;
-import ui.ClientRole.AddServiceJPanel;
-import ui.ClientRole.CateringServicePanel;
-import ui.ClientRole.ClientJPanel;
-import ui.ClientRole.EntertainmentServicesJPanel;
-import ui.ClientRole.ManageBooking;
-import ui.ClientRole.OtherServicePanel;
-import ui.ClientRole.ReportServiceDetailsPanel;
-import ui.ClientRole.ResortBookingServicesJPanel;
-import ui.ClientRole.ServiceBookEventJPanel;
-import ui.EntertainmentsupervisorRole.DisplayDashboardPanel;
-import ui.EntertainmentsupervisorRole.EntertainmentSupervisorPanel;
-import ui.EntertainmentsupervisorRole.OrganizationAdminPanel;
-import ui.EntertainmentsupervisorRole.SuperviseOrganizationPanel;
-import ui.EventManagerRole.DisplayEventPanel;
-import ui.EventManagerRole.EventSupervisorPanel;
-import ui.EventManagerRole.SuperviseAdminEventOrganisation;
-import ui.EventManagerRole.SuperviseEventOrg;
-import ui.EventPlannerAdminRole.BusinessCatalogueJPanel;
-import ui.EventPlannerAdminRole.BusinessCatalogueSupervisorJPanel;
-import ui.EventPlannerAdminRole.EventsPlannerAdminJPanel;
-import ui.EventPlannerAdminRole.ManageClientJPanel;
-import ui.EventPlannerAdminRole.ServiceLocationsJPanel;
-import ui.ResortManagerRole.DisplayOrderForResort;
-import ui.ResortManagerRole.ResortMainPanel;
-import ui.ResortManagerRole.SuperviseAdminOrgForResort;
-import ui.ResortManagerRole.SuperviseOrgForResort;
-import ui.ResortManagerRole.SuperviseRoomPanel;
-import ui.confirm.WorkRequestsForEventPanel;
+import Model.*;
+import Model.services.*;
+import ui.ClientRole.*;
+import ui.EventManagerRole.*;
+import ui.EntertainmentsupervisorRole.*;
+import ui.CateringManagerRole.*;
+import ui.ResortManagerRole.*;
+import ui.CateringManagerRole.*;
+import ui.EventPlannerAdminRole.*;
+import ui.confirm.*;
 
 
+public class Main1JFrame extends javax.swing.JFrame {
 
-public class MainJFrame extends javax.swing.JFrame {
-
-
+    private Admin Admin;
     private String userName;
     private String password;
-    private Admin Admin;
 
-    public MainJFrame() {
+    public Main1JFrame() {
         initComponents();
-        setExtendedState(MainJFrame.MAXIMIZED_BOTH);
         this.Admin = DbUtils.getInstance().retrieveSystem();
         logoutBtn.setEnabled(false);
-        //ControlPanel.setBackground(new java.awt.Color(0, 102, 102));
-        //WorkArea.setBackground(new java.awt.Color(255, 208, 56));
+//        ControlPanel.setBackground(new java.awt.Color(255, 208, 56));
+//        WorkArea.setBackground(new java.awt.Color(255, 208, 56));
+       loginBtn.setBackground(new java.awt.Color(0, 102, 102));
+       loginBtn.setOpaque(true);
+       logoutBtn.setBackground(new java.awt.Color(0, 102, 102));
+       logoutBtn.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -81,33 +49,31 @@ public class MainJFrame extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JButton();
         passwordField = new javax.swing.JPasswordField();
         WorkArea = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ControlPanel.setBackground(new java.awt.Color(222, 255, 255));
-        ControlPanel.setPreferredSize(new java.awt.Dimension(160, 813));
+        ControlPanel.setBackground(new java.awt.Color(255, 255, 255));
+        ControlPanel.setPreferredSize(new java.awt.Dimension(138, 813));
 
-        jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 14)); // NOI18N
-        jLabel1.setText("USERNAME :");
+        jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel1.setText("USERNAME");
 
-        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 14)); // NOI18N
-        jLabel2.setText("PASSWORD :");
+        jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
+        jLabel2.setText("PASSWORD");
 
-        loginBtn.setBackground(new java.awt.Color(0, 255, 255));
-        loginBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        loginBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 14)); // NOI18N
         loginBtn.setText("LOGIN");
-        loginBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBtnActionPerformed(evt);
             }
         });
 
-        logoutBtn.setBackground(new java.awt.Color(0, 255, 255));
-        logoutBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        logoutBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 14)); // NOI18N
         logoutBtn.setText("LOGOUT");
-        logoutBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutBtnActionPerformed(evt);
@@ -115,11 +81,6 @@ public class MainJFrame extends javax.swing.JFrame {
         });
 
         passwordField.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout ControlPanelLayout = new javax.swing.GroupLayout(ControlPanel);
         ControlPanel.setLayout(ControlPanelLayout);
@@ -128,46 +89,57 @@ public class MainJFrame extends javax.swing.JFrame {
             .addGroup(ControlPanelLayout.createSequentialGroup()
                 .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(ControlPanelLayout.createSequentialGroup()
+                        .addGap(63, 63, 63)
+                        .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(ControlPanelLayout.createSequentialGroup()
                         .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
                             .addComponent(jLabel1))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(usernameField)
-                            .addComponent(passwordField)))
-                    .addGroup(ControlPanelLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(loginBtn, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addContainerGap())
+                            .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         ControlPanelLayout.setVerticalGroup(
             ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(ControlPanelLayout.createSequentialGroup()
-                .addContainerGap(223, Short.MAX_VALUE)
+                .addGap(205, 205, 205)
                 .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(usernameField, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
-                .addGap(29, 29, 29)
+                .addGap(44, 44, 44)
                 .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 158, Short.MAX_VALUE)
-                .addComponent(loginBtn)
-                .addGap(37, 37, 37)
-                .addComponent(logoutBtn)
-                .addContainerGap(287, Short.MAX_VALUE))
+                .addGap(44, 44, 44)
+                .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(41, 41, 41)
+                .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(405, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(ControlPanel);
 
+        WorkArea.setBackground(new java.awt.Color(255, 255, 255));
         WorkArea.setLayout(null);
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/AEDimages/bk1.jpeg")); // NOI18N
-        jLabel4.setText("jLabel4");
-        WorkArea.add(jLabel4);
-        jLabel4.setBounds(0, 0, 730, 850);
+        jLabel7.setFont(new java.awt.Font("Sylfaen", 0, 18)); // NOI18N
+        WorkArea.add(jLabel7);
+        jLabel7.setBounds(305, 232, 0, 0);
+
+        jLabel3.setFont(new java.awt.Font("Charmonman", 1, 48)); // NOI18N
+        jLabel3.setText("Holiday Planner ");
+        jLabel3.setDoubleBuffered(true);
+        WorkArea.add(jLabel3);
+        jLabel3.setBounds(510, 310, 385, 91);
+
+        jLabel5.setIcon(new javax.swing.ImageIcon("/Users/himanshutalele/Downloads/23.jpeg")); // NOI18N
+        jLabel5.setText("jLabel5");
+        WorkArea.add(jLabel5);
+        jLabel5.setBounds(0, 0, 1250, 870);
 
         jSplitPane.setRightComponent(WorkArea);
 
@@ -175,18 +147,27 @@ public class MainJFrame extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 846, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 1354, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 845, Short.MAX_VALUE)
+            .addComponent(jSplitPane, javax.swing.GroupLayout.DEFAULT_SIZE, 869, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
+
+        System.out.println("Logout called.");
+        DbUtils.getInstance().storeSystem(Admin);
+        jSplitPane.setRightComponent(WorkArea);
+        loginBtn.setEnabled(true);
+        logoutBtn.setEnabled(false);
+        usernameField.setText("");
+        passwordField.setText("");
+        System.out.println("Logout success.");
+    }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
         this.userName = usernameField.getText();
@@ -258,23 +239,7 @@ public class MainJFrame extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Invalid username or password");
         }
-
     }//GEN-LAST:event_loginBtnActionPerformed
-
-    private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        System.out.println("Logout called.");
-//        DbUtils.getInstance().storeSystem(Admin);
-        jSplitPane.setRightComponent(WorkArea);
-        loginBtn.setEnabled(true);
-        logoutBtn.setEnabled(false);
-        usernameField.setText("");
-        passwordField.setText("");
-        System.out.println("Logout success.");
-    }//GEN-LAST:event_logoutBtnActionPerformed
-
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
 
     private void renderNetworkPanel() {
         ServiceLocationsJPanel network1 = new ServiceLocationsJPanel(Admin, this::renderSystemAdminPanel);
@@ -288,6 +253,7 @@ public class MainJFrame extends javax.swing.JFrame {
 
     private void renderCustomerPanel() {
         ManageClientJPanel customer = new ManageClientJPanel(Admin, this ::renderSystemAdminPanel);
+//        ManageClientJPanel client = new ManageClientJPanel(Admin, this::renderSystemAdminPanel);
         jSplitPane.setRightComponent(customer);
     }
 
@@ -299,6 +265,33 @@ public class MainJFrame extends javax.swing.JFrame {
     private void renderSystemAdminPanel() {
         jSplitPane.setRightComponent(new EventsPlannerAdminJPanel(Admin, this::renderNetworkPanel, this::renderEnterprisePanel, this::renderManagerPanel, this::renderCustomerPanel));
     }
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new Main1JFrame().setVisible(true);
+            }
+        });
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel ControlPanel;
+    private javax.swing.JPanel WorkArea;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JSplitPane jSplitPane;
+    private javax.swing.JButton loginBtn;
+    private javax.swing.JButton logoutBtn;
+    private javax.swing.JPasswordField passwordField;
+    private javax.swing.JTextField usernameField;
+    // End of variables declaration//GEN-END:variables
 
     private void renderClient(String username) {
         Client client = Admin.getClientDirectory().findClientUsername(username);
@@ -359,8 +352,9 @@ public class MainJFrame extends javax.swing.JFrame {
                 List<Supervisor> supervisor = entertainment.get(j).getListOfSupervisor();
                 for (int k = 0; k < supervisor.size(); k++) {
                     if (supervisor.get(k).getUsername().equals(username)) {
-                        EntertainmentSupervisorPanel entertainmentSupervisorPanel = new EntertainmentSupervisorPanel(Admin, this::viewTaskPanel, this::createOrganization,this::organizationAdminPanel);                                          
-                                jSplitPane.setRightComponent(entertainmentSupervisorPanel);
+                        EntertainmentSupervisorPanel entertainmentSupervisorPanel = new EntertainmentSupervisorPanel(Admin, this::viewTaskPanel, this::createOrganization,
+                                this::organizationAdminPanel);
+                        jSplitPane.setRightComponent(entertainmentSupervisorPanel);
 
                     }
                 }
@@ -425,7 +419,7 @@ public class MainJFrame extends javax.swing.JFrame {
     private void healthClubManagerPanel() {   //go back to healthclub
         jSplitPane.setRightComponent(new EntertainmentSupervisorPanel(Admin, this::viewTaskPanel, this::createOrganization, this::organizationAdminPanel));
     }
-    
+
     private void renderCateringManager(String username) {
         List<ServiceLocation> location = Admin.getListOfServiceLocation();
         for (int i = 0; i < location.size(); i++) {
@@ -442,7 +436,6 @@ public class MainJFrame extends javax.swing.JFrame {
         }
     }
 
-
     private ServiceLocation findUserLocationForCatering() {
         List<ServiceLocation> location = Admin.getListOfServiceLocation();
         for (int i = 0; i < location.size(); i++) {
@@ -452,6 +445,7 @@ public class MainJFrame extends javax.swing.JFrame {
                 for (int k = 0; k < supervisor.size(); k++) {
                     if (supervisor.get(k).getUsername().equals(userName)) {
                         return location.get(i);
+
                     }
                 }
             }
@@ -676,34 +670,4 @@ public class MainJFrame extends javax.swing.JFrame {
     private void eventManagerPanel() {    //go back to event supervisor panel
         jSplitPane.setRightComponent(new EventSupervisorPanel(Admin, this::renderViewTask3, this::renderEventOrg, this::renderEventAdmin));
     }
-
-    /**
-     * @param args the command line arguments
-     */
-    
-    public static void main(String args[]) {
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainJFrame().setVisible(true);
-            }
-        });
-    }
-    
-
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel ControlPanel;
-    private javax.swing.JPanel WorkArea;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JSplitPane jSplitPane;
-    private javax.swing.JButton loginBtn;
-    private javax.swing.JButton logoutBtn;
-    private javax.swing.JPasswordField passwordField;
-    private javax.swing.JTextField usernameField;
-    // End of variables declaration//GEN-END:variables
-
-   
 }
-
