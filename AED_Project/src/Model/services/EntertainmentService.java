@@ -6,14 +6,14 @@ package Model.services;
 
 /**
  *
- * @author prathamesh
+ * @author nishapatil
  */
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import Model.Entertainment;
 
-public class EntertainmentService extends EService {
+public class EntertainmentService extends Service {
 
     public static enum EntertainmentServiceType {
         MAGICIAN(60),
@@ -35,7 +35,7 @@ public class EntertainmentService extends EService {
     private List<EntertainmentServiceType> EntertainmentServices;
 
     public EntertainmentService(Entertainment entertainment, Date date) {
-        super(entertainment, EService.ServiceType.ENTERTAINMENT, date);
+        super(entertainment, Service.ServiceType.ENTERTAINMENT, date);
         this.EntertainmentServices = new ArrayList<>();
     }
 

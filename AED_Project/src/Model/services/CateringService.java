@@ -6,17 +6,17 @@ package Model.services;
 
 /**
  *
- * @author prathamesh
+ * @author himanshu
  */
 import java.util.Date;
 import Model.Catering;
 
-public class CateringService extends EService {
+public class CateringService extends Service {
 
     private String menuItem;
 
     public CateringService(Catering res, Date eventDate, String menuItem, int cost) {
-        super(res, EService.ServiceType.CATERING, eventDate);
+        super(res, Service.ServiceType.CATERING, eventDate);
         this.menuItem = menuItem;
         super.totalCost = cost;
     }
