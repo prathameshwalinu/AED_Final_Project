@@ -1,29 +1,25 @@
 package ui.EventPlannerAdminRole;
+ /**
+ *
+ * @author prathmeshw
+ */
 
-import Model.Admin;
-import Model.ServiceLocation;
+import Model.*;
+import Model.services.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 
 public class ServiceLocationsJPanel extends javax.swing.JPanel {
 
-    private Admin EPAdmin;
+    private Admin Admin;
     private Runnable callOnCreateMethod;
 
-    public ServiceLocationsJPanel( Admin EPAdmin, Runnable callOnCreateMethod) {
-      
-        this.EPAdmin = EPAdmin;
+    public ServiceLocationsJPanel(Admin Admin, Runnable callOnCreateMethod) {
         this.callOnCreateMethod = callOnCreateMethod;
+        this.Admin = Admin;
         initComponents();
-        
         populateTable();
-        
-//        setBackground(new java.awt.Color(255, 208, 56));
-//         btnBack.setBackground(new java.awt.Color(0, 102, 102));
-//         btnBack.setOpaque(true);
-//         btnAdd.setBackground(new java.awt.Color(0, 102, 102));
-//         btnAdd.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -37,9 +33,12 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
         lblServiceLocation = new javax.swing.JLabel();
         lblLocation = new javax.swing.JLabel();
         txtlocation = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
+        btnBack.setBackground(new java.awt.Color(204, 255, 255));
         btnBack.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         btnBack.setText("BACK");
         btnBack.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -48,6 +47,8 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
                 btnBackActionPerformed(evt);
             }
         });
+        add(btnBack);
+        btnBack.setBounds(40, 22, 98, 38);
 
         tblLocation.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         tblLocation.setModel(new javax.swing.table.DefaultTableModel(
@@ -60,7 +61,11 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
         ));
         jScrollPane1.setViewportView(tblLocation);
 
-        btnAdd.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        add(jScrollPane1);
+        jScrollPane1.setBounds(233, 308, 397, 162);
+
+        btnAdd.setBackground(new java.awt.Color(204, 255, 255));
+        btnAdd.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
         btnAdd.setText("ADD");
         btnAdd.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnAdd.addActionListener(new java.awt.event.ActionListener() {
@@ -68,70 +73,32 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
                 btnAddActionPerformed(evt);
             }
         });
+        add(btnAdd);
+        btnAdd.setBounds(385, 219, 99, 39);
 
         lblServiceLocation.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        lblServiceLocation.setForeground(new java.awt.Color(255, 255, 255));
         lblServiceLocation.setText("SERVICE LOCATIONS");
+        add(lblServiceLocation);
+        lblServiceLocation.setBounds(233, 79, 409, 43);
 
         lblLocation.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblLocation.setForeground(new java.awt.Color(255, 255, 255));
         lblLocation.setText("SERVICE LOCATION:");
+        add(lblLocation);
+        lblLocation.setBounds(233, 164, 211, 22);
 
         txtlocation.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        txtlocation.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtlocationActionPerformed(evt);
-            }
-        });
+        add(txtlocation);
+        txtlocation.setBounds(450, 165, 180, 22);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(40, 40, 40)
-                        .addComponent(btnBack)
-                        .addGap(147, 147, 147)
-                        .addComponent(lblServiceLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 409, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(244, 244, 244)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 211, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(101, 101, 101)
-                                .addComponent(txtlocation, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(39, 39, 39)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(192, 192, 192)
-                                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(263, 310, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(54, 54, 54)
-                        .addComponent(lblServiceLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(68, 68, 68)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtlocation, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblLocation, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53)
-                .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 162, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(280, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventPlannerAdminRole/client.jpeg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1);
+        jLabel1.setBounds(0, 0, 830, 650);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-         
         callOnCreateMethod.run();
     }//GEN-LAST:event_btnBackActionPerformed
     public boolean validateName() {
@@ -146,22 +113,19 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String name = txtlocation.getText();
-        if (validateName()) {   
-            EPAdmin.addLocation(name);
+        if (validateName()) {
+            Admin.addLocation(name);
             JOptionPane.showMessageDialog(this, "Location added successfully");
             txtlocation.setText("");
             populateTable();
         }
     }//GEN-LAST:event_btnAddActionPerformed
 
-    private void txtlocationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtlocationActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtlocationActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnBack;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblLocation;
     private javax.swing.JLabel lblServiceLocation;
@@ -173,7 +137,7 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblLocation.getModel();
         model.setRowCount(0);
         Object row[] = new Object[10];
-        for (ServiceLocation location : EPAdmin.getListOfServiceLocation()) {        //populate location
+        for (ServiceLocation location : Admin.getListOfServiceLocation()) {        //populate location
             row[0] = location.getName();
             model.addRow(row);
         }

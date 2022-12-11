@@ -1,34 +1,25 @@
 package ui.EventPlannerAdminRole;
+/**
+ *
+ * @author prathmeshw
+ */
 
-import Model.Admin;
-import Model.Client;
-import Model.ClientDirectory;
+import Model.*;
+import Model.services.*;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import ui.main.Validator;
 
-
 public class ManageClientJPanel extends javax.swing.JPanel {
 
+    private Admin Admin;
     private Runnable callOnCreateMethod;
-    private Admin EPAdmin;
 
-    public ManageClientJPanel( Admin EPAdmin, Runnable callOnCreateMethod) {
+    public ManageClientJPanel(Admin Admin, Runnable callOnCreateMethod) {
         initComponents();
-        
-        this.EPAdmin = EPAdmin;
+        this.Admin = Admin;
         this.callOnCreateMethod = callOnCreateMethod;
-        
         populateTable();
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        deleteBtn.setOpaque(true);
-//        addButton.setBackground(new java.awt.Color(0, 102, 102));
-//        addButton.setOpaque(true);
-//        updateButton.setBackground(new java.awt.Color(0, 102, 102));
-//        updateButton.setOpaque(true);
-//        backButton.setBackground(new java.awt.Color(0, 102, 102));
-//        backButton.setOpaque(true);
     }
 
     public boolean validateName() {
@@ -104,6 +95,7 @@ public class ManageClientJPanel extends javax.swing.JPanel {
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
 
+        backButton.setBackground(new java.awt.Color(204, 255, 255));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backButton.setText("BACK");
         backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -113,18 +105,21 @@ public class ManageClientJPanel extends javax.swing.JPanel {
             }
         });
         add(backButton);
-        backButton.setBounds(31, 34, 54, 26);
+        backButton.setBounds(31, 34, 90, 30);
 
-        lblsysadmin.setFont(new java.awt.Font("Lucida Grande", 1, 48)); // NOI18N
+        lblsysadmin.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        lblsysadmin.setForeground(new java.awt.Color(255, 255, 255));
         lblsysadmin.setText("MANAGE CLIENTS");
         add(lblsysadmin);
-        lblsysadmin.setBounds(340, 210, 491, 58);
+        lblsysadmin.setBounds(326, 97, 358, 43);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel3.setText("MOBILE NO:");
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("MOBILE NO");
         add(jLabel3);
-        jLabel3.setBounds(570, 590, 131, 22);
+        jLabel3.setBounds(557, 381, 137, 22);
 
+        deleteBtn.setBackground(new java.awt.Color(204, 255, 255));
         deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         deleteBtn.setText("DELETE");
         deleteBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -134,9 +129,9 @@ public class ManageClientJPanel extends javax.swing.JPanel {
             }
         });
         add(deleteBtn);
-        deleteBtn.setBounds(620, 460, 73, 26);
+        deleteBtn.setBounds(930, 317, 110, 26);
 
-        tblClient.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
+        tblClient.setFont(new java.awt.Font("Baskerville Old Face", 0, 12)); // NOI18N
         tblClient.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -161,10 +156,11 @@ public class ManageClientJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tblClient);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(50, 290, 960, 154);
+        jScrollPane1.setBounds(118, 191, 800, 154);
         add(contactField);
-        contactField.setBounds(740, 590, 168, 23);
+        contactField.setBounds(725, 383, 173, 23);
 
+        addButton.setBackground(new java.awt.Color(204, 255, 255));
         addButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addButton.setText("ADD");
         addButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -174,25 +170,29 @@ public class ManageClientJPanel extends javax.swing.JPanel {
             }
         });
         add(addButton);
-        addButton.setBounds(270, 460, 104, 26);
+        addButton.setBounds(930, 225, 110, 26);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel4.setText("USERNAME:");
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("USERNAME");
         add(jLabel4);
-        jLabel4.setBounds(580, 660, 126, 22);
+        jLabel4.setBounds(557, 453, 138, 22);
         add(nameField);
-        nameField.setBounds(300, 590, 168, 23);
+        nameField.setBounds(275, 383, 168, 23);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel5.setText("PASSWORD:");
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("PASSWORD");
         add(jLabel5);
-        jLabel5.setBounds(580, 740, 129, 22);
+        jLabel5.setBounds(557, 521, 138, 22);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel2.setText("CLIENT NAME:");
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("CLIENT NAME");
         add(jLabel2);
-        jLabel2.setBounds(130, 590, 130, 22);
+        jLabel2.setBounds(118, 381, 126, 22);
 
+        updateButton.setBackground(new java.awt.Color(204, 255, 255));
         updateButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         updateButton.setText("UPDATE");
         updateButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -202,40 +202,42 @@ public class ManageClientJPanel extends javax.swing.JPanel {
             }
         });
         add(updateButton);
-        updateButton.setBounds(460, 460, 78, 26);
+        updateButton.setBounds(930, 271, 110, 26);
 
         jLabel6.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel6.setText("CITY:");
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("CITY");
         add(jLabel6);
-        jLabel6.setBounds(130, 660, 111, 22);
+        jLabel6.setBounds(118, 453, 130, 22);
 
         jLabel9.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        jLabel9.setText("STREET:");
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setText("STREET");
         add(jLabel9);
-        jLabel9.setBounds(130, 740, 111, 22);
+        jLabel9.setBounds(118, 521, 130, 22);
         add(txtStreet);
-        txtStreet.setBounds(300, 740, 168, 23);
+        txtStreet.setBounds(275, 523, 168, 23);
         add(passwordField);
-        passwordField.setBounds(740, 740, 168, 23);
+        passwordField.setBounds(725, 523, 173, 23);
         add(usernameField);
-        usernameField.setBounds(740, 660, 168, 23);
+        usernameField.setBounds(725, 455, 173, 23);
         add(cityField);
-        cityField.setBounds(300, 660, 168, 23);
+        cityField.setBounds(275, 455, 168, 23);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/N.jpeg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventPlannerAdminRole/client.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1);
-        jLabel1.setBounds(0, 0, 1040, 790);
+        jLabel1.setBounds(0, 0, 1050, 700);
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
         DefaultTableModel model = (DefaultTableModel) tblClient.getModel();
         String username = model.getValueAt(tblClient.getSelectedRow(), 4).toString();
-        ClientDirectory clientDirectory = EPAdmin.getClientDirectory();
+        ClientDirectory clientDirectory = Admin.getClientDirectory();
         if (clientDirectory.getListOfClientDirectory() != null) {
             for (Client client : clientDirectory.getListOfClientDirectory()) {
                 if (client.getUserName().equals(username)) {
-                    EPAdmin.deleteCustomer(client);
+                    Admin.deleteCustomer(client);
                     populateTable();
                     JOptionPane.showMessageDialog(this, "Client deleted successfully");
                     return;
@@ -257,12 +259,12 @@ public class ManageClientJPanel extends javax.swing.JPanel {
             return;
         }
 
-        if (EPAdmin.userExistsInSystem(username)) {
+        if (Admin.userExistsInSystem(username)) {
             JOptionPane.showMessageDialog(this, "Username already exists.");
             return;
         }
 
-        Client client = EPAdmin.getClientDirectory().addCustomer();  //add client to directory in system
+        Client client = Admin.getClientDirectory().addCustomer();  //add client to directory in system
         client.setName(name);
         client.setContact(contact);
         client.setCity(city);
@@ -272,7 +274,7 @@ public class ManageClientJPanel extends javax.swing.JPanel {
         populateTable();
         JOptionPane.showMessageDialog(this, "Client added successfully");
 
-        EPAdmin.addUser(username, password, "Client");
+        Admin.addUser(username, password, "Client");
 
         nameField.setText("");
         contactField.setText("");
@@ -295,13 +297,14 @@ public class ManageClientJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblClient.getModel();
         if (tblClient.getSelectedRowCount() == 1) {
             String user = usernameField.getText();
-            Client client = EPAdmin.findCustomer(user);
+            Client client = Admin.findCustomer(user);
             client.setAddress(txtStreet.getText());
             client.setName(nameField.getText());
             client.setContact(contactField.getText());
             client.setCity(cityField.getText());
             JOptionPane.showMessageDialog(this, "updated Successfully");
             populateTable();
+
         }
     }//GEN-LAST:event_updateButtonActionPerformed
 
@@ -351,7 +354,7 @@ public class ManageClientJPanel extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) tblClient.getModel();
         model.setRowCount(0);
         Object row[] = new Object[10];
-        for (Client client : EPAdmin.getClientDirectory().getListOfClientDirectory()) {
+        for (Client client : Admin.getClientDirectory().getListOfClientDirectory()) {
             row[0] = client.getName();
             row[1] = client.getContact();
             row[2] = client.getCity();
@@ -360,5 +363,5 @@ public class ManageClientJPanel extends javax.swing.JPanel {
             row[5] = client.getPassword();
             model.addRow(row);
         }
-        }
+    }
 }
