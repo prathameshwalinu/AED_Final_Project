@@ -1,12 +1,14 @@
 package ui.CateringManagerRole;
-
-import Model.Admin;
-
-
+/**
+ *
+ * @author himanshu
+ */
+import Model.*;
+import Model.services.*;
 
 public class CateringMainPanel extends javax.swing.JPanel {
 
-    private Admin EPAdmin;
+    private Admin Admin;
     private Runnable callOnCreateMethod1;
     private Runnable callOnCreateMethod2;
     private Runnable callOnCreateMethod3;
@@ -18,17 +20,6 @@ public class CateringMainPanel extends javax.swing.JPanel {
         this.callOnCreateMethod2 = callOnCreateMethod2;
         this.callOnCreateMethod3 = callOnCreateMethod3;
         this.callOnCreateMethod4 = callOnCreateMethod4;
-        //setBackground(new java.awt.Color(255, 208, 56));
-
-        //viewTask.setBackground(new java.awt.Color(0, 102, 102));
-        //viewTask.setOpaque(true);
-        //orgButton.setBackground(new java.awt.Color(0, 102, 102));
-        //orgButton.setOpaque(true);
-        //orgAdminBtn.setBackground(new java.awt.Color(0, 102, 102));
-        //orgAdminBtn.setOpaque(true);
-        //addMenu.setBackground(new java.awt.Color(0, 102, 102));
-        //addMenu.setOpaque(true);
-        
     }
 
     @SuppressWarnings("unchecked")
@@ -54,7 +45,7 @@ public class CateringMainPanel extends javax.swing.JPanel {
             }
         });
         add(viewTask);
-        viewTask.setBounds(275, 224, 330, 26);
+        viewTask.setBounds(297, 295, 304, 26);
 
         orgButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         orgButton.setText("MANAGE ORGANIZATION");
@@ -65,7 +56,7 @@ public class CateringMainPanel extends javax.swing.JPanel {
             }
         });
         add(orgButton);
-        orgButton.setBounds(275, 280, 330, 26);
+        orgButton.setBounds(297, 348, 304, 26);
 
         orgAdminBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         orgAdminBtn.setText("MANAGE ORGANIZATION ADMIN");
@@ -76,12 +67,12 @@ public class CateringMainPanel extends javax.swing.JPanel {
             }
         });
         add(orgAdminBtn);
-        orgAdminBtn.setBounds(275, 332, 330, 26);
+        orgAdminBtn.setBounds(297, 404, 304, 26);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("RESTAURANT MANAGER PANEL");
         add(jLabel1);
-        jLabel1.setBounds(146, 113, 585, 43);
+        jLabel1.setBounds(165, 133, 585, 43);
 
         addMenu.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addMenu.setText("ADD MENU ");
@@ -92,36 +83,28 @@ public class CateringMainPanel extends javax.swing.JPanel {
             }
         });
         add(addMenu);
-        addMenu.setBounds(275, 384, 330, 26);
+        addMenu.setBounds(297, 461, 304, 26);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("/Users/nishapatil/Downloads/catbk.jpeg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/CateringManagerRole/catbk.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
         jLabel2.setBounds(0, 0, 870, 730);
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTaskActionPerformed
-            
-        callOnCreateMethod1.run(); 
-        
+        callOnCreateMethod1.run();
     }//GEN-LAST:event_viewTaskActionPerformed
 
     private void orgButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgButtonActionPerformed
-                
-        callOnCreateMethod2.run(); 
-        
+        callOnCreateMethod2.run();
     }//GEN-LAST:event_orgButtonActionPerformed
 
     private void orgAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgAdminBtnActionPerformed
-            
-        callOnCreateMethod3.run();  
-        
+        callOnCreateMethod3.run();
     }//GEN-LAST:event_orgAdminBtnActionPerformed
 
     private void addMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addMenuActionPerformed
-            
-        callOnCreateMethod4.run();       
-            
+        callOnCreateMethod4.run();
     }//GEN-LAST:event_addMenuActionPerformed
 
 

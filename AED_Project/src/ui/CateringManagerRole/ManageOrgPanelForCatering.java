@@ -1,44 +1,33 @@
 package ui.CateringManagerRole;
-
-import Model.Admin;
-import Model.BusinessCatalogueDirectory;
-import Model.Catering;
-import Model.ServiceAgentOrganisation;
-import Model.ServiceLocation;
+/**
+ *
+ * @author himanshu
+ */
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import Model.*;
+import Model.services.*;
 import ui.main.Validator;
 
 public class ManageOrgPanelForCatering extends javax.swing.JPanel {
-    
-    private Admin EPAdmin;
+
+    private Admin Admin;
     private Runnable callOnCreateMethod;
     private String type;
     private String user;
     private ServiceLocation location;
 
-    public ManageOrgPanelForCatering( Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
+    public ManageOrgPanelForCatering(Admin Admin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
         initComponents();
-        this.EPAdmin = EPAdmin;
+        this.Admin = Admin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
         this.location = location;
-        //setBackground(new java.awt.Color(255, 208, 56));
+        setBackground(new java.awt.Color(255, 208, 56));
         cityNameTextField.setText(location.getName());
         cityNameTextField.setEditable(false);
-
-        //deleteBtn.setBackground(new java.awt.Color(0, 102, 102));
-        //deleteBtn.setOpaque(true);
-        //addButton.setBackground(new java.awt.Color(0, 102, 102));
-        //addButton.setOpaque(true);
-        //updateButton.setBackground(new java.awt.Color(0, 102, 102));
-        //updateButton.setOpaque(true);
-        //backButton.setBackground(new java.awt.Color(0, 102, 102));
-        //backButton.setOpaque(true);
-
         populateTable();
     }
 
@@ -61,11 +50,12 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
         cityNameTextField = new javax.swing.JTextField();
         deleteBtn = new javax.swing.JButton();
         updateButton = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
 
-        jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 11)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -90,41 +80,42 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(25, 128, 980, 172);
+        jScrollPane1.setBounds(75, 148, 754, 172);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("ORGANIZATION TYPE");
         add(jLabel1);
-        jLabel1.setBounds(25, 456, 210, 34);
+        jLabel1.setBounds(75, 355, 210, 34);
 
         orgCombo.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         orgCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a organisation", "ServiceAgent" }));
         add(orgCombo);
-        orgCombo.setBounds(247, 463, 232, 23);
+        orgCombo.setBounds(365, 362, 232, 23);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setText("NAME");
         add(jLabel2);
-        jLabel2.setBounds(559, 462, 91, 22);
+        jLabel2.setBounds(75, 421, 210, 22);
 
         nameField.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         add(nameField);
-        nameField.setBounds(656, 463, 232, 23);
+        nameField.setBounds(365, 422, 232, 23);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("CONTACT");
         add(jLabel3);
-        jLabel3.setBounds(121, 509, 120, 22);
+        jLabel3.setBounds(75, 472, 210, 22);
 
         contactField.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         add(contactField);
-        contactField.setBounds(247, 510, 232, 23);
+        contactField.setBounds(365, 473, 232, 23);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setText("CITY");
         add(jLabel4);
-        jLabel4.setBounds(559, 509, 82, 22);
+        jLabel4.setBounds(75, 523, 210, 22);
 
+        backButton.setBackground(new java.awt.Color(255, 204, 204));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backButton.setText("BACK");
         backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -134,8 +125,9 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
             }
         });
         add(backButton);
-        backButton.setBounds(25, 23, 136, 26);
+        backButton.setBounds(25, 23, 121, 39);
 
+        addButton.setBackground(new java.awt.Color(255, 204, 204));
         addButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addButton.setText("ADD");
         addButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -145,15 +137,16 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
             }
         });
         add(addButton);
-        addButton.setBounds(521, 336, 83, 26);
+        addButton.setBounds(835, 204, 102, 36);
 
         jLabel5.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel5.setText("MANAGE CATERING ORGANISATION");
         add(jLabel5);
-        jLabel5.setBounds(126, 73, 684, 43);
+        jLabel5.setBounds(107, 80, 684, 43);
         add(cityNameTextField);
-        cityNameTextField.setBounds(659, 511, 232, 23);
+        cityNameTextField.setBounds(365, 525, 232, 23);
 
+        deleteBtn.setBackground(new java.awt.Color(255, 204, 204));
         deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         deleteBtn.setText("DELETE");
         deleteBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -163,8 +156,9 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
             }
         });
         add(deleteBtn);
-        deleteBtn.setBounds(902, 336, 103, 26);
+        deleteBtn.setBounds(835, 286, 102, 34);
 
+        updateButton.setBackground(new java.awt.Color(255, 204, 204));
         updateButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         updateButton.setText("UPDATE");
         updateButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -174,7 +168,12 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
             }
         });
         add(updateButton);
-        updateButton.setBounds(714, 336, 100, 26);
+        updateButton.setBounds(835, 246, 102, 34);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/CateringManagerRole/catbk.jpeg"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        add(jLabel6);
+        jLabel6.setBounds(0, 0, 950, 690);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -207,7 +206,7 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(this, "Organization added successfully");
                 return;
             }
-        } 
+        }
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -262,6 +261,7 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
     }//GEN-LAST:event_updateButtonActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         if (jTable1.getSelectedRowCount() != 1) {
             return;
@@ -291,6 +291,7 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField nameField;
@@ -303,7 +304,7 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
         model.setRowCount(0);
         Object row[] = new Object[10];
         String orgType1 = orgCombo.getSelectedItem().toString();
-        ServiceLocation location1 = EPAdmin.findServiceLocation(location.getName());
+        ServiceLocation location1 = Admin.findServiceLocation(location.getName());
         BusinessCatalogueDirectory enterpriseCatalogueDirectory = location1.getBusinessCatalogueDirectory();
         for (Catering catering : enterpriseCatalogueDirectory.getListOfCatering()) {
             if (catering.findSupervisor(user) != null) {

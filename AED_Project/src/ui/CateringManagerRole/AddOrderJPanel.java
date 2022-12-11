@@ -1,38 +1,30 @@
 package ui.CateringManagerRole;
-
-import Model.Admin;
-import Model.BusinessCatalogueDirectory;
-import Model.Catering;
-import Model.Catering_Menu;
-import Model.ServiceLocation;
-import Model.Supervisor;
+/**
+ *
+ * @author himanshu
+ */
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
+import Model.*;
+import Model.services.*;
 
 public class AddOrderJPanel extends javax.swing.JPanel {
 
-    private Admin EPAdmin;
+    private Admin Admin;
     private Runnable callOnCreateMethod;
     private String type;
     private String user;
     private ServiceLocation location;
 
-
-    public AddOrderJPanel(Admin EPAdmin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
+    public AddOrderJPanel(Admin Admin, Runnable callOnCreateMethod, String user, String type, ServiceLocation location) {
         initComponents();
-        this.EPAdmin = EPAdmin;
+        this.Admin = Admin;
         this.callOnCreateMethod = callOnCreateMethod;
         this.user = user;
         this.type = type;
         this.location = location;
-        //setBackground(new java.awt.Color(255,208,56));
         populateMenu();
-        //addBtn.setBackground(new java.awt.Color(0, 102, 102));
-        //addBtn.setOpaque(true);
-        //backButton.setBackground(new java.awt.Color(0, 102, 102));
-        //backButton.setOpaque(true);
 
     }
 
@@ -44,15 +36,15 @@ public class AddOrderJPanel extends javax.swing.JPanel {
             return false;
         }
     }
-    
-   public boolean priceField() {
-    if (priceField == null) {
-        JOptionPane.showMessageDialog(this, "price field should not b left blank");
-        return false;
-    } else {
-        return true;
+
+    public boolean priceField() {
+        if (priceField == null) {
+            JOptionPane.showMessageDialog(this, "price field should not b left blank");
+            return false;
+        } else {
+            return true;
+        }
     }
-}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -67,9 +59,10 @@ public class AddOrderJPanel extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         priceField = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
-        setToolTipText("");
+        setForeground(new java.awt.Color(64, 162, 237));
         setLayout(null);
 
         jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
@@ -92,17 +85,18 @@ public class AddOrderJPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(132, 171, 631, 177);
+        jScrollPane1.setBounds(60, 175, 694, 177);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("ADD AN ITEM ");
         add(jLabel1);
-        jLabel1.setBounds(38, 444, 140, 22);
+        jLabel1.setBounds(37, 396, 140, 22);
 
         menuField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         add(menuField);
-        menuField.setBounds(196, 445, 177, 23);
+        menuField.setBounds(218, 397, 177, 23);
 
+        addBtn.setBackground(new java.awt.Color(255, 204, 204));
         addBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         addBtn.setText("ADD");
         addBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -112,8 +106,9 @@ public class AddOrderJPanel extends javax.swing.JPanel {
             }
         });
         add(addBtn);
-        addBtn.setBounds(651, 366, 112, 26);
+        addBtn.setBounds(620, 570, 112, 26);
 
+        backButton.setBackground(new java.awt.Color(255, 204, 204));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backButton.setText("BACK");
         backButton.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -123,23 +118,28 @@ public class AddOrderJPanel extends javax.swing.JPanel {
             }
         });
         add(backButton);
-        backButton.setBounds(48, 18, 54, 26);
+        backButton.setBounds(37, 22, 119, 26);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("PRICE ");
         add(jLabel3);
-        jLabel3.setBounds(459, 444, 109, 22);
+        jLabel3.setBounds(37, 458, 140, 22);
         add(priceField);
-        priceField.setBounds(586, 446, 177, 23);
+        priceField.setBounds(218, 460, 177, 23);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel4.setText("MENU ITEM LIST");
         add(jLabel4);
-        jLabel4.setBounds(271, 110, 333, 43);
+        jLabel4.setBounds(253, 90, 333, 43);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/CateringManagerRole/catbk.jpeg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2);
+        jLabel2.setBounds(0, 0, 810, 680);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-
+        callOnCreateMethod.run();
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
@@ -149,7 +149,7 @@ public class AddOrderJPanel extends javax.swing.JPanel {
         int price = Integer.parseInt(priceField.getText().trim());
 
         BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
-       List<Catering> resList = enterpriseCatalogueDirectory.getListOfCatering();                // get all restaurants
+        List<Catering> resList = enterpriseCatalogueDirectory.getListOfCatering();                // get all restaurants
         for (Catering res : resList) {
             List<Supervisor> supervisor = res.getListOfSupervisor();
             for (Supervisor manager : supervisor) {
@@ -162,8 +162,6 @@ public class AddOrderJPanel extends javax.swing.JPanel {
                 }
             }
         }
-
-
     }//GEN-LAST:event_addBtnActionPerformed
 
 
@@ -171,6 +169,7 @@ public class AddOrderJPanel extends javax.swing.JPanel {
     private javax.swing.JButton addBtn;
     private javax.swing.JButton backButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
