@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ *
+ * @author himanshu
+ */
 public class Entertainment_Magician extends Person {
 
     private String city;
