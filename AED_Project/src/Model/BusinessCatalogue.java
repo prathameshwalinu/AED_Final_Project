@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ *
+ * @author prathmeshw
+ */
 public class BusinessCatalogue {
 
     protected String name;
