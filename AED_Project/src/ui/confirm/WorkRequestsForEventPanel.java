@@ -1,31 +1,32 @@
 package ui.confirm;
-/**
- *
- * @author himanshu
- */
-import javax.swing.table.DefaultTableModel;
-import Model.HallBooking;
+
+import Model.Admin;
 import Model.Client;
 import Model.ClientDirectory;
-import Model.Supervisor;
+import Model.HallBooking;
 import Model.Organization;
-import Model.Admin;
-import Model.services.Service;
+import Model.Supervisor;
+import Model.services.EService;
+import javax.swing.table.DefaultTableModel;
 
-public class WorkRequestsForEventPanel extends javax.swing.JPanel {
+public class WorkRequestsForEventPanel extends javax.swing.JPanel 
+{
 
-    private Admin Admin;
+    private Admin EPAdmin;
     private String user;
     private String type;
-
-    public WorkRequestsForEventPanel(Admin Admin, String user, String type) {
-        initComponents();
-        this.Admin = Admin;
-        this.user = user;
-        this.type = type;
-        lblbookservices.setText(lblbookservices.getText() + type.toUpperCase() + " ORGANIZATION");
-        populateTable();
-    }
+    
+    
+public WorkRequestsForEventPanel(Admin Admin, String user, String type) 
+{
+    initComponents();
+    this.EPAdmin = EPAdmin;
+    this.user = user;
+    this.type = type;
+    lblbookservices.setText(lblbookservices.getText() + type.toUpperCase() + " ORGANIZATION");
+    populateTable();
+    setBackground(new java.awt.Color(255, 208, 56));
+}
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -35,9 +36,9 @@ public class WorkRequestsForEventPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(255, 255, 255));
+        setBackground(new java.awt.Color(255, 208, 56));
 
-        lblbookservices.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        lblbookservices.setFont(new java.awt.Font("Baskerville Old Face", 3, 36)); // NOI18N
         lblbookservices.setText("ASSIGNED WORK REQUESTS  ");
 
         jTable1.setFont(new java.awt.Font("Baskerville Old Face", 1, 14)); // NOI18N
@@ -66,21 +67,21 @@ public class WorkRequestsForEventPanel extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(169, 169, 169)
+                        .addGap(68, 68, 68)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 745, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(271, 271, 271)
+                        .addGap(198, 198, 198)
                         .addComponent(lblbookservices)))
-                .addContainerGap(343, Short.MAX_VALUE))
+                .addContainerGap(444, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(66, 66, 66)
+                .addGap(54, 54, 54)
                 .addComponent(lblbookservices)
-                .addGap(71, 71, 71)
+                .addGap(84, 84, 84)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(449, Short.MAX_VALUE))
+                .addContainerGap(448, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -92,13 +93,13 @@ public class WorkRequestsForEventPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void populateTable() {
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
 
-        ClientDirectory clientDirectory = Admin.getClientDirectory();
+        ClientDirectory clientDirectory = EPAdmin.getClientDirectory();
         for (Client client : clientDirectory.getListOfClientDirectory()) {
             for (HallBooking booking : client.getHallbookingList()) {
-                for (Service service : booking.getServices()) {
+                for (EService service : booking.getServices()) {
                     for (Organization org : service.getListOfOrganization()) {
                         for (Supervisor man : org.getListOfSupervisor()) {
                             if (man.getUsername().equals(user)) {
@@ -117,7 +118,6 @@ public class WorkRequestsForEventPanel extends javax.swing.JPanel {
                     }
                 }
             }
-        }
-
+        }   
     }
 }

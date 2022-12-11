@@ -46,8 +46,8 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         cmbEntertainment = new javax.swing.JComboBox();
+        dateField = new org.netbeans.modules.form.InvalidComponent();
         jLabel1 = new javax.swing.JLabel();
-        dateField = new com.toedter.calendar.JDateChooser();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setLayout(null);
@@ -147,16 +147,13 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
         cmbEntertainment.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         add(cmbEntertainment);
         cmbEntertainment.setBounds(483, 279, 241, 23);
+        add(dateField);
+        dateField.setBounds(483, 224, 211, 19);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/entertainmentfinal.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1);
         jLabel1.setBounds(0, 0, 900, 770);
-
-        dateField.setBackground(new java.awt.Color(255, 255, 255));
-        dateField.setForeground(new java.awt.Color(255, 255, 255));
-        add(dateField);
-        dateField.setBounds(480, 220, 240, 23);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
@@ -227,7 +224,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
     private javax.swing.JCheckBox btnMusic;
     private javax.swing.JCheckBox btnShow;
     private javax.swing.JComboBox cmbEntertainment;
-    private com.toedter.calendar.JDateChooser dateField;
+    private org.netbeans.modules.form.InvalidComponent dateField;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
