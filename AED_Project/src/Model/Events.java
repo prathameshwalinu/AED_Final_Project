@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ *
+ * @author nishapatil
+ */
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -62,7 +65,7 @@ public class Events extends BusinessCatalogue {
     }
 
     public Supervisor addSupervisor(String name, String username, String password) {
-       Supervisor supervisor = new Supervisor(name, username, password);
+        Supervisor supervisor = new Supervisor(name, username, password);
         listOfSupervisor.add(supervisor);
         return supervisor;
     }

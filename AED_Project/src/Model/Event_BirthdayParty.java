@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ *
+ * @author nishapatil
+ */
 import java.util.List;
 
 public class Event_BirthdayParty extends Organization {

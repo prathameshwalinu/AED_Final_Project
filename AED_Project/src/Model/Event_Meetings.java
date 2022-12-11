@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ *
+ * @author nishapatil
+ */
 public class Event_Meetings extends Organization {
 
     public Event_Meetings(String name, String contact, String city) {
