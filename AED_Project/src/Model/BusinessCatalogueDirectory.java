@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ *
+ * @author prathmeshw
+ */
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +45,7 @@ public class BusinessCatalogueDirectory {
         this.listOfEntertainment = listOfEntertainment;
     }
 
-      public List<Catering> getListOfCatering() {
+    public List<Catering> getListOfCatering() {
         return listOfCatering;
     }
 
@@ -88,7 +91,7 @@ public class BusinessCatalogueDirectory {
         return null;
     }
 
-        public Catering findCatering(String name) {
+    public Catering findCatering(String name) {
         for (Catering entertainment : listOfCatering) {
             if (entertainment.getName().equals(name)) {
                 return entertainment;

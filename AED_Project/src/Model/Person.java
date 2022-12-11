@@ -1,6 +1,8 @@
-
 package Model;
-
+/**
+ *
+ * @author prathmeshw
+ */
 public abstract class Person {
     protected String name;
     protected String password;
