@@ -1,9 +1,11 @@
 package Model;
-
+/**
+ *
+ * @author prathmeshw
+ */
 public class ServiceLocation {
 
     private String name;
-
     private BusinessCatalogueDirectory BusinessCatalogueDirectory;
 
     public ServiceLocation(String name) {
@@ -24,7 +26,6 @@ public class ServiceLocation {
     }
 
     public void setBusinessCatalogueDirectory(BusinessCatalogueDirectory BusinessCatalogueDirectory) {
-    
         this.BusinessCatalogueDirectory = BusinessCatalogueDirectory;
     }
    

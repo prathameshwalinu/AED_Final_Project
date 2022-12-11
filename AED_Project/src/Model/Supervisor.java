@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ *
+ * @author prathmeshw
+ */
 public class Supervisor extends Person {
 
     private String contact;
