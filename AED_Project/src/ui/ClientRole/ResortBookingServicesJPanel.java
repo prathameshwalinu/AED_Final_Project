@@ -1,17 +1,15 @@
 package ui.ClientRole;
+/**
+ *
+ * @author prathmeshw
+ */
 
-import Model.Admin;
-import Model.Client;
+import Model.*;
 import Model.EmailFun;
-import Model.HallBooking;
-import Model.HallType;
 import Model.HallType.RoomType;
-import Model.Resort;
-import Model.ServiceLocation;
 import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
-
 import ui.main.DateUtils;
 
 public class ResortBookingServicesJPanel extends javax.swing.JPanel {
@@ -32,13 +30,6 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
         for (RoomType type : RoomType.values()) {
             roomtypeComboBox.addItem(type);
         }
-//        setBackground(new java.awt.Color(255, 208, 56));
-//        backBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        backBtn.setOpaque(true);
-//        priceBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        priceBtn.setOpaque(true);
-//        bookRoomBtn.setBackground(new java.awt.Color(0, 102, 102));
-//        bookRoomBtn.setOpaque(true);
     }
 
     @SuppressWarnings("unchecked")
@@ -61,13 +52,16 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         roomtypeComboBox = new javax.swing.JComboBox<>();
         priceBtn = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        lbldate1 = new javax.swing.JLabel();
-        lblroom1 = new javax.swing.JLabel();
-        emailid = new javax.swing.JTextField();
         DCcheckin = new com.toedter.calendar.JDateChooser();
         DCcheckout = new com.toedter.calendar.JDateChooser();
+        lblroom1 = new javax.swing.JLabel();
+        emailid = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
+
+        backBtn.setBackground(new java.awt.Color(204, 255, 255));
         backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         backBtn.setText("BACK");
         backBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -76,22 +70,42 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                 backBtnActionPerformed(evt);
             }
         });
+        add(backBtn);
+        backBtn.setBounds(42, 26, 95, 38);
 
         lbldate.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        lbldate.setText("CHECK-IN");
+        lbldate.setForeground(new java.awt.Color(255, 255, 255));
+        lbldate.setText("CHECK-IN & CHECK-OUT");
+        add(lbldate);
+        lbldate.setBounds(198, 173, 235, 22);
 
         lblcity.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblcity.setForeground(new java.awt.Color(255, 255, 255));
         lblcity.setText("CITY");
+        add(lblcity);
+        lblcity.setBounds(198, 247, 121, 22);
 
         lblhotel.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblhotel.setForeground(new java.awt.Color(255, 255, 255));
         lblhotel.setText("RESORT");
+        add(lblhotel);
+        lblhotel.setBounds(198, 306, 121, 22);
+        add(priceField);
+        priceField.setBounds(755, 643, 101, 37);
 
         btnnoofpeople.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        btnnoofpeople.setForeground(new java.awt.Color(255, 255, 255));
         btnnoofpeople.setText("NO OF PEOPLE");
+        add(btnnoofpeople);
+        btnnoofpeople.setBounds(198, 434, 135, 22);
 
         lblroom.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblroom.setForeground(new java.awt.Color(255, 255, 255));
         lblroom.setText("NO OF ROOMS");
+        add(lblroom);
+        lblroom.setBounds(198, 489, 134, 22);
 
+        bookRoomBtn.setBackground(new java.awt.Color(204, 255, 255));
         bookRoomBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         bookRoomBtn.setText("BOOK");
         bookRoomBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -100,12 +114,28 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                 bookRoomBtnActionPerformed(evt);
             }
         });
+        add(bookRoomBtn);
+        bookRoomBtn.setBounds(667, 732, 189, 45);
 
         lblbookservices.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
+        lblbookservices.setForeground(new java.awt.Color(255, 255, 255));
         lblbookservices.setText("RESORT BOOKING AND SERVICES");
+        add(lblbookservices);
+        lblbookservices.setBounds(212, 70, 628, 43);
+        add(peopleField);
+        peopleField.setBounds(398, 436, 198, 23);
+        add(roomField);
+        roomField.setBounds(398, 491, 198, 23);
 
         cmbResort.setFont(new java.awt.Font("Lucida Grande", 0, 12)); // NOI18N
         cmbResort.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Resort" }));
+        cmbResort.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbResortActionPerformed(evt);
+            }
+        });
+        add(cmbResort);
+        cmbResort.setBounds(398, 307, 197, 21);
 
         cityCombo.setFont(new java.awt.Font("Lucida Grande", 0, 13)); // NOI18N
         cityCombo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select city" }));
@@ -114,16 +144,24 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                 cityComboActionPerformed(evt);
             }
         });
+        add(cityCombo);
+        cityCombo.setBounds(398, 249, 197, 22);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("HALL TYPE ");
+        add(jLabel1);
+        jLabel1.setBounds(198, 366, 120, 22);
 
         roomtypeComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 roomtypeComboBoxActionPerformed(evt);
             }
         });
+        add(roomtypeComboBox);
+        roomtypeComboBox.setBounds(398, 368, 198, 23);
 
+        priceBtn.setBackground(new java.awt.Color(204, 255, 255));
         priceBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         priceBtn.setText("TOTAL PRICE");
         priceBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -132,129 +170,25 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                 priceBtnActionPerformed(evt);
             }
         });
-
-        jLabel8.setText("jLabel7");
-
-        lbldate1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        lbldate1.setText("CHECK-OUT");
+        add(priceBtn);
+        priceBtn.setBounds(561, 643, 136, 37);
+        add(DCcheckin);
+        DCcheckin.setBounds(460, 172, 189, 23);
+        add(DCcheckout);
+        DCcheckout.setBounds(667, 172, 189, 23);
 
         lblroom1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
+        lblroom1.setForeground(new java.awt.Color(255, 255, 255));
         lblroom1.setText("EMAIL ID");
+        add(lblroom1);
+        lblroom1.setBounds(198, 552, 82, 22);
+        add(emailid);
+        emailid.setBounds(398, 551, 198, 23);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(275, 275, 275)
-                                .addComponent(lblbookservices, javax.swing.GroupLayout.PREFERRED_SIZE, 628, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(253, 253, 253)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(bookRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(btnnoofpeople)
-                                                .addGap(30, 30, 30)
-                                                .addComponent(peopleField))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                        .addComponent(lblroom, javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(lblroom1)))
-                                                .addGap(31, 31, 31)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(roomtypeComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(roomField)
-                                                    .addComponent(emailid)))
-                                            .addComponent(priceBtn)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                    .addGroup(layout.createSequentialGroup()
-                                                        .addComponent(lblcity, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addGap(42, 42, 42))
-                                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                                        .addComponent(lblhotel, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(DCcheckin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(cityCombo, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(cmbResort, javax.swing.GroupLayout.PREFERRED_SIZE, 189, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                                        .addGap(48, 48, 48)
-                                        .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(lbldate)
-                                        .addGap(252, 252, 252)
-                                        .addComponent(lbldate1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(DCcheckout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addGap(0, 464, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblbookservices)
-                .addGap(35, 35, 35)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(lbldate)
-                            .addComponent(lbldate1))
-                        .addComponent(DCcheckin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(DCcheckout, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(1, 1, 1)))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblcity, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(cityCombo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(cmbResort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblhotel))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnnoofpeople))
-                    .addComponent(peopleField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(roomtypeComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblroom)
-                    .addComponent(roomField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblroom1)
-                    .addComponent(emailid, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(55, 55, 55)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(priceBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(priceField, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(56, 56, 56)
-                .addComponent(bookRoomBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(188, Short.MAX_VALUE))
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/hotel5.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        add(jLabel2);
+        jLabel2.setBounds(0, 0, 950, 880);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookRoomBtnActionPerformed
@@ -296,8 +230,7 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
                 + (roomCount * roomType.getRate()) + "$");
         callOnCreateMethod1.run();
         
-        String message = booking.prettyPrint();        
-//        System.out.println(message); 
+        String message = booking.prettyPrint();
         EmailFun.sendMail(emailid.getText(), message);
     }//GEN-LAST:event_bookRoomBtnActionPerformed
 
@@ -331,6 +264,10 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_priceBtnActionPerformed
 
+    private void cmbResortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbResortActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbResortActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser DCcheckin;
@@ -342,11 +279,10 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cmbResort;
     private javax.swing.JTextField emailid;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel lblbookservices;
     private javax.swing.JLabel lblcity;
     private javax.swing.JLabel lbldate;
-    private javax.swing.JLabel lbldate1;
     private javax.swing.JLabel lblhotel;
     private javax.swing.JLabel lblroom;
     private javax.swing.JLabel lblroom1;
