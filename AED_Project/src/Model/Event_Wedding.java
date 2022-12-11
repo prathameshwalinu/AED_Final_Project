@@ -1,5 +1,8 @@
 package Model;
-
+/**
+ *
+ * @author nishapatil
+ */
 public class Event_Wedding extends Organization {
 
    
