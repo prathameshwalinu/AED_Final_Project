@@ -72,21 +72,21 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(46, 160, 743, 182);
+        jScrollPane1.setBounds(170, 190, 743, 182);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("DISPLAY DASHBOARD ");
         add(jLabel1);
-        jLabel1.setBounds(202, 80, 434, 48);
+        jLabel1.setBounds(320, 110, 434, 48);
 
         cmbsingerORG.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         add(cmbsingerORG);
-        cmbsingerORG.setBounds(356, 360, 218, 28);
+        cmbsingerORG.setBounds(480, 390, 218, 28);
 
         cmbmagicianORG.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         add(cmbmagicianORG);
-        cmbmagicianORG.setBounds(356, 406, 218, 28);
+        cmbmagicianORG.setBounds(480, 430, 218, 28);
 
         cmbchoreographerORG.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cmbchoreographerORG.addActionListener(new java.awt.event.ActionListener() {
@@ -95,7 +95,7 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
             }
         });
         add(cmbchoreographerORG);
-        cmbchoreographerORG.setBounds(356, 460, 218, 28);
+        cmbchoreographerORG.setBounds(480, 490, 218, 28);
 
         btnassignWork.setBackground(new java.awt.Color(153, 153, 255));
         btnassignWork.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -107,7 +107,7 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
             }
         });
         add(btnassignWork);
-        btnassignWork.setBounds(605, 564, 184, 44);
+        btnassignWork.setBounds(730, 590, 184, 44);
 
         backButton.setBackground(new java.awt.Color(153, 153, 255));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -125,24 +125,24 @@ public class DisplayDashboardPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("SELECT A SINGER");
         add(jLabel2);
-        jLabel2.setBounds(46, 362, 238, 24);
+        jLabel2.setBounds(170, 390, 238, 24);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("SELECT A MAGICIAN");
         add(jLabel3);
-        jLabel3.setBounds(46, 409, 230, 22);
+        jLabel3.setBounds(170, 440, 230, 22);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("SELECT A CHOREOGRAPHER");
         add(jLabel4);
-        jLabel4.setBounds(46, 463, 295, 22);
+        jLabel4.setBounds(170, 490, 295, 22);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EntertainmentsupervisorRole/entertainmentfinal.jpeg"))); // NOI18N
         jLabel5.setText("jLabel5");
         add(jLabel5);
-        jLabel5.setBounds(0, 0, 830, 650);
+        jLabel5.setBounds(0, 0, 1150, 790);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

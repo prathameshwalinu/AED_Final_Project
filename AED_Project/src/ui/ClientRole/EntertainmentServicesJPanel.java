@@ -155,7 +155,7 @@ public class EntertainmentServicesJPanel extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/entertainmentfinal.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1);
-        jLabel1.setBounds(0, 0, 900, 770);
+        jLabel1.setBounds(0, 0, 1130, 790);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed

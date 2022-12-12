@@ -103,7 +103,7 @@ public class DisplayOrderForResort extends javax.swing.JPanel {
             }
         });
         add(viewTask);
-        viewTask.setBounds(373, 487, 263, 36);
+        viewTask.setBounds(540, 470, 263, 36);
 
         backButton.setBackground(new java.awt.Color(204, 255, 255));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -127,7 +127,7 @@ public class DisplayOrderForResort extends javax.swing.JPanel {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ResortManagerRole/hotel5.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
         add(jLabel4);
-        jLabel4.setBounds(0, 0, 870, 670);
+        jLabel4.setBounds(0, 0, 1130, 750);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

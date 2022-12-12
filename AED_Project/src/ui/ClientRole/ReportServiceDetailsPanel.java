@@ -49,29 +49,29 @@ public class ReportServiceDetailsPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(bookingDetails);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(114, 268, 559, 496);
+        jScrollPane1.setBounds(200, 260, 720, 560);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CHECK-IN ");
         add(jLabel1);
-        jLabel1.setBounds(185, 171, 101, 22);
+        jLabel1.setBounds(360, 180, 101, 22);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("CHECK-OUT");
         add(jLabel2);
-        jLabel2.setBounds(185, 213, 115, 22);
+        jLabel2.setBounds(360, 220, 115, 22);
 
         checkout.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         add(checkout);
-        checkout.setBounds(369, 214, 249, 23);
+        checkout.setBounds(540, 220, 249, 23);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("DETAILED  ORDER REPORT");
+        jLabel3.setText("DETAILED ORDER REPORT");
         add(jLabel3);
-        jLabel3.setBounds(143, 77, 562, 43);
+        jLabel3.setBounds(290, 110, 562, 43);
 
         backBtn.setBackground(new java.awt.Color(204, 255, 255));
         backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -87,12 +87,12 @@ public class ReportServiceDetailsPanel extends javax.swing.JPanel {
 
         checkin.setFont(new java.awt.Font("Baskerville Old Face", 0, 14)); // NOI18N
         add(checkin);
-        checkin.setBounds(369, 172, 249, 23);
+        checkin.setBounds(540, 180, 249, 23);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/hotel5.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
         add(jLabel4);
-        jLabel4.setBounds(0, 0, 780, 820);
+        jLabel4.setBounds(0, 0, 1120, 870);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

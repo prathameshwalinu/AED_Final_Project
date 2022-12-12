@@ -68,7 +68,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 204));
         jLabel1.setText("VIEW ORDER DETAILS FOR EVENTS");
         add(jLabel1);
-        jLabel1.setBounds(95, 92, 666, 43);
+        jLabel1.setBounds(230, 100, 666, 43);
 
         jTable1.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -90,28 +90,28 @@ public class DisplayEventPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(19, 147, 830, 194);
+        jScrollPane1.setBounds(140, 160, 830, 194);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 204));
         jLabel2.setText("SELECT A BIRTHDAY PARTY ORG:");
         add(jLabel2);
-        jLabel2.setBounds(19, 385, 321, 21);
+        jLabel2.setBounds(140, 400, 321, 21);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 204));
         jLabel3.setText("SELECT A MEETING ORG:");
         add(jLabel3);
-        jLabel3.setBounds(19, 453, 321, 22);
+        jLabel3.setBounds(140, 470, 321, 22);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 204));
         jLabel4.setText("SELECT A WEDDING ORG:");
         add(jLabel4);
-        jLabel4.setBounds(19, 529, 321, 22);
+        jLabel4.setBounds(140, 540, 321, 22);
 
         add(birthdayOrg);
-        birthdayOrg.setBounds(391, 386, 202, 23);
+        birthdayOrg.setBounds(510, 400, 202, 23);
 
         meetingOrg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,7 +119,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
             }
         });
         add(meetingOrg);
-        meetingOrg.setBounds(391, 455, 202, 23);
+        meetingOrg.setBounds(510, 470, 202, 23);
 
         weddingOrg.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,7 +127,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
             }
         });
         add(weddingOrg);
-        weddingOrg.setBounds(391, 531, 202, 23);
+        weddingOrg.setBounds(510, 550, 202, 23);
 
         confirmBtn.setBackground(new java.awt.Color(255, 255, 204));
         confirmBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -139,7 +139,7 @@ public class DisplayEventPanel extends javax.swing.JPanel {
             }
         });
         add(confirmBtn);
-        confirmBtn.setBounds(669, 622, 180, 50);
+        confirmBtn.setBounds(780, 460, 180, 50);
 
         denyButton.setBackground(new java.awt.Color(255, 255, 204));
         denyButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -151,12 +151,12 @@ public class DisplayEventPanel extends javax.swing.JPanel {
             }
         });
         add(denyButton);
-        denyButton.setBounds(669, 684, 180, 50);
+        denyButton.setBounds(780, 520, 180, 50);
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventManagerRole/N.jpeg"))); // NOI18N
         jLabel5.setText("jLabel5");
         add(jLabel5);
-        jLabel5.setBounds(0, 0, 880, 770);
+        jLabel5.setBounds(0, 0, 1150, 800);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

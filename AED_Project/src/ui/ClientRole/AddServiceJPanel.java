@@ -117,7 +117,7 @@ public class AddServiceJPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/service.png"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(0, 0, 810, 650);
+        jLabel2.setBounds(0, 0, 990, 670);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEventActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEventActionPerformed

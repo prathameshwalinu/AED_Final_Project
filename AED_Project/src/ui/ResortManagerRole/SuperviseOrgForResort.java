@@ -93,7 +93,7 @@ public class SuperviseOrgForResort extends javax.swing.JPanel {
             }
         });
         add(orgCombo);
-        orgCombo.setBounds(336, 387, 212, 23);
+        orgCombo.setBounds(360, 370, 212, 23);
 
         updateButton.setBackground(new java.awt.Color(204, 255, 255));
         updateButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -110,7 +110,7 @@ public class SuperviseOrgForResort extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("CONTACT");
         add(jLabel3);
-        jLabel3.setBounds(83, 522, 236, 22);
+        jLabel3.setBounds(100, 500, 236, 22);
 
         txtCreateMobileNumber.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,7 +118,7 @@ public class SuperviseOrgForResort extends javax.swing.JPanel {
             }
         });
         add(txtCreateMobileNumber);
-        txtCreateMobileNumber.setBounds(337, 523, 211, 25);
+        txtCreateMobileNumber.setBounds(360, 500, 211, 25);
 
         addBtn.setBackground(new java.awt.Color(204, 255, 255));
         addBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -137,7 +137,7 @@ public class SuperviseOrgForResort extends javax.swing.JPanel {
             }
         });
         add(nameField);
-        nameField.setBounds(336, 459, 212, 26);
+        nameField.setBounds(360, 440, 212, 26);
 
         backButton.setBackground(new java.awt.Color(204, 255, 255));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -154,11 +154,11 @@ public class SuperviseOrgForResort extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("NAME");
         add(jLabel1);
-        jLabel1.setBounds(83, 457, 235, 22);
+        jLabel1.setBounds(100, 440, 235, 22);
 
         lblsysadmin.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblsysadmin.setForeground(new java.awt.Color(255, 255, 255));
-        lblsysadmin.setText("SUPERVISE ORGANISATION FOR RESORT");
+        lblsysadmin.setText("MANAGE ORGANISATION FOR RESORT");
         add(lblsysadmin);
         lblsysadmin.setBounds(102, 79, 769, 43);
 
@@ -166,13 +166,13 @@ public class SuperviseOrgForResort extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("CITY");
         add(jLabel6);
-        jLabel6.setBounds(83, 583, 236, 22);
+        jLabel6.setBounds(100, 560, 236, 22);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("ORGANISATION TYPE");
         add(jLabel2);
-        jLabel2.setBounds(83, 388, 235, 22);
+        jLabel2.setBounds(100, 370, 235, 22);
 
         deleteBtn.setBackground(new java.awt.Color(204, 255, 255));
         deleteBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -185,14 +185,14 @@ public class SuperviseOrgForResort extends javax.swing.JPanel {
         add(deleteBtn);
         deleteBtn.setBounds(890, 293, 114, 40);
         add(cityNameTextField);
-        cityNameTextField.setBounds(337, 583, 211, 27);
+        cityNameTextField.setBounds(360, 560, 211, 27);
         add(error_mobilenumber);
         error_mobilenumber.setBounds(236, 491, 215, 25);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ResortManagerRole/hotel5.jpg"))); // NOI18N
         jLabel4.setText("jLabel4");
         add(jLabel4);
-        jLabel4.setBounds(0, 0, 1060, 690);
+        jLabel4.setBounds(0, 0, 1170, 760);
     }// </editor-fold>//GEN-END:initComponents
     private void txtCreateMobileNumberKeyReleased(java.awt.event.KeyEvent evt){
     String PATTERN = "^[0-9]{0,10}$";

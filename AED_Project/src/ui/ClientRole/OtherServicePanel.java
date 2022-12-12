@@ -46,7 +46,7 @@ public class OtherServicePanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("HOTEL SERVICE PANEL");
         add(jLabel1);
-        jLabel1.setBounds(202, 81, 423, 43);
+        jLabel1.setBounds(410, 110, 423, 43);
 
         backBtn.setBackground(new java.awt.Color(204, 255, 255));
         backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -75,7 +75,7 @@ public class OtherServicePanel extends javax.swing.JPanel {
         RBtnCarService.setForeground(new java.awt.Color(255, 255, 255));
         RBtnCarService.setText("CAR SERVICE ($100)");
         add(RBtnCarService);
-        RBtnCarService.setBounds(430, 290, 211, 26);
+        RBtnCarService.setBounds(670, 240, 211, 26);
 
         placeRequest.setBackground(new java.awt.Color(204, 255, 255));
         placeRequest.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -87,7 +87,7 @@ public class OtherServicePanel extends javax.swing.JPanel {
             }
         });
         add(placeRequest);
-        placeRequest.setBounds(562, 664, 231, 47);
+        placeRequest.setBounds(570, 290, 231, 47);
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -100,7 +100,7 @@ public class OtherServicePanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/hotel5.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(0, 0, 840, 770);
+        jLabel2.setBounds(0, 0, 1180, 840);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

@@ -90,7 +90,7 @@ public class ResortMainPanel extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ResortManagerRole/hotel5.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1);
-        jLabel1.setBounds(0, 0, 910, 590);
+        jLabel1.setBounds(0, 0, 1100, 730);
     }// </editor-fold>//GEN-END:initComponents
 
     private void orgAdminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgAdminBtnActionPerformed

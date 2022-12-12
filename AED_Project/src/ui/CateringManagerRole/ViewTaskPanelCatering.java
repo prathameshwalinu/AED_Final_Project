@@ -121,7 +121,7 @@ public class ViewTaskPanelCatering extends javax.swing.JPanel {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/CateringManagerRole/catbk.jpeg"))); // NOI18N
         jLabel3.setText("jLabel3");
         add(jLabel3);
-        jLabel3.setBounds(0, 0, 860, 730);
+        jLabel3.setBounds(0, 0, 1110, 760);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

@@ -214,7 +214,7 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EntertainmentsupervisorRole/entertainmentfinal.jpeg"))); // NOI18N
         jLabel7.setText("jLabel7");
         add(jLabel7);
-        jLabel7.setBounds(0, 0, 1040, 640);
+        jLabel7.setBounds(0, 0, 1170, 780);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

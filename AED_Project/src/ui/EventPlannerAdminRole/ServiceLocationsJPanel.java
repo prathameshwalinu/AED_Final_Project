@@ -80,7 +80,7 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
 
         lblServiceLocation.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblServiceLocation.setForeground(new java.awt.Color(255, 255, 255));
-        lblServiceLocation.setText("SERVICE LOCATIONS");
+        lblServiceLocation.setText("MANAGE LOCATIONS");
         add(lblServiceLocation);
         lblServiceLocation.setBounds(233, 79, 409, 43);
 
@@ -109,7 +109,7 @@ public class ServiceLocationsJPanel extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventPlannerAdminRole/client.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1);
-        jLabel1.setBounds(0, 0, 830, 650);
+        jLabel1.setBounds(0, 0, 1170, 800);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed

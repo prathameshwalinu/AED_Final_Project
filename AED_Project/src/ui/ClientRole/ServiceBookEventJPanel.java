@@ -201,7 +201,7 @@ public class ServiceBookEventJPanel extends javax.swing.JPanel {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/hotel5.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
         add(jLabel3);
-        jLabel3.setBounds(0, 0, 870, 790);
+        jLabel3.setBounds(0, 0, 1130, 790);
     }// </editor-fold>//GEN-END:initComponents
 
     private void radioWeddingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioWeddingActionPerformed

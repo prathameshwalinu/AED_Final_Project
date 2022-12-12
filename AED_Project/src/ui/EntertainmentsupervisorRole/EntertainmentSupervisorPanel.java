@@ -40,7 +40,7 @@ public class EntertainmentSupervisorPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ENTERTAINMENT SUPERVISOR PANEL ");
         add(jLabel1);
-        jLabel1.setBounds(67, 116, 708, 43);
+        jLabel1.setBounds(210, 120, 708, 43);
 
         btnDisplayDashboard.setBackground(new java.awt.Color(153, 153, 255));
         btnDisplayDashboard.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -52,7 +52,7 @@ public class EntertainmentSupervisorPanel extends javax.swing.JPanel {
             }
         });
         add(btnDisplayDashboard);
-        btnDisplayDashboard.setBounds(264, 299, 301, 42);
+        btnDisplayDashboard.setBounds(410, 300, 301, 42);
 
         btnSuperviseEvent.setBackground(new java.awt.Color(153, 153, 255));
         btnSuperviseEvent.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -64,7 +64,7 @@ public class EntertainmentSupervisorPanel extends javax.swing.JPanel {
             }
         });
         add(btnSuperviseEvent);
-        btnSuperviseEvent.setBounds(264, 359, 301, 45);
+        btnSuperviseEvent.setBounds(410, 360, 301, 45);
 
         btnSuperviseEventAdmin.setBackground(new java.awt.Color(153, 153, 255));
         btnSuperviseEventAdmin.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -76,12 +76,12 @@ public class EntertainmentSupervisorPanel extends javax.swing.JPanel {
             }
         });
         add(btnSuperviseEventAdmin);
-        btnSuperviseEventAdmin.setBounds(264, 422, 301, 44);
+        btnSuperviseEventAdmin.setBounds(410, 420, 301, 44);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EntertainmentsupervisorRole/entertainmentfinal.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(0, 0, 860, 650);
+        jLabel2.setBounds(0, 0, 1130, 790);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDisplayDashboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayDashboardActionPerformed
