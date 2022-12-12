@@ -86,7 +86,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
 
         lblBCSupr.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblBCSupr.setForeground(new java.awt.Color(255, 255, 255));
-        lblBCSupr.setText("BUSINESS CATALOGUE SUPERVISOR");
+        lblBCSupr.setText("ENTERPRISE CATALOGUE ADMIN");
         add(lblBCSupr);
         lblBCSupr.setBounds(133, 71, 695, 43);
 
@@ -107,7 +107,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "LOCATION NAME", "BUSINESS CATALOGUE TYPE", "BUSINESS CATALOGUE NAME", "NAME", "USERNAME", "PASSWORD"
+                "LOCATION NAME", "ENTERPRISE TYPE", "ENTERPRISE CATALOGUE NAME", "NAME", "USERNAME", "PASSWORD"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -150,7 +150,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("BUSINESS CATALOGUE");
+        jLabel1.setText("ENTERPRISE CATALOGUE");
         add(jLabel1);
         jLabel1.setBounds(73, 472, 285, 22);
 
@@ -183,7 +183,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("SUPERVISOR NAME");
+        jLabel3.setText("ADMIN NAME");
         add(jLabel3);
         jLabel3.setBounds(73, 522, 285, 22);
 
@@ -208,7 +208,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
         passwordField.setBounds(434, 635, 228, 23);
 
         cmbBCType.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        cmbBCType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select a Business Catalogue", "Entertainment", "Catering", "Resort", "Event" }));
+        cmbBCType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select Enterprise Catalogue", "Entertainment", "Catering", "Resort", "Event" }));
         cmbBCType.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbBCTypeActionPerformed(evt);
@@ -219,12 +219,12 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("BUSINESS CATALOGUE NAME");
+        jLabel7.setText("ENTERPRISE NAME");
         add(jLabel7);
         jLabel7.setBounds(73, 419, 285, 22);
 
         cmbBCName.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
-        cmbBCName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecte name of enterprise" }));
+        cmbBCName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Selecte Name of Enterprise" }));
         add(cmbBCName);
         cmbBCName.setBounds(434, 420, 228, 23);
 

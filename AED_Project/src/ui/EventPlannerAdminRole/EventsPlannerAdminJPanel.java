@@ -35,41 +35,57 @@ public class EventsPlannerAdminJPanel extends javax.swing.JPanel {
         btnClients = new javax.swing.JButton();
         lbleventadmin = new javax.swing.JLabel();
         btnEventSupervisor = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(null);
 
+        btnServiceLocations.setBackground(new java.awt.Color(255, 255, 204));
         btnServiceLocations.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        btnServiceLocations.setText("SERVICE LOCATIONS");
+        btnServiceLocations.setText("MANAGE LOCATIONS");
         btnServiceLocations.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnServiceLocations.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnServiceLocationsActionPerformed(evt);
             }
         });
+        add(btnServiceLocations);
+        btnServiceLocations.setBounds(311, 225, 247, 42);
 
+        btnBusinessCatalogue.setBackground(new java.awt.Color(255, 255, 204));
         btnBusinessCatalogue.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        btnBusinessCatalogue.setText("BUSINESS CATALOGUE");
+        btnBusinessCatalogue.setText("ENTERPRISE CATALOGUE");
         btnBusinessCatalogue.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnBusinessCatalogue.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBusinessCatalogueActionPerformed(evt);
             }
         });
+        add(btnBusinessCatalogue);
+        btnBusinessCatalogue.setBounds(311, 310, 247, 48);
 
+        btnClients.setBackground(new java.awt.Color(255, 255, 204));
         btnClients.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        btnClients.setText("CLIENT");
+        btnClients.setText("CLIENT ADMIN");
         btnClients.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnClients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnClientsActionPerformed(evt);
             }
         });
+        add(btnClients);
+        btnClients.setBounds(311, 497, 247, 43);
 
+        lbleventadmin.setBackground(new java.awt.Color(255, 255, 255));
         lbleventadmin.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
-        lbleventadmin.setText("EVENTS PLANNER ADMIN");
+        lbleventadmin.setForeground(new java.awt.Color(255, 255, 204));
+        lbleventadmin.setText("EVENT PLANNER ADMIN");
+        add(lbleventadmin);
+        lbleventadmin.setBounds(230, 130, 486, 53);
 
+        btnEventSupervisor.setBackground(new java.awt.Color(255, 255, 204));
         btnEventSupervisor.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
-        btnEventSupervisor.setText("BUSINESS SUPERVISOR");
+        btnEventSupervisor.setText("ENTERPRISE ADMIN");
         btnEventSupervisor.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnEventSupervisor.setMaximumSize(new java.awt.Dimension(225, 27));
         btnEventSupervisor.setMinimumSize(new java.awt.Dimension(225, 27));
@@ -79,40 +95,13 @@ public class EventsPlannerAdminJPanel extends javax.swing.JPanel {
                 btnEventSupervisorActionPerformed(evt);
             }
         });
+        add(btnEventSupervisor);
+        btnEventSupervisor.setBounds(311, 408, 247, 42);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 196, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(lbleventadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 486, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(175, 175, 175))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(btnBusinessCatalogue, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnServiceLocations, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnEventSupervisor, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnClients, javax.swing.GroupLayout.PREFERRED_SIZE, 247, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(299, 299, 299))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(lbleventadmin, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79)
-                .addComponent(btnServiceLocations, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(43, 43, 43)
-                .addComponent(btnBusinessCatalogue, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(50, 50, 50)
-                .addComponent(btnEventSupervisor, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(47, 47, 47)
-                .addComponent(btnClients, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(182, Short.MAX_VALUE))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventPlannerAdminRole/N.jpeg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1);
+        jLabel1.setBounds(0, 0, 860, 720);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnBusinessCatalogueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBusinessCatalogueActionPerformed
@@ -138,6 +127,7 @@ public class EventsPlannerAdminJPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnClients;
     private javax.swing.JButton btnEventSupervisor;
     private javax.swing.JButton btnServiceLocations;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lbleventadmin;
     // End of variables declaration//GEN-END:variables
 }

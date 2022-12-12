@@ -74,9 +74,9 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
 
         lbLBC.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lbLBC.setForeground(new java.awt.Color(255, 255, 255));
-        lbLBC.setText("BUSINESS CATALOGUE");
+        lbLBC.setText("ENTERPRISE CATALOGUE");
         add(lbLBC);
-        lbLBC.setBounds(259, 92, 444, 43);
+        lbLBC.setBounds(259, 92, 490, 43);
 
         BtnUpdate.setBackground(new java.awt.Color(204, 255, 255));
         BtnUpdate.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -169,9 +169,9 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
 
         jLabel3.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("BUSNIESS CATALOGUE NAME");
+        jLabel3.setText("ENTERPRISE NAME");
         add(jLabel3);
-        jLabel3.setBounds(51, 538, 264, 29);
+        jLabel3.setBounds(51, 538, 170, 29);
 
         cmbLocationType.setFont(new java.awt.Font("Baskerville Old Face", 0, 18)); // NOI18N
         cmbLocationType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select any one", "Event", "Resort", "Catering", "Entertainment" }));
