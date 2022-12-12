@@ -47,7 +47,7 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
             }
         });
         add(orgBtn);
-        orgBtn.setBounds(300, 330, 302, 40);
+        orgBtn.setBounds(480, 420, 302, 40);
 
         viewTask.setBackground(new java.awt.Color(255, 255, 204));
         viewTask.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -59,13 +59,13 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
             }
         });
         add(viewTask);
-        viewTask.setBounds(300, 260, 302, 39);
+        viewTask.setBounds(480, 350, 302, 39);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 204));
         jLabel1.setText("EVENT SUPERVISOR PANEL ");
         add(jLabel1);
-        jLabel1.setBounds(200, 120, 508, 43);
+        jLabel1.setBounds(380, 210, 508, 43);
 
         orgadmin.setBackground(new java.awt.Color(255, 255, 204));
         orgadmin.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -77,12 +77,12 @@ public class EventSupervisorPanel extends javax.swing.JPanel {
             }
         });
         add(orgadmin);
-        orgadmin.setBounds(300, 410, 302, 41);
+        orgadmin.setBounds(480, 500, 302, 41);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventManagerRole/N.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(0, 0, 840, 670);
+        jLabel2.setBounds(0, 0, 1130, 780);
     }// </editor-fold>//GEN-END:initComponents
 
     private void orgBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orgBtnActionPerformed

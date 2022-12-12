@@ -232,7 +232,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventPlannerAdminRole/client.jpeg"))); // NOI18N
         jLabel6.setText("jLabel6");
         add(jLabel6);
-        jLabel6.setBounds(0, 0, 990, 710);
+        jLabel6.setBounds(0, 0, 1220, 830);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed

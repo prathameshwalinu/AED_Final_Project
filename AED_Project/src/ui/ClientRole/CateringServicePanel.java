@@ -70,7 +70,7 @@ public class CateringServicePanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setText("MENU ITEMS IN DINING");
         add(jLabel1);
-        jLabel1.setBounds(181, 140, 539, 43);
+        jLabel1.setBounds(200, 140, 539, 43);
 
         placeOrder.setBackground(new java.awt.Color(255, 204, 204));
         placeOrder.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -106,7 +106,7 @@ public class CateringServicePanel extends javax.swing.JPanel {
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/catbk.jpeg"))); // NOI18N
         jLabel3.setText("jLabel3");
         add(jLabel3);
-        jLabel3.setBounds(0, 0, 840, 760);
+        jLabel3.setBounds(0, 0, 1070, 780);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

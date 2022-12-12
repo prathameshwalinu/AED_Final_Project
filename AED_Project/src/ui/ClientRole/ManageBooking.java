@@ -50,7 +50,7 @@ public class ManageBooking extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("BOOKING DETAILS");
         add(jLabel1);
-        jLabel1.setBounds(248, 83, 357, 35);
+        jLabel1.setBounds(370, 90, 357, 35);
 
         backBtn.setBackground(new java.awt.Color(204, 255, 255));
         backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -84,7 +84,7 @@ public class ManageBooking extends javax.swing.JPanel {
         jScrollPane2.setViewportView(jTable1);
 
         add(jScrollPane2);
-        jScrollPane2.setBounds(6, 168, 810, 229);
+        jScrollPane2.setBounds(130, 160, 810, 229);
 
         addServiceBtn.setBackground(new java.awt.Color(204, 255, 255));
         addServiceBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -96,7 +96,7 @@ public class ManageBooking extends javax.swing.JPanel {
             }
         });
         add(addServiceBtn);
-        addServiceBtn.setBounds(558, 449, 258, 53);
+        addServiceBtn.setBounds(680, 440, 258, 53);
 
         viewOrder.setBackground(new java.awt.Color(204, 255, 255));
         viewOrder.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -108,12 +108,12 @@ public class ManageBooking extends javax.swing.JPanel {
             }
         });
         add(viewOrder);
-        viewOrder.setBounds(558, 528, 258, 53);
+        viewOrder.setBounds(680, 520, 258, 53);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/client.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(0, 0, 900, 670);
+        jLabel2.setBounds(0, 0, 1110, 750);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed

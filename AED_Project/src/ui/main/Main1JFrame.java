@@ -54,7 +54,7 @@ public class Main1JFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ControlPanel.setBackground(new java.awt.Color(51, 153, 255));
+        ControlPanel.setBackground(new java.awt.Color(255, 204, 153));
         ControlPanel.setPreferredSize(new java.awt.Dimension(138, 813));
 
         jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
@@ -63,16 +63,22 @@ public class Main1JFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
         jLabel2.setText("PASSWORD");
 
-        loginBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 14)); // NOI18N
+        loginBtn.setBackground(new java.awt.Color(204, 255, 255));
+        loginBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         loginBtn.setText("LOGIN");
+        loginBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        loginBtn.setOpaque(true);
         loginBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 loginBtnActionPerformed(evt);
             }
         });
 
-        logoutBtn.setFont(new java.awt.Font("Baskerville Old Face", 1, 14)); // NOI18N
+        logoutBtn.setBackground(new java.awt.Color(204, 255, 255));
+        logoutBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         logoutBtn.setText("LOGOUT");
+        logoutBtn.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        logoutBtn.setOpaque(true);
         logoutBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 logoutBtnActionPerformed(evt);
@@ -90,8 +96,8 @@ public class Main1JFrame extends javax.swing.JFrame {
                     .addGroup(ControlPanelLayout.createSequentialGroup()
                         .addGap(63, 63, 63)
                         .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(loginBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(logoutBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)))
                     .addGroup(ControlPanelLayout.createSequentialGroup()
                         .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel2)
@@ -113,11 +119,11 @@ public class Main1JFrame extends javax.swing.JFrame {
                 .addGroup(ControlPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(passwordField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(44, 44, 44)
+                .addGap(145, 145, 145)
                 .addComponent(loginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(41, 41, 41)
+                .addGap(29, 29, 29)
                 .addComponent(logoutBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(405, Short.MAX_VALUE))
+                .addContainerGap(316, Short.MAX_VALUE))
         );
 
         jSplitPane.setLeftComponent(ControlPanel);
@@ -125,16 +131,16 @@ public class Main1JFrame extends javax.swing.JFrame {
         WorkArea.setBackground(new java.awt.Color(255, 255, 255));
         WorkArea.setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("Georgia", 1, 48)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Charmonman", 1, 48)); // NOI18N
         jLabel3.setText("Holiday Planner ");
         jLabel3.setDoubleBuffered(true);
         WorkArea.add(jLabel3);
-        jLabel3.setBounds(360, 370, 420, 160);
+        jLabel3.setBounds(370, 220, 420, 160);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/main/23.jpeg"))); // NOI18N
         jLabel4.setText("jLabel4");
         WorkArea.add(jLabel4);
-        jLabel4.setBounds(0, 0, 1120, 870);
+        jLabel4.setBounds(0, 0, 1966, 1080);
 
         jSplitPane.setRightComponent(WorkArea);
 

@@ -78,13 +78,13 @@ public class SuperviseRoomPanel extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(104, 137, 688, 203);
+        jScrollPane1.setBounds(250, 240, 688, 203);
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("ROOM TYPE");
         add(jLabel1);
-        jLabel1.setBounds(104, 413, 122, 22);
+        jLabel1.setBounds(250, 510, 122, 22);
 
         roomTypeComboBox.setFont(new java.awt.Font("Lucida Grande", 0, 14)); // NOI18N
         roomTypeComboBox.addActionListener(new java.awt.event.ActionListener() {
@@ -93,7 +93,7 @@ public class SuperviseRoomPanel extends javax.swing.JPanel {
             }
         });
         add(roomTypeComboBox);
-        roomTypeComboBox.setBounds(266, 414, 231, 23);
+        roomTypeComboBox.setBounds(410, 510, 231, 23);
 
         backButton.setBackground(new java.awt.Color(204, 255, 255));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -111,7 +111,7 @@ public class SuperviseRoomPanel extends javax.swing.JPanel {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("MANAGE ROOMS");
         add(jLabel2);
-        jLabel2.setBounds(274, 76, 404, 43);
+        jLabel2.setBounds(420, 180, 330, 43);
 
         addButton.setBackground(new java.awt.Color(204, 255, 255));
         addButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -123,12 +123,12 @@ public class SuperviseRoomPanel extends javax.swing.JPanel {
             }
         });
         add(addButton);
-        addButton.setBounds(692, 411, 100, 26);
+        addButton.setBounds(830, 510, 100, 26);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ResortManagerRole/hotel5.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
         add(jLabel3);
-        jLabel3.setBounds(0, 0, 840, 600);
+        jLabel3.setBounds(0, 0, 1160, 790);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

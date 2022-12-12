@@ -137,7 +137,7 @@ public class ManageClientJPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "CLIENT NAME", "MOBILE NO", "STREET", "CITY", "USERNAME", "PASSWORD"
+                "CLIENT NAME", "MOBILE NO", "CITY", "STREET", "USERNAME", "PASSWORD"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -227,7 +227,7 @@ public class ManageClientJPanel extends javax.swing.JPanel {
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/EventPlannerAdminRole/client.jpeg"))); // NOI18N
         jLabel1.setText("jLabel1");
         add(jLabel1);
-        jLabel1.setBounds(0, 0, 1050, 700);
+        jLabel1.setBounds(0, 0, 1210, 830);
     }// </editor-fold>//GEN-END:initComponents
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed

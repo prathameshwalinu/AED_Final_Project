@@ -173,7 +173,7 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/CateringManagerRole/catbk.jpeg"))); // NOI18N
         jLabel6.setText("jLabel6");
         add(jLabel6);
-        jLabel6.setBounds(0, 0, 950, 690);
+        jLabel6.setBounds(0, 0, 1090, 740);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

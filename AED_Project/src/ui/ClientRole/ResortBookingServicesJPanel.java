@@ -188,7 +188,7 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/hotel5.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(0, 0, 950, 880);
+        jLabel2.setBounds(0, 0, 1170, 880);
     }// </editor-fold>//GEN-END:initComponents
 
     private void bookRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookRoomBtnActionPerformed

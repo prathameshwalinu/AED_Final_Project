@@ -37,7 +37,7 @@ public class ClientJPanel extends javax.swing.JPanel {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("CLIENT PANEL ");
         add(jLabel1);
-        jLabel1.setBounds(240, 102, 320, 43);
+        jLabel1.setBounds(430, 170, 320, 43);
 
         btnBookResort.setBackground(new java.awt.Color(204, 255, 255));
         btnBookResort.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -49,7 +49,7 @@ public class ClientJPanel extends javax.swing.JPanel {
             }
         });
         add(btnBookResort);
-        btnBookResort.setBounds(226, 276, 334, 38);
+        btnBookResort.setBounds(420, 350, 334, 38);
 
         backBtn.setBackground(new java.awt.Color(204, 255, 255));
         backBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -68,12 +68,12 @@ public class ClientJPanel extends javax.swing.JPanel {
             }
         });
         add(manageBooking);
-        manageBooking.setBounds(226, 361, 334, 39);
+        manageBooking.setBounds(420, 430, 334, 39);
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ClientRole/client.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(0, 0, 780, 750);
+        jLabel2.setBounds(0, 0, 1110, 790);
     }// </editor-fold>//GEN-END:initComponents
 
     private void manageBookingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_manageBookingActionPerformed

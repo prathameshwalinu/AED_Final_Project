@@ -90,11 +90,11 @@ public class AddOrderJPanel extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel1.setText("ADD AN ITEM ");
         add(jLabel1);
-        jLabel1.setBounds(37, 396, 140, 22);
+        jLabel1.setBounds(390, 370, 140, 22);
 
         menuField.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         add(menuField);
-        menuField.setBounds(218, 397, 177, 23);
+        menuField.setBounds(570, 370, 177, 23);
 
         addBtn.setBackground(new java.awt.Color(255, 204, 204));
         addBtn.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -106,7 +106,7 @@ public class AddOrderJPanel extends javax.swing.JPanel {
             }
         });
         add(addBtn);
-        addBtn.setBounds(620, 570, 112, 26);
+        addBtn.setBounds(640, 480, 112, 26);
 
         backButton.setBackground(new java.awt.Color(255, 204, 204));
         backButton.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
@@ -123,9 +123,9 @@ public class AddOrderJPanel extends javax.swing.JPanel {
         jLabel3.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel3.setText("PRICE ");
         add(jLabel3);
-        jLabel3.setBounds(37, 458, 140, 22);
+        jLabel3.setBounds(390, 440, 140, 22);
         add(priceField);
-        priceField.setBounds(218, 460, 177, 23);
+        priceField.setBounds(570, 440, 177, 23);
 
         jLabel4.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel4.setText("MENU ITEM LIST");
@@ -135,7 +135,7 @@ public class AddOrderJPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/CateringManagerRole/catbk.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(0, 0, 810, 680);
+        jLabel2.setBounds(0, 0, 1180, 790);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed

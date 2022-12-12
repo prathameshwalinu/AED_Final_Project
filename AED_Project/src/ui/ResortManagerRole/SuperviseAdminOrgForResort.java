@@ -159,7 +159,7 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
 
         lblsysadmin.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         lblsysadmin.setForeground(new java.awt.Color(255, 255, 255));
-        lblsysadmin.setText("SUPERVISE RESORT ORGANISATION ADMIN");
+        lblsysadmin.setText("MANAGE RESORT ORGANISATION ADMIN");
         add(lblsysadmin);
         lblsysadmin.setBounds(105, 83, 823, 43);
 
@@ -215,7 +215,7 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/ResortManagerRole/hotel5.jpg"))); // NOI18N
         jLabel7.setText("jLabel7");
         add(jLabel7);
-        jLabel7.setBounds(0, 0, 1150, 650);
+        jLabel7.setBounds(0, 0, 1190, 740);
     }// </editor-fold>//GEN-END:initComponents
 
     private void nameFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nameFieldActionPerformed

@@ -88,7 +88,7 @@ public class CateringMainPanel extends javax.swing.JPanel {
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/CateringManagerRole/catbk.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
         add(jLabel2);
-        jLabel2.setBounds(0, 0, 870, 730);
+        jLabel2.setBounds(0, 0, 1140, 780);
     }// </editor-fold>//GEN-END:initComponents
 
     private void viewTaskActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewTaskActionPerformed
