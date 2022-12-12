@@ -150,9 +150,9 @@ public class SuperviseOrganizationPanel extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("SUPERVISE ORGANIZATION FOR ENTERTAINMENT");
+        jLabel1.setText("ENTERTAINMENT ORGANIZATION MANAGEMENT");
         add(jLabel1);
-        jLabel1.setBounds(109, 96, 948, 43);
+        jLabel1.setBounds(90, 110, 920, 43);
 
         txtMobile.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         txtMobile.addActionListener(new java.awt.event.ActionListener() {

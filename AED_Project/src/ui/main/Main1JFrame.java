@@ -54,7 +54,7 @@ public class Main1JFrame extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        ControlPanel.setBackground(new java.awt.Color(51, 204, 255));
+        ControlPanel.setBackground(new java.awt.Color(51, 153, 255));
         ControlPanel.setPreferredSize(new java.awt.Dimension(138, 813));
 
         jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
@@ -125,11 +125,11 @@ public class Main1JFrame extends javax.swing.JFrame {
         WorkArea.setBackground(new java.awt.Color(255, 255, 255));
         WorkArea.setLayout(null);
 
-        jLabel3.setFont(new java.awt.Font("Charmonman", 1, 48)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Georgia", 1, 48)); // NOI18N
         jLabel3.setText("Holiday Planner ");
         jLabel3.setDoubleBuffered(true);
         WorkArea.add(jLabel3);
-        jLabel3.setBounds(510, 310, 385, 91);
+        jLabel3.setBounds(360, 370, 420, 160);
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/ui/main/23.jpeg"))); // NOI18N
         jLabel4.setText("jLabel4");
