@@ -248,7 +248,7 @@ error_mobilenumber.setText(null);
                     row[3] = networkName;
                     model.addRow(row);
                     JOptionPane.showMessageDialog(this, " Organisation added successfully");
-                    populateTable();
+//                    populateTable();
                     return;                               
                 } else {
                     resort.get(i).addCarServiceORG(name, contact, networkName);
@@ -258,7 +258,7 @@ error_mobilenumber.setText(null);
                     row[3] = networkName;
                     model.addRow(row);
                     JOptionPane.showMessageDialog(this, "Organisation added successfully");
-                    populateTable();
+//                    populateTable();
                     return;
                 }
             }
