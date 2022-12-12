@@ -231,47 +231,38 @@ error_mobilenumber.setText(null);
         String networkName = location.getName(); //find the location from city-combobox
         String name = nameField.getText();
         String contact = txtCreateMobileNumber.getText();
-        
+        boolean valid = validationForFields();
+        if(valid)
+        {
+            String orgType1 = orgCombo.getSelectedItem().toString();           
+            BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+            List<Resort> resort = businessCatalogueDirectory.getListOfResort();
 
-        if (name == null || name.length() < 2) {
-            JOptionPane.showMessageDialog(this, "Organization name should be at least 2 characters long.");
-            return;
-            
+            for (int i = 0; i < resort.size(); i++) {
+                resort.get(i).findSupervisor(user);      
+                if (orgType1.equals("TourGuide")) {
+                    resort.get(i).addTourGuideORG(name, contact, networkName);
+                    row[0] = orgType1;
+                    row[1] = name;
+                    row[2] = contact;
+                    row[3] = networkName;
+                    model.addRow(row);
+                    JOptionPane.showMessageDialog(this, " Organisation added successfully");
+                    populateTable();
+                    return;                               
+                } else {
+                    resort.get(i).addCarServiceORG(name, contact, networkName);
+                    row[0] = orgType1;
+                    row[1] = name;
+                    row[2] = contact;
+                    row[3] = networkName;
+                    model.addRow(row);
+                    JOptionPane.showMessageDialog(this, "Organisation added successfully");
+                    populateTable();
+                    return;
+                }
+            }
         }
-        
-        
-        
-        else {
-            if(txtCreateMobileNumber.getText().length() != 10){
-             invalidphoneno();   
-            }
-            else{
-        String orgType1 = orgCombo.getSelectedItem().toString();      // org-type (physician org)     
-        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
-        List<Resort> resort = businessCatalogueDirectory.getListOfResort();
-
-        for (int i = 0; i < resort.size(); i++) {
-            resort.get(i).findSupervisor(user);      //find healthclub for which manager is working for
-            if (orgType1.equals("TourGuide")) {
-                resort.get(i).addTourGuideORG(name, contact, networkName);
-                row[0] = orgType1;
-                row[1] = name;
-                row[2] = contact;
-                row[3] = networkName;
-                model.addRow(row);
-                JOptionPane.showMessageDialog(this, " Organisation added successfully");
-                return;                               //healthclub found
-            } else {
-                resort.get(i).addCarServiceORG(name, contact, networkName);
-                row[0] = orgType1;
-                row[1] = name;
-                row[2] = contact;
-                row[3] = networkName;
-                model.addRow(row);
-                JOptionPane.showMessageDialog(this, "Organisation added successfully");
-                return;
-            }
-        }}}
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void deleteBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteBtnActionPerformed
@@ -367,7 +358,45 @@ error_mobilenumber.setText(null);
         orgCombo.setSelectedItem(orgType);
         cityNameTextField.setEnabled(false);
     }//GEN-LAST:event_jTable1MouseClicked
+private boolean validationForFields() 
+{
+    if(nameField.getText().length()==0)
+    {
+         JOptionPane.showMessageDialog(this," Name Can't be blank, please enter Name");
+         nameField.requestFocus();
+         nameField.setText("");
+         return false;
+    }
 
+    else
+    {
+        if(!nameField.getText().matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$"))
+            {
+                 JOptionPane.showMessageDialog(this," Invalid name. ");
+                 nameField.requestFocus();
+                 nameField.setText("");
+                 return false;   
+            }
+    }
+    if(txtCreateMobileNumber.getText().isBlank())
+    {
+         JOptionPane.showMessageDialog(this,"Invalid Contact");
+         txtCreateMobileNumber.requestFocus();
+         txtCreateMobileNumber.setText("");
+        return false;
+    }
+    else
+    {
+        if(!txtCreateMobileNumber.getText().matches("^[2-9]{2}[0-9]{8}$"))
+        {
+                JOptionPane.showMessageDialog(this," Invalid Phone Number format, please enter a valid 10 digit US Phone No. ");
+                txtCreateMobileNumber.requestFocus();
+                txtCreateMobileNumber.setText("");
+               return false;
+        }
+    }
+    return true;
+}
     private void txtCreateMobileNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCreateMobileNumberActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCreateMobileNumberActionPerformed

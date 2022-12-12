@@ -6,7 +6,7 @@ package ui.ManagerRole;
 
 /**
  *
- * @author aishw
+ * @author nishapatil
  */
 public class ShowServicesJPanel extends javax.swing.JPanel {
 

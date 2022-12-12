@@ -194,6 +194,7 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
     private void bookRoomBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bookRoomBtnActionPerformed
         Date checkinDate = DCcheckin.getDate();
         Date checkoutdate = DCcheckout.getDate();
+        String email = emailid.getText();
         String city = cityCombo.getSelectedItem().toString();
         int roomCount = Integer.parseInt(roomField.getText());
         RoomType roomType = (RoomType) roomtypeComboBox.getSelectedItem();
@@ -207,31 +208,39 @@ public class ResortBookingServicesJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Checkout date should be after checkin date.");
             return;
         }
+               
+        if(emailid.getText() != null && !emailid.getText().matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
+            + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$"))
+            {
+                JOptionPane.showMessageDialog(this,"Invalid input : Invalid Email format. ");
+                emailid.requestFocus();
+                emailid.setText("");
 
-        ServiceLocation location = systems.findServiceLocation(city);
+            }
+            ServiceLocation location = systems.findServiceLocation(city);
 
-        Resort hotel = location.getBusinessCatalogueDirectory().findResort(cmbResort.getSelectedItem().toString());
-        List<HallType> availableRooms = hotel.availableRooms(checkinDate, checkoutdate, roomType);
-        if (availableRooms.size() < roomCount) {
-            JOptionPane.showMessageDialog(this, "Rooms not available for the specified date.");
-            return;
-        }
+            Resort hotel = location.getBusinessCatalogueDirectory().findResort(cmbResort.getSelectedItem().toString());
+            List<HallType> availableRooms = hotel.availableRooms(checkinDate, checkoutdate, roomType);
+            if (availableRooms.size() < roomCount) {
+                JOptionPane.showMessageDialog(this, "Rooms not available for the specified date.");
+                return;
+            }
 
-        hotel.bookRooms(checkinDate, checkoutdate, roomCount, roomType);
-        Client customer = systems.getClientDirectory().findClientUsername(username);
-        HallBooking booking = customer.addBooking(hotel, location);  //add bookings in customer class
-        booking.getResortService().getHallroomlist().createHallRoom(roomType);     // add rooms in booking class 
-        booking.setCheckin(checkinDate);
-        booking.setCheckout(checkoutdate);
-        booking.setStatus("Booked");
-        booking.setCost(roomType.getRate());
+            hotel.bookRooms(checkinDate, checkoutdate, roomCount, roomType);
+            Client customer = systems.getClientDirectory().findClientUsername(username);
+            HallBooking booking = customer.addBooking(hotel, location);  //add bookings in customer class
+            booking.getResortService().getHallroomlist().createHallRoom(roomType);     // add rooms in booking class 
+            booking.setCheckin(checkinDate);
+            booking.setCheckout(checkoutdate);
+            booking.setStatus("Booked");
+            booking.setCost(roomType.getRate());
 
-        JOptionPane.showMessageDialog(this, "Room booked successfully. The total cost for your booking is "
-                + (roomCount * roomType.getRate()) + "$");
-        callOnCreateMethod1.run();
-        
-        String message = booking.prettyPrint();
-        EmailFun.sendMail(emailid.getText(), message);
+            JOptionPane.showMessageDialog(this, "Room booked successfully. The total cost for your booking is "
+                    + (roomCount * roomType.getRate()) + "$");
+            callOnCreateMethod1.run();
+
+            String message = booking.prettyPrint();
+            EmailFun.sendMail(emailid.getText(), message);
     }//GEN-LAST:event_bookRoomBtnActionPerformed
 
     private void cityComboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cityComboActionPerformed

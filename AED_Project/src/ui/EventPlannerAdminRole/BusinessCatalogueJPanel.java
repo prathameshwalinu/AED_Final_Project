@@ -28,7 +28,7 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
     }
 
     public boolean validateName() {
-        if (txtBCName.getText().matches("[a-zA-Z]{2,19}")) {
+        if (txtName.getText().matches("[a-zA-Z]{2,19}")) {
             return true;
         } else {
             JOptionPane.showMessageDialog(this, "Invalid input : name should contain only alphabets");
@@ -55,7 +55,7 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnAdd = new javax.swing.JButton();
-        txtBCName = new javax.swing.JTextField();
+        txtName = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         cmbLocation = new javax.swing.JComboBox<>();
@@ -141,9 +141,9 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
         add(btnAdd);
         btnAdd.setBounds(838, 309, 129, 26);
 
-        txtBCName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        add(txtBCName);
-        txtBCName.setBounds(346, 538, 180, 28);
+        txtName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        add(txtName);
+        txtName.setBounds(346, 538, 180, 28);
 
         jLabel1.setFont(new java.awt.Font("Baskerville Old Face", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -295,15 +295,13 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
 
     private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
         String contact = txtMobile.getText();
-        String name = txtBCName.getText();
+        String name = txtName.getText();
         String locationName = cmbLocation.getSelectedItem().toString();
         String businessCatalogueType1 = cmbLocationType.getSelectedItem().toString();
         ServiceLocation network = Admin.findServiceLocation(locationName);
-
-        if (name == null || name.length() < 2) {
-            JOptionPane.showMessageDialog(this, "Invalid input: Enterprise name should be atleast 2 characters long.");
-            return;
-        }
+        boolean valid = validationForFields();
+        if(valid)
+        {
 
         BusinessCatalogueDirectory businessCatalogueDirectory = network.getBusinessCatalogueDirectory();
         if (businessCatalogueType1.equals("Entertainment") && businessCatalogueDirectory != null) {
@@ -325,8 +323,9 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, "Enterprise added successfully");
             return;
         }
-        txtBCName.setText("");
+        txtName.setText("");
         txtMobile.setText("");
+        }
     }//GEN-LAST:event_btnAddActionPerformed
 
     private void btnDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDisplayActionPerformed
@@ -386,7 +385,7 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
             return;
         }
 
-        BCToUpdate.setName(txtBCName.getText());
+        BCToUpdate.setName(txtName.getText());
         BCToUpdate.setContact(txtMobile.getText());
         populateTable();
     }//GEN-LAST:event_BtnUpdateActionPerformed
@@ -406,7 +405,7 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
 
         cmbLocation.setSelectedItem(locationName);
         cmbLocationType.setSelectedItem(bcType1);
-        txtBCName.setText(bcName);
+        txtName.setText(bcName);
         txtMobile.setText(bcContact);
     }//GEN-LAST:event_jTable1MouseClicked
 
@@ -429,10 +428,48 @@ public class BusinessCatalogueJPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbLBC;
-    private javax.swing.JTextField txtBCName;
     private javax.swing.JTextField txtMobile;
+    private javax.swing.JTextField txtName;
     // End of variables declaration//GEN-END:variables
+private boolean validationForFields() 
+{
+    if(txtName.getText().length()==0)
+    {
+         JOptionPane.showMessageDialog(this," Name Can't be blank, please enter Name");
+         txtName.requestFocus();
+         txtName.setText("");
+         return false;
+    }
 
+    else
+    {
+        if(!txtName.getText().matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$"))
+        {
+             JOptionPane.showMessageDialog(this," Invalid name. ");
+             txtName.requestFocus();
+             txtName.setText("");
+             return false;   
+        }
+    }
+    if(txtMobile.getText().isBlank())
+    {
+         JOptionPane.showMessageDialog(this,"Invalid Contact");
+         txtMobile.requestFocus();
+         txtMobile.setText("");
+        return false;
+    }
+    else
+    {
+        if(!txtMobile.getText().matches("^[2-9]{2}[0-9]{8}$"))
+        {
+                JOptionPane.showMessageDialog(this," Invalid Phone Number format, please enter a valid 10 digit US Phone No. ");
+                txtMobile.requestFocus();
+                txtMobile.setText("");
+               return false;
+        }
+    }
+    return true;
+}
     private void populateTable() {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);

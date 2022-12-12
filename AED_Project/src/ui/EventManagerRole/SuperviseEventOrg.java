@@ -99,9 +99,9 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 204));
-        jLabel1.setText("SUPERVISE ORGANISATION FOR EVENTS ");
+        jLabel1.setText("MANAGE ORGANISATION FOR EVENTS ");
         add(jLabel1);
-        jLabel1.setBounds(164, 108, 756, 43);
+        jLabel1.setBounds(164, 108, 723, 43);
 
         jLabel2.setFont(new java.awt.Font("Lucida Grande", 1, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 204));
@@ -198,44 +198,43 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
         String locationName = location.getName();
         String name = nameField.getText();
         String contact = contactField.getText();
+        boolean valid = validationForFields();
+        if(valid)
+        {
 
-        if (name == null || name.length() < 2) {
-            JOptionPane.showMessageDialog(this, "Organization name should be at least 2 characters long.");
-            return;
-        }
-
-        String orgType1 = orgCombo.getSelectedItem().toString();      // org-type (physician org)     
-        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
-        List<Events> events = businessCatalogueDirectory.getListOfEvents();
-        for (int i = 0; i < events.size(); i++) {
-            events.get(i).findSupervisor(user);      //find healthclub for which manager is working for
-            if (orgType1.equals("BirthdayParty")) {
-                events.get(i).addBirthdayParty(name, contact, locationName);
-                row[0] = orgType1;
-                row[1] = name;
-                row[2] = contact;
-                row[3] = locationName;
-                model.addRow(row);
-                JOptionPane.showMessageDialog(this, "Birthday Party Event Org added successfully");
-                return;
-            } else if (orgType1.equals("Meeting")) {
-                events.get(i).addMeetings(name, contact, locationName);
-                row[0] = orgType1;
-                row[1] = name;
-                row[2] = contact;
-                row[3] = locationName;
-                model.addRow(row);
-                JOptionPane.showMessageDialog(this, "Meeting Organisation successfully");
-                return;
-            } else {
-                events.get(i).addWeddingServices(name, contact, locationName);
-                row[0] = orgType1;
-                row[1] = name;
-                row[2] = contact;
-                row[3] = locationName;
-                model.addRow(row);
-                JOptionPane.showMessageDialog(this, "Wedding Organisation added successfully");
-                return;
+            String orgType1 = orgCombo.getSelectedItem().toString();      // org-type (physician org)     
+            BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+            List<Events> events = businessCatalogueDirectory.getListOfEvents();
+            for (int i = 0; i < events.size(); i++) {
+                events.get(i).findSupervisor(user);      //find healthclub for which manager is working for
+                if (orgType1.equals("BirthdayParty")) {
+                    events.get(i).addBirthdayParty(name, contact, locationName);
+                    row[0] = orgType1;
+                    row[1] = name;
+                    row[2] = contact;
+                    row[3] = locationName;
+                    model.addRow(row);
+                    JOptionPane.showMessageDialog(this, "Birthday Party Event Org added successfully");
+                    return;
+                } else if (orgType1.equals("Meeting")) {
+                    events.get(i).addMeetings(name, contact, locationName);
+                    row[0] = orgType1;
+                    row[1] = name;
+                    row[2] = contact;
+                    row[3] = locationName;
+                    model.addRow(row);
+                    JOptionPane.showMessageDialog(this, "Meeting Organisation successfully");
+                    return;
+                } else {
+                    events.get(i).addWeddingServices(name, contact, locationName);
+                    row[0] = orgType1;
+                    row[1] = name;
+                    row[2] = contact;
+                    row[3] = locationName;
+                    model.addRow(row);
+                    JOptionPane.showMessageDialog(this, "Wedding Organisation added successfully");
+                    return;
+                }
             }
         }
     }//GEN-LAST:event_addBtnActionPerformed
@@ -364,7 +363,45 @@ public class SuperviseEventOrg extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_nameFieldActionPerformed
 
+private boolean validationForFields() 
+{
+    if(nameField.getText().length()==0)
+    {
+         JOptionPane.showMessageDialog(this," Name Can't be blank, please enter Name");
+         nameField.requestFocus();
+         nameField.setText("");
+         return false;
+    }
 
+    else
+    {
+        if(!nameField.getText().matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$"))
+        {
+             JOptionPane.showMessageDialog(this," Invalid name. ");
+             nameField.requestFocus();
+             nameField.setText("");
+             return false;   
+        }
+    }
+    if(contactField.getText().isBlank())
+    {
+         JOptionPane.showMessageDialog(this,"Invalid Contact");
+         contactField.requestFocus();
+         contactField.setText("");
+        return false;
+    }
+    else
+    {
+        if(!contactField.getText().matches("^[2-9]{2}[0-9]{8}$"))
+        {
+                JOptionPane.showMessageDialog(this," Invalid Phone Number format, please enter a valid 10 digit US Phone No. ");
+                contactField.requestFocus();
+                contactField.setText("");
+               return false;
+        }
+    }
+    return true;
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JButton backButton;

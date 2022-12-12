@@ -271,6 +271,7 @@ public class ManageOrgAdminForCatering extends javax.swing.JPanel {
                                 model.addRow(row);
                                 Admin.addUser(username, password, "ServiceAgent");
                                 JOptionPane.showMessageDialog(this, " Organisation Manager added successfully");
+                                populateTable();
                                 return;
                             }
                         }
@@ -279,6 +280,9 @@ public class ManageOrgAdminForCatering extends javax.swing.JPanel {
             }
         } else {
             JOptionPane.showMessageDialog(this, "username already exists");
+        nameField.setText("");
+        usernameField.setText("");
+        passwordField.setText("");
         }
 
         nameField.setText("");

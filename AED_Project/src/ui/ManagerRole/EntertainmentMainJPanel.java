@@ -6,7 +6,7 @@ package ui.ManagerRole;
 
 /**
  *
- * @author jaahn
+ * @author himanshu
  */
 public class EntertainmentMainJPanel extends javax.swing.JPanel {
 
