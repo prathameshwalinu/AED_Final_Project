@@ -366,6 +366,7 @@ public class BusinessCatalogueSupervisorJPanel extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(this, String.format("This username '%s' already exists", userName));
         }
         JOptionPane.showMessageDialog(this, "Manager added successfully");
+        populateTable();
         txtSuprName.setText("");
         usernameField.setText("");
         passwordField.setText("");

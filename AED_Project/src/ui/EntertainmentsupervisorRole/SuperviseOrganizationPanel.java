@@ -242,29 +242,28 @@ public class SuperviseOrganizationPanel extends javax.swing.JPanel {
         String locationName = location.getName();  //find the location 
         String name = txtName.getText();
 
-        if (name == null || name.length() < 2) {
-            JOptionPane.showMessageDialog(this, "Organization name should be at least 2 characters long.");
-            return;
-        }
-
         String mobile = txtMobile.getText();
         String orgType1 = orgCombo.getSelectedItem().toString();
-        BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
-        List<Entertainment> entertainment = businessCatalogueDirectory.getListOfEntertainment();
-        for (int i = 0; i < entertainment.size(); i++) {
-            entertainment.get(i).findSupervisor(user);      //find entertainment for which manager is working for
-            if (orgType1.equals("Magician")) {
-                entertainment.get(i).addMagicianORG(name, mobile, locationName);
-                JOptionPane.showMessageDialog(this, "Magician Organisation added successfully");
-            } else if (orgType1.equals("Choreographer")) {
-                entertainment.get(i).addChoreographerORG(name, mobile, locationName);
-                JOptionPane.showMessageDialog(this, "Choreographer Organisation successfully");
-            } else {
-                entertainment.get(i).addSingerORG(name, mobile, locationName);
-                JOptionPane.showMessageDialog(this, "Singer Organisation added successfully");
+        boolean valid = validationForFields();
+        if(valid)
+        {
+            BusinessCatalogueDirectory businessCatalogueDirectory = location.getBusinessCatalogueDirectory();
+            List<Entertainment> entertainment = businessCatalogueDirectory.getListOfEntertainment();
+            for (int i = 0; i < entertainment.size(); i++) {
+                entertainment.get(i).findSupervisor(user);      //find entertainment for which manager is working for
+                if (orgType1.equals("Magician")) {
+                    entertainment.get(i).addMagicianORG(name, mobile, locationName);
+                    JOptionPane.showMessageDialog(this, "Magician Organisation added successfully");
+                } else if (orgType1.equals("Choreographer")) {
+                    entertainment.get(i).addChoreographerORG(name, mobile, locationName);
+                    JOptionPane.showMessageDialog(this, "Choreographer Organisation successfully");
+                } else {
+                    entertainment.get(i).addSingerORG(name, mobile, locationName);
+                    JOptionPane.showMessageDialog(this, "Singer Organisation added successfully");
+                }
             }
+            populateTable();
         }
-        populateTable();
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void txtMobileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMobileActionPerformed
@@ -339,7 +338,45 @@ public class SuperviseOrganizationPanel extends javax.swing.JPanel {
         orgCombo.setSelectedItem(orgType);
         cityNameTextField.setEnabled(false);
     }//GEN-LAST:event_jTable1MouseClicked
+private boolean validationForFields() 
+{
+    if(txtName.getText().length()==0)
+    {
+         JOptionPane.showMessageDialog(this," Name Can't be blank, please enter Name");
+         txtName.requestFocus();
+         txtName.setText("");
+         return false;
+    }
 
+    else
+    {
+        if(!txtName.getText().matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$"))
+        {
+             JOptionPane.showMessageDialog(this," Invalid name. ");
+             txtName.requestFocus();
+             txtName.setText("");
+             return false;   
+        }
+    }
+    if(txtMobile.getText().isBlank())
+    {
+         JOptionPane.showMessageDialog(this,"Invalid Contact");
+         txtMobile.requestFocus();
+         txtMobile.setText("");
+        return false;
+    }
+    else
+    {
+        if(!txtMobile.getText().matches("^[2-9]{2}[0-9]{8}$"))
+        {
+                JOptionPane.showMessageDialog(this," Invalid Phone Number format, please enter a valid 10 digit US Phone No. ");
+                txtMobile.requestFocus();
+                txtMobile.setText("");
+               return false;
+        }
+    }
+    return true;
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;

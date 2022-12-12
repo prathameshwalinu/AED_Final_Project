@@ -144,7 +144,7 @@ public class SuperviseAdminEventOrganisation extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Lucida Grande", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 204));
-        jLabel1.setText("SUPERVISE ADMIN EVENT ORGANIZATION");
+        jLabel1.setText("MANAGE ADMIN EVENT ORGANIZATION");
         add(jLabel1);
         jLabel1.setBounds(138, 109, 803, 43);
 

@@ -188,23 +188,28 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
         String locationName = location.getName();
         String orgType1 = orgCombo.getSelectedItem().toString();      // org-type (delivery org)    
         BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
-
-        if (name == null || name.length() < 2) {
-            JOptionPane.showMessageDialog(this, "Organization name should be at least 2 characters long.");
-            return;
-        }
-
-        List<Catering> res = enterpriseCatalogueDirectory.getListOfCatering();
-        for (int i = 0; i < res.size(); i++) {
-            if (res.get(i).findSupervisor(user) != null) {     //find catering for which manager is working for   
-                res.get(i).addServiceAgentOrganisation(name, contact, locationName);   //add deliveryman org name
-                row[0] = orgType1;
-                row[1] = name;
-                row[2] = contact;
-                row[3] = locationName;
-                model.addRow(row);
-                JOptionPane.showMessageDialog(this, "Organization added successfully");
+        boolean valid = validationForFields();
+        if(valid)
+        {
+            if (name == null || name.length() < 2) {
+                JOptionPane.showMessageDialog(this, "Organization name should be at least 2 characters long.");
                 return;
+            }
+
+            List<Catering> res = enterpriseCatalogueDirectory.getListOfCatering();
+            for (int i = 0; i < res.size(); i++) {
+                if (res.get(i).findSupervisor(user) != null) {     //find catering for which manager is working for   
+                    res.get(i).addServiceAgentOrganisation(name, contact, locationName);   //add deliveryman org name
+                    row[0] = orgType1;
+                    row[1] = name;
+                    row[2] = contact;
+                    row[3] = locationName;
+                    model.addRow(row);
+                    JOptionPane.showMessageDialog(this, "Organization added successfully");
+                    populateTable();
+                    return;
+                    
+                }
             }
         }
     }//GEN-LAST:event_addButtonActionPerformed
@@ -278,7 +283,45 @@ public class ManageOrgPanelForCatering extends javax.swing.JPanel {
         orgCombo.setSelectedItem(orgType);
         cityNameTextField.setEnabled(false);
     }//GEN-LAST:event_jTable1MouseClicked
+private boolean validationForFields() 
+{
+    if(nameField.getText().length()==0)
+    {
+         JOptionPane.showMessageDialog(this," Name Can't be blank, please enter Name");
+         nameField.requestFocus();
+         nameField.setText("");
+         return false;
+    }
 
+    else
+    {
+        if(!nameField.getText().matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$"))
+            {
+                 JOptionPane.showMessageDialog(this," Invalid name. ");
+                 nameField.requestFocus();
+                 nameField.setText("");
+                 return false;   
+            }
+    }
+    if(contactField.getText().isBlank())
+    {
+         JOptionPane.showMessageDialog(this,"Invalid Contact");
+         contactField.requestFocus();
+         contactField.setText("");
+        return false;
+    }
+    else
+    {
+        if(!contactField.getText().matches("^[2-9]{2}[0-9]{8}$"))
+        {
+                JOptionPane.showMessageDialog(this," Invalid Phone Number format, please enter a valid 10 digit US Phone No. ");
+                contactField.requestFocus();
+                contactField.setText("");
+               return false;
+        }
+    }
+    return true;
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;

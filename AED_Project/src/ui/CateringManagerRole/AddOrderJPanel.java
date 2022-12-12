@@ -143,11 +143,13 @@ public class AddOrderJPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_backButtonActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-        String item = menuField.getText();
-        int price = Integer.parseInt(priceField.getText().trim());
-
+    String item = menuField.getText();
+    int price = Integer.parseInt(priceField.getText().trim());
+    boolean valid = validationForFields();
+    if(valid)
+    {
         BusinessCatalogueDirectory enterpriseCatalogueDirectory = location.getBusinessCatalogueDirectory();
         List<Catering> resList = enterpriseCatalogueDirectory.getListOfCatering();                // get all restaurants
         for (Catering res : resList) {
@@ -162,9 +164,46 @@ public class AddOrderJPanel extends javax.swing.JPanel {
                 }
             }
         }
+    }
     }//GEN-LAST:event_addBtnActionPerformed
 
+   private boolean validationForFields() {
 
+    if(menuField.getText().length()==0)
+    {
+        JOptionPane.showMessageDialog(this,"Invalid input : Item Name Can't be blank");
+        menuField.requestFocus();
+        menuField.setText("");
+        return false;
+    }
+    else
+    {
+        if(!menuField.getText().matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$"))
+        {
+            JOptionPane.showMessageDialog(this,"Invalid input : Invalid Item Name. ");
+            menuField.requestFocus();
+            menuField.setText("");
+            return false;
+        }
+    }
+    if(priceField.getText().isBlank() )
+    {
+        JOptionPane.showMessageDialog(this,"Invalid input : Price Can't be blank");
+        priceField.requestFocus();
+        priceField.setText("");
+        return false;
+    }
+    else
+    {
+        if(!priceField.getText().matches("^[0-9]{0,3}$"))
+        {
+            JOptionPane.showMessageDialog(this,"Invalid input : Price Should of 3 Digit Only  ");
+            priceField.requestFocus();
+            return false;
+        }  
+    }
+    return true;
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
     private javax.swing.JButton backButton;

@@ -253,35 +253,39 @@ public class ManageClientJPanel extends javax.swing.JPanel {
         String street = txtStreet.getText();
         String username = usernameField.getText();
         String password = passwordField.getText();
+        boolean valid = validationForFields();
+        if(valid)
+        {
+            if (!Validator.validateName(this, name) || !Validator.validateUserName(this, username)
+                    || !Validator.validatePassword(this, password)) {
+                return;
+            }
 
-        if (!Validator.validateName(this, name) || !Validator.validateUserName(this, username)
-                || !Validator.validatePassword(this, password)) {
-            return;
+            if (Admin.userExistsInSystem(username)) {
+                JOptionPane.showMessageDialog(this, "Username already exists.");
+                return;
+            }
+
+            Client client = Admin.getClientDirectory().addCustomer();  //add client to directory in system
+            client.setName(name);
+            client.setContact(contact);
+            client.setCity(city);
+            client.setAddress(street);
+            client.setUserName(username);
+            client.setPassword(password);
+            populateTable();
+            JOptionPane.showMessageDialog(this, "Client added successfully");
+
+            Admin.addUser(username, password, "Client");
+            populateTable();
+
+            nameField.setText("");
+            contactField.setText("");
+            cityField.setText("");
+            usernameField.setText("");
+            txtStreet.setText("");
+            passwordField.setText("");
         }
-
-        if (Admin.userExistsInSystem(username)) {
-            JOptionPane.showMessageDialog(this, "Username already exists.");
-            return;
-        }
-
-        Client client = Admin.getClientDirectory().addCustomer();  //add client to directory in system
-        client.setName(name);
-        client.setContact(contact);
-        client.setCity(city);
-        client.setAddress(street);
-        client.setUserName(username);
-        client.setPassword(password);
-        populateTable();
-        JOptionPane.showMessageDialog(this, "Client added successfully");
-
-        Admin.addUser(username, password, "Client");
-
-        nameField.setText("");
-        contactField.setText("");
-        cityField.setText("");
-        usernameField.setText("");
-        txtStreet.setText("");
-        passwordField.setText("");
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
@@ -325,8 +329,63 @@ public class ManageClientJPanel extends javax.swing.JPanel {
         usernameField.setEnabled(false);
         passwordField.setEnabled(false);
     }//GEN-LAST:event_tblClientMouseClicked
+        private boolean validationForFields() 
+        {
+    if(cityField.getText().length()==0)
+    {
+         JOptionPane.showMessageDialog(this," City Can't be blank, please enter City");
+         cityField.requestFocus();
+         cityField.setText("");
+         return false;
+    }
 
+    else
+    {
+        if(!cityField.getText().matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$"))
+            {
+                 JOptionPane.showMessageDialog(this," Invalid City. ");
+                 cityField.requestFocus();
+                 cityField.setText("");
+                 return false;   
+            }
+    }
+    if(contactField.getText().isBlank())
+    {
+         JOptionPane.showMessageDialog(this,"Invalid Contact");
+         contactField.requestFocus();
+         contactField.setText("");
+        return false;
+    }
+    else
+    {
+        if(!contactField.getText().matches("^[2-9]{2}[0-9]{8}$"))
+        {
+                JOptionPane.showMessageDialog(this," Invalid Phone Number format, please enter a valid 10 digit US Phone No. ");
+                contactField.requestFocus();
+                contactField.setText("");
+               return false;
+        }
+    } 
+     if(txtStreet.getText().length()==0)
+        {
+             JOptionPane.showMessageDialog(this," Address Can't be blank, please enter Address");
+             txtStreet.requestFocus();
+             txtStreet.setText("");
+             return false;
+        }
 
+    else
+    {
+        if(!txtStreet.getText().matches("^[a-zA-Z]+[\\-'\\s]?[a-zA-Z ]+$"))
+            {
+                 JOptionPane.showMessageDialog(this," Invalid Address. ");
+                 txtStreet.requestFocus();
+                 txtStreet.setText("");
+                 return false;   
+            }
+        return true;
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JButton backButton;

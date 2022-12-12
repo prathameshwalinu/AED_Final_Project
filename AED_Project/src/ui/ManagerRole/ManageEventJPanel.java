@@ -6,7 +6,7 @@ package ui.ManagerRole;
 
 /**
  *
- * @author aishw
+ * @author nishapatil
  */
 public class ManageEventJPanel extends javax.swing.JPanel {
 

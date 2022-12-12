@@ -290,6 +290,7 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
                                 model.addRow(row);
                                 Admin.addUser(username, password, "Singer");
                                 JOptionPane.showMessageDialog(this, "Successfully added Singer organization");
+                                populateTable();
                                 return;
                             }
                         }
@@ -298,6 +299,9 @@ public class OrganizationAdminPanel extends javax.swing.JPanel {
             }
         } else {
             JOptionPane.showMessageDialog(this, " username already exits");
+        nameField.setText("");
+        usernameField.setText("");
+        passwordField.setText("");
         }
     }//GEN-LAST:event_addButtonActionPerformed
 
