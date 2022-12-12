@@ -321,7 +321,7 @@ public class SuperviseAdminOrgForResort extends javax.swing.JPanel {
                                 model.addRow(row);
                                 Admin.addUser(username, password, "CarService");
                                 JOptionPane.showMessageDialog(this, " Organisation Manager added successfully");
-                                populateTable();
+//                                populateTable();
                                 return;
                             }
                         }
