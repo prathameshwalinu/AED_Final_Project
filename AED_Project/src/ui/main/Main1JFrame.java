@@ -3,7 +3,7 @@ package ui.main;
  *
  * @author prathmeshw
  */
-import db.DbUtils;
+import Database.DbUtils;
 import java.util.List;
 import javax.swing.JOptionPane;
 import Model.*;
